@@ -1,0 +1,27 @@
+ALBAM09 UI audit 2026-10-11
+Total HTML: 105
+Canonical chrome pages: 90
+Special standalone pages: 15
+Static problems: 0
+Active-tab problems: 0
+
+STATIC PROBLEMS: NONE
+
+ACTIVE TAB PROBLEMS: NONE
+
+SPECIAL STANDALONE FILES (not forced into common chrome)
+naver1ffe2eef321ee5c7195c5a98e5c6909a.html
+map/index.html
+system/gone.html
+page/privacy/index.html
+page/operator/index.html
+page/terms/index.html
+map/karaoke8/index.html
+map/karaoke1/index.html
+map/karaoke6/index.html
+map/karaoke5/index.html
+map/karaoke4/index.html
+map/room/index.html
+map/karaoke2/index.html
+map/karaoke7/index.html
+map/karaoke3/index.html

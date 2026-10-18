@@ -1,0 +1,849 @@
+
+:root{
+  --bbs-purple:#5F009F;
+  --bbs-purple-2:#8d3df1;
+  --bbs-pink:#e94b99;
+  --bbs-ink:#24142f;
+  --bbs-text:#352a3c;
+  --bbs-muted:#8b8494;
+  --bbs-line:rgba(95,0,159,.14);
+  --bbs-line-strong:rgba(95,0,159,.24);
+  --bbs-soft:#f8f3ff;
+  --bbs-soft-pink:#fff8fb;
+  --bbs-bg:#fbf9fd;
+  --bbs-white:#fff;
+  --bbs-shadow:0 12px 34px rgba(42,18,74,.065);
+  --bbs-shadow-hover:0 16px 38px rgba(42,18,74,.11);
+}
+*{box-sizing:border-box}
+body.bbs-page{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(141,61,241,.07),transparent 31rem),
+    radial-gradient(circle at 90% 10%,rgba(233,75,153,.055),transparent 28rem),
+    linear-gradient(180deg,#fff 0%,#fbf9fd 54%,#fff 100%);
+  color:var(--bbs-text);
+  font-family:Albam,sans-serif;
+}
+.bbs-wrap{width:min(1160px,calc(100% - 28px));margin:0 auto}
+
+/* 상단 */
+.bbs-topbar{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(95,0,159,.10);
+  box-shadow:0 4px 18px rgba(42,18,74,.035);
+}
+.bbs-topbar .bbs-wrap{display:flex;align-items:center;gap:12px;min-height:68px}
+.bbs-brand{
+  font-size:20px;font-weight:950;color:var(--bbs-purple);text-decoration:none;
+  letter-spacing:-.035em;
+}
+.bbs-home,.bbs-all{
+  color:#6f587b;text-decoration:none;font-size:14px;font-weight:800;
+  padding:8px 11px;border-radius:10px;
+}
+.bbs-home{margin-left:auto}
+.bbs-home:hover,.bbs-all:hover{background:var(--bbs-soft);color:var(--bbs-purple)}
+
+/* 목록 헤더 */
+.bbs-hero{padding:44px 0 26px}
+.bbs-kicker{
+  display:inline-flex;align-items:center;
+  color:var(--bbs-purple);font-size:12px;font-weight:950;letter-spacing:.10em;
+  margin-bottom:12px;padding:7px 11px;border-radius:999px;
+  background:#fff;border:1px solid var(--bbs-line);
+}
+.bbs-hero h1{
+  margin:0;color:var(--bbs-ink);
+  font-size:clamp(29px,5vw,47px);line-height:1.22;letter-spacing:-.055em;
+}
+.bbs-hero h1::after{
+  content:"";display:block;width:88px;height:4px;margin-top:14px;border-radius:999px;
+  background:linear-gradient(90deg,var(--bbs-purple),var(--bbs-purple-2),var(--bbs-pink));
+}
+.bbs-hero p{margin:16px 0 0;color:#776d7e;line-height:1.8;max-width:870px}
+
+/* 검색 */
+.bbs-toolbar{
+  display:flex;gap:10px;align-items:center;margin:22px 0 14px;
+  padding:9px;background:#fff;border:1px solid var(--bbs-line);border-radius:16px;
+  box-shadow:0 8px 22px rgba(42,18,74,.035);
+}
+.bbs-search{
+  flex:1;min-width:0;background:#fff;border:0;outline:none;
+  border-radius:11px;padding:12px 13px;color:var(--bbs-ink);font:inherit;
+}
+.bbs-search::placeholder{color:#aaa2af}
+.bbs-search:focus{background:#fcf9ff;box-shadow:inset 0 0 0 1px rgba(95,0,159,.16)}
+.bbs-count{
+  white-space:nowrap;color:var(--bbs-purple);font-size:12px;font-weight:900;
+  padding:8px 10px;border-radius:999px;background:var(--bbs-soft);
+}
+
+/* BBS 목록 */
+.bbs-table{
+  border:1px solid var(--bbs-line);
+  border-radius:20px;overflow:hidden;background:#fff;
+  box-shadow:var(--bbs-shadow);
+}
+.bbs-row{
+  display:grid;grid-template-columns:72px 110px minmax(0,1fr) 110px;
+  align-items:center;gap:10px;min-height:66px;padding:0 20px;
+  border-bottom:1px solid rgba(95,0,159,.085);
+  text-decoration:none;color:inherit;background:#fff;
+  transition:background .16s ease,transform .16s ease;
+}
+.bbs-row:last-child{border-bottom:0}
+.bbs-row:hover{background:linear-gradient(90deg,#fcf9ff,#fff 72%);transform:translateX(2px)}
+.bbs-no{color:#a79ead;font-variant-numeric:tabular-nums;font-size:12px;font-weight:800}
+.bbs-cat{
+  display:inline-flex;width:max-content;max-width:100%;
+  padding:5px 9px;border-radius:999px;
+  background:var(--bbs-soft);color:var(--bbs-purple);
+  border:1px solid rgba(95,0,159,.10);
+  font-size:11.5px;font-weight:900;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.bbs-title{
+  min-width:0;color:#302137;font-size:16px;font-weight:900;
+  line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.bbs-row:hover .bbs-title{color:var(--bbs-purple)}
+.bbs-date{text-align:right;color:#9a919f;font-size:12px}
+
+/* 페이지 */
+.bbs-pagination{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;padding:26px 0 52px}
+.bbs-pagination a{
+  min-width:38px;height:38px;display:grid;place-items:center;
+  border:1px solid var(--bbs-line);border-radius:11px;
+  color:#745f80;text-decoration:none;background:#fff;font-weight:900;
+  box-shadow:0 4px 12px rgba(42,18,74,.025);
+}
+.bbs-pagination a:hover{border-color:var(--bbs-line-strong);background:var(--bbs-soft);color:var(--bbs-purple)}
+.bbs-pagination a.is-current{
+  background:linear-gradient(135deg,var(--bbs-purple-2),var(--bbs-purple));
+  color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px rgba(95,0,159,.20);
+}
+
+/* 상세 기사 */
+.bbs-article{padding:38px 0 58px}
+.bbs-breadcrumb{font-size:13px;color:#9b919f;margin-bottom:18px}
+.bbs-breadcrumb a{color:var(--bbs-purple);text-decoration:none;font-weight:800}
+.bbs-article-card{
+  position:relative;
+  background:linear-gradient(180deg,#fff 0%,#fff 72%,#fdfbff 100%);
+  border:1px solid var(--bbs-line);border-radius:26px;
+  padding:clamp(22px,4vw,44px);box-shadow:var(--bbs-shadow);
+  overflow:hidden;
+}
+.bbs-article-card::before{
+  content:"";position:absolute;left:0;top:0;width:100%;height:4px;
+  background:linear-gradient(90deg,var(--bbs-purple),var(--bbs-purple-2),var(--bbs-pink));
+}
+.bbs-article-meta{
+  display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;
+  color:#968d9b;font-size:13px;
+}
+.bbs-article-meta .bbs-cat{font-size:12px}
+.bbs-article h1{
+  color:var(--bbs-ink);
+  font-size:clamp(28px,5vw,45px);line-height:1.3;
+  letter-spacing:-.05em;margin:17px 0 22px;
+}
+.bbs-cover{
+  width:100%;height:auto;display:block;border-radius:18px;
+  border:1px solid var(--bbs-line);margin:22px 0 32px;
+  box-shadow:0 12px 30px rgba(42,18,74,.07);
+}
+.bbs-content{
+  font-family:Albam,sans-serif;font-size:17px;line-height:1.95;
+  color:#44394a;
+}
+.bbs-content p{margin:0 0 20px}
+.bbs-related{
+  margin-top:34px;padding:20px;border-radius:17px;
+  background:linear-gradient(135deg,#faf7ff,#fff 58%,#fff8fb);
+  border:1px solid var(--bbs-line);
+}
+.bbs-related h2{color:var(--bbs-ink);font-size:18px;margin:0 0 12px}
+.bbs-related-links{display:flex;flex-wrap:wrap;gap:8px}
+.bbs-related-links a{
+  padding:9px 12px;border-radius:10px;background:#fff;
+  border:1px solid var(--bbs-line);color:var(--bbs-purple);
+  text-decoration:none;font-weight:850;
+}
+.bbs-related-links a:hover{background:var(--bbs-soft)}
+.bbs-nav-post{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.bbs-nav-post a{
+  padding:14px;border:1px solid var(--bbs-line);border-radius:12px;
+  text-decoration:none;color:#5e4969;background:#fff;font-weight:850;
+}
+.bbs-nav-post a:hover{background:var(--bbs-soft);color:var(--bbs-purple)}
+.bbs-nav-post a:last-child{text-align:right}
+
+/* 푸터 */
+.bbs-footer{
+  border-top:1px solid rgba(95,0,159,.10);
+  background:rgba(255,255,255,.72);
+  padding:28px 0 44px;color:#938a98;font-size:13px;line-height:1.8;
+}
+
+/* index 및 karaoke1~8/room/hoppa 안에 삽입되는 BBS 미리보기 */
+.home-bbs-preview{
+  position:relative;
+  margin:38px auto;width:min(1160px,calc(100% - 28px));
+  border:1px solid var(--bbs-line);border-radius:24px;
+  background:linear-gradient(180deg,#fff 0%,#fff 70%,#fcf9ff 100%);
+  overflow:hidden;box-shadow:var(--bbs-shadow);
+  color:var(--bbs-text);
+}
+.home-bbs-preview::before{
+  content:"";position:absolute;left:22px;top:0;width:82px;height:3px;border-radius:999px;
+  background:linear-gradient(90deg,var(--bbs-purple),var(--bbs-purple-2),var(--bbs-pink));
+}
+.home-bbs-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:15px;
+  padding:24px 22px 16px;
+}
+.home-bbs-head h2{margin:0;color:var(--bbs-ink);font-size:24px;letter-spacing:-.04em}
+.home-bbs-head p{margin:7px 0 0;color:#8b8494;font-size:14px}
+.home-bbs-head a{
+  color:var(--bbs-purple);text-decoration:none;white-space:nowrap;
+  font-size:13px;font-weight:950;padding:9px 12px;border-radius:999px;
+  background:var(--bbs-soft);border:1px solid rgba(95,0,159,.10);
+}
+.home-bbs-head a:hover{
+  color:#fff;background:linear-gradient(135deg,var(--bbs-purple-2),var(--bbs-purple));
+}
+.home-bbs-list{border-top:1px solid rgba(95,0,159,.11);background:#fff}
+.home-bbs-item{
+  display:grid;grid-template-columns:90px minmax(0,1fr) 88px;
+  gap:10px;align-items:center;min-height:60px;padding:0 18px;
+  border-bottom:1px solid rgba(95,0,159,.075);
+  text-decoration:none;color:inherit;background:#fff;
+}
+.home-bbs-item:last-child{border-bottom:0}
+.home-bbs-item:hover{background:linear-gradient(90deg,#fbf8ff,#fff 75%)}
+.home-bbs-item .cat{
+  color:var(--bbs-purple);font-size:11.5px;font-weight:900;
+  background:var(--bbs-soft);border-radius:999px;padding:5px 8px;
+  width:max-content;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.home-bbs-item .title{
+  color:#34263b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:900;
+}
+.home-bbs-item:hover .title{color:var(--bbs-purple)}
+.home-bbs-item time{color:#9c949f;font-size:12px;text-align:right}
+.regional-bbs-preview{margin-top:44px;margin-bottom:44px}
+
+@media(max-width:720px){
+  .bbs-topbar .bbs-wrap{min-height:58px}
+  .bbs-brand{font-size:17px}
+  .bbs-home,.bbs-all{font-size:12px;padding:7px 8px}
+  .bbs-hero{padding:30px 0 18px}
+  .bbs-toolbar{padding:6px}
+  .bbs-row{grid-template-columns:48px 78px minmax(0,1fr);padding:0 12px;min-height:62px}
+  .bbs-date{display:none}
+  .bbs-cat{font-size:10.5px;padding:4px 7px}
+  .bbs-title{font-size:14px}
+  .bbs-article{padding-top:24px}
+  .bbs-article-card{border-radius:18px}
+  .bbs-content{font-size:16px;line-height:1.9}
+  .bbs-nav-post{grid-template-columns:1fr}
+  .bbs-nav-post a:last-child{text-align:left}
+  .home-bbs-preview{width:calc(100% - 20px);margin:26px auto;border-radius:19px}
+  .home-bbs-head{padding:20px 14px 13px;align-items:center}
+  .home-bbs-head h2{font-size:20px}
+  .home-bbs-head p{display:none}
+  .home-bbs-head a{font-size:11.5px;padding:7px 9px}
+  .home-bbs-item{grid-template-columns:70px minmax(0,1fr);padding:0 12px}
+  .home-bbs-item time{display:none}
+}
+
+
+/* ===== BBS FULL SITE SHELL 20260829 ===== */
+body.bbs-page{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(141,61,241,.055),transparent 32rem),
+    radial-gradient(circle at 90% 4%,rgba(233,75,153,.045),transparent 30rem),
+    #fff!important;
+  color:#352a3c!important;
+}
+
+/* 실제 09 상단 UI가 BBS에서도 같은 폭으로 보이게 */
+body.bbs-page .top-ad-zone,
+body.bbs-page .site-menu-host,
+body.bbs-page .area-wrap{
+  width:min(1160px,calc(100% - 28px))!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.bbs-page .top-ad-zone{margin-top:0!important}
+body.bbs-page .site-menu-host{margin-top:26px!important}
+body.bbs-page .area-wrap{margin-top:12px!important}
+
+/* BBS 현재 위치를 알리는 사이트형 보라/핑크 헤더 */
+.bbs-site-hero{
+  width:min(1160px,calc(100% - 28px));
+  min-height:230px;
+  margin:26px auto 22px;
+  padding:44px 34px;
+  border-radius:24px;
+  background:linear-gradient(118deg,#8f00bf 0%,#bd0aa6 42%,#ef1768 100%);
+  box-shadow:0 18px 38px rgba(95,0,159,.13);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+}
+.bbs-site-hero__eyebrow{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.12em;
+  opacity:.82;
+  margin-bottom:11px;
+}
+.bbs-site-hero h1,.bbs-site-hero__title{
+  color:#fff!important;
+  font-size:clamp(32px,5vw,48px)!important;
+  line-height:1.18!important;
+  letter-spacing:-.055em!important;
+  margin:0!important;
+}
+.bbs-site-hero p{
+  max-width:820px;
+  color:rgba(255,255,255,.92)!important;
+  margin:17px 0 0!important;
+  font-size:15px;
+  line-height:1.75;
+  font-weight:750;
+}
+
+/* 통합검색은 지역 페이지와 똑같이 유지하되 BBS에서 폭만 고정 */
+.bbs-shell-search{
+  width:min(980px,calc(100% - 28px));
+  margin:0 auto 32px;
+}
+.bbs-shell-search .global-place-search{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+}
+
+/* 예전 별도 BBS topbar는 사용하지 않는다 */
+.bbs-topbar{display:none!important}
+
+/* 공통 사이트 UI 뒤에 기사 본문이 너무 붙지 않게 */
+body.bbs-page .bbs-article{
+  padding-top:10px!important;
+}
+body.bbs-page .bbs-hero{
+  padding-top:10px!important;
+}
+
+/* 3번 화면처럼 대표 이미지가 화면을 압도하지 않게 */
+.bbs-cover{
+  width:min(100%,760px)!important;
+  margin:24px auto 32px!important;
+  border-radius:18px!important;
+}
+
+/* 본문 카드도 사이트 일반 폭과 균형 */
+.bbs-article .bbs-wrap{
+  width:min(1080px,calc(100% - 28px))!important;
+}
+.bbs-article-card{
+  padding:clamp(24px,4vw,42px)!important;
+}
+
+/* BBS 목록도 공통 헤더 다음에 자연스럽게 */
+.bbs-hero .bbs-wrap{
+  width:min(1080px,calc(100% - 28px))!important;
+}
+.bbs-hero > .bbs-wrap > .bbs-kicker,
+.bbs-hero > .bbs-wrap > h1,
+.bbs-hero > .bbs-wrap > p{
+  display:none!important;
+}
+.bbs-toolbar{margin-top:4px!important}
+
+/* 사이트 공통 푸터가 있으므로 별도 BBS footer 제거 */
+.bbs-footer{display:none!important}
+
+@media(max-width:720px){
+  body.bbs-page .top-ad-zone,
+  body.bbs-page .site-menu-host,
+  body.bbs-page .area-wrap{
+    width:calc(100% - 20px)!important;
+  }
+  body.bbs-page .site-menu-host{margin-top:18px!important}
+  .bbs-site-hero{
+    width:calc(100% - 20px);
+    min-height:190px;
+    margin:20px auto 18px;
+    padding:34px 20px;
+    border-radius:20px;
+  }
+  .bbs-site-hero p{font-size:13px;line-height:1.65}
+  .bbs-shell-search{width:calc(100% - 20px);margin-bottom:24px}
+  .bbs-cover{width:100%!important;margin:18px auto 26px!important}
+  .bbs-article .bbs-wrap,
+  .bbs-hero .bbs-wrap{width:calc(100% - 20px)!important}
+}
+
+
+/* ===== BBS HAMBURGER POSITION FIX 20260829 ===== */
+/* 09 원래 헤더처럼: 로고 왼쪽 / 햄버거는 오른쪽 끝 */
+body.bbs-page .site-menu-host{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  position:relative!important;
+  gap:18px!important;
+}
+body.bbs-page .site-menu-host > a{
+  display:block!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  margin:0!important;
+}
+body.bbs-page .site-menu-host .site-menu-trigger{
+  flex:0 0 auto!important;
+  margin-left:auto!important;
+  margin-right:0!important;
+  position:relative!important;
+  right:auto!important;
+  top:auto!important;
+  transform:none!important;
+}
+@media(max-width:720px){
+  body.bbs-page .site-menu-host{
+    width:calc(100% - 20px)!important;
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  body.bbs-page .site-menu-host .site-menu-trigger{
+    margin-left:auto!important;
+  }
+}
+
+
+/* ===== REAL USEFUL ARTICLE CONTENT 20260829 ===== */
+.bbs-content h2{
+  margin:34px 0 13px;
+  padding-top:2px;
+  color:#2f2037;
+  font-size:clamp(20px,3.2vw,27px);
+  line-height:1.4;
+  letter-spacing:-.04em;
+}
+.bbs-content h2::before{
+  content:"";
+  display:inline-block;
+  width:5px;
+  height:22px;
+  margin-right:10px;
+  border-radius:999px;
+  vertical-align:-3px;
+  background:linear-gradient(180deg,#7f2ce3,#e94b99);
+}
+.bbs-content ul,
+.bbs-content ol{
+  margin:10px 0 24px;
+  padding:18px 22px 18px 42px;
+  border:1px solid rgba(95,0,159,.10);
+  border-radius:16px;
+  background:linear-gradient(180deg,#fff,#fcf9ff);
+  color:#493d4f;
+}
+.bbs-content li{
+  margin:8px 0;
+  padding-left:4px;
+  line-height:1.75;
+}
+.article-tip-box{
+  margin:24px 0;
+  padding:17px 18px;
+  border-radius:16px;
+  border:1px solid rgba(95,0,159,.15);
+  background:linear-gradient(135deg,#f8f3ff,#fff 60%,#fff8fb);
+}
+.article-tip-box strong{
+  display:block;
+  margin-bottom:7px;
+  color:#5F009F;
+  font-size:14px;
+}
+.article-tip-box p{
+  margin:0!important;
+  color:#51445a;
+}
+.article-inline-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:26px 0 4px;
+}
+.article-inline-links a{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 13px;
+  border-radius:999px;
+  border:1px solid rgba(95,0,159,.15);
+  background:#fff;
+  color:#5F009F;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+}
+.article-inline-links a:hover{
+  background:#f8f3ff;
+}
+
+
+/* ===== UNIFIED BBS PAGINATION 20260829 ===== */
+.bbs-pagination-shared{
+  width:100%;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:center!important;
+  gap:7px!important;
+  padding:22px 14px 26px!important;
+  margin:0!important;
+  border-top:1px solid rgba(95,0,159,.09);
+  background:linear-gradient(180deg,#fff,#fdfbff);
+}
+.bbs-pagination-shared a{
+  flex:0 0 auto!important;
+  min-width:38px!important;
+  height:38px!important;
+  padding:0 8px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(95,0,159,.16)!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  color:#6e587a!important;
+  text-decoration:none!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  box-shadow:0 4px 12px rgba(42,18,74,.025)!important;
+}
+.bbs-pagination-shared a:hover{
+  background:#f8f3ff!important;
+  border-color:rgba(95,0,159,.28)!important;
+  color:#5F009F!important;
+}
+.bbs-pagination-shared a.is-current{
+  background:linear-gradient(135deg,#8d3df1,#5F009F)!important;
+  color:#fff!important;
+  border-color:transparent!important;
+  box-shadow:0 8px 18px rgba(95,0,159,.20)!important;
+}
+.bbs-detail-page-pagination{
+  margin-top:18px!important;
+  border:1px solid rgba(95,0,159,.10);
+  border-radius:16px;
+}
+.home-bbs-pagination,
+.regional-bbs-pagination{
+  border-top:1px solid rgba(95,0,159,.10);
+}
+
+@media(max-width:720px){
+  .bbs-pagination-shared{
+    justify-content:flex-start!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    padding:16px 12px 18px!important;
+  }
+  .bbs-pagination-shared a{
+    min-width:36px!important;
+    height:36px!important;
+  }
+}
+
+/* ===== 309 ARTICLE PAGINATION SUPPORT ===== */
+.bbs-pagination-shared{max-width:100%;}
+@media(max-width:720px){
+  .bbs-pagination-shared{overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;}
+}
+
+
+/* ===== COMPACT 6 PAGE PAGINATION 20260829 ===== */
+.bbs-pagination-compact{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:7px!important;
+  overflow:visible!important;
+}
+.bbs-pagination-compact a{
+  flex:0 0 auto!important;
+}
+.bbs-pagination-compact .bbs-page-arrow{
+  font-size:17px!important;
+  font-weight:950!important;
+}
+.bbs-pagination-compact .bbs-page-arrow-next{
+  margin-left:2px!important;
+}
+.bbs-pagination-compact .bbs-page-arrow-prev{
+  margin-right:2px!important;
+}
+@media(max-width:720px){
+  .bbs-pagination-compact{
+    justify-content:center!important;
+    overflow:visible!important;
+    flex-wrap:nowrap!important;
+    padding-left:6px!important;
+    padding-right:6px!important;
+    gap:5px!important;
+  }
+  .bbs-pagination-compact a{
+    min-width:34px!important;
+    width:34px!important;
+    height:34px!important;
+    padding:0!important;
+    font-size:12px!important;
+  }
+}
+
+
+/* ===== COMPACT BBS TYPOGRAPHY 20260829 ===== */
+/* 전체적으로 한 단계 작은 글씨 — 모바일 가독성/정보밀도 개선 */
+.home-bbs-head h2{
+  font-size:20px!important;
+  line-height:1.25!important;
+}
+.home-bbs-head p{
+  font-size:12.5px!important;
+}
+.home-bbs-item{
+  min-height:52px!important;
+}
+.home-bbs-item .cat{
+  font-size:10.5px!important;
+  padding:4px 7px!important;
+}
+.home-bbs-item .title{
+  font-size:14px!important;
+  line-height:1.35!important;
+}
+.home-bbs-item time{
+  font-size:11px!important;
+}
+
+.bbs-site-hero h1,.bbs-site-hero__title{
+  font-size:clamp(27px,4.2vw,39px)!important;
+}
+.bbs-site-hero p{
+  font-size:13px!important;
+}
+.bbs-site-hero__eyebrow{
+  font-size:10.5px!important;
+}
+
+.bbs-hero h1{
+  font-size:clamp(26px,4.2vw,39px)!important;
+}
+.bbs-hero p{
+  font-size:13px!important;
+}
+.bbs-kicker{
+  font-size:10.5px!important;
+}
+
+.bbs-row{
+  min-height:58px!important;
+}
+.bbs-title{
+  font-size:14px!important;
+}
+.bbs-cat{
+  font-size:10.5px!important;
+  padding:4px 7px!important;
+}
+.bbs-no,
+.bbs-date{
+  font-size:11px!important;
+}
+
+.bbs-article h1{
+  font-size:clamp(25px,4vw,37px)!important;
+}
+.bbs-article-meta{
+  font-size:11.5px!important;
+}
+.bbs-content{
+  font-size:15.5px!important;
+  line-height:1.85!important;
+}
+.bbs-content h2{
+  font-size:clamp(18px,2.8vw,23px)!important;
+}
+.bbs-content li{
+  font-size:14.5px!important;
+}
+.bbs-related h2{
+  font-size:16px!important;
+}
+.bbs-related-links a,
+.bbs-nav-post a{
+  font-size:12.5px!important;
+}
+.bbs-pagination-compact a{
+  font-size:11.5px!important;
+}
+
+@media(max-width:720px){
+  .home-bbs-head{
+    padding:17px 13px 11px!important;
+  }
+  .home-bbs-head h2{
+    font-size:18px!important;
+  }
+  .home-bbs-item{
+    min-height:48px!important;
+    grid-template-columns:64px minmax(0,1fr)!important;
+  }
+  .home-bbs-item .cat{
+    font-size:9.5px!important;
+    padding:4px 6px!important;
+  }
+  .home-bbs-item .title{
+    font-size:12.5px!important;
+    letter-spacing:-.02em!important;
+  }
+
+  .bbs-site-hero{
+    min-height:160px!important;
+    padding:28px 16px!important;
+  }
+  .bbs-site-hero h1,.bbs-site-hero__title{
+    font-size:27px!important;
+  }
+  .bbs-site-hero p{
+    font-size:11.5px!important;
+  }
+
+  .bbs-row{
+    min-height:54px!important;
+    grid-template-columns:42px 68px minmax(0,1fr)!important;
+  }
+  .bbs-title{
+    font-size:12.5px!important;
+  }
+  .bbs-cat{
+    font-size:9.5px!important;
+  }
+  .bbs-no{
+    font-size:10px!important;
+  }
+
+  .bbs-article h1{
+    font-size:24px!important;
+    line-height:1.3!important;
+  }
+  .bbs-article-meta{
+    font-size:10.5px!important;
+  }
+  .bbs-content{
+    font-size:14px!important;
+    line-height:1.82!important;
+  }
+  .bbs-content h2{
+    font-size:18px!important;
+    margin-top:28px!important;
+  }
+  .bbs-content li{
+    font-size:13.5px!important;
+  }
+  .article-tip-box strong{
+    font-size:12px!important;
+  }
+  .article-tip-box p{
+    font-size:13.5px!important;
+  }
+
+  .bbs-pagination-compact a{
+    min-width:32px!important;
+    width:32px!important;
+    height:32px!important;
+    font-size:11px!important;
+  }
+}
+
+/* 20260831 SEARCH HUB */
+.seo-search-hub{max-width:1120px;margin:18px auto 22px;padding:20px;border:1px solid rgba(95,0,159,.12);border-radius:22px;background:linear-gradient(135deg,#fff 0%,#fdfaff 60%,#fff7fb 100%);box-shadow:0 8px 26px rgba(95,0,159,.05)}.seo-search-hub h2{margin:0 0 6px;font-size:18px;line-height:1.35;color:#3c244c}.seo-search-hub>p{margin:0 0 14px;font-size:12.5px;line-height:1.65;color:#776b80}.seo-search-hub__links{display:flex;flex-wrap:wrap;gap:8px}.seo-search-hub__links a{display:inline-flex;align-items:center;min-height:34px;padding:7px 12px;border:1px solid #eadcf3;border-radius:999px;background:#fff;color:#5f009f;text-decoration:none;font-size:12px;font-weight:700;line-height:1.35}@media(max-width:640px){.seo-search-hub{margin:14px 12px 18px;padding:16px 14px;border-radius:18px}.seo-search-hub h2{font-size:16px}.seo-search-hub>p{font-size:11.5px}.seo-search-hub__links{gap:6px}.seo-search-hub__links a{min-height:31px;padding:6px 10px;font-size:11px}}
+
+/* ===== 20260901 SEARCH HUB BEFORE FOOTER ===== */
+.seo-search-hub--before-footer{
+  width:calc(100% - 40px);
+  max-width:1400px;
+  box-sizing:border-box;
+  margin:24px auto 26px;
+}
+@media(max-width:640px){
+  .seo-search-hub--before-footer{
+    width:calc(100% - 24px);
+    margin:16px auto 18px;
+  }
+}
+/* ===== SEARCH HUB BEFORE FOOTER END ===== */
+
+
+/* ===== 20260901 SEARCH HUB WIDTH MATCH V2 ===== */
+/* footer 위 검색가이드 = 바로 위 BBS 박스와 같은 폭 */
+.seo-search-hub--before-footer{
+  width:min(1160px,calc(100% - 28px)) !important;
+  max-width:1160px !important;
+  margin:24px auto 26px !important;
+  padding:20px !important;
+  box-sizing:border-box !important;
+}
+
+@media(max-width:640px){
+  .seo-search-hub--before-footer{
+    width:calc(100% - 20px) !important;
+    max-width:none !important;
+    margin:18px auto 20px !important;
+    padding:16px 14px !important;
+    border-radius:19px !important;
+  }
+}
+/* ===== SEARCH HUB WIDTH MATCH V2 END ===== */
+
+/* 2026-10-14 BBS search-intent hub */
+.bbs-intent-hub{margin:18px 0 16px;padding:16px;border:1px solid rgba(91,63,135,.12);border-radius:16px;background:#fff}
+.bbs-intent-hub h2{margin:0 0 12px;font-size:16px;line-height:1.4}
+.bbs-intent-links{display:flex;flex-wrap:wrap;gap:8px}
+.bbs-intent-links a{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border:1px solid rgba(91,63,135,.14);border-radius:12px;background:#faf9ff;text-decoration:none;font-size:14px;font-weight:700}
+@media(max-width:600px){.bbs-intent-hub{padding:13px}.bbs-intent-links{display:grid;grid-template-columns:1fr 1fr}.bbs-intent-links a{min-width:0;justify-content:center;text-align:center;padding:8px;font-size:13px}}
+
+/* 2026-10-16 BBS crawl/index hub refinement */
+.bbs-intent-hub{margin:20px 0 18px;padding:18px;border:1px solid rgba(147,73,255,.16);border-radius:16px;background:linear-gradient(180deg,#fff,#fbf8ff)}
+.bbs-intent-hub h2{margin:0 0 12px;font-size:1.05rem}
+.bbs-intent-links{display:flex;flex-wrap:wrap;gap:8px}
+.bbs-intent-links a{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border:1px solid #e8def5;border-radius:999px;background:#fff;font-weight:800}
+.bbs-related-links a{line-height:1.45}
+@media(max-width:600px){.bbs-intent-hub{padding:14px}.bbs-intent-links{gap:6px}.bbs-intent-links a{min-height:36px;padding:0 10px;font-size:.9rem}}
+
+/* 2026-10-16 BBS visible topic header — keep H1 and lead visible for users and crawlers */
+.bbs-hero > .bbs-wrap > .bbs-kicker{display:inline-flex!important;margin:0 0 8px!important;color:#8b4cff!important;font-weight:900!important;letter-spacing:.08em!important}
+.bbs-hero > .bbs-wrap > h1{display:block!important;margin:0!important;color:#1f1728!important;font-size:clamp(28px,4.4vw,42px)!important;line-height:1.2!important}
+.bbs-hero > .bbs-wrap > p{display:block!important;margin:10px 0 18px!important;max-width:820px!important;color:#6f6577!important;font-size:14px!important;line-height:1.75!important}
+@media(max-width:600px){
+  .bbs-hero > .bbs-wrap > h1{font-size:28px!important}
+  .bbs-hero > .bbs-wrap > p{font-size:13px!important;margin-bottom:14px!important}
+}

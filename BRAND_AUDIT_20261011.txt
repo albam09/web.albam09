@@ -1,0 +1,18 @@
+ALBAM09 region brand audit
+
+index.html: 광주버블여지도
+page/karaoke1/index.html: 상무지구버블여지도
+page/karaoke2/index.html: 상무·광천동버블여지도
+page/karaoke3/index.html: 신안동버블여지도
+page/karaoke4/index.html: 용봉동버블여지도
+page/karaoke5/index.html: 첨단지구버블여지도
+page/karaoke6/index.html: 목포버블여지도
+page/karaoke7/index.html: 광주동구버블여지도
+page/karaoke8/index.html: 광주남구버블여지도
+page/room/index.html: 광주룸소주방버블여지도
+explore/karaoke1/index.html: 상무지구버블여지도
+explore/karaoke6/index.html: 목포버블여지도
+login/index.html: 광주버블여지도
+messages/index.html: 광주버블여지도
+
+Problems: 0

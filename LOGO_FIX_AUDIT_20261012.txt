@@ -1,0 +1,9 @@
+광주버블여지도09 모바일 로고 잘림 수정 검수
+========================================
+site-menu-host 적용 페이지: 91
+원인: site-account-bar.css의 로고 anchor/title overflow:hidden + text-overflow:ellipsis
+수정: 로고 overflow visible, ellipsis 제거, 모바일 1행 로고+햄버거 / 2행 회원메뉴 분리,
+      520px 이하 반응형 폰트, 340px 이하 초협폭 fallback 적용.
+캐시 버전: site-account-bar.css?v=20261012-logo1
+검수 결과: {'site header pages': 91, 'all account CSS cache versions updated': True, 'brand anchor no overflow:hidden': True, 'brand title no ellipsis': True, 'mobile account menu moved to row 2': True, 'mobile logo is nowrap': True, 'ultra narrow fallback exists': True}
+참고: 이 실행환경의 Chromium GPU 프로세스 오류로 실제 스크린샷 렌더링은 완료하지 못함.

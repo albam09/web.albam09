@@ -1,0 +1,46 @@
+
+/* Official ALBAM09 brand icon only — no numeric 09 UI marks */
+.ab09-official-map-icon{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  color:#9349ff!important;
+}
+.site-drawer__brand-mark--official{
+  display:grid!important;
+  place-items:center!important;
+  width:42px!important;
+  height:42px!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  border-radius:12px!important;
+  background:#f5efff!important;
+  color:#9349ff!important;
+}
+.site-drawer__brand-mark--official .ab09-official-map-icon{
+  width:25px!important;
+  height:25px!important;
+}
+.explorer-board-state__icon{
+  padding:12px!important;
+  box-sizing:border-box!important;
+}
+.explorer-board-state__icon .ab09-official-map-icon{
+  width:26px!important;
+  height:26px!important;
+}
+.explorer-card-media.is-empty span{
+  display:grid!important;
+  place-items:center!important;
+  width:48px!important;
+  height:48px!important;
+  margin:auto!important;
+  padding:10px!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.58)!important;
+  box-sizing:border-box!important;
+}
+.explorer-card-media.is-empty .ab09-official-map-icon{
+  width:28px!important;
+  height:28px!important;
+}

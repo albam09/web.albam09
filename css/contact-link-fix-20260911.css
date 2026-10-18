@@ -1,0 +1,129 @@
+/* 무료제휴 문의 카드: INDEX 화면 기준 전페이지 통일 */
+.index-partner-contact-card,
+main section[list] div[wrapper] .partner-contact-card.index-partner-contact-card{
+  box-sizing:border-box !important;
+  min-height:208px !important;
+  height:208px !important;
+  padding:20px 16px 18px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:0 !important;
+  overflow:hidden !important;
+  background:linear-gradient(180deg,#fff,#fffafd) !important;
+  border:1px solid rgba(109,40,217,.10) !important;
+  border-radius:28px !important;
+  box-shadow:0 12px 28px rgba(28,18,45,.11) !important;
+  color:#8e8795 !important;
+}
+.index-partner-contact-card__title{
+  display:block !important;
+  margin:0 !important;
+  font-size:1.25rem !important;
+  line-height:1.2 !important;
+  font-weight:900 !important;
+  letter-spacing:-.055em !important;
+  background:linear-gradient(125deg,#5F009F,#ff3a4e) !important;
+  color:transparent !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+}
+.index-partner-contact-card__divider{
+  display:block !important;
+  width:100% !important;
+  height:1px !important;
+  margin:18px 0 32px !important;
+  background:rgba(109,40,217,.14) !important;
+}
+.index-partner-contact-card a{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  text-align:center !important;
+  text-decoration:none !important;
+  color:#8f8796 !important;
+  font-weight:650 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:clip !important;
+}
+.index-partner-contact-card__sub{font-size:.86rem !important;line-height:1.25 !important;}
+.index-partner-contact-card__email{font-size:.72rem !important;margin-bottom:31px !important;}
+.index-partner-contact-card .partner-telegram-link{text-decoration:none !important;}
+
+@media(max-width:760px){
+  .index-partner-contact-card,
+  main section[list] div[wrapper] .partner-contact-card.index-partner-contact-card{
+    min-height:118px !important;
+    height:118px !important;
+    padding:10px 8px 9px !important;
+    border-radius:16px !important;
+  }
+  .index-partner-contact-card__title{font-size:.88rem !important;}
+  .index-partner-contact-card__divider{margin:8px 0 11px !important;}
+  .index-partner-contact-card__sub{font-size:.62rem !important;}
+  .index-partner-contact-card__email{font-size:.58rem !important;margin-bottom:10px !important;}
+}
+@media(max-width:380px){
+  .index-partner-contact-card__title{font-size:.78rem !important;}
+  .index-partner-contact-card__sub{font-size:.56rem !important;}
+  .index-partner-contact-card__email{font-size:.52rem !important;}
+}
+
+/* 문의 이메일·텔레그램 링크 전페이지 옅은 하늘색 통일 */
+a[href^="mailto:groogaolove@gmail.com"],
+a[href="https://t.me/medic0111"],
+.index-partner-contact-card a[href^="mailto:groogaolove@gmail.com"],
+.index-partner-contact-card a[href="https://t.me/medic0111"]{
+  color:#8fdcff !important;
+}
+
+/* 20260911: 작은 문의 연락처 가독성 강화 */
+a[href^="mailto:groogaolove@gmail.com"],
+a[href="https://t.me/medic0111"],
+.index-partner-contact-card a[href^="mailto:groogaolove@gmail.com"],
+.index-partner-contact-card a[href="https://t.me/medic0111"]{
+  color:#8fdcff !important;
+  font-weight:800 !important;
+  -webkit-text-stroke:.18px rgba(32,93,116,.72);
+  text-shadow:0 1px 0 rgba(255,255,255,.72),0 0 2px rgba(65,181,224,.32) !important;
+}
+
+/* 20260911: 무료제휴 문의 카드를 좌측 지역 카드 크기에 맞춤 */
+.index-partner-contact-card,
+main section[list] div[wrapper] .partner-contact-card.index-partner-contact-card{
+  width:100% !important;
+  min-width:0 !important;
+  height:150px !important;
+  min-height:150px !important;
+  max-height:150px !important;
+  padding:14px 10px !important;
+  border-radius:18px !important;
+  justify-self:stretch !important;
+  align-self:stretch !important;
+}
+.index-partner-contact-card__divider{
+  margin:10px 0 15px !important;
+}
+.index-partner-contact-card__email{
+  margin-bottom:14px !important;
+}
+.index-partner-contact-card a[href^="mailto:groogaolove@gmail.com"],
+.index-partner-contact-card a[href="https://t.me/medic0111"]{
+  font-weight:850 !important;
+  -webkit-text-stroke:.22px rgba(34,88,108,.72) !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.82),0 0 2px rgba(65,181,224,.40) !important;
+}
+@media(max-width:720px){
+  .index-partner-contact-card,
+  main section[list] div[wrapper] .partner-contact-card.index-partner-contact-card{
+    height:150px !important;
+    min-height:150px !important;
+    max-height:150px !important;
+    padding:14px 10px !important;
+    border-radius:18px !important;
+  }
+  .index-partner-contact-card__divider{margin:8px 0 12px !important;}
+  .index-partner-contact-card__email{margin-bottom:10px !important;}
+}

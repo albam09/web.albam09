@@ -1,0 +1,43 @@
+/*
+  Permissions-Policy: geolocation=(self)
+
+
+/data/public-venues.json
+  X-Robots-Tag: noindex, nosnippet
+
+/data/public-venues.js
+  X-Robots-Tag: noindex, nosnippet
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/thumbs/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=604800
+
+/js/*
+  Cache-Control: public, max-age=604800
+
+/data/*
+  Cache-Control: public, max-age=3600
+
+/map/*
+  X-Robots-Tag: noindex, follow
+  Cache-Control: public, max-age=3600
+
+/login/*
+  X-Robots-Tag: noindex, nofollow
+
+/*.sql
+  X-Robots-Tag: noindex, nofollow
+
+/*SETUP*.txt
+  X-Robots-Tag: noindex, nofollow
+
+/scripts/*
+  X-Robots-Tag: noindex, nofollow

@@ -1,0 +1,2 @@
+/* 09 PUBLIC PAGE VENUES: karaoke8 */
+window.PUBLIC_PAGE_VENUES=[];

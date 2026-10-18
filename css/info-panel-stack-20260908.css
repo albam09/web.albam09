@@ -1,0 +1,163 @@
+/* Unified lower information stack: guide -> BBS -> map. 2026-09-08 */
+.info-panel-stack{
+  width:min(100% - 32px,1430px)!important;
+  max-width:1430px!important;
+  margin:14px auto 22px!important;
+  padding:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-sizing:border-box!important;
+}
+.info-panel-stack > section{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+/* Fold cards and map card use the exact same outer geometry */
+.info-panel-stack .info-fold-card > details,
+.info-panel-stack .info-map-card{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  border:1px solid rgba(34,22,42,.10)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 7px 20px rgba(36,27,45,.08)!important;
+  overflow:hidden!important;
+}
+.info-panel-stack .info-fold-card{
+  min-height:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.info-panel-stack .info-fold-card > details{padding:0!important;}
+.info-panel-stack .info-fold-card > details > summary{
+  min-height:52px!important;
+  padding:0 18px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#fff!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  box-sizing:border-box!important;
+  list-style:none!important;
+  cursor:pointer!important;
+}
+.info-panel-stack .info-fold-card > details > summary::-webkit-details-marker{display:none!important;}
+.info-panel-stack .info-fold-card > details[open] > summary{border-bottom:1px solid rgba(34,22,42,.08)!important;}
+.info-panel-stack .info-fold-card .business-description-fold__content,
+.info-panel-stack .info-fold-card .bbs-preview-fold__content{
+  padding:14px 16px 16px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+.info-panel-stack .info-map-card{padding:0!important;}
+.info-panel-stack .info-map-card > h2{
+  margin:0!important;
+  min-height:64px!important;
+  padding:0 18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+  font-size:clamp(23px,2vw,30px)!important;
+  line-height:1.15!important;
+  color:#702dbd!important;
+  background:#fff!important;
+  border:0!important;
+}
+.info-panel-stack .info-map-card .map-placeholder{
+  width:100%!important;
+  max-width:none!important;
+  height:132px!important;
+  min-height:132px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-top:1px solid rgba(34,22,42,.10)!important;
+  border-radius:0!important;
+  background:#f8f8f8!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+@media(max-width:760px){
+  .info-panel-stack{
+    width:calc(100% - 20px)!important;
+    margin:8px auto 14px!important;
+    gap:4px!important;
+  }
+  .info-panel-stack .info-fold-card > details,
+  .info-panel-stack .info-map-card{border-radius:13px!important;}
+  .info-panel-stack .info-fold-card > details > summary{
+    min-height:46px!important;
+    padding:0 13px!important;
+    gap:8px!important;
+    font-size:13px!important;
+  }
+  .info-panel-stack .info-fold-card .business-description-fold__action,
+  .info-panel-stack .info-fold-card .bbs-preview-fold__action{font-size:10.5px!important;}
+  .info-panel-stack .info-fold-card .business-description-fold__content,
+  .info-panel-stack .info-fold-card .bbs-preview-fold__content{padding:11px 12px 13px!important;}
+  .info-panel-stack .info-map-card > h2{
+    min-height:52px!important;
+    padding:0 12px!important;
+    font-size:20px!important;
+  }
+  .info-panel-stack .info-map-card .map-placeholder{
+    height:104px!important;
+    min-height:104px!important;
+  }
+}
+
+/* 2026-09-08 06:54: hard reset legacy outer styles inside unified stack */
+.info-panel-stack > section.info-fold-card,
+.info-panel-stack > section.info-guide-card,
+.info-panel-stack > section.info-bbs-card,
+.info-panel-stack > section.info-map-card{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+.info-panel-stack > section.info-fold-card > details,
+.info-panel-stack > section.info-map-card{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+
+
+/* ===== FREE PARTNERSHIP CARD: MATCH ADJACENT CARD HEIGHT ===== */
+.partner-contact-card{
+  height:100% !important;
+  min-height:0 !important;
+  align-self:stretch !important;
+}
+.partner-contact-card,
+.partner-contact-card.contact-card,
+.partner-contact-card.partner-card{
+  box-sizing:border-box !important;
+}

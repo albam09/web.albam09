@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head><!-- Favicon -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><link href="favicon.ico" rel="icon" sizes="any"/><link href="img/favicon/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png"/><link href="img/favicon/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/><link href="img/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="site.webmanifest" rel="manifest"/><meta content="#6f2dbd" name="theme-color"/>
+<!-- PNG 다양한 사이즈 (Retina 대응) -->
+<!-- Apple 터치 아이콘 -->
+<!-- 광주버블여지도 로컬 폰트 적용 -->
+<link href="css/master.css?ver=20260530-nightarticle" rel="stylesheet"/>
+<link href="css/index-inline-seo.css?ver=20260609-seofix" rel="stylesheet"/>
+<!-- SEO Meta -->
+<title>광주버블여지도 | 광주노래방 | 광주가라오케 | 광주유흥주점 | 광주단란주점 | 상무지구노래방</title>
+<link href="https://albam09.com/" rel="canonical"/>
+<meta content="광주버블여지도에서 광주노래방, 광주가라오케, 상무지구노래방, 광천동·신안동·용봉동·첨단지구와 광주 동구·남구, 목포의 지역별 등록 업소 정보를 확인할 수 있습니다." name="description"/>
+<!-- Open Graph (SNS 공유 시 노출 정보) -->
+<meta content="website" property="og:type"/>
+<!-- Twitter Card (트위터 공유 시 노출 정보) -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://albam09.com/" name="twitter:url"/>
+<!-- Sitemap, robots, google verify -->
+<meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+<!-- Analytics -->
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KG9Z9ZBBGD');
+    </script><script defer="" src="/js/analytics-lazy.js?v=20261010-cwv"></script>
+<script>
+/* 현재 지역 탭 표시 보정: Pretty URL(/page/karaoke1/)과 실제 .html 경로를 모두 정확히 인식 */
+document.addEventListener('DOMContentLoaded', function () {
+  var path = window.location.pathname || '/';
+  var parts = path.split('/').filter(Boolean);
+  var cur = 'index';
+
+  if (parts.length > 0) {
+    cur = parts[parts.length - 1];
+    if (/^index\.html?$/i.test(cur) && parts.length > 1) {
+      cur = parts[parts.length - 2];
+    }
+    cur = cur.replace(/\.html?$/i, '');
+  }
+
+  if (!cur || cur === '/') cur = 'index';
+
+  document.querySelectorAll('.area-list li[data-page]').forEach(function (li) {
+    var isCurrent = li.getAttribute('data-page') === cur;
+    li.classList.toggle('current', isCurrent);
+    if (isCurrent) {
+      li.setAttribute('aria-current', 'page');
+    } else {
+      li.removeAttribute('aria-current');
+    }
+  });
+});
+</script>
+<!-- JS -->
+<!-- 🚩 Socket.io 라이브러리를 제외했으므로 global.js에서 Socket.io 관련 코드를 제거하거나 주석 처리해야 합니다! -->
+<script defer="" src="js/global.js?ver=20260523-mobilebox"></script>
+<meta content="광주버블여지도 | 광주노래방 | 광주가라오케 | 상무지구노래방" property="og:title"/>
+<meta content="광주버블여지도에서 광주노래방, 광주가라오케, 광주가라오케, 상무지구노래방 정보를 상무·광천동, 신안동, 용봉동, 첨단지구, 광주 동구·남구와 목포까지 지역별로 확인할 수 있습니다." property="og:description"/>
+<meta content="https://albam09.com/" property="og:url"/>
+<meta content="ko_KR" property="og:locale"/>
+<meta content="광주버블여지도 | 광주노래방 | 광주가라오케 | 상무지구노래방" name="twitter:title"/>
+<meta content="광주버블여지도에서 광주노래방, 광주가라오케, 광주가라오케, 상무지구노래방 정보를 상무·광천동, 신안동, 용봉동, 첨단지구, 광주 동구·남구와 목포까지 지역별로 확인할 수 있습니다." name="twitter:description"/>
+<meta content="광주버블여지도" property="og:site_name"/><meta content="광주버블여지도" name="application-name"/><meta content="https://albam09.com/img/og-image.jpg" property="og:image"/><meta content="https://albam09.com/img/og-image.jpg" property="og:image:secure_url"/><meta content="image/jpeg" property="og:image:type"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="https://albam09.com/img/og-image.jpg" name="twitter:image"/><style id="albam09-search-position-h1-font-fix">
+/* 20260622: 통합검색창을 index와 동일하게 히어로 아래/목록 위에 고정하고 H1을 둥근 최신 한글 웹폰트로 보강 */
+main > .global-place-search{
+  max-width:980px!important;
+  width:calc(100% - 32px)!important;
+  margin:22px auto 34px!important;
+  padding:0!important;
+  position:relative!important;
+  z-index:5!important;
+}
+main > section[title] + .global-place-search{
+  margin-top:22px!important;
+}
+.global-place-search__form,
+.global-place-search__input,
+.global-place-search__button{
+  font-family:var(--albam09-font-main)!important;
+}
+.global-place-search__button{
+  font-weight:850!important;
+}
+main section[title] h1,
+section[title] h1,
+main h1{
+  font-family:var(--albam09-font-main)!important;
+  font-weight:400!important;
+  letter-spacing:-.025em!important;
+  text-rendering:optimizeLegibility!important;
+}
+main section[title] h1,
+section[title] h1{
+  font-size:clamp(1.85rem,4.25vw,3.15rem)!important;
+  line-height:1.15!important;
+}
+@media (max-width:640px){
+  main > .global-place-search{width:calc(100% - 22px)!important;margin:18px auto 28px!important;}
+  main section[title] h1,section[title] h1{font-size:clamp(2.02rem,9.2vw,2.72rem)!important;line-height:1.12!important;}
+}
+</style>
+<link href="css/albam09-local-font.css?v=20260622-final" rel="stylesheet"/><link href="css/albam09-final-force.css?v=20260622g-nav-nearest" rel="stylesheet"/><link href="css/index-mobile-pc-final-20260622.css?v=20260622g-index-same-nav-nearest" rel="stylesheet"/>
+<link href="css/footer-contact-20260626.css?v=20260626a" rel="stylesheet"/>
+<style id="cloudtype-local-safe-fallback">
+html{font-size:16px}body{margin:0;background:#fff;color:#181525}a{color:inherit;text-decoration:none}header{max-width:1180px;margin:54px auto 22px;padding:0 18px}header>a{display:inline-flex;align-items:center;gap:12px;color:#9b3cff;font-weight:900;font-size:clamp(1.7rem,3vw,2.6rem)}header svg{width:42px;height:42px}.area-wrap{max-width:1180px;margin:0 auto 36px;padding:0 18px}.area-list ul{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}.area-list a{display:flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:1px solid #e7e4ec;border-radius:10px;background:#fff;font-weight:900;box-shadow:0 4px 14px rgba(0,0,0,.04)}.area-list .current a{background:linear-gradient(135deg,#9b49ff,#8233e6);color:#fff;border-color:transparent}main{max-width:1180px;margin:0 auto;padding:0 18px}main>section[title]{border-radius:18px;background:linear-gradient(135deg,#8c00b5,#ef2363);color:#fff;text-align:center;padding:82px 38px;margin:0 auto 42px;box-shadow:0 14px 34px rgba(89,25,126,.18)}main>section[title] h1{font-size:clamp(3rem,6vw,5.2rem);line-height:1.08;margin:0 0 26px}.hero-keyline{font-size:clamp(1.2rem,2vw,1.55rem);font-weight:900}.hero-desc{font-size:clamp(1.08rem,1.7vw,1.35rem);font-weight:800;line-height:1.8}.global-place-search{max-width:1080px;margin:24px auto 54px}.global-place-search__form{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #ead9ff;border-radius:18px;box-shadow:0 10px 28px rgba(67,28,91,.12);padding:10px}.global-place-search__input{flex:1;border:0;outline:0;font-size:1.1rem;font-weight:800;padding:14px}.global-place-search__button{border:0;border-radius:14px;background:#150820;color:#fff;font-size:1.1rem;font-weight:900;padding:14px 24px}section[list] h2{text-align:center;font-size:clamp(2.1rem,4vw,3.2rem);margin:28px 0;color:#a100b5}section[list] [wrapper]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}section[list] ul{list-style:none;min-height:130px;margin:0;padding:30px;border-radius:18px;background:#fff;box-shadow:0 16px 32px rgba(100,44,125,.12);border:1px solid #f1e6fb;overflow:hidden}section[list] h3{text-align:center;font-size:1.7rem;margin:0 0 16px;color:#9b009a}section[list] li{font-size:1.05rem;font-weight:800;color:#8d8da0}.nearest-float,.nearby-floating,.nearby-fab{position:fixed!important;right:24px!important;bottom:24px!important;z-index:9999!important}
+@media(max-width:700px){header{margin-top:42px}.area-wrap{margin-bottom:28px}.area-list ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.area-list a{min-height:44px;padding:0 8px;font-size:1rem}main>section[title]{padding:56px 20px;margin-bottom:28px}main>section[title] h1{font-size:2.65rem}.global-place-search__form{border-radius:15px}.global-place-search__button{padding:12px 15px}section[list] [wrapper]{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}section[list] ul{padding:18px 10px;min-height:104px;border-radius:16px}section[list] h3{font-size:1.2rem}.nearest-float,.nearby-floating,.nearby-fab{right:16px!important;bottom:18px!important}}
+</style>
+<meta content="광주버블여지도" name="apple-mobile-web-app-title"/>
+<link href="https://albam09.com/" hreflang="ko-KR" rel="alternate"/><link href="https://albam09.com/" hreflang="x-default" rel="alternate"/><meta content="telephone=no" name="format-detection"/><style id="seo-breadcrumb-style">.seo-breadcrumb{max-width:1180px;margin:12px auto 20px;padding:0 18px;font-size:.92rem;line-height:1.6;color:#625b6b}.seo-breadcrumb a{text-decoration:underline;text-underline-offset:3px}.seo-breadcrumb span[aria-current="page"]{font-weight:700;color:#2c2432}.detail-main>.seo-breadcrumb{padding-left:0;padding-right:0}</style><script id="structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://albam09.com/#website","url":"https://albam09.com/","name":"광주버블여지도","inLanguage":"ko-KR"},{"@type":"Organization","@id":"https://albam09.com/#organization","name":"광주버블여지도","url":"https://albam09.com/","email":"groogaolove@gmail.com"},{"@type":"WebPage","@id":"https://albam09.com/#webpage","url":"https://albam09.com/","name":"광주버블여지도 | 광주노래방 | 광주가라오케 | 상무지구노래방","description":"광주버블여지도에서 광주노래방, 광주가라오케, 광주가라오케, 상무지구노래방 정보를 상무·광천동, 신안동, 용봉동, 첨단지구, 광주 동구·남구와 목포까지 지역별로 확인할 수 있습니다.","inLanguage":"ko-KR","dateModified":"2026-09-02","isPartOf":{"@id":"https://albam09.com/#website"},"about":{"@id":"https://albam09.com/#organization"}}]}</script><script id="gwangju-roommap-geo" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://albam09.com/","name":"광주버블여지도","inLanguage":"ko-KR","description":"광주와 목포의 가라오케·노래방·노래홀·주점 정보를 지역별 페이지와 검색 가이드 기사로 정리한 지역 정보 사이트입니다.","about":[{"@type":"Thing","name":"광주 노래방"},{"@type":"Thing","name":"광주 가라오케"},{"@type":"Thing","name":"상무지구 노래방"},{"@type":"Thing","name":"상무지구 가라오케"},{"@type":"Thing","name":"광주 하이퍼블릭"}]},{"@type":"ItemList","name":"광주버블여지도 공개 지역·기사 페이지","numberOfItems":9,"itemListElement":[{"@type":"ListItem","position":1,"name":"상무지구","url":"https://albam09.com/page/karaoke1/"},{"@type":"ListItem","position":2,"name":"상무·광천동","url":"https://albam09.com/page/karaoke2/"},{"@type":"ListItem","position":3,"name":"신안동","url":"https://albam09.com/page/karaoke3/"},{"@type":"ListItem","position":4,"name":"용봉동","url":"https://albam09.com/page/karaoke4/"},{"@type":"ListItem","position":5,"name":"첨단지구","url":"https://albam09.com/page/karaoke5/"},{"@type":"ListItem","position":6,"name":"목포","url":"https://albam09.com/page/karaoke6/"},{"@type":"ListItem","position":7,"name":"광주 동구","url":"https://albam09.com/page/karaoke7/"},{"@type":"ListItem","position":8,"name":"광주 남구","url":"https://albam09.com/page/karaoke8/"},{"@type":"ListItem","position":9,"name":"기사게시판","url":"https://albam09.com/bbs/"}]}]}</script>
+<link href="/geo-catalog.json" rel="alternate" title="광주버블여지도 공개 지역 GEO 데이터" type="application/ld+json"/>
+<style id="article-pagination-final-unified">
+/* =========================================================
+   기사 게시판 페이지네이션 최종 통일
+   - 기존 grid / width:100% / sticky 충돌을 전부 덮어씀
+   - PC/모바일 모두 한 줄
+   ========================================================= */
+html body [data-article-board] nav.seo-article-pagination{
+  position:relative !important;
+  inset:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  right:auto !important;
+  z-index:2 !important;
+
+  display:flex !important;
+  grid-template-columns:none !important;
+  grid-auto-flow:unset !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  width:max-content !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  height:auto !important;
+  min-height:0 !important;
+
+  gap:6px !important;
+  margin:16px auto 0 !important;
+  padding:4px !important;
+
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scrollbar-width:none !important;
+  white-space:nowrap !important;
+}
+html body [data-article-board] nav.seo-article-pagination::-webkit-scrollbar{
+  display:none !important;
+}
+
+html body [data-article-board] nav.seo-article-pagination > button{
+  appearance:none !important;
+  -webkit-appearance:none !important;
+
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  flex:0 0 auto !important;
+  grid-column:auto !important;
+  grid-row:auto !important;
+
+  width:38px !important;
+  min-width:38px !important;
+  max-width:38px !important;
+  height:36px !important;
+  min-height:36px !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  border:1px solid rgba(119,55,220,.20) !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  color:#5f009f !important;
+  box-shadow:0 4px 10px rgba(77,38,125,.045) !important;
+
+  font-size:12px !important;
+  line-height:1 !important;
+  font-weight:850 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+
+  transform:none !important;
+}
+
+html body [data-article-board] nav.seo-article-pagination > button.is-active{
+  background:linear-gradient(135deg,#7d2ee7,#6b20d4) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+  box-shadow:0 7px 16px rgba(111,39,213,.20) !important;
+}
+
+html body [data-article-board] nav.seo-article-pagination > button:disabled{
+  opacity:.34 !important;
+  background:#fff !important;
+  color:#7a6f83 !important;
+  box-shadow:none !important;
+}
+
+html body [data-article-board] nav.seo-article-pagination > .seo-page-gap{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex:0 0 auto !important;
+  width:22px !important;
+  min-width:22px !important;
+  height:36px !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:#81778a !important;
+  font-size:12px !important;
+  line-height:1 !important;
+}
+
+/* 모바일에서도 절대 세로 그리드로 바뀌지 않음 */
+@media(max-width:640px){
+  html body [data-article-board] nav.seo-article-pagination{
+    display:flex !important;
+    grid-template-columns:none !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+
+    width:max-content !important;
+    max-width:100% !important;
+    gap:4px !important;
+    margin:10px auto 0 !important;
+    padding:3px 1px !important;
+  }
+
+  html body [data-article-board] nav.seo-article-pagination > button{
+    flex:0 0 auto !important;
+    width:31px !important;
+    min-width:31px !important;
+    max-width:31px !important;
+    height:31px !important;
+    min-height:31px !important;
+    padding:0 !important;
+    font-size:10px !important;
+    box-shadow:none !important;
+  }
+
+  html body [data-article-board] nav.seo-article-pagination > .seo-page-gap{
+    width:16px !important;
+    min-width:16px !important;
+    height:31px !important;
+    font-size:10px !important;
+  }
+}
+</style><style id="footer-sns-png-icons-final">
+.footer-sns-icons{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:14px !important;
+}
+.footer-sns-icons a[data-sns]{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:50px !important;
+  min-width:50px !important;
+  max-width:50px !important;
+  height:50px !important;
+  min-height:50px !important;
+  max-height:50px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  font-size:0 !important;
+  line-height:0 !important;
+}
+.footer-sns-icons a[data-sns]::before,
+.footer-sns-icons a[data-sns]::after{
+  content:none !important;
+  display:none !important;
+}
+.footer-sns-icons img.sns-png-icon{
+  display:block !important;
+  width:50px !important;
+  height:50px !important;
+  min-width:50px !important;
+  min-height:50px !important;
+  max-width:50px !important;
+  max-height:50px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+@media(max-width:640px){
+  .footer-sns-icons{gap:11px !important;}
+  .footer-sns-icons a[data-sns],
+  .footer-sns-icons img.sns-png-icon{
+    width:44px !important;
+    min-width:44px !important;
+    max-width:44px !important;
+    height:44px !important;
+    min-height:44px !important;
+    max-height:44px !important;
+  }
+}
+</style><link href="/css/bbs.css?v=20261016-bbs2" rel="stylesheet"/><script id="bbs-latest-structured-data" type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","@id":"https://albam09.com/#bbs-latest","name":"광주버블여지도 최신 기사","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://albam09.com/bbs/331/","name":"광주 노래방 가격 검색 전 확인할 것｜기본요금보다 총비용을 먼저 보는 법"},{"@type":"ListItem","position":2,"url":"https://albam09.com/bbs/332/","name":"광주 노래방 추천 검색자가 실패를 줄이는 기준｜사진보다 먼저 볼 5가지"},{"@type":"ListItem","position":3,"url":"https://albam09.com/bbs/333/","name":"광주 노래방 후기 제대로 읽는 법｜광고성 후기와 실제 확인 포인트 구분하기"},{"@type":"ListItem","position":4,"url":"https://albam09.com/bbs/334/","name":"광주 노래방 예약 전에 물어볼 질문｜인원·시간·주차 한 번에 확인하기"},{"@type":"ListItem","position":5,"url":"https://albam09.com/bbs/335/","name":"광주 가라오케 가격 비교｜주대·룸·추가항목을 따로 확인해야 하는 이유"},{"@type":"ListItem","position":6,"url":"https://albam09.com/bbs/336/","name":"광주 가라오케 후기 검색할 때 보는 순서｜분위기보다 먼저 확인할 정보"},{"@type":"ListItem","position":7,"url":"https://albam09.com/bbs/337/","name":"광주 가라오케 추천 기준｜회식·친구모임·소규모 자리별로 다르게 고르기"}]}</script><style id="landing-h1-compact">
+/* 랜딩페이지 H1: SEO 구조는 유지하고 화면에서는 과도하게 크지 않게 표시 */
+main.daum-wm-content > section[title] > h1.daum-wm-title{
+  font-size:clamp(1.28rem,2.35vw,1.72rem)!important;
+  line-height:1.42!important;
+  font-weight:700!important;
+  letter-spacing:-.035em!important;
+  max-width:980px!important;
+  margin:0 auto .7em!important;
+  padding:0 10px!important;
+  text-align:center!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+}
+@media (max-width:640px){
+  main.daum-wm-content > section[title] > h1.daum-wm-title{
+    font-size:1.08rem!important;
+    line-height:1.52!important;
+    letter-spacing:-.03em!important;
+    padding:0 4px!important;
+    margin-bottom:.68em!important;
+  }
+}
+</style>
+<link href="/css/fold-unified-20260908.css?v=20260908a" rel="stylesheet"/><link href="/css/info-panel-stack-20260908.css" rel="stylesheet"/><link href="/css/map-preview-card-20260911.css?v=20260911a" rel="stylesheet"/><link href="/css/contact-link-fix-20260911.css?v=20260911" rel="stylesheet"/>
+<style>
+/* ===== FREE PARTNERSHIP CARD: MATCH ADJACENT CARD HEIGHT ===== */
+.partner-contact-card{
+  height:100% !important;
+  min-height:0 !important;
+  align-self:stretch !important;
+}
+.partner-contact-card,
+.partner-contact-card.contact-card,
+.partner-contact-card.partner-card{
+  box-sizing:border-box !important;
+}
+</style>
+<style id="index-venue-list-normalized-20261008">
+#index-all-venues-collapsed{margin-top:0!important}
+#index-all-venues-collapsed .business-description-fold__content{padding-top:16px!important}
+#index-all-venues-collapsed section[list]{box-shadow:none!important;text-align:center!important;margin:22px 0 0!important;padding:0!important}
+#index-all-venues-collapsed section[list]>h2{font-size:1.15rem!important;margin:0 0 14px!important}
+#index-all-venues-collapsed section[list] div[wrapper]{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1.25em!important}
+#index-all-venues-collapsed section[list] div[wrapper] ul{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;min-height:230px!important;margin:0!important;padding:0 0 14px!important;overflow:hidden!important;background:#fff!important;border:1px solid rgba(145,74,214,.14)!important;border-radius:18px!important;box-shadow:0 10px 26px rgba(75,42,96,.10)!important}
+#index-all-venues-collapsed section[list] div[wrapper] ul h3{width:calc(100% - 24px)!important;margin:14px 12px 10px!important;padding:0 0 8px!important;font-size:1.05rem!important;border-bottom:1px solid #eee!important}
+#index-all-venues-collapsed section[list] div[wrapper] ul h3 a{color:#70289a!important;text-decoration:none!important}
+#index-all-venues-collapsed section[list] div[wrapper] ul a.place-thumb-link{display:block!important;width:calc(100% - 20px)!important;height:145px!important;margin:0 10px!important;border-radius:10px!important;overflow:hidden!important;background:#fafafa!important;border:1px solid #f1f1f1!important;text-decoration:none!important}
+#index-all-venues-collapsed section[list] div[wrapper] ul .place-list-thumb{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:#fff!important}
+@media(max-width:780px){#index-all-venues-collapsed section[list] div[wrapper]{grid-template-columns:repeat(2,minmax(0,1fr))!important}#index-all-venues-collapsed section[list] div[wrapper] ul{min-height:210px!important}#index-all-venues-collapsed section[list] div[wrapper] ul a.place-thumb-link{height:128px!important}}
+@media(max-width:500px){#index-all-venues-collapsed section[list] div[wrapper]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.8em!important}#index-all-venues-collapsed section[list] div[wrapper] ul{min-height:185px!important;border-radius:14px!important}#index-all-venues-collapsed section[list] div[wrapper] ul h3{width:calc(100% - 16px)!important;margin:10px 8px 8px!important;font-size:.95rem!important}#index-all-venues-collapsed section[list] div[wrapper] ul a.place-thumb-link{width:calc(100% - 12px)!important;height:105px!important;margin:0 6px!important;border-radius:8px!important}}
+</style><link href="/css/explorer.css?v=20261012-venue2" rel="stylesheet"/><link crossorigin="" href="https://ldyysvafgegsgmvpslui.supabase.co" rel="preconnect"/><link href="/css/explore-submenu.css?v=20261011-1" rel="stylesheet"/><link href="/css/albam09-ui-lock-20261011.css?v=20261011-1" rel="stylesheet"/><link href="/css/albam09-global-ui-lock-20261011.css?v=20261016-mobile1" rel="stylesheet"/><link href="/css/official-brand-icon.css?v=20261011-1" rel="stylesheet"/><link href="/css/home-latest-explore-fold.css?v=20261011-3" rel="stylesheet"/>
+<style id="info-panel-stack-gap-final">
+.info-panel-stack > section.info-fold-card{
+  margin:0!important;
+}
+.info-panel-stack > #index-all-venues-collapsed{
+  margin-top:0!important;
+}
+</style>
+<link href="/css/site-account-bar.css?v=20261012-logo1" rel="stylesheet"/><link rel="stylesheet" href="/css/index-coupon-popup.css?v=20261019-blackgold1"/>
+</head>
+<body class="ui-unified-page" data-current-page="index">
+<div aria-label="상단 광고 배너 영역" class="top-ad-zone" data-top-ad-zone="true"><div class="top-ad-grid"><div aria-label="광고 배너 1 자리" class="top-ad-slot" data-ad-position="top-1" data-ad-slot="1" data-ad-type="liquor-recruit"><div class="top-ad-recruit top-ad-recruit--liquor"><div class="top-ad-recruit__left"><div class="top-ad-recruit__eyebrow">AD PARTNER</div><div class="top-ad-recruit__title">주류회사 광고모집</div><div class="top-ad-recruit__sub">주류 브랜드 · 유통사 · 지역 제휴 배너 모집</div></div><div aria-hidden="true" class="top-ad-recruit__icon">🥂</div></div></div><div aria-label="광고 배너 2 자리" class="top-ad-slot" data-ad-position="top-2" data-ad-slot="2" data-ad-type="fruit-recruit"><div class="top-ad-recruit top-ad-recruit--fruit"><div class="top-ad-recruit__left"><div class="top-ad-recruit__eyebrow">PARTNERSHIP</div><div class="top-ad-recruit__title">과일 제휴 광고모집</div><div class="top-ad-recruit__sub">과일 · 안주 · 식자재 업체 제휴 배너 모집</div></div><div aria-hidden="true" class="top-ad-recruit__icon">🍓</div></div></div></div></div><header class="site-menu-host">
+<a href="/">
+<div logo="">
+<div svg-box="">
+<svg aria-hidden="true" class="svg-inline--fa fa-map fa-w-18" data-icon="map" data-prefix="far" focusable="false" role="img" viewbox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M560.02 32c-1.96 0-3.98.37-5.96 1.16L384.01 96H384L212 35.28A64.252 64.252 0 0 0 191.76 32c-6.69 0-13.37 1.05-19.81 3.14L20.12 87.95A32.006 32.006 0 0 0 0 117.66v346.32C0 473.17 7.53 480 15.99 480c1.96 0 3.97-.37 5.96-1.16L192 416l172 60.71a63.98 63.98 0 0 0 40.05.15l151.83-52.81A31.996 31.996 0 0 0 576 394.34V48.02c0-9.19-7.53-16.02-15.98-16.02zM224 90.42l128 45.19v285.97l-128-45.19V90.42zM48 418.05V129.07l128-44.53v286.2l-.64.23L48 418.05zm480-35.13l-128 44.53V141.26l.64-.24L528 93.95v288.97z" fill="#9349ff"></path></svg>
+</div>
+<div title="">광주버블여지도</div>
+</div>
+</a>
+<div aria-label="회원 메뉴" class="ab09-memberbar site-member-tools" id="ab09-memberbar"><a class="site-member-login" href="/login/">로그인</a></div><button aria-controls="site-drawer-menu" aria-expanded="false" aria-label="전체 메뉴 열기" class="site-menu-trigger" type="button"><span></span><span></span><span></span></button></header>
+<div class="area-wrap"><nav class="area-list">
+<ul>
+<li aria-current="page" class="current" data-page="index"><a href="/">홈</a></li>
+<li data-page="karaoke1"><a href="/page/karaoke1/">상무지구</a></li>
+<li data-page="karaoke2"><a href="/page/karaoke2/">상무 · 광천동</a></li>
+<li data-page="karaoke3"><a href="/page/karaoke3/">신안동</a></li>
+<li data-page="karaoke4"><a href="/page/karaoke4/">용봉동</a></li>
+<li data-page="karaoke5"><a href="/page/karaoke5/">첨단지구</a></li>
+<li data-page="karaoke6"><a href="/page/karaoke6/">목포</a></li>
+<li data-page="karaoke7"><a href="/page/karaoke7/">동구</a></li>
+<li data-page="karaoke8"><a href="/page/karaoke8/">남구</a></li>
+<li data-page="room"><a href="/page/room/">룸소주방</a></li>
+<li data-page="explore"><a href="/explore/">탐험기</a></li></ul>
+<!-- 탐험기 허브는 각 지역 게시판과 연결됩니다. --></nav></div>
+<main class="daum-wm-content">
+<section title="">
+<h1 class="daum-wm-title">광주노래방 · 광주가라오케 | 상무지구노래방</h1><p class="hero-keyline">광주가라오케 광주노래방 광주노래홀</p>
+<p class="daum-wm-content hero-desc">광주버블여지도는 광주가라오케, 광주노래방, 광주노래홀, 광주가라오케 정보를 지역별 목록과 전화 문의 동선 중심으로 정리한 메인 안내 페이지입니다.</p>
+<p>지자체에 등록된 합법 1·2종 주점만 안내합니다.</p>
+</section><section aria-label="업소 통합검색" class="global-place-search" role="search"><form autocomplete="off" class="global-place-search__form"><span aria-hidden="true" class="global-place-search__icon">⌕</span><input aria-label="업소명 또는 지역명 검색" class="global-place-search__input" inputmode="search" placeholder="업소명·지역명 검색 후 바로 이동" type="search"/><button class="global-place-search__button" type="submit">검색</button></form><div class="global-place-search__suggestions" hidden=""></div></section>
+<section list="">
+<h2>업종 목록</h2>
+<div wrapper=""><ul class="rotating-list-container" data-card-href="/page/karaoke1/" id="karaoke1-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke1/">서구1(23개)</a></h3><meta content="1"/></li><li class="is-active"><a aria-label="7seven 상세페이지 보기" href="https://ilovebam11.com/place/7seven/" rel="nofollow"><span>7seven</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="강아지노래홀 상세페이지 보기" href="https://ilovebam11.com/place/puppy/" rel="nofollow"><span>강아지노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="기생 상세페이지 보기" href="https://ilovebam11.com/place/gisaeng/" rel="nofollow"><span>기생</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="달리는토끼 상세페이지 보기" href="https://ilovebam11.com/place/running-rabbit/" rel="nofollow"><span>달리는토끼</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="러시아퍼블릭 상세페이지 보기" href="https://ilovebam11.com/place/russian-public/" rel="nofollow"><span>러시아퍼블릭</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="로얄 상세페이지 보기" href="https://ilovebam11.com/place/royal/" rel="nofollow"><span>로얄</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="로엘vip 상세페이지 보기" href="https://ilovebam11.com/place/roel-vip/" rel="nofollow"><span>로엘vip</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="롤렉스 상세페이지 보기" href="https://ilovebam11.com/place/rolex/" rel="nofollow"><span>롤렉스</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="루비룸카페 상세페이지 보기" href="https://ilovebam11.com/place/ruby-room-cafe/" rel="nofollow"><span>루비룸카페</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="룸꽃사슴 상세페이지 보기" href="https://ilovebam11.com/place/room-flower-deer/" rel="nofollow"><span>룸꽃사슴</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="룸마이마이 상세페이지 보기" href="https://ilovebam11.com/place/room-my-my/" rel="nofollow"><span>룸마이마이</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="룸미인 상세페이지 보기" href="https://ilovebam11.com/place/room-beauty/" rel="nofollow"><span>룸미인</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="플렉스멤버쉽 상세페이지 보기" href="https://ilovebam11.com/place/flex-membership/" rel="nofollow"><span>플렉스멤버쉽</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="3no 상세페이지 보기" href="https://ilovebam11.com/place/3no/" rel="nofollow"><span>3no</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="개인기 상세페이지 보기" href="https://ilovebam11.com/place/gaeingi/" rel="nofollow"><span>개인기</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="고구려 상세페이지 보기" href="https://ilovebam11.com/place/goguryeo/" rel="nofollow"><span>고구려</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="굿샷비즈니스룸 상세페이지 보기" href="https://ilovebam11.com/place/goodshot-business-room/" rel="nofollow"><span>굿샷비즈니스룸</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="놀이터 상세페이지 보기" href="https://ilovebam11.com/place/playground/" rel="nofollow"><span>놀이터</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="다국적-가라오케 상세페이지 보기" href="https://ilovebam11.com/place/multinational-pool-salon/" rel="nofollow"><span>다국적-가라오케</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="달리는강아지 상세페이지 보기" href="https://ilovebam11.com/place/running-puppy/" rel="nofollow"><span>달리는강아지</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="야구장 상세페이지 보기" href="https://ilovebam11.com/place/baseball/" rel="nofollow"><span>야구장</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="유앤미 상세페이지 보기" href="https://ilovebam11.com/place/you-and-me/" rel="nofollow"><span>유앤미</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="초콜렛 상세페이지 보기" href="https://ilovebam11.com/place/chocolate/" rel="nofollow"><span>초콜렛</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li></ul><ul class="rotating-list-container" data-card-href="/page/karaoke2/" id="karaoke2-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke2/">서구2(14개)</a></h3><meta content="2"/></li><li class="is-active"><a aria-label="미술관 상세페이지 보기" href="https://ilovebam11.com/place/art-gallery/" rel="nofollow"><span>미술관</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="샬루트 상세페이지 보기" href="https://ilovebam11.com/place/salute/" rel="nofollow"><span>샬루트</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="심플퍼블릭 상세페이지 보기" href="https://ilovebam11.com/place/simple-public/" rel="nofollow"><span>심플퍼블릭</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="왕가구조선 상세페이지 보기" href="https://ilovebam11.com/place/wangga-joseon/" rel="nofollow"><span>왕가구조선</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="유튜브 상세페이지 보기" href="https://ilovebam11.com/place/youtube/" rel="nofollow"><span>유튜브</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="은밀한그곳 상세페이지 보기" href="https://ilovebam11.com/place/secret-place/" rel="nofollow"><span>은밀한그곳</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="의자왕 상세페이지 보기" href="https://ilovebam11.com/place/chair-king/" rel="nofollow"><span>의자왕</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="조땅 상세페이지 보기" href="https://ilovebam11.com/place/jottang/" rel="nofollow"><span>조땅</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="티파니 상세페이지 보기" href="https://ilovebam11.com/place/tiffany/" rel="nofollow"><span>티파니</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="페이스 상세페이지 보기" href="https://ilovebam11.com/place/face/" rel="nofollow"><span>페이스</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="픽스 상세페이지 보기" href="https://ilovebam11.com/place/fix/" rel="nofollow"><span>픽스</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="홈런 상세페이지 보기" href="https://ilovebam11.com/place/homerun/" rel="nofollow"><span>홈런</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="썸데이 상세페이지 보기" href="https://ilovebam11.com/place/someday/" rel="nofollow"><span>썸데이</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li><li class=""><a aria-label="엘리트 상세페이지 보기" href="https://ilovebam11.com/place/elite/" rel="nofollow"><span>엘리트</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 서구"/></span></li></ul><ul class="rotating-list-container" data-card-href="/page/karaoke4/" id="karaoke4-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke4/">북구1(9개)</a></h3><meta content="3"/></li><li class="is-active"><a aria-label="top탑 상세페이지 보기" href="https://ilovebam11.com/place/top/" rel="nofollow"><span>top탑</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="고양이노래홀 상세페이지 보기" href="https://ilovebam11.com/place/cat-songhall/" rel="nofollow"><span>고양이노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="넘버원노래홀 상세페이지 보기" href="https://ilovebam11.com/place/numberone-songhall/" rel="nofollow"><span>넘버원노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="달콤노래방 상세페이지 보기" href="https://ilovebam11.com/place/sweet-karaoke/" rel="nofollow"><span>달콤노래방</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="명품노래홀 상세페이지 보기" href="https://ilovebam11.com/place/luxury-songhall/" rel="nofollow"><span>명품노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="백프로노래홀 상세페이지 보기" href="https://ilovebam11.com/place/hundred-percent-songhall/" rel="nofollow"><span>백프로노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="보스 상세페이지 보기" href="https://ilovebam11.com/place/boss/" rel="nofollow"><span>보스</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="빙고노래홀 상세페이지 보기" href="https://ilovebam11.com/place/bingo-songhall/" rel="nofollow"><span>빙고노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="오렌지 상세페이지 보기" href="https://ilovebam11.com/place/orange/" rel="nofollow"><span>오렌지</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li></ul><ul class="rotating-list-container" data-card-href="/page/karaoke3/" id="karaoke3-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke3/">북구2(9개)</a></h3><meta content="4"/></li><li class="is-active"><a aria-label="빠담빠담 상세페이지 보기" href="https://ilovebam11.com/place/padam-padam/" rel="nofollow"><span>빠담빠담</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="심쿵노래홀 상세페이지 보기" href="https://ilovebam11.com/place/heart-songhall/" rel="nofollow"><span>심쿵노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="여우노래홀 상세페이지 보기" href="https://ilovebam11.com/place/fox-songhall/" rel="nofollow"><span>여우노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="일번노래홀 상세페이지 보기" href="https://ilovebam11.com/place/ilbeon-songhall/" rel="nofollow"><span>일번노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="첫번째 상세페이지 보기" href="https://ilovebam11.com/place/first/" rel="nofollow"><span>첫번째</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="쿵쿵따노래홀 상세페이지 보기" href="https://ilovebam11.com/place/kungkungtta-songhall/" rel="nofollow"><span>쿵쿵따노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="퀸 상세페이지 보기" href="https://ilovebam11.com/place/queen/" rel="nofollow"><span>퀸</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="태후노래홀 상세페이지 보기" href="https://ilovebam11.com/place/taehoo-songhall/" rel="nofollow"><span>태후노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li><li class=""><a aria-label="홍노래홀 상세페이지 보기" href="https://ilovebam11.com/place/hong-songhall/" rel="nofollow"><span>홍노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 북구"/></span></li></ul><ul class="rotating-list-container" data-card-href="/page/karaoke5/" id="karaoke5-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke5/">광산구 (7개)</a></h3><meta content="5"/></li><li class="is-active"><a aria-label="K-1 상세페이지 보기" href="https://ilovebam11.com/place/K-1/" rel="nofollow"><span>K-1</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="그래음악홀 상세페이지 보기" href="https://ilovebam11.com/place/geurae-music-hall/" rel="nofollow"><span>그래음악홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="백악관 상세페이지 보기" href="https://ilovebam11.com/place/white-house/" rel="nofollow"><span>백악관</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="짱노래홀 상세페이지 보기" href="https://ilovebam11.com/place/zzang-songhall/" rel="nofollow"><span>짱노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="첨단아이 상세페이지 보기" href="https://ilovebam11.com/place/cheomdan-i/" rel="nofollow"><span>첨단아이</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="킹노래홀 상세페이지 보기" href="https://ilovebam11.com/place/king-songhall/" rel="nofollow"><span>킹노래홀</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li><li class=""><a aria-label="여대생 상세페이지 보기" href="https://ilovebam11.com/place/yeodaesaeng/" rel="nofollow"><span>여대생</span></a><meta content="Karaoke"/><span><meta content="광주"/><meta content="광주 광산구"/></span></li></ul><ul class="rotating-list-container" data-card-href="/page/karaoke6/" id="karaoke6-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/karaoke6/">목포 (2개)</a></h3><meta content="6"/></li><li class="is-active"><a aria-label="파트너 상세페이지 보기" href="https://ilovebam11.com/place/partner/" rel="nofollow"><span>파트너</span></a><meta content="Karaoke"/><span><meta content="목포"/><meta content="전라남도"/></span></li><li class=""><a aria-label="오라클가요주점 상세페이지 보기" href="https://ilovebam11.com/place/oracle-karaoke-pub/" rel="nofollow"><span>오라클가요주점</span></a><meta content="Karaoke"/><span><meta content="목포"/><meta content="전라남도"/></span></li></ul><ul data-card-href="/page/karaoke7/"><li class="static-list-heading" empty=""><h3><a href="/page/karaoke7/">동구 (0개)</a></h3><meta content="7"/></li><li empty="">현재 등록된 업소가 없습니다</li></ul><ul data-card-href="/page/karaoke8/"><li class="static-list-heading" empty=""><h3><a href="/page/karaoke8/">남구 (0개)</a></h3><meta content="8"/></li><li empty="">현재 등록된 업소가 없습니다</li></ul><ul data-card-href="/page/room/"><li class="static-list-heading" empty=""><h3><a href="/page/room/">룸소주방 (0개)</a></h3><meta content="9"/></li><li empty="">현재 등록된 업소가 없습니다</li></ul><div aria-label="무료제휴 문의" class="partner-contact-card index-partner-contact-card" data-partner-contact="telegram"><span class="index-partner-contact-card__title">무료제휴 문의</span><span aria-hidden="true" class="index-partner-contact-card__divider"></span><a class="index-partner-contact-card__sub index-partner-contact-card__email" href="mailto:groogaolove@gmail.com">groogaolove@gmail.com</a><a class="index-partner-contact-card__sub" href="https://t.me/medic0111" rel="noopener" target="_blank">텔레그램 @medic0111</a></div></div></section><div class="info-panel-stack">
+<section class="business-description-section business-description-showcase info-fold-card info-guide-card home-latest-explore-fold" id="explorer-latest-index">
+<details class="business-description-fold home-latest-explore-details">
+<summary><span>최신 탐험기 5개</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary>
+<div class="business-description-fold__content home-latest-explore-content">
+<div class="home-latest-explore-head">
+<div>
+<span class="home-latest-explore-kicker">LATEST LOCAL EXPLORER</span>
+<h2>각 지역 최신 탐험기</h2>
+<p>관리자 승인 후 공개된 광주·목포 지역 탐험기 중 가장 최근 글 5개입니다.</p>
+</div>
+</div>
+<div class="home-latest-explore-grid" id="indexLatestExploreList">
+<div class="home-latest-explore-empty">최신 탐험기를 불러오고 있습니다.</div>
+</div>
+</div>
+</details>
+</section>
+<section class="business-description-section business-description-showcase info-fold-card info-guide-card index-all-venues-collapsed" id="index-all-venues-collapsed"><details class="business-description-fold index-all-venues-details"><summary><span>전체 지역 업소 목록 보기</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content index-all-venues-body"><p class="business-description-intro">지역별 등록 업소를 썸네일과 함께 확인할 수 있습니다.</p><section class="index-region-venue-list" data-region-page="karaoke1" list=""><h2>상무지구 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/room-my-my/" rel="nofollow">룸마이마이</a></h3><a aria-label="룸마이마이 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/room-my-my/" rel="nofollow"><img alt="상무지구 룸마이마이 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/room-my-my.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/puppy/" rel="nofollow">강아지노래홀</a></h3><a aria-label="강아지노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/puppy/" rel="nofollow"><img alt="상무지구 강아지노래홀 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/puppy.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/7seven/" rel="nofollow">7seven</a></h3><a aria-label="7seven 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/7seven/" rel="nofollow"><img alt="상무지구 7seven 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/7seven.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/rolex/" rel="nofollow">롤렉스</a></h3><a aria-label="롤렉스 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/rolex/" rel="nofollow"><img alt="상무지구 롤렉스 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/rolex.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/russian-public/" rel="nofollow">러시아퍼블릭</a></h3><a aria-label="러시아퍼블릭 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/russian-public/" rel="nofollow"><img alt="상무지구 러시아퍼블릭 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/russian-public.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/royal/" rel="nofollow">로얄</a></h3><a aria-label="로얄 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/royal/" rel="nofollow"><img alt="상무지구 로얄 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/royal.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/room-flower-deer/" rel="nofollow">룸꽃사슴</a></h3><a aria-label="룸꽃사슴 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/room-flower-deer/" rel="nofollow"><img alt="상무지구 룸꽃사슴 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/room-flower-deer.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/roel-vip/" rel="nofollow">로엘vip</a></h3><a aria-label="로엘vip 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/roel-vip/" rel="nofollow"><img alt="상무지구 로엘vip 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/roel-vip.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/room-beauty/" rel="nofollow">룸미인</a></h3><a aria-label="룸미인 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/room-beauty/" rel="nofollow"><img alt="상무지구 룸미인 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/room-beauty.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/flex-membership/" rel="nofollow">플렉스멤버쉽</a></h3><a aria-label="플렉스멤버쉽 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/flex-membership/" rel="nofollow"><img alt="상무지구 플렉스멤버쉽 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/flex-membership.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/gisaeng/" rel="nofollow">기생</a></h3><a aria-label="기생 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/gisaeng/" rel="nofollow"><img alt="상무지구 기생 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/gisaeng.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/running-rabbit/" rel="nofollow">달리는토끼</a></h3><a aria-label="달리는토끼 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/running-rabbit/" rel="nofollow"><img alt="상무지구 달리는토끼 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/running-rabbit.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/ruby-room-cafe/" rel="nofollow">루비룸카페</a></h3><a aria-label="루비룸카페 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/ruby-room-cafe/" rel="nofollow"><img alt="상무지구 루비룸카페 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/ruby-room-cafe.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/3no/" rel="nofollow">3no</a></h3><a aria-label="3no 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/3no/" rel="nofollow"><img alt="상무지구 3no 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/3no.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/gaeingi/" rel="nofollow">개인기</a></h3><a aria-label="개인기 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/gaeingi/" rel="nofollow"><img alt="상무지구 개인기 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/gaeingi.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/goguryeo/" rel="nofollow">고구려</a></h3><a aria-label="고구려 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/goguryeo/" rel="nofollow"><img alt="상무지구 고구려 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/goguryeo.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/goodshot-business-room/" rel="nofollow">굿샷비즈니스룸</a></h3><a aria-label="굿샷비즈니스룸 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/goodshot-business-room/" rel="nofollow"><img alt="상무지구 굿샷비즈니스룸 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/goodshot-business-room.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/playground/" rel="nofollow">놀이터</a></h3><a aria-label="놀이터 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/playground/" rel="nofollow"><img alt="상무지구 놀이터 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/playground.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/multinational-pool-salon/" rel="nofollow">다국적-가라오케</a></h3><a aria-label="다국적-가라오케 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/multinational-pool-salon/" rel="nofollow"><img alt="상무지구 다국적-가라오케 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/multinational-pool-salon.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/running-puppy/" rel="nofollow">달리는강아지</a></h3><a aria-label="달리는강아지 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/running-puppy/" rel="nofollow"><img alt="상무지구 달리는강아지 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/running-puppy.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/baseball/" rel="nofollow">야구장</a></h3><a aria-label="야구장 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/baseball/" rel="nofollow"><img alt="상무지구 야구장 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/baseball.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/you-and-me/" rel="nofollow">유앤미</a></h3><a aria-label="유앤미 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/you-and-me/" rel="nofollow"><img alt="상무지구 유앤미 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/you-and-me.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/chocolate/" rel="nofollow">초콜렛</a></h3><a aria-label="초콜렛 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/chocolate/" rel="nofollow"><img alt="상무지구 초콜렛 썸네일 - 상무지구노래방·상무지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/chocolate.webp" width="960"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke2" list=""><h2>광천동·금호동 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/simple-public/" rel="nofollow">심플퍼블릭</a></h3><a aria-label="심플퍼블릭 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/simple-public/" rel="nofollow"><img alt="상무·광천동 심플퍼블릭 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/simple-public.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/youtube/" rel="nofollow">유튜브</a></h3><a aria-label="유튜브 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/youtube/" rel="nofollow"><img alt="상무·광천동 유튜브 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/youtube.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/homerun/" rel="nofollow">홈런</a></h3><a aria-label="홈런 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/homerun/" rel="nofollow"><img alt="상무·광천동 홈런 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/homerun.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/tiffany/" rel="nofollow">티파니</a></h3><a aria-label="티파니 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/tiffany/" rel="nofollow"><img alt="상무·광천동 티파니 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/tiffany.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/secret-place/" rel="nofollow">은밀한그곳</a></h3><a aria-label="은밀한그곳 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/secret-place/" rel="nofollow"><img alt="상무·광천동 은밀한그곳 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/secret-place.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/jottang/" rel="nofollow">조땅</a></h3><a aria-label="조땅 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/jottang/" rel="nofollow"><img alt="상무·광천동 조땅 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/jottang.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/chair-king/" rel="nofollow">의자왕</a></h3><a aria-label="의자왕 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/chair-king/" rel="nofollow"><img alt="상무·광천동 의자왕 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/chair-king.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/face/" rel="nofollow">페이스</a></h3><a aria-label="페이스 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/face/" rel="nofollow"><img alt="상무·광천동 페이스 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/face.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/art-gallery/" rel="nofollow">미술관</a></h3><a aria-label="미술관 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/art-gallery/" rel="nofollow"><img alt="상무·광천동 미술관 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/art-gallery.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/salute/" rel="nofollow">샬루트</a></h3><a aria-label="샬루트 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/salute/" rel="nofollow"><img alt="상무·광천동 샬루트 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/salute.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/fix/" rel="nofollow">픽스</a></h3><a aria-label="픽스 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/fix/" rel="nofollow"><img alt="상무·광천동 픽스 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/fix.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/wangga-joseon/" rel="nofollow">왕가구조선</a></h3><a aria-label="왕가구조선 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/wangga-joseon/" rel="nofollow"><img alt="상무·광천동 왕가구조선 썸네일 - 상무노래방·광천동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/wangga-joseon.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/someday/" rel="nofollow">썸데이</a></h3><a aria-label="썸데이 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/someday/" rel="nofollow"><img alt="상무·광천동 썸데이 썸네일 - 상무노래방·상무가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/someday.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/elite/" rel="nofollow">엘리트</a></h3><a aria-label="엘리트 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/elite/" rel="nofollow"><img alt="상무·광천동 엘리트 썸네일 - 상무노래방·상무가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/elite.webp" width="960"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke3" list=""><h2>신안동 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/hong-songhall/" rel="nofollow">홍노래홀</a></h3><a aria-label="홍노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/hong-songhall/" rel="nofollow"><img alt="신안동 홍노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/hong-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/queen/" rel="nofollow">퀸</a></h3><a aria-label="퀸 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/queen/" rel="nofollow"><img alt="신안동 퀸 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/queen.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/fox-songhall/" rel="nofollow">여우노래홀</a></h3><a aria-label="여우노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/fox-songhall/" rel="nofollow"><img alt="신안동 여우노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/fox-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/padam-padam/" rel="nofollow">빠담빠담</a></h3><a aria-label="빠담빠담 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/padam-padam/" rel="nofollow"><img alt="신안동 빠담빠담 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/padam-padam.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/taehoo-songhall/" rel="nofollow">태후노래홀</a></h3><a aria-label="태후노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/taehoo-songhall/" rel="nofollow"><img alt="신안동 태후노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/taehoo-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/first/" rel="nofollow">첫번째</a></h3><a aria-label="첫번째 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/first/" rel="nofollow"><img alt="신안동 첫번째 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/first.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/kungkungtta-songhall/" rel="nofollow">쿵쿵따노래홀</a></h3><a aria-label="쿵쿵따노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/kungkungtta-songhall/" rel="nofollow"><img alt="신안동 쿵쿵따노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/kungkungtta-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/heart-songhall/" rel="nofollow">심쿵노래홀</a></h3><a aria-label="심쿵노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/heart-songhall/" rel="nofollow"><img alt="신안동 심쿵노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/heart-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/ilbeon-songhall/" rel="nofollow">일번노래홀</a></h3><a aria-label="일번노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/ilbeon-songhall/" rel="nofollow"><img alt="신안동 일번노래홀 썸네일 - 신안동노래방·신안동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/ilbeon-songhall.webp" width="960"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke4" list=""><h2>용봉동 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/hundred-percent-songhall/" rel="nofollow">백프로노래홀</a></h3><a aria-label="백프로노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/hundred-percent-songhall/" rel="nofollow"><img alt="용봉동 백프로노래홀 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/hundred-percent-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/numberone-songhall/" rel="nofollow">넘버원노래홀</a></h3><a aria-label="넘버원노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/numberone-songhall/" rel="nofollow"><img alt="용봉동 넘버원노래홀 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/numberone-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/top/" rel="nofollow">top탑</a></h3><a aria-label="top탑 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/top/" rel="nofollow"><img alt="용봉동 top탑 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/top.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/cat-songhall/" rel="nofollow">고양이노래홀</a></h3><a aria-label="고양이노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/cat-songhall/" rel="nofollow"><img alt="용봉동 고양이노래홀 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/cat-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/bingo-songhall/" rel="nofollow">빙고노래홀</a></h3><a aria-label="빙고노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/bingo-songhall/" rel="nofollow"><img alt="빙고노래홀 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/bingo-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/sweet-karaoke/" rel="nofollow">달콤노래방</a></h3><a aria-label="달콤노래방 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/sweet-karaoke/" rel="nofollow"><img alt="용봉동 달콤노래방 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/sweet-karaoke.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/luxury-songhall/" rel="nofollow">명품노래홀</a></h3><a aria-label="명품노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/luxury-songhall/" rel="nofollow"><img alt="용봉동 명품노래홀 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/luxury-songhall.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/boss/" rel="nofollow">보스</a></h3><a aria-label="보스 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/boss/" rel="nofollow"><img alt="용봉동 보스 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/boss.webp" width="960"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/orange/" rel="nofollow">오렌지</a></h3><a aria-label="오렌지 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/orange/" rel="nofollow"><img alt="용봉동 오렌지 썸네일 - 용봉동노래방·용봉동가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="640" loading="lazy" src="/thumbs/venues/orange.webp" width="960"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke5" list=""><h2>첨단지구 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item affiliate-a11y-item"><h3><a href="https://ilovebam11.com/place/yeodaesaeng/" rel="nofollow">여대생</a></h3><div class="affiliate-dday" data-affiliate-days="90" data-affiliate-start="2026-08-20">제휴중 · D-DAY 90</div><a aria-label="여대생 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/yeodaesaeng/" rel="nofollow"><img alt="여대생 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/yeodaesaeng.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/geurae-music-hall/" rel="nofollow">그래음악홀</a></h3><a aria-label="그래음악홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/geurae-music-hall/" rel="nofollow"><img alt="그래음악홀 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/geurae-music-hall.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/cheomdan-i/" rel="nofollow">첨단아이</a></h3><a aria-label="첨단아이 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/cheomdan-i/" rel="nofollow"><img alt="첨단아이 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/cheomdan-i.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/K-1/" rel="nofollow">K-1</a></h3><a aria-label="K-1 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/K-1/" rel="nofollow"><img alt="K-1 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/K-1.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/zzang-songhall/" rel="nofollow">짱노래홀</a></h3><a aria-label="짱노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/zzang-songhall/" rel="nofollow"><img alt="짱노래홀 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/zzang-songhall.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/king-songhall/" rel="nofollow">킹노래홀</a></h3><a aria-label="킹노래홀 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/king-songhall/" rel="nofollow"><img alt="킹노래홀 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/king-songhall.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/white-house/" rel="nofollow">백악관</a></h3><a aria-label="백악관 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/white-house/" rel="nofollow"><img alt="백악관 썸네일 - 첨단지구노래방·첨단지구가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/white-house.webp" width="720"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke6" list=""><h2>목포 업소</h2><div wrapper=""><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/partner/" rel="nofollow">파트너</a></h3><a aria-label="파트너 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/partner/" rel="nofollow"><img alt="파트너 썸네일 - 목포노래방·목포가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/partner.webp" width="720"/></a></li></ul><ul><li class="venue-list-a11y-item"><h3><a href="https://ilovebam11.com/place/oracle-karaoke-pub/" rel="nofollow">오라클가요주점</a></h3><a aria-label="오라클가요주점 상세페이지 보기" class="place-thumb-link" href="https://ilovebam11.com/place/oracle-karaoke-pub/" rel="nofollow"><img alt="오라클가요주점 썸네일 - 목포노래방·목포가라오케 안내" class="place-list-thumb" decoding="async" fetchpriority="low" height="960" loading="lazy" src="/thumbs/venues/oracle-karaoke-pub.webp" width="720"/></a></li></ul></div></section><section class="index-region-venue-list" data-region-page="karaoke7" list=""><h2>광주동구 업소</h2><div wrapper=""></div></section><section class="index-region-venue-list" data-region-page="karaoke8" list=""><h2>광주남구 업소</h2><div wrapper=""></div></section></div></details></section><section class="business-description-section business-description-showcase home-business-description info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>등록 업소 이용 안내</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>광주버블여지도 지역별 업소 정보 이용 안내</h2><p>메인페이지는 광주·목포의 지역별 등록 업소를 빠르게 찾는 탐색용 페이지입니다. 상무지구, 광천동, 신안동, 용봉동, 첨단지구, 목포, 광주 동구·남구의 상세 비교는 각 지역 페이지에서 확인할 수 있습니다.</p><p>각 지역 페이지에서는 등록 업소 목록과 위치·운영시간·주차·탐험기 정보를 함께 확인할 수 있습니다. 운영 정보는 변동될 수 있으므로 방문 전 최신 정보를 확인하세요.</p></div></details></section><section class="home-bbs-preview info-fold-card info-bbs-card"><details class="bbs-preview-fold"><summary><span class="bbs-preview-fold__title">BBS 기사게시판</span><span aria-hidden="true" class="bbs-preview-fold__action">보기</span></summary><div class="bbs-preview-fold__content"><div class="home-bbs-head"><div><p>지역·업종·검색어별 기사를 BBS 형식으로 정리했습니다.</p></div></div><div class="home-bbs-list"><a class="home-bbs-item" href="/bbs/331/"><span class="cat">가격·비교</span><span class="title">광주 노래방 가격 검색 전 확인할 것｜기본요금보다 총비용을 먼저 보는 법</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/333/"><span class="cat">후기·검증</span><span class="title">광주 노래방 후기 제대로 읽는 법｜광고성 후기와 실제 확인 포인트 구분하기</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/335/"><span class="cat">가격·비교</span><span class="title">광주 가라오케 가격 비교｜주대·룸·추가항목을 따로 확인해야 하는 이유</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/338/"><span class="cat">상무·가격</span><span class="title">상무지구 노래방 가격 확인법｜치평동에서 계산 전에 꼭 물어볼 항목</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/339/"><span class="cat">상무·후기</span><span class="title">상무지구 노래방 후기 볼 때 체크할 것｜치평동 최신 정보 거르는 법</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/344/"><span class="cat">상무·2차</span><span class="title">상무지구 회식 2차 노래방 고르는 법｜식사 장소에서 이동시간 줄이기</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/345/"><span class="cat">광주·2차</span><span class="title">광주 회식 2차 노래방 찾기｜상무·첨단 중 어디가 이동하기 편할까</span><time datetime="2026-08-29">08.29</time></a><a class="home-bbs-item" href="/bbs/357/"><span class="cat">신안동·후기</span><span class="title">신안동 노래방 후기｜광주역·중흥동 주변에서 동선 확인하는 법</span><time datetime="2026-08-29">08.29</time></a></div><nav aria-label="기사게시판 페이지" class="bbs-pagination bbs-pagination-shared bbs-pagination-compact home-bbs-pagination"><a aria-current="page" class="is-current" href="/bbs/">1</a><a href="/bbs/page2/">2</a><a href="/bbs/page3/">3</a><a href="/bbs/page4/">4</a><a aria-label="다음 페이지" class="bbs-page-arrow bbs-page-arrow-next" href="/bbs/page2/">›</a></nav></div></details></section><section class="info-map-card" map=""><h2>위치 안내 지도</h2>
+<a aria-label="광주 전체 지도 새 창으로 열기" class="map-preview-card" href="/map/" rel="noopener" target="_blank" title="광주 전체 지도 새 창으로 열기">
+<span aria-hidden="true" class="map-preview-card__visual"><img alt="광주 지역 위치 안내 지도" decoding="async" height="849" loading="lazy" src="/img/roommap-cyberpunk-20260911.png" width="1852"/></span>
+<span class="map-preview-card__body"><span class="map-preview-card__eyebrow">ROOM MAP GUIDE</span><strong class="map-preview-card__title">광주버블여지도</strong><span class="map-preview-card__desc">지도를 눌러서 위치를 바로 확인할 수 있는 미리보기 카드입니다.</span><span class="map-preview-card__cta">지도 열기 <span aria-hidden="true">↗</span></span></span>
+</a>
+</section></div>
+</main>
+<footer class="site-footer-contact">
+<div copyright="">Copyright © 2025 광주버블여지도. All rights reserved.</div>
+<div aria-label="SNS 문의 링크" class="footer-sns-icons">
+<a aria-label="카카오톡 연결 준비" class="sns-kakao" data-sns="kakao" href="#" onclick="return false;"><img alt="카카오톡" class="sns-png-icon" decoding="async" height="50" src="/img/social/kakao.png" width="50"/></a>
+<a aria-label="인스타그램 연결 준비" class="sns-insta" data-sns="instagram" href="#" onclick="return false;"><img alt="인스타그램" class="sns-png-icon" decoding="async" height="50" src="/img/social/instagram.png" width="50"/></a>
+<a aria-label="무료제휴 문의 접수중 · 텔레그램 @medic0111" class="sns-telegram" data-sns="telegram" href="https://t.me/medic0111" rel="noopener" target="_blank"><img alt="텔레그램" class="sns-png-icon" decoding="async" height="50" src="/img/social/telegram.png" width="50"/></a>
+</div>
+<div class="footer-trust-block" style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(128,128,128,.28);font-size:.88rem;line-height:1.7;text-align:center"><nav aria-label="사이트 정책" style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-bottom:7px"><a href="/page/terms/">이용약관</a><a href="/page/privacy/">개인정보처리방침</a><a href="/page/operator/">운영정보</a></nav><div>운영: 광주버블여지도 운영팀 · 제휴/정보 정정 문의: 이메일 <a href="mailto:groogaolove@gmail.com">groogaolove@gmail.com</a> · <a href="https://t.me/medic0111" rel="noopener" target="_blank">Telegram @medic0111</a></div></div></footer>
+<div alert-wrapper="">
+<div alert="">
+<div text=""></div>
+<button alert-close="" type="button">닫기</button>
+</div>
+</div>
+<!-- 내 위치 기준 가까운 업소 TOP 12 사이드 패널 -->
+<div id="nearestPanel">
+<div class="nearest-header">
+</div>
+<ul id="nearestList"></ul>
+</div>
+<!-- 거리 기반 추천 스크립트 -->
+<!-- Rotating list slider (waterwheel continuous loop) -->
+<script id="albam-waterwheel-slider">
+document.addEventListener('DOMContentLoaded', function() {
+  function initializeWaterwheelList(listContainer, containerIndex) {
+    if (!listContainer) return;
+
+    var listItems = Array.prototype.filter.call(listContainer.children, function(el){ return el.tagName === 'LI' && !el.hasAttribute('empty'); });
+
+    if (!listItems.length) return;
+
+    listItems.forEach(function(item) {
+      item.classList.remove('is-active', 'is-leaving');
+      item.style.display = 'block';
+    });
+
+    if (listItems.length === 1) {
+      listItems[0].classList.add('is-active');
+      return;
+    }
+
+    var currentIndex = 0;
+    var transitionMs = 640;
+    var intervalMs = 1320;
+    var timer = null;
+    var stopped = false;
+
+    listItems[currentIndex].classList.add('is-active');
+
+    function moveNext() {
+      if (stopped) return;
+
+      var currentItem = listItems[currentIndex];
+      var nextIndex = (currentIndex + 1) % listItems.length;
+      var nextItem = listItems[nextIndex];
+
+      currentItem.classList.remove('is-active');
+      currentItem.classList.add('is-leaving');
+
+      nextItem.classList.remove('is-leaving');
+      nextItem.classList.add('is-active');
+
+      window.setTimeout(function() {
+        currentItem.classList.remove('is-leaving');
+      }, transitionMs + 40);
+
+      currentIndex = nextIndex;
+      timer = window.setTimeout(moveNext, intervalMs);
+    }
+
+    // 카드들이 한꺼번에 딱딱 바뀌지 않도록 아주 작게 시작 타이밍을 분산
+    timer = window.setTimeout(moveNext, 520 + ((containerIndex || 0) % 3) * 150);
+
+    listContainer.addEventListener('mouseenter', function() {
+      stopped = true;
+      if (timer) window.clearTimeout(timer);
+    });
+
+    listContainer.addEventListener('mouseleave', function() {
+      if (!stopped) return;
+      stopped = false;
+      timer = window.setTimeout(moveNext, 520);
+    });
+  }
+
+  var allRotatingContainers = document.querySelectorAll('.rotating-list-container');
+  allRotatingContainers.forEach(function(container, idx) {
+    initializeWaterwheelList(container, idx);
+  });
+});
+</script>
+<script defer="" src="/data/public-venues.js?v=20260901-fullsplit2"></script><script defer="" src="/data/pages/index.js?v=20260901-fullsplit2"></script><script defer="" src="js/places.js"></script>
+<script defer="" src="js/nearest.js?v=20260608-distancefix"></script><script defer="" src="js/top12-ui.js?v=20260608-distancefix"></script><script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof setupNearestPanel === 'function') {
+    setupNearestPanel('');
+  }
+  if (typeof openNearestPanel === 'function') {
+    var btn = document.getElementById('nearest-open-button');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'nearest-open-button';
+      btn.textContent = '가까운 업소 보기';
+      btn.setAttribute('aria-label', '내 위치 기준 가까운 업소 보기');
+      btn.style.width = '25%';
+      btn.style.minWidth = '140px';
+      btn.style.position = 'fixed';
+      btn.style.bottom = '80px';
+      btn.style.right = '12px';
+      btn.style.zIndex = '9998';
+      btn.style.background = '#C9B6FF';
+      btn.style.color = '#fff';
+      btn.style.border = 'none';
+      btn.style.borderRadius = '22px';
+      btn.style.padding = '10px 16px';
+      btn.style.fontSize = '13px';
+      btn.style.cursor = 'pointer';
+      document.body.appendChild(btn);
+    }
+    if (!btn.dataset.nearestBound) {
+      btn.dataset.nearestBound = '1';
+      btn.addEventListener('click', function () {
+        openNearestPanel('ALL');
+      });
+    }
+  }
+});
+</script>
+<script defer="" src="js/site-search.js"></script>
+<script id="albam-card-link-fix">
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('main section[list] div[wrapper] ul[data-card-href]').forEach(function(card){
+    /* 터치 오작동 방지: 카드 빈 공간은 더 이상 지역 페이지로 이동하지 않음 */
+    card.style.cursor = 'default';
+    card.setAttribute('data-touch-separated', 'true');
+
+    card.addEventListener('click', function(e){
+      var directLink = e.target.closest('a[href]');
+      if (directLink) return; // 지역명/업소명 링크 자체를 누른 경우는 원래 링크 그대로 이동
+
+      var activeBusiness = e.target.closest('li.is-active[itemprop="mainEntity"]');
+      if (activeBusiness && card.contains(activeBusiness)) {
+        var businessLink = activeBusiness.querySelector('a[href]');
+        if (businessLink) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = businessLink.getAttribute('href');
+          return;
+        }
+      }
+
+      // 카드 배경 터치는 이동하지 않게 막아 지역/업소 터치 영역을 명확히 분리
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+});
+</script>
+<script defer="" src="js/albam09-ui-fix.js?v=20260622b"></script><script defer="" src="/js/albam09-random-order.js?v=20260907-desc-random"></script>
+<script id="article-board-single-merged-js">
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('[data-article-board]').forEach(function(board){
+    var cards=Array.from(board.querySelectorAll('.seo-article-list .seo-article-card'));
+    var nav=board.querySelector('.seo-article-pagination');
+    var indicator=board.querySelector('.seo-article-page-indicator');
+    if(!cards.length||!nav)return;
+    var perPage=5;
+    var total=Math.max(1,Math.ceil(cards.length/perPage));
+    var current=1;
+
+    function makeButton(label,page,cls,disabled){
+      var b=document.createElement('button');
+      b.type='button';
+      b.textContent=label;
+      if(cls)b.className=cls;
+      if(page)b.dataset.mergedPage=String(page);
+      if(disabled)b.disabled=true;
+      return b;
+    }
+
+    function renderNav(){
+      nav.innerHTML='';
+      nav.appendChild(makeButton('‹',current-1,'seo-prev',current===1));
+
+      var pages=[];
+      if(total<=7){
+        for(var i=1;i<=total;i++)pages.push(i);
+      }else{
+        pages=[1];
+        var start=Math.max(2,current-2);
+        var end=Math.min(total-1,current+2);
+        if(start>2)pages.push('gap');
+        for(var j=start;j<=end;j++)pages.push(j);
+        if(end<total-1)pages.push('gap');
+        pages.push(total);
+      }
+
+      pages.forEach(function(p){
+        if(p==='gap'){
+          var s=document.createElement('span');
+          s.className='seo-page-gap';
+          s.textContent='…';
+          nav.appendChild(s);
+        }else{
+          nav.appendChild(makeButton(String(p),p,p===current?'is-active':'',false));
+        }
+      });
+
+      nav.appendChild(makeButton('›',current+1,'seo-next',current===total));
+    }
+
+    function show(page,scroll){
+      current=Math.min(total,Math.max(1,page));
+      cards.forEach(function(card,idx){
+        var cardPage=Math.floor(idx/perPage)+1;
+        card.classList.toggle('article-page-visible',cardPage===current);
+        card.setAttribute('data-board-page',String(cardPage));
+      });
+      board.setAttribute('data-active-page',String(current));
+      if(indicator)indicator.textContent=current+' / '+total;
+      renderNav();
+      if(scroll && window.innerWidth<700){
+        board.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    }
+
+    nav.addEventListener('click',function(e){
+      var btn=e.target.closest('button[data-merged-page]');
+      if(!btn)return;
+      var page=parseInt(btn.dataset.mergedPage,10);
+      if(Number.isFinite(page))show(page,true);
+    });
+
+    show(1,false);
+  });
+});
+</script><div aria-hidden="true" class="site-drawer" id="site-drawer-menu"><div aria-labelledby="site-drawer-title" aria-modal="true" class="site-drawer__panel" role="dialog"><div class="site-drawer__top"><a class="site-drawer__brand" href="/"><span aria-hidden="true" class="site-drawer__brand-mark site-drawer__brand-mark--official"><svg aria-hidden="true" class="ab09-official-map-icon" viewbox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M560.02 32c-1.96 0-3.98.37-5.96 1.16L384.01 96H384L212 35.28A64.252 64.252 0 0 0 191.76 32c-6.69 0-13.37 1.05-19.81 3.14L20.12 87.95A32.006 32.006 0 0 0 0 117.66v346.32C0 473.17 7.53 480 15.99 480c1.96 0 3.97-.37 5.96-1.16L192 416l172 60.71a63.98 63.98 0 0 0 40.05.15l151.83-52.81A31.996 31.996 0 0 0 576 394.34V48.02c0-9.19-7.53-16.02-15.98-16.02zM224 90.42l128 45.19v285.97l-128-45.19V90.42zM48 418.05V129.07l128-44.53v286.2l-.64.23L48 418.05zm480-35.13l-128 44.53V141.26l.64-.24L528 93.95v288.97z" fill="currentColor"></path></svg></span><span id="site-drawer-title">광주버블여지도</span></a><button aria-label="전체 메뉴 닫기" class="site-drawer__close" type="button">×</button></div><div class="site-drawer__body"><div aria-label="전체 메뉴 분류" class="site-drawer__tabs" role="tablist"><button aria-selected="true" class="site-drawer__tab is-active" data-menu-tab="browse" role="tab" type="button">둘러보기</button><button aria-selected="false" class="site-drawer__tab" data-menu-tab="regions" role="tab" type="button">지역 메뉴</button><button aria-selected="false" class="site-drawer__tab" data-menu-tab="contact" role="tab" type="button">문의</button><button aria-selected="false" class="site-drawer__tab" data-menu-tab="messages" role="tab" type="button">쪽지함</button></div><div class="site-drawer__content"><section class="site-drawer__section is-active" data-menu-panel="browse"><div class="site-drawer__section-title">둘러보기</div><div class="site-drawer__links"><a class="site-drawer__link" href="/"><span>광주버블여지도 메인<span class="site-drawer__sub">지역별 업소·가라오케 정보</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/login/"><span>회원가입·로그인<span class="site-drawer__sub">회원가입 또는 로그인</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><button class="site-drawer__action" data-menu-action="search" type="button"><span>업소 찾기<span class="site-drawer__sub">업소명·지역명 통합검색</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></button><a class="site-drawer__link" href="/explore/"><span>탐험기<span class="site-drawer__sub">광주·목포 노래방·가라오케 탐험기</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/bbs/"><span>기사게시판<span class="site-drawer__sub">지역·업종·검색어 기사 모음</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a></div></section><section class="site-drawer__section" data-menu-panel="regions"><div class="site-drawer__section-title">지역 메뉴</div><div class="site-drawer__links"><a class="site-drawer__link" href="/page/karaoke1/"><span>상무지구</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke2/"><span>상무 · 광천동</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke3/"><span>신안동</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke4/"><span>용봉동</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke5/"><span>첨단지구</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke6/"><span>목포</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke7/"><span>광주 동구</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="/page/karaoke8/"><span>광주 남구</span><span aria-hidden="true" class="site-drawer__arrow">›</span></a></div></section><section class="site-drawer__section" data-menu-panel="contact"><div class="site-drawer__section-title">문의</div><div class="site-drawer__links"><a class="site-drawer__link" href="mailto:groogaolove@gmail.com"><span>이메일 문의<span class="site-drawer__sub">groogaolove@gmail.com</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="https://t.me/medic0111" rel="noopener" target="_blank"><span>무료제휴 문의<span class="site-drawer__sub">텔레그램 @medic0111</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a><a class="site-drawer__link" href="https://t.me/medic0111" rel="noopener" target="_blank"><span>광고 신청<span class="site-drawer__sub">주류회사·과일·기타 제휴 광고 문의</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a></div></section><section class="site-drawer__section" data-menu-panel="messages"><div class="site-drawer__section-title">쪽지함</div><div class="site-drawer__links"><a class="site-drawer__link" href="/messages/"><span>쪽지함<span class="site-drawer__sub">회원 간 쪽지 확인·보내기</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span></a></div></section></div></div><div class="site-drawer__foot">광주버블여지도 · 지역별 업소 정보와 상세페이지를 한곳에서 확인하세요.</div></div></div><script defer="True" src="/js/site-drawer-menu.js?v=20260821"></script><script defer="" src="/js/index-explorer-latest.js?v=20261011-random5"></script><script defer="" src="/js/explore-region-submenu.js?v=20261011-1"></script><script defer="" src="/js/supabase-loader.js?v=20261012-globalauth1"></script><script defer="" src="/js/realtime09-config.js?v=20261010-auth2"></script><script defer="" src="/js/realtime09-app.js?v=20261012-globalauth1"></script><script defer="" src="/js/auth-link-guard.js?v=20261012-globalauth1"></script><!-- Home-only premium explorer coupon popup: all content outside SEO-critical main -->
+<div id="ab09-coupon-popup" class="ab09-coupon-overlay" hidden>
+  <div class="ab09-coupon-backdrop" data-coupon-action="close" aria-hidden="true"></div>
+  <section class="ab09-coupon-dialog" role="dialog" aria-modal="true" aria-labelledby="ab09-coupon-title" aria-describedby="ab09-coupon-description" tabindex="-1">
+    <button class="ab09-coupon-cross" type="button" data-coupon-action="close" aria-label="팝업 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="ab09-coupon-emblem" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="m18 2 4.7 10.9L34 18l-11.3 5.1L18 34l-4.7-10.9L2 18l11.3-5.1L18 2z"/><path d="M18 8v20M8 18h20" stroke-width=".7"/></svg></div>
+    <p class="ab09-coupon-eyebrow">EXPLORER MEMBER REWARD</p>
+    <h2 class="ab09-coupon-title" id="ab09-coupon-title">정성스러운 탐험기에<br/><strong>특별한 감사</strong>를 전합니다</h2>
+    <p class="ab09-coupon-intro" id="ab09-coupon-description">소중한 탐험기를 남겨주시는 회원님께<br/>운영자 확인·승인 후 감사의 마음을 담아<br/>쿠폰을 지원해 드립니다.</p>
+    <div class="ab09-coupon-rule" aria-hidden="true"></div>
+    <div class="ab09-coupon-reward"><span class="ab09-coupon-reward-label">SPECIAL COUPON BENEFIT</span><strong class="ab09-coupon-value">30,000<small>원 상당</small></strong></div>
+    <p class="ab09-coupon-condition">※ 쿠폰은 탐험기 내용 및 운영자 확인·승인 기준에 따라 지원됩니다.</p>
+    <a class="ab09-coupon-cta" href="/explore/write/">탐험기 작성하러 가기 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="ab09-coupon-options" aria-label="팝업 닫기 설정"><button type="button" data-coupon-action="close">닫기</button><span class="ab09-coupon-divider" aria-hidden="true"></span><button type="button" data-coupon-action="today">오늘 그만보기</button></div>
+  </section>
+</div>
+<script defer src="/js/index-coupon-popup.js?v=20261019-blackgold1"></script>
+</body>
+</html>
+<style id="albam09-h1-index-size-sync-20260622">
+/* 20260622: index H1과 모든 지역/상세 페이지 H1 글씨 크기를 같은 기준으로 강제 통일 */
+main section[title] h1,
+section[title] h1,
+.place-hero h1{
+  font-family:var(--albam09-font-main)!important;
+  font-size:clamp(1.85rem,4.25vw,3.15rem)!important;
+  line-height:1.15!important;
+  font-weight:400!important;
+  letter-spacing:-.025em!important;
+}
+@media (max-width:640px){
+  main section[title] h1,
+  section[title] h1,
+  .place-hero h1{
+    font-size:clamp(2.02rem,9.2vw,2.72rem)!important;
+    line-height:1.12!important;
+  }
+}
+</style>
+<style id="albam09-final-font-size-last">
+@font-face{font-family:'Albam09Cute';src:url('/fonts/Albam09Cute.ttf') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;}
+:root{--albam09-font-main:'Albam09Cute',sans-serif!important;--albam-font-sans:var(--albam09-font-main)!important;--albam-font-display:var(--albam09-font-main)!important;}
+html,body{font-family:var(--albam09-font-main)!important;font-size:20px!important;}
+html body,html body *,html body *::before,html body *::after{font-family:var(--albam09-font-main)!important;}
+p,li,a,button,input,textarea,select,label,.hero-desc,.hero-keyline,.detail-copy,.detail-notice,.business-description-item,.seo-article-card p{font-size:1.12rem!important;line-height:1.62!important;}
+h1,.daum-wm-title,.detail-hero h1,main section[title] h1,section[title] h1,.place-hero h1{font-size:clamp(2.10rem,4.65vw,3.45rem)!important;line-height:1.13!important;font-weight:400!important;}
+h2,.detail-section h2,section[list] h2,.business-description-section h2{font-size:clamp(1.55rem,2.85vw,2.10rem)!important;font-weight:400!important;}
+h3,section[list] h3,.seo-article-card h3{font-size:clamp(1.22rem,2.25vw,1.58rem)!important;font-weight:400!important;}
+</style>

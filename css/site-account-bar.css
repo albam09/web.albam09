@@ -1,0 +1,220 @@
+/* Global account controls: visible on all user-facing pages, never overlapping the brand/menu. */
+#ab09-memberbar.site-member-tools{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  min-width:0!important;
+  width:auto!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  white-space:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:none!important;
+  position:relative!important;
+  z-index:4!important;
+}
+#ab09-memberbar.site-member-tools::-webkit-scrollbar{display:none!important}
+#ab09-memberbar.site-member-tools a,
+#ab09-memberbar.site-member-tools button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  min-height:38px!important;
+  padding:0 12px!important;
+  margin:0!important;
+  border:1px solid #e9e3ef!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  color:#5b49a7!important;
+  font:900 12px/1 var(--albam09-font-main,Arial,sans-serif)!important;
+  letter-spacing:-.03em!important;
+  text-decoration:none!important;
+  box-shadow:0 4px 14px rgba(72,42,105,.06)!important;
+  cursor:pointer!important;
+}
+#ab09-memberbar.site-member-tools a:hover,
+#ab09-memberbar.site-member-tools button:hover{
+  background:#f8f3ff!important;
+  border-color:#d9c8ef!important;
+  color:#5f009f!important;
+}
+#ab09-memberbar .ab09-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:17px!important;
+  height:17px!important;
+  margin-left:4px!important;
+  padding:0 4px!important;
+  border-radius:999px!important;
+  background:#7b2cff!important;
+  color:#fff!important;
+  font-size:10px!important;
+  line-height:1!important;
+}
+
+/* Standard site header: brand / account tools / menu button. */
+html body:not(.detail-renew)>header.site-menu-host{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  align-items:center!important;
+  column-gap:10px!important;
+  row-gap:8px!important;
+}
+html body:not(.detail-renew)>header.site-menu-host>a{
+  min-width:0!important;
+  max-width:none!important;
+  overflow:visible!important;
+}
+html body:not(.detail-renew)>header.site-menu-host [logo]{
+  min-width:0!important;
+  max-width:none!important;
+  overflow:visible!important;
+  flex-shrink:0!important;
+}
+html body:not(.detail-renew)>header.site-menu-host [title],
+html body:not(.detail-renew)>header.site-menu-host [data-title]{
+  min-width:0!important;
+  max-width:none!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  flex-shrink:0!important;
+}
+html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{grid-column:2!important;grid-row:1!important}
+html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{grid-column:3!important;grid-row:1!important;margin:0!important}
+/* Older explore rule hid the member bar. This intentionally wins. */
+body.explore-home #ab09-memberbar.site-member-tools{display:flex!important}
+
+/* Minimal account host used on policy pages. */
+.site-account-standalone{
+  width:min(100% - 32px,1180px);
+  margin:20px auto 0;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  box-sizing:border-box;
+  border:1px solid #ebe5f0;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 7px 20px rgba(36,27,45,.06);
+}
+.site-account-standalone__brand{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#5c2c91!important;
+  font-weight:900;
+  text-decoration:none;
+}
+.site-account-standalone #ab09-memberbar{margin-left:auto!important}
+
+/* Compact host for the full-screen map pages. */
+.map-account-host{
+  flex:0 0 auto;
+  min-width:0;
+  margin-left:auto;
+}
+.map-account-host #ab09-memberbar.site-member-tools a,
+.map-account-host #ab09-memberbar.site-member-tools button{
+  min-height:36px!important;
+  border-color:#39414d!important;
+  background:#242a33!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.map-account-host #ab09-memberbar.site-member-tools a:hover,
+.map-account-host #ab09-memberbar.site-member-tools button:hover{
+  background:#2d3440!important;
+  border-color:#657083!important;
+  color:#fff!important;
+}
+
+@media(max-width:1080px){
+  html body:not(.detail-renew)>header.site-menu-host{
+    grid-template-columns:minmax(0,1fr) 50px!important;
+    grid-template-rows:auto auto!important;
+    column-gap:10px!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host>a{
+    grid-column:1!important;
+    grid-row:1!important;
+    width:max-content!important;
+    max-width:calc(100vw - 104px)!important;
+    overflow:visible!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host [logo]{
+    width:max-content!important;
+    max-width:100%!important;
+    overflow:visible!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host [title],
+  html body:not(.detail-renew)>header.site-menu-host [data-title]{
+    overflow:visible!important;
+    text-overflow:clip!important;
+    white-space:nowrap!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{grid-column:2!important;grid-row:1!important}
+  html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    justify-content:flex-end!important;
+  }
+  #ab09-memberbar.site-member-tools a,
+  #ab09-memberbar.site-member-tools button{
+    min-height:34px!important;
+    padding:0 9px!important;
+    font-size:10.5px!important;
+    border-radius:10px!important;
+  }
+  .site-account-standalone{
+    width:calc(100% - 20px);
+    margin-top:10px;
+    padding:8px 9px;
+    flex-wrap:wrap;
+  }
+  .site-account-standalone #ab09-memberbar{width:100%!important;justify-content:flex-start!important}
+  .map-account-host{order:2;margin-left:auto;max-width:100%}
+  .map-account-host #ab09-memberbar.site-member-tools{max-width:55vw!important}
+}
+
+@media(max-width:520px){
+  html body:not(.detail-renew)>header.site-menu-host [title],
+  html body:not(.detail-renew)>header.site-menu-host [data-title]{
+    font-size:clamp(1.05rem,5.1vw,1.55rem)!important;
+    line-height:1.08!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{justify-content:flex-start!important}
+  .map-account-host{width:100%;order:4;margin:0}
+  .map-account-host #ab09-memberbar.site-member-tools{max-width:100%!important;justify-content:flex-start!important}
+}
+
+/* logo-noclip-ultranarrow: never crop the regional brand on very narrow screens. */
+@media(max-width:340px){
+  html body:not(.detail-renew)>header.site-menu-host [svg-box] svg{
+    width:36px!important;
+    height:36px!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host [logo]{
+    gap:8px!important;
+  }
+  html body:not(.detail-renew)>header.site-menu-host [title],
+  html body:not(.detail-renew)>header.site-menu-host [data-title]{
+    font-size:15px!important;
+    letter-spacing:-.055em!important;
+  }
+}

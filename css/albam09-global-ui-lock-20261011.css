@@ -1,0 +1,70 @@
+
+/* ALBAM09 GLOBAL UI LOCK — Karaoke page is canonical */
+html,body{background:#fff!important}
+body>.top-ad-zone{width:100%!important;max-width:1200px!important;margin:0 auto!important;padding:14px 16px 6px!important;box-sizing:border-box!important}
+body>.top-ad-zone .top-ad-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+body>.top-ad-zone .top-ad-slot{height:104px!important;border-radius:20px!important;overflow:hidden!important}
+body>header.site-menu-host{width:100%!important;max-width:1180px!important;margin:54px auto 22px!important;padding:0 18px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}
+body>header.site-menu-host>a{display:inline-flex!important;align-items:center!important;gap:12px!important;text-decoration:none!important}
+body>header.site-menu-host [logo]{display:flex!important;align-items:center!important;gap:12px!important}
+body>header.site-menu-host [svg-box]{display:flex!important;align-items:center!important;justify-content:center!important}
+body>header.site-menu-host [svg-box] svg{width:42px!important;height:42px!important}
+body>header.site-menu-host [title],body>header.site-menu-host [data-title]{font-size:clamp(1.7rem,3vw,2.6rem)!important;font-weight:900!important;line-height:1!important;letter-spacing:-.045em!important;white-space:nowrap!important;background:linear-gradient(125deg,#7d42ff,#ff2e8b)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+body>header.site-menu-host .site-menu-trigger{width:50px!important;height:50px!important;border:0!important;border-radius:14px!important;background:#fff!important;box-shadow:0 8px 22px rgba(55,32,78,.08)!important}
+body>.area-wrap{width:100%!important;max-width:1180px!important;margin:0 auto 36px!important;padding:0 18px!important;box-sizing:border-box!important}
+body>.area-wrap .area-list ul{display:flex!important;flex-wrap:wrap!important;gap:10px!important;list-style:none!important;margin:0!important;padding:0!important}
+body>.area-wrap .area-list li{margin:0!important;padding:0!important}
+body>.area-wrap .area-list li>a{display:flex!important;align-items:center!important;justify-content:center!important;min-height:46px!important;height:46px!important;padding:0 22px!important;border:1px solid #e7e4ec!important;border-radius:10px!important;background:#fff!important;color:#181525!important;box-shadow:0 4px 14px rgba(0,0,0,.04)!important;font-weight:900!important;text-decoration:none!important;white-space:nowrap!important}
+body>.area-wrap .area-list li.current>a,body>.area-wrap .area-list li[aria-current="page"]>a{background:linear-gradient(135deg,#9b49ff,#8233e6)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 8px 20px rgba(130,51,230,.18)!important}
+
+/* Every functional page uses same content width and same karaoke-style hero */
+body.ui-unified-page main{max-width:1180px!important;margin:0 auto!important;padding-left:18px!important;padding-right:18px!important;box-sizing:border-box!important}
+body.ui-unified-page .explorer-hero,
+body.ui-unified-page .auth-stage__brand,
+body.ui-unified-page .ui-karaoke-hero{
+  border:0!important;border-radius:18px!important;
+  background:linear-gradient(135deg,#8c00b5,#ef2363)!important;
+  color:#fff!important;box-shadow:0 14px 34px rgba(89,25,126,.18)!important;
+}
+body.ui-unified-page .explorer-hero{padding:56px 38px!important}
+body.ui-unified-page .explorer-hero h1,
+body.ui-unified-page .auth-stage__brand h1,
+body.ui-unified-page .ui-karaoke-hero h1{color:#fff!important}
+body.ui-unified-page .explorer-hero p,
+body.ui-unified-page .auth-stage__brand p,
+body.ui-unified-page .ui-karaoke-hero p{color:rgba(255,255,255,.93)!important}
+body.ui-unified-page .explorer-eyebrow,
+body.ui-unified-page .auth-stage__eyebrow{color:rgba(255,255,255,.82)!important}
+body.ui-unified-page .explorer-panel,
+body.ui-unified-page .explorer-form,
+body.ui-unified-page .auth-card,
+body.ui-unified-page .message-thread-panel{
+  border:1px solid #f1e6fb!important;border-radius:18px!important;background:#fff!important;
+  box-shadow:0 16px 32px rgba(100,44,125,.10)!important;
+}
+body.auth-protected main{visibility:hidden}
+body.auth-protected.auth-ready main{visibility:visible}
+
+@media(max-width:760px){
+  body>.top-ad-zone{padding:8px 10px 2px!important}
+  body>.top-ad-zone .top-ad-grid{grid-template-columns:1fr!important;gap:7px!important}
+  body>.top-ad-zone .top-ad-slot{height:68px!important;border-radius:10px!important}
+  body>header.site-menu-host{margin:42px auto 18px!important;padding:0 12px!important}
+  body>header.site-menu-host [svg-box] svg{width:34px!important;height:34px!important}
+  body>header.site-menu-host [title],body>header.site-menu-host [data-title]{font-size:clamp(1.4rem,7vw,2rem)!important}
+  body>header.site-menu-host .site-menu-trigger{width:46px!important;height:46px!important}
+  body>.area-wrap{margin-bottom:18px!important;padding:0 10px!important}
+  body>.area-wrap .area-list ul{gap:5px!important}
+  body>.area-wrap .area-list li>a{min-width:42px!important;min-height:31px!important;height:31px!important;padding:5px 8px!important;border-radius:9px!important;font-size:.72rem!important;letter-spacing:-.06em!important}
+  body.ui-unified-page main{padding-left:10px!important;padding-right:10px!important}
+  body.ui-unified-page .explorer-hero{padding:34px 22px!important;border-radius:16px!important}
+}
+
+/* 2026-10-16 global mobile search overflow guard */
+.global-place-search__form{max-width:100%!important;box-sizing:border-box!important}
+.global-place-search__input{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+@media(max-width:600px){
+  .global-place-search__form{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:6px!important}
+  .global-place-search__input{width:100%!important;min-width:0!important;padding-left:8px!important;padding-right:8px!important}
+  .global-place-search__button{width:auto!important;min-width:0!important;padding-left:12px!important;padding-right:12px!important;white-space:nowrap!important}
+}

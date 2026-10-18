@@ -1,0 +1,57 @@
+# albam09.com — canonical URL rules
+# Root physical file remains /index.html, but public canonical URL is /.
+# Regional public pages use /page/karaoke1/ style directory URLs.
+# Force only /index.html -> /; do not add slash-vs-no-slash rules for regional pages.
+
+/index.html / 301!
+
+https://www.albam09.com/* https://albam09.com/:splat 301!
+
+/geo-catalog.json /data/geo-catalog.json 200
+/geo-catalog.txt /data/geo-catalog.txt 200
+
+
+# 2026-10-14 BBS duplicate consolidation
+
+# 탐험기 개별 글 clean URL -> 동적 렌더링 템플릿
+
+## 2026-10-16 BBS deployed-state consolidation
+/bbs/004/ /bbs/001/ 301!
+/bbs/006/ /bbs/002/ 301!
+/bbs/010/ /bbs/002/ 301!
+/bbs/008/ /bbs/005/ 301!
+/bbs/013/ /bbs/005/ 301!
+/bbs/027/ /bbs/003/ 301!
+/bbs/020/ /bbs/011/ 301!
+/bbs/048/ /bbs/332/ 301!
+/bbs/128/ /page/karaoke1/ 301!
+/bbs/135/ /page/karaoke2/ 301!
+/bbs/144/ /page/karaoke3/ 301!
+/bbs/151/ /page/karaoke4/ 301!
+/bbs/162/ /page/karaoke5/ 301!
+/bbs/166/ /page/karaoke6/ 301!
+/bbs/174/ /page/karaoke7/ 301!
+/bbs/182/ /page/karaoke8/ 301!
+/bbs/page5/ /bbs/ 301!
+/bbs/page6/ /bbs/ 301!
+
+/explore/post/* /explore/post/index.html 200
+# Legacy root URLs -> frozen canonical regional URLs (safe one-hop redirects)
+/karaoke1 /page/karaoke1/ 301!
+/karaoke1.html /page/karaoke1/ 301!
+/karaoke2 /page/karaoke2/ 301!
+/karaoke2.html /page/karaoke2/ 301!
+/karaoke3 /page/karaoke3/ 301!
+/karaoke3.html /page/karaoke3/ 301!
+/karaoke4 /page/karaoke4/ 301!
+/karaoke4.html /page/karaoke4/ 301!
+/karaoke5 /page/karaoke5/ 301!
+/karaoke5.html /page/karaoke5/ 301!
+/karaoke6 /page/karaoke6/ 301!
+/karaoke6.html /page/karaoke6/ 301!
+/karaoke7 /page/karaoke7/ 301!
+/karaoke7.html /page/karaoke7/ 301!
+/karaoke8 /page/karaoke8/ 301!
+/karaoke8.html /page/karaoke8/ 301!
+/room /page/room/ 301!
+/room.html /page/room/ 301!

@@ -1,0 +1,60 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://albam09.com/geo-catalog.json#dataset",
+  "name": "광주버블여지도 공개 지역 안내 데이터",
+  "description": "광주·목포의 공개 지역 안내 페이지를 정리한 데이터입니다. 업소 상세 페이지 데이터는 포함하지 않습니다.",
+  "url": "https://albam09.com/geo-catalog.json",
+  "creator": {
+    "@type": "Organization",
+    "name": "광주버블여지도",
+    "url": "https://albam09.com/"
+  },
+  "hasPart": [
+    {
+      "@type": "Dataset",
+      "name": "상무지구·치평동",
+      "url": "https://albam09.com/page/karaoke1/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "광천동·금호동",
+      "url": "https://albam09.com/page/karaoke2/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "신안동·중흥동",
+      "url": "https://albam09.com/page/karaoke3/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "용봉동·전대후문",
+      "url": "https://albam09.com/page/karaoke4/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "첨단지구·쌍암동",
+      "url": "https://albam09.com/page/karaoke5/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "목포·하당",
+      "url": "https://albam09.com/page/karaoke6/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "광주 동구",
+      "url": "https://albam09.com/page/karaoke7/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "광주 남구",
+      "url": "https://albam09.com/page/karaoke8/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "기사게시판",
+      "url": "https://albam09.com/bbs"
+    }
+  ]
+}

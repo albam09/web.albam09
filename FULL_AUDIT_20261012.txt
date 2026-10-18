@@ -1,0 +1,91 @@
+광주버블여지도09 — 전체 코드/파일 전수점검 및 수정 보고서
+점검일: 2026-10-12
+
+[전체 범위]
+- HTML 106개
+- JavaScript 37개
+- CSS 22개
+- JSON/XML/WebManifest/Netlify 설정/Supabase SQL 포함 전체 점검
+
+[최종 자동 점검 결과]
+- 내부 href/src 깨진 경로: 0
+- HTML 중복 id: 0
+- 사용자 화면 인증 UI 누락: 0
+- Supabase 인증 런타임 중복 로드: 0
+- indexable 페이지 title/description 누락: 0
+- canonical 오류: 0
+- visible 숫자 09 아이콘: 0
+- JavaScript 문법 오류(node --check): 0
+- CSS 파싱 오류: 0
+- CSS 로컬 asset 누락: 0
+- JSON/XML 파싱 오류: 0
+- 0 byte 파일: 0
+- manifest 아이콘 누락: 0
+
+[로그인/회원 UI]
+- 정상 사용자 화면 104개에 로그인/회원 바를 공통 적용함.
+- 기술용 파일 2개(naver 인증 파일, system/gone)는 의도적으로 제외함.
+- 비로그인: 어느 일반 페이지에서든 로그인 표시.
+- 로그인: 닉네임/쪽지/관리자(권한 보유 시)/로그아웃 표시.
+- 1600px / 1024px / 390px Chromium 실제 렌더링 점검 완료.
+- 로고, 회원 메뉴, 햄버거의 겹침 0.
+- 1080px 이하에서는 회원 메뉴가 두 번째 줄로 내려가도록 해 좁은 화면 충돌을 차단함.
+- BBS / 정책 / 지도 / 탐험기 / 로그인 / 전체 탐험기 페이지에서 회원 바 표시 확인.
+- 햄버거 메뉴 실제 클릭 열림 확인.
+- 로그인 페이지 회원가입 탭 실제 클릭 전환 확인.
+- Google 로그인 버튼이 화면에 표시되고 auth09.js 클릭 바인딩 존재 확인.
+
+[탐험기 글쓰기/표시]
+- 지역별 karaoke1~8 글쓰기 버튼 모두 유지됨.
+- JS가 게시글 목록을 재렌더링해도 글쓰기 버튼을 삭제하지 않는 구조 유지.
+- 탐험기 메인 글쓰기 버튼 유지.
+- 업소명 대형 폰트/반짝임 CSS 유지.
+- 상세글 업소명 독립 강조 영역 유지.
+- 홈 랜덤 탐험기 5개 기능 유지.
+
+[Google 색인 구조]
+- 정적 indexable canonical 87개와 sitemap URL 87개가 1:1 일치.
+- sitemap에 빠진 정적 indexable canonical: 0.
+- sitemap의 존재하지 않는 정적 URL: 0.
+- 전체 공개 탐험기 페이지 /explore/archive/ 추가 및 sitemap 연결.
+- 공개 탐험기는 /explore/post/<slug>/ 고유 clean URL 사용.
+- 게시판/아카이브/홈 탐험기 카드에서 고유 URL로 내부 링크 연결.
+- 공개 글은 비로그인 anon SELECT 가능하도록 Supabase RLS 유지.
+- 상세글 JS가 title/description/canonical/OG/robots/DiscussionForumPosting 구조화데이터를 설정함.
+- Netlify build에서 공개 Supabase 탐험기를 정적 HTML로 사전 렌더링하고 sitemap + archive를 자동 생성하는 scripts/build-site.mjs 추가.
+- build generator는 1000개 단위 pagination으로 공개 글 전체를 순회함.
+- 새 Supabase publishable key는 REST에서 apikey 헤더로만 보내도록 수정함.
+- 사전 렌더링된 글은 Supabase SDK/API가 일시 실패해도 이미 렌더링된 본문을 지우거나 noindex로 바꾸지 않도록 수정함.
+- 가짜 공개글 1개를 사용한 build generator 통합 테스트 통과: 상세 정적 HTML + canonical + sitemap + archive 생성 확인.
+
+[Supabase 설정 파일]
+- 기존 SUPABASE09.sql의 08 profiles/트리거 재정의 위험을 제거함.
+- SUPABASE09.sql을 08 auth/users/profiles를 건드리지 않는 SAFE FINAL 구조로 교체함.
+- albam09_member_private 포함.
+- 탐험기/댓글/쪽지/운영자 RLS 포함.
+- 최고관리자 댓글 수정/삭제 RPC 포함.
+- albam09-explore는 Public bucket 유지.
+- Public bucket에서 불필요했던 broad SELECT 파일목록 정책은 생성하지 않고 기존 정책이 있으면 제거함.
+- 업로드/삭제 정책만 유지하도록 정리함.
+- 구형 PHONE/SUPERADMIN patch 파일은 LEGACY 표시를 추가해 신규 설치에서 실행하지 않도록 명시함.
+- SUPABASE09-SETUP.txt도 메인 SUPABASE09.sql 하나만 실행하도록 수정함.
+
+[기타 수정]
+- /map/index/ 잘못된 내부 경로를 /map/으로 정리함.
+- site.webmanifest가 존재하지 않는 192/512 아이콘을 가리키던 문제 수정. 실제 존재하는 96x96/180x180 아이콘으로 연결함.
+- explore/archive canonical이 /explore/로 잘못 잡힌 문제를 /explore/archive/로 수정함.
+- 기존 페이지에 중복 삽입돼 있던 realtime09-config/realtime09-app 스크립트를 전부 1개로 정리함.
+- JS 초기화 이벤트 race가 있던 탐험기/쪽지/관리자 관련 모듈을 즉시상태 확인 + 이벤트 대기 구조로 통일함.
+
+[의도적으로 변경하지 않은 항목]
+- map/data 등에 존재하는 ilovebam11.com/place/... 외부 상세 링크는 현재 09 프로젝트 안에 대응 /place/ 문서가 없으므로 임의로 albam09 주소로 바꾸지 않음.
+  이 링크가 구 도메인이고 09 내부 상세페이지로 이관해야 하는 경우에는 URL 매핑표를 만든 뒤 별도 일괄 이전해야 함.
+
+[배포 주의]
+- 일반 JS 방식으로도 공개 탐험기 읽기/고유 URL/내부 링크는 동작함.
+- 정적 탐험기 HTML과 동적 sitemap 항목은 Netlify가 netlify.toml의 build command(node scripts/build-site.mjs)를 실행할 때 최신 Supabase 데이터로 생성됨.
+- 단순 drag-and-drop 정적 업로드만 하면 빌드 명령이 실행되지 않을 수 있으므로, 가장 강한 색인 구조를 쓰려면 Netlify build가 실행되는 배포 방식으로 배포할 것.
+
+[검증 환경]
+- 실제 Chromium 엔진으로 파일을 렌더링하고 PC/태블릿/모바일 레이아웃 및 주요 클릭 동작을 검증함.
+- 실행 환경 정책상 Supabase 실서버 네트워크 접속은 불가능해 build fetch는 mock 데이터로 통합검증함.

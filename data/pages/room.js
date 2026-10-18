@@ -1,0 +1,2 @@
+/* 09 PUBLIC PAGE VENUES: room */
+window.PUBLIC_PAGE_VENUES=[];

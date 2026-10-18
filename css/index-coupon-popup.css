@@ -1,0 +1,140 @@
+/* 광주버블여지도09 / 메인페이지 전용 탐험기 쿠폰 팝업 (2026-10-19)
+   다른 페이지/공통 헤더에 영향을 주지 않도록 ab09-coupon 접두어로 한정. */
+.ab09-coupon-overlay[hidden]{display:none!important}
+.ab09-coupon-overlay,
+.ab09-coupon-overlay *{box-sizing:border-box}
+.ab09-coupon-overlay{
+  position:fixed;inset:0;z-index:2147483000;
+  display:grid;place-items:center;padding:18px;
+  isolation:isolate;font-family:var(--albam09-font-main, "Noto Sans KR", "Malgun Gothic", sans-serif)
+}
+.ab09-coupon-backdrop{
+  position:absolute;inset:0;background:rgba(8,7,12,.72);
+  -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)
+}
+.ab09-coupon-dialog{
+  position:relative;width:min(100%,444px);max-height:calc(100vh - 36px);
+  max-height:calc(100dvh - 36px);overflow-y:auto;overscroll-behavior:contain;
+  padding:30px 30px 22px;text-align:center;isolation:isolate;
+  color:#f8f1df;border-radius:23px;
+  border:1px solid rgba(237,200,122,.55);
+  background:
+    radial-gradient(ellipse at 50% -15%,rgba(207,159,75,.22),transparent 58%),
+    radial-gradient(ellipse at 105% 100%,rgba(138,95,30,.15),transparent 48%),
+    linear-gradient(157deg,#1c1b1d 0%,#111216 52%,#08090e 100%);
+  box-shadow:0 32px 90px rgba(0,0,0,.43),0 4px 28px rgba(0,0,0,.26),inset 0 1px rgba(255,250,226,.08);
+  animation:ab09-coupon-enter .28s ease-out both
+}
+.ab09-coupon-dialog:before{
+  content:"";position:absolute;inset:8px;z-index:-1;pointer-events:none;
+  border:1px solid rgba(220,182,111,.16);border-radius:17px
+}
+.ab09-coupon-cross{
+  position:absolute;right:14px;top:13px;width:34px;height:34px;
+  display:grid;place-items:center;padding:0;border-radius:50%;
+  color:#d7c4a6;background:transparent;border:1px solid rgba(222,191,137,.18);
+  cursor:pointer;transition:background .15s ease,border-color .15s ease
+}
+.ab09-coupon-cross:hover{background:rgba(236,199,137,.13);border-color:rgba(222,191,137,.42)}
+.ab09-coupon-cross svg{width:15px;height:15px}
+.ab09-coupon-emblem{
+  display:grid;place-items:center;width:63px;height:63px;margin:0 auto 16px;
+  border:1px solid rgba(237,200,124,.51);border-radius:50%;
+  background:radial-gradient(circle,rgba(237,200,124,.19),rgba(237,200,124,.025) 74%);
+  box-shadow:0 0 0 6px rgba(226,184,107,.045),0 0 29px rgba(212,171,104,.1)
+}
+.ab09-coupon-emblem svg{width:31px;height:31px;fill:none;stroke:#eace91;stroke-width:1.45;stroke-linejoin:round;stroke-linecap:round}
+.ab09-coupon-eyebrow{
+  margin:0 0 14px;color:#d7b77f;font-family:Georgia,"Times New Roman",serif;
+  font-size:10px;font-weight:700;letter-spacing:.26em
+}
+.ab09-coupon-title{
+  margin:0 0 14px;color:#fcf5e9;font-size:clamp(22px,5.6vw,28px);
+  font-weight:850;letter-spacing:-.055em;line-height:1.42;word-break:keep-all
+}
+.ab09-coupon-title strong{
+  font-weight:900;background:linear-gradient(100deg,#d4a95d 6%,#fff0bd 41%,#d7a95b 87%);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.ab09-coupon-intro{
+  margin:0 auto 19px;max-width:360px;
+  font-size:13px;line-height:1.85;letter-spacing:-.02em;color:#d4cbbd;word-break:keep-all
+}
+.ab09-coupon-rule{height:1px;width:72%;margin:0 auto 18px;background:linear-gradient(90deg,transparent,#c9a160,transparent)}
+.ab09-coupon-reward{
+  position:relative;overflow:hidden;border:1px solid rgba(219,178,105,.35);
+  border-radius:14px;padding:16px 12px 13px;
+  background:linear-gradient(105deg,rgba(192,145,66,.075),rgba(216,183,118,.13) 50%,rgba(192,145,66,.075));
+  box-shadow:inset 0 1px rgba(255,239,195,.06)
+}
+.ab09-coupon-reward:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 22%,rgba(255,249,218,.11) 47%,transparent 70%);
+  transform:translateX(-140%);animation:ab09-coupon-glint 7s ease-in-out infinite
+}
+.ab09-coupon-reward-label{
+  display:block;margin-bottom:5px;color:#d7bf90;font-size:10px;font-weight:800;letter-spacing:.17em
+}
+.ab09-coupon-value{
+  display:block;font-family:Georgia,"Times New Roman",serif;font-size:clamp(37px,9vw,48px);
+  line-height:1.17;font-weight:700;letter-spacing:-.02em;
+  background:linear-gradient(100deg,#cfa55f 15%,#ffe9aa 51%,#bf904c 87%);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.ab09-coupon-value small{
+  margin-left:4px;font-family:var(--albam09-font-main,"Malgun Gothic",sans-serif);
+  font-size:14px;font-weight:850;letter-spacing:-.04em
+}
+.ab09-coupon-condition{margin:13px auto 15px;max-width:356px;color:#acaaab;font-size:11px;line-height:1.65;word-break:keep-all}
+.ab09-coupon-cta{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  min-height:48px;padding:11px 18px;border-radius:12px;
+  font-size:14px;font-weight:850;letter-spacing:-.025em;
+  text-decoration:none!important;color:#241b11!important;
+  background:linear-gradient(105deg,#c79d57,#f7e2aa 48%,#cb9f58);
+  border:1px solid #e2ba75;box-shadow:0 4px 18px rgba(177,129,48,.2);
+  transition:filter .15s ease,transform .15s ease
+}
+.ab09-coupon-cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.ab09-coupon-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.ab09-coupon-options{
+  display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;gap:7px;
+  margin-top:16px;color:#c7bba8
+}
+.ab09-coupon-options button{
+  min-width:0;padding:9px 5px;border:0;background:none;
+  font:inherit;font-size:12px;font-weight:700;color:#c6b8a2;
+  cursor:pointer;white-space:nowrap
+}
+.ab09-coupon-options button:last-child{color:#ead09d;font-weight:850}
+.ab09-coupon-options button:hover{text-decoration:underline;text-underline-offset:4px;color:#fff0c5}
+.ab09-coupon-divider{height:17px;background:rgba(217,187,134,.28)}
+.ab09-coupon-overlay :is(a,button):focus-visible{outline:2px solid #fff0c5;outline-offset:3px}
+body.ab09-coupon-is-open{overflow:hidden!important}
+@keyframes ab09-coupon-enter{from{opacity:0;transform:translateY(13px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ab09-coupon-glint{0%,66%,100%{transform:translateX(-140%)}75%,86%{transform:translateX(140%)}}
+@media(max-width:480px){
+  .ab09-coupon-overlay{padding:14px}
+  .ab09-coupon-dialog{width:min(100%,390px);max-height:calc(100dvh - 28px);padding:25px 21px 16px;border-radius:20px}
+  .ab09-coupon-dialog:before{inset:6px;border-radius:15px}
+  .ab09-coupon-emblem{width:55px;height:55px;margin-bottom:13px}
+  .ab09-coupon-emblem svg{width:28px;height:28px}
+  .ab09-coupon-eyebrow{margin-bottom:11px;font-size:9px;letter-spacing:.22em}
+  .ab09-coupon-title{font-size:clamp(22px,6vw,26px);line-height:1.38}
+  .ab09-coupon-intro{font-size:12px;margin-bottom:15px}
+  .ab09-coupon-rule{margin-bottom:15px}
+  .ab09-coupon-reward{padding:12px 12px 10px}
+  .ab09-coupon-condition{margin:12px auto 13px;font-size:10.5px}
+  .ab09-coupon-cta{min-height:46px}
+  .ab09-coupon-options{margin-top:8px}
+}
+@media(max-height:650px){
+  .ab09-coupon-dialog{padding-top:17px;padding-bottom:13px}
+  .ab09-coupon-emblem{width:44px;height:44px;margin-bottom:9px}
+  .ab09-coupon-title{margin-bottom:9px}
+  .ab09-coupon-intro{margin-bottom:10px}
+  .ab09-coupon-rule{margin-bottom:10px}
+  .ab09-coupon-condition{margin:8px auto}
+  .ab09-coupon-options{margin-top:5px}
+}
+@media(prefers-reduced-motion:reduce){.ab09-coupon-dialog,.ab09-coupon-reward:after{animation:none!important}.ab09-coupon-cta{transition:none}}

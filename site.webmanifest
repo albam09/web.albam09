@@ -1,0 +1,19 @@
+{
+  "name": "광주버블여지도",
+  "short_name": "광주버블여지도",
+  "icons": [
+    {
+      "src": "/img/favicon/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#8c3ff4",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

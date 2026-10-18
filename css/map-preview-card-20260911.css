@@ -1,0 +1,42 @@
+/* Compact cyberpunk map preview card */
+.info-panel-stack .info-map-card{padding:0 !important;}
+.info-panel-stack .info-map-card .map-preview-card{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.18fr) minmax(210px,.82fr) !important;
+  align-items:stretch !important;
+  width:calc(100% - 28px) !important;
+  max-width:760px !important;
+  min-height:118px !important;
+  margin:10px auto 14px !important;
+  border:1px solid rgba(82,55,124,.18) !important;
+  border-radius:15px !important;
+  background:linear-gradient(135deg,#fcfbff 0%,#f5f0ff 100%) !important;
+  text-decoration:none !important;
+  color:#241b2d !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+  box-shadow:0 8px 24px rgba(45,24,76,.08) !important;
+  transition:transform .18s ease,box-shadow .18s ease !important;
+}
+.info-panel-stack .info-map-card .map-preview-card:hover,
+.info-panel-stack .info-map-card .map-preview-card:focus-visible{
+  transform:translateY(-1px) !important;
+  box-shadow:0 10px 28px rgba(45,24,76,.13) !important;
+}
+.info-panel-stack .info-map-card .map-preview-card:focus-visible{outline:3px solid rgba(112,45,189,.22) !important;outline-offset:2px !important;}
+.info-panel-stack .info-map-card .map-preview-card__visual{display:block !important;min-height:118px !important;background:#090d20 !important;overflow:hidden !important;}
+.info-panel-stack .info-map-card .map-preview-card__visual img{display:block !important;width:100% !important;height:100% !important;min-height:118px !important;object-fit:cover !important;object-position:center !important;}
+.info-panel-stack .info-map-card .map-preview-card__body{display:flex !important;flex-direction:column !important;justify-content:center !important;gap:5px !important;padding:12px 14px !important;box-sizing:border-box !important;}
+.info-panel-stack .info-map-card .map-preview-card__eyebrow{display:inline-flex !important;align-items:center !important;width:max-content !important;padding:3px 7px !important;border-radius:999px !important;background:rgba(112,45,189,.10) !important;color:#702dbd !important;font-size:9.5px !important;font-weight:700 !important;letter-spacing:.07em !important;}
+.info-panel-stack .info-map-card .map-preview-card__title{display:block !important;font-size:19px !important;line-height:1.14 !important;letter-spacing:-.02em !important;color:#2f2340 !important;}
+.info-panel-stack .info-map-card .map-preview-card__desc{display:block !important;font-size:11.5px !important;line-height:1.45 !important;color:#5e556a !important;}
+.info-panel-stack .info-map-card .map-preview-card__cta{display:inline-flex !important;align-items:center !important;gap:5px !important;width:max-content !important;margin-top:1px !important;padding:7px 10px !important;border-radius:999px !important;background:#702dbd !important;color:#fff !important;font-size:11px !important;font-weight:700 !important;line-height:1 !important;}
+@media (max-width:760px){
+  .info-panel-stack .info-map-card .map-preview-card{grid-template-columns:1fr !important;width:calc(100% - 20px) !important;max-width:520px !important;min-height:0 !important;margin:8px auto 12px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__visual{min-height:88px !important;max-height:104px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__visual img{min-height:88px !important;height:100% !important;max-height:104px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__body{padding:9px 11px 11px !important;gap:4px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__title{font-size:16px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__desc{font-size:10.5px !important;}
+  .info-panel-stack .info-map-card .map-preview-card__cta{font-size:10.5px !important;padding:6px 9px !important;}
+}

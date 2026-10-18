@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Allow: /page/
+Allow: /explore/
+Allow: /thumbs/
+Allow: /img/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+Sitemap: https://albam09.com/sitemap.xml

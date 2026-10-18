@@ -1,0 +1,146 @@
+
+/* ALBAM09 — Karaoke UI 기반 지역 탐험기 공통 템플릿 */
+body.explore-region-karaoke-ui{background:#fff!important}
+body.explore-region-karaoke-ui main.daum-wm-content{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:0 18px 64px!important;
+  box-sizing:border-box!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel{
+  margin:0 0 26px!important;
+  padding:26px!important;
+  border:1px solid #f1e6fb!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 16px 32px rgba(100,44,125,.10)!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel__head{
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  margin:0 0 20px!important;
+  padding:0 0 16px!important;
+  border-bottom:1px solid #f0e7f5!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel__head h2{
+  margin:0!important;
+  color:#a100b5!important;
+  font-size:clamp(1.7rem,3vw,2.35rem)!important;
+  line-height:1.2!important;
+  letter-spacing:-.035em!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel__head p{
+  margin:7px 0 0!important;
+  color:#777080!important;
+  font-size:.95rem!important;
+  line-height:1.6!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel__eyebrow{
+  display:block!important;
+  margin-bottom:7px!important;
+  color:#9349ff!important;
+  font-size:.74rem!important;
+  font-weight:900!important;
+  letter-spacing:.08em!important;
+}
+body.explore-region-karaoke-ui .explorer-board-state{
+  grid-column:1/-1!important;
+  min-height:170px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  padding:24px!important;
+  border:1px solid #efe6f5!important;
+  border-radius:16px!important;
+  background:#fcfaff!important;
+  text-align:center!important;
+}
+body.explore-region-karaoke-ui .explorer-board-state__icon{
+  display:grid!important;
+  place-items:center!important;
+  width:48px!important;
+  height:48px!important;
+  border-radius:14px!important;
+  background:#f2eaff!important;
+  color:#9349ff!important;
+  font-size:.85rem!important;
+  font-weight:950!important;
+}
+body.explore-region-karaoke-ui .explorer-board-state strong{
+  color:#302735!important;
+  font-size:.98rem!important;
+}
+body.explore-region-karaoke-ui .explorer-board-state small{
+  color:#938a98!important;
+  font-size:.82rem!important;
+}
+body.explore-region-karaoke-ui .explorer-grid-cta{
+  grid-column:1/-1!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+  padding-top:4px!important;
+}
+body.explore-region-karaoke-ui .explorer-grid-cta__button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  min-height:48px!important;
+  padding:0 18px!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:linear-gradient(135deg,#9b49ff,#8233e6)!important;
+  color:#fff!important;
+  font-size:.92rem!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+  box-shadow:0 8px 20px rgba(130,51,230,.18)!important;
+}
+body.explore-region-karaoke-ui .explorer-grid-cta__button i{
+  font-style:normal!important;
+}
+@media(max-width:700px){
+  body.explore-region-karaoke-ui main.daum-wm-content{
+    padding:0 10px 48px!important;
+  }
+  body.explore-region-karaoke-ui .explorer-board-panel{
+    padding:15px!important;
+    border-radius:16px!important;
+  }
+  body.explore-region-karaoke-ui .explorer-board-panel__head{
+    display:block!important;
+    margin-bottom:14px!important;
+    padding-bottom:13px!important;
+  }
+  body.explore-region-karaoke-ui .explorer-board-panel__head h2{
+    font-size:1.45rem!important;
+  }
+  body.explore-region-karaoke-ui .explorer-board-state{
+    min-height:140px!important;
+  }
+  body.explore-region-karaoke-ui .explorer-grid-cta{
+    justify-content:stretch!important;
+  }
+  body.explore-region-karaoke-ui .explorer-grid-cta__button{
+    width:100%!important;
+  }
+}
+
+/* Runtime-safe persistent write CTA: JS only owns .explorer-grid, never this bar. */
+body.explore-region-karaoke-ui .explorer-grid > .explorer-grid-cta{display:none!important}
+body.explore-region-karaoke-ui .explorer-board-panel > .explorer-grid-cta--persistent{
+  display:flex!important;visibility:visible!important;opacity:1!important;
+  position:relative!important;z-index:3!important;
+  justify-content:flex-end!important;margin-top:14px!important;padding-top:0!important;
+}
+body.explore-region-karaoke-ui .explorer-board-panel > .explorer-grid-cta--persistent .explorer-grid-cta__button{
+  display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+}
+@media(max-width:700px){
+  body.explore-region-karaoke-ui .explorer-board-panel > .explorer-grid-cta--persistent{justify-content:stretch!important;margin-top:10px!important}
+  body.explore-region-karaoke-ui .explorer-board-panel > .explorer-grid-cta--persistent .explorer-grid-cta__button{width:100%!important}
+}

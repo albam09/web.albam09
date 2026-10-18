@@ -1,0 +1,21 @@
+광주버블여지도09 — Google Search Console / BBS 색인 정리
+
+핵심 진단
+- 현재 BBS 기사 58개는 원래 index,follow 상태였고 canonical도 자기 URL로 정상 설정되어 있었음.
+- sitemap에는 BBS 64 URL(메인 + page2~page6 + 기사 58개)이 포함되어 있었음.
+- 따라서 "발견됨 - 현재 색인이 생성되지 않음"의 주원인은 accidental noindex가 아니라 저가치/중복 신호 가능성이 큼.
+- 구형 BBS 일부는 본문이 99% 이상 유사한 키워드 치환형 페이지였음.
+
+이번 수정
+1. 거의 동일한 7개 BBS URL을 대표 페이지로 301 통합.
+2. BBS page2~page6는 noindex,follow 처리하고 sitemap에서 제외.
+3. 약한/사이트 분류 위험이 큰 구형 023,036,049는 noindex,follow + sitemap 제외.
+4. BBS 목록에서 위 URL 제거.
+5. BBS 메인에 가격/후기/2차/지역 등 실제 검색의도 대표 글 내부링크 허브 추가.
+6. 구형 자동생성 문장의 잘못된 조사(예: 가라오케을, 상무지구을 등) 수정.
+7. sitemap에서 redirect/noindex URL 제거.
+
+주의
+- Search Console의 NOINDEX, 리디렉션, 과거 404 기록은 배포 직후 즉시 사라지지 않는다. Google 재크롤링 후 보고서가 갱신된다.
+- '발견됨 - 현재 색인이 생성되지 않음'은 Google의 선택 상태이므로 코드만으로 색인을 강제할 수 없다.
+- 목표는 모든 URL을 색인시키는 것이 아니라, 중복을 줄이고 검색 의도가 분명한 대표 URL을 강하게 만드는 것이다.
