@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=process.cwd();
 const SUPABASE_URL=process.env.ALBAM09_SUPABASE_URL || 'https://ldyysvafgegsgmvpslui.supabase.co';
 const SUPABASE_KEY=process.env.ALBAM09_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_qFOVO12BzMv6U2LjgLhR4Q_IKVfM06x';
-const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
+const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
 const PAGE_SIZE=1000;
 const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -28,7 +28,7 @@ function articleHtml(d){
   const gallery=imgs.length?`<div class="explorer-gallery">${imgs.map((im,i)=>`<figure><img src="${esc(im.url||'')}" alt="${esc(im.alt||`${d.title} 탐험기 사진 ${i+1}`)}" loading="${i?'lazy':'eager'}" decoding="async"${i?'':' fetchpriority="high"'}><figcaption>${esc(im.caption||im.alt||`${d.title} 현장 이미지`)}</figcaption></figure>`).join('')}</div>`:'';
   const venue=d.venue_name?(venueLink(d.venue_name)?`<a class="explorer-post-venue explorer-post-venue--link" href="${esc(venueLink(d.venue_name))}" aria-label="${esc(d.venue_name)} 업소 상세페이지 바로가기"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong><span class="explorer-post-venue__hint" aria-hidden="true">상세보기 ↗</span></a>`:`<div class="explorer-post-venue"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong></div>`):'';
   const summary=d.summary?`<div class="explorer-post-summary">${esc(d.summary)}</div>`:'';
-  return `<article class="explorer-post" itemscope itemtype="https://schema.org/DiscussionForumPosting"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1 itemprop="headline">${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content" itemprop="text">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
+  return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}" itemscope itemtype="https://schema.org/DiscussionForumPosting"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1 itemprop="headline">${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content" itemprop="text">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
 }
 
 function withMeta(template,d){
