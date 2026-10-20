@@ -35,3 +35,16 @@
 ## 변경 파일 목록
 - 새로 생성: `bubble-alba/index.html`, `css/bubble-alba.css`, `js/bubble-alba.js`, `supabase/ALBAM09_BUBBLE_ALBA_20261021.sql`, 이 README
 - 기존 수정: `scripts/build-site.mjs`, `js/site-drawer-menu.js`, `index.html`, `sitemap.xml`, 사이트 공통 드로어 JS 참조 캐시 버전(기존 92개 HTML)
+
+
+## 2026-10-21 탐색 경로 및 배포 점검
+- 페이지 실제 파일: `bubble-alba/index.html`. 메뉴 링크: `/bubble-alba/`.
+- `index.html`에 메인 바로가기, `sitemap.xml`에 canonical URL 등록.
+- PC/모바일 상단 공통 지역탭과 사이트 드로어에 버블알바 링크를 정적으로 추가.
+  기존 드로어 JS는 이미 존재하는 정적 링크를 감지하면 추가 주입하지 않습니다.
+- Supabase에서 SQL을 성공적으로 실행해도 HTML 파일은 웹서버에 배포되지 않습니다.
+  GitHub main에서 `bubble-alba/index.html`, `css/bubble-alba.css`, `js/bubble-alba.js`,
+  `scripts/build-site.mjs`, `index.html`, `sitemap.xml`과 수정된 HTML 파일들이 존재해야 합니다.
+  Netlify Git 배포에서 `[build-site] 버블알바` 로그가 출력되어야 합니다.
+- Netlify의 옛 수동 업로드가 마지막 배포라면 GitHub 최신 코드가 게시되지 않은 상태일 수 있습니다.
+  기존 배포 내역과 실제 파일 브라우저를 확인한 후 배포하세요.
