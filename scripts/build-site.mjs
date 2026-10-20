@@ -5,6 +5,8 @@ const root=process.cwd();
 const SUPABASE_URL=process.env.ALBAM09_SUPABASE_URL || 'https://ldyysvafgegsgmvpslui.supabase.co';
 const SUPABASE_KEY=process.env.ALBAM09_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_qFOVO12BzMv6U2LjgLhR4Q_IKVfM06x';
 const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at,profiles!albam09_explorer_posts_author_fkey(nickname)&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
+const ALBA_POSTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_posts?select=id,title,summary,content,created_at,published_at,updated_at&status=eq.published&is_deleted=eq.false&order=published_at.desc&limit=100`;
+const ALBA_COMMENTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_comments?select=post_id,guest_name,content,created_at&status=eq.published&order=created_at.asc&limit=1000`;
 const PAGE_SIZE=1000;
 const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -66,6 +68,22 @@ function archiveBlock(posts){
   return posts.map(d=>`<a class="explorer-card" href="/explore/post/${esc(d.slug)}/"><div class="explorer-card-body"><span class="tag explorer-venue-badge">${esc(d.venue_name||labels[d.board]||'지역 탐험기')}</span><h2>${esc(d.title)}</h2><p>${esc(d.summary||String(d.content||'').slice(0,150))}</p><div class="explorer-meta">${esc(labels[d.board]||'지역')} · ${esc(dateOnly(d.published_at||d.created_at))}</div></div></a>`).join('');
 }
 
+// 버블알바 공고는 별도 URL 수백 개를 만들지 않고 /bubble-alba/ 한 페이지에 정적 삽입.
+async function fetchAlba(url,label){
+  const r=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+  if(!r.ok)throw new Error(`${label}: Supabase ${r.status}`);
+  const rows=await r.json();if(!Array.isArray(rows))throw new Error(`${label}: invalid API result`);
+  return rows;
+}
+function renderAlbaStatic(posts,comments){
+  if(!posts.length)return '<div class="balba-empty">현재 공개된 모집 안내가 없습니다. 공고가 등록되면 이곳에서 확인할 수 있습니다.</div>';
+  return posts.map(p=>{
+    if(!p.id||!p.title||!p.content||!Number.isFinite(Date.parse(p.published_at||p.created_at)))throw new Error('버블알바 공개 공고 데이터가 불완전합니다.');
+    const replies=comments.filter(c=>c.post_id===p.id).slice(0,30);
+    const commentList=replies.length?`<div class="balba-static-comments"><h4>공개 댓글</h4>${replies.map(c=>`<div class="balba-comment"><strong>${esc(c.guest_name)}</strong> <span class="balba-commenttime">${esc(dateOnly(c.created_at))}</span><p>${esc(c.content)}</p></div>`).join('')}</div>`:'';
+    return `<article class="balba-item" data-post-id="${esc(p.id)}"><div class="balba-itemtop"><span class="balba-badge">운영자 안내</span><time class="balba-itemtime" datetime="${dateOnly(p.published_at||p.created_at)}">${dateOnly(p.published_at||p.created_at)}</time></div><h3>${esc(p.title)}</h3>${p.summary?`<p class="balba-itemsummary">${esc(p.summary)}</p>`:''}<div class="balba-itembody">${esc(p.content)}</div>${commentList}<p class="balba-help">댓글 작성과 최신 반영은 페이지 실행 후 가능합니다.</p></article>`;
+  }).join('');
+}
 async function main(){
   let posts=[];
   try{
@@ -87,6 +105,23 @@ async function main(){
     throw e;
   }
 
+  // 반드시 모든 공개 데이터를 성공적으로 조회한 뒤에만 HTML/sitemap 쓰기 수행.
+  // 가입자·08 프로필과 무관한 09 전용 테이블 두 개만 조회.
+  let albaPosts=[],albaComments=[];
+  try{
+    [albaPosts,albaComments]=await Promise.all([
+      fetchAlba(ALBA_POSTS_API,'버블알바 공고'),
+      fetchAlba(ALBA_COMMENTS_API,'버블알바 댓글')
+    ]);
+  }catch(e){
+    console.error('[build-site] 버블알바 조회 실패 — 잘못된 빈 페이지 배포를 방지하기 위해 빌드 중단:',e.message);
+    throw e;
+  }
+  // 필수 필드가 누락되면 잘못된 Google 색인용 HTML을 생성하지 않습니다.
+  for(const p of albaPosts){
+    if(!p.id||!p.title||!p.content||!Number.isFinite(Date.parse(p.published_at||p.created_at)))
+      throw new Error('버블알바 공개 공고 필수 데이터 누락');
+  }
   const seen=new Set();
   for(const d of posts){
     if(seen.has(d.slug))throw new Error(`중복 탐험기 slug: ${d.slug}`);
@@ -131,6 +166,24 @@ async function main(){
   if(!archiveMarker.test(archive))throw new Error('explore/archive/index.html 정적 영역 마커를 찾을 수 없습니다.');
   archive=archive.replace(archiveMarker,`<!-- EXPLORER_ARCHIVE_STATIC_START -->${archiveBlock(posts)}<!-- EXPLORER_ARCHIVE_STATIC_END -->`);
   await fs.writeFile(archivePath,archive,'utf8');
+
+  // 독립 URL 1개: 정적 안내와 실제 승인된 공고·댓글을 동일 HTML에 포함.
+  const albaPath=path.join(root,'bubble-alba/index.html');
+  let albaHtml=await fs.readFile(albaPath,'utf8');
+  const albaMarker=/<!-- ALBA_STATIC_START -->[\s\S]*?<!-- ALBA_STATIC_END -->/;
+  if(!albaMarker.test(albaHtml))throw new Error('버블알바 정적 삽입 마커가 없습니다.');
+  albaHtml=albaHtml.replace(albaMarker,'<!-- ALBA_STATIC_START -->'+renderAlbaStatic(albaPosts,albaComments)+'<!-- ALBA_STATIC_END -->');
+  await fs.writeFile(albaPath,albaHtml,'utf8');
+  // 공개 공고가 갱신될 때에만 사이트맵 마지막 수정일 갱신.
+  if(albaPosts.length){
+    const dates=albaPosts.map(x=>Date.parse(x.updated_at||x.published_at||x.created_at)).filter(Number.isFinite);
+    const updated=dateOnly(new Date(Math.max(...dates)).toISOString());
+    const map2=await fs.readFile(sitemapPath,'utf8');
+    const albaUrlRe=/(<loc>https:\/\/albam09\.com\/bubble-alba\/<\/loc>\s*<lastmod>)[^<]+(<\/lastmod>)/;
+    if(!albaUrlRe.test(map2))throw new Error('버블알바 sitemap URL이 없습니다.');
+    await fs.writeFile(sitemapPath,map2.replace(albaUrlRe,'$1'+updated+'$2'),'utf8');
+  }
+  console.log(`[build-site] 버블알바 공개 공고 ${albaPosts.length}개 · 공개 댓글 ${albaComments.length}개: /bubble-alba/ 정적 렌더링 완료`);
 
   console.log(`[build-site] 공개 탐험기 ${posts.length}개: 정적 상세페이지 + sitemap + archive 생성 완료`);
 }
