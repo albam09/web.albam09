@@ -1,0 +1,10 @@
+
+/* Inline image and emoticon support: scoped to community content only. */
+.ab09-inline-image-link{display:inline-block;max-width:100%;vertical-align:middle;margin:8px 6px 8px 0;line-height:1}
+.ab09-inline-image{display:block;width:auto;max-width:min(100%,500px);max-height:460px;object-fit:contain;border-radius:13px;border:1px solid #eee6f7;background:#faf9fc}
+.balba-comment .ab09-inline-image,.explorer-comment .ab09-inline-image{max-width:min(100%,240px);max-height:240px}
+.ab09-paste-hint{font-size:12px;color:#746582;line-height:1.6;margin:5px 0 9px}
+.ab09-paste-list{display:flex;gap:10px;flex-wrap:wrap;margin:9px 0 14px}
+.ab09-paste-preview{border:1px solid #e5daef;border-radius:13px;padding:8px;background:#fff;display:grid;gap:5px;max-width:160px}
+.ab09-paste-preview img{display:block;max-height:120px;max-width:140px;object-fit:contain;border-radius:8px}
+.ab09-paste-preview button{border:1px solid #e9d4e6;border-radius:8px;padding:5px;font-size:12px;background:#fff;color:#863e71;cursor:pointer}

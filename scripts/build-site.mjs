@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {createRequire} from 'node:module';
+const inlineMedia=createRequire(import.meta.url)('../js/inline-media.js');
 
 const root=process.cwd();
 const SUPABASE_URL=process.env.ALBAM09_SUPABASE_URL || 'https://ldyysvafgegsgmvpslui.supabase.co';
@@ -30,7 +32,7 @@ function articleHtml(d){
   const gallery=imgs.length?`<div class="explorer-gallery">${imgs.map((im,i)=>`<figure><img src="${esc(im.url||'')}" alt="${esc(im.alt||`${d.title} 탐험기 사진 ${i+1}`)}" loading="${i?'lazy':'eager'}" decoding="async"${i?'':' fetchpriority="high"'}><figcaption>${esc(im.caption||im.alt||`${d.title} 현장 이미지`)}</figcaption></figure>`).join('')}</div>`:'';
   const venue=d.venue_name?(venueLink(d.venue_name)?`<a class="explorer-post-venue explorer-post-venue--link" href="${esc(venueLink(d.venue_name))}" aria-label="${esc(d.venue_name)} 업소 상세페이지 바로가기"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong><span class="explorer-post-venue__hint" aria-hidden="true">상세보기 ↗</span></a>`:`<div class="explorer-post-venue"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong></div>`):'';
   const summary=d.summary?`<div class="explorer-post-summary">${esc(d.summary)}</div>`:'';
-  return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1>${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
+  return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1>${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content">${inlineMedia.render(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
 }
 
 function withMeta(template,d){
@@ -80,8 +82,8 @@ function renderAlbaStatic(posts,comments){
   return posts.map(p=>{
     if(!p.id||!p.title||!p.content||!Number.isFinite(Date.parse(p.published_at||p.created_at)))throw new Error('버블알바 공개 공고 데이터가 불완전합니다.');
     const replies=comments.filter(c=>c.post_id===p.id).slice(0,30);
-    const commentList=replies.length?`<div class="balba-static-comments"><h4>공개 댓글</h4>${replies.map(c=>`<div class="balba-comment"><strong>${esc(c.guest_name)}</strong> <span class="balba-commenttime">${esc(dateOnly(c.created_at))}</span><p>${esc(c.content)}</p></div>`).join('')}</div>`:'';
-    return `<article class="balba-item" data-post-id="${esc(p.id)}"><div class="balba-itemtop"><span class="balba-badge">운영자 안내</span><time class="balba-itemtime" datetime="${dateOnly(p.published_at||p.created_at)}">${dateOnly(p.published_at||p.created_at)}</time></div><h3>${esc(p.title)}</h3>${p.summary?`<p class="balba-itemsummary">${esc(p.summary)}</p>`:''}<div class="balba-itembody">${esc(p.content)}</div>${commentList}<p class="balba-help">댓글 작성과 최신 반영은 페이지 실행 후 가능합니다.</p></article>`;
+    const commentList=replies.length?`<div class="balba-static-comments"><h4>공개 댓글</h4>${replies.map(c=>`<div class="balba-comment"><strong>${esc(c.guest_name)}</strong> <span class="balba-commenttime">${esc(dateOnly(c.created_at))}</span><p>${inlineMedia.render(c.content)}</p></div>`).join('')}</div>`:'';
+    return `<article class="balba-item" data-post-id="${esc(p.id)}"><div class="balba-itemtop"><span class="balba-badge">운영자 안내</span><time class="balba-itemtime" datetime="${dateOnly(p.published_at||p.created_at)}">${dateOnly(p.published_at||p.created_at)}</time></div><h3>${esc(p.title)}</h3>${p.summary?`<p class="balba-itemsummary">${esc(p.summary)}</p>`:''}<div class="balba-itembody">${inlineMedia.render(p.content)}</div>${commentList}<p class="balba-help">댓글 작성과 최신 반영은 페이지 실행 후 가능합니다.</p></article>`;
   }).join('');
 }
 async function main(){
