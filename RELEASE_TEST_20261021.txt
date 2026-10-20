@@ -1,0 +1,10 @@
+Files present: 10
+All JS syntax: PASS
+All MJS syntax: PASS
+scripts/tests/test-build-site.mjs: PASS: published => 정적 HTML/canonical/index/sitemap/archive; fetch error => 빌드 실패 & 기존 sitemap 보존; hidden => 정적 HTML/sitemap 제거
+scripts/tests/test-admin-comments.mjs: PASS: staff dashboard loads comment review independent of post review; approve/reject buttons and source article link rendered
+Admin panel and cache-busted HTML: PASS
+No duplicate incomplete forum Microdata node: PASS
+ZIP CRC: PASS
+ZIP entries: 352
+ZIP SHA256: 91184e15e96823646f135b55a2116e92938d3a2e3bbadf78f19dbf4cffc61c9b

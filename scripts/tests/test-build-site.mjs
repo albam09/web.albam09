@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 const source=path.resolve(import.meta.dirname,'../..');
 const temp=await mkdtemp(path.join(tmpdir(),'albam09-explore-test-'));
 const slug='karaoke1-20261020010101-abcd1234';
-const post={slug,board:'karaoke1',title:'상무지구 탐험기 자동 색인 테스트',summary:'실제 탐험기 요약',content:'탐험기 내용 본문입니다.',venue_name:'',location_text:'상무지구',images:[],created_at:'2026-10-20T00:00:00Z',published_at:'2026-10-20T00:10:00Z',updated_at:'2026-10-20T00:10:00Z'};
+const post={slug,board:'karaoke1',title:'상무지구 탐험기 자동 색인 테스트',summary:'실제 탐험기 요약',content:'탐험기 내용 본문입니다.',venue_name:'',location_text:'상무지구',images:[],created_at:'2026-10-20T00:00:00Z',published_at:'2026-10-20T00:10:00Z',updated_at:'2026-10-20T00:10:00Z',profiles:{nickname:'실제 테스트 작성자'}};
 function run(data,fail=false){
  const env={...process.env,TEST_POSTS:JSON.stringify(data),TEST_FAIL:fail?'1':''};
  const res=spawnSync('node',['--import',path.join(temp,'mock-fetch.mjs'),'scripts/build-site.mjs'],{cwd:temp,env,encoding:'utf8'});
@@ -26,9 +26,18 @@ try{
  run([post]);
  const html=await readFile(path.join(temp,'explore/post',slug,'index.html'),'utf8');
  const map=await readFile(path.join(temp,'sitemap.xml'),'utf8');
- assert.match(html,/<h1 itemprop="headline">상무지구 탐험기 자동 색인 테스트<\/h1>/);
+ assert.match(html,/<h1>상무지구 탐험기 자동 색인 테스트<\/h1>/);
  assert.match(html,new RegExp(`<link rel="canonical" href="https://albam09.com/explore/post/${slug}/">`));
  assert.match(html,/<meta name="robots" content="index, follow, max-image-preview:large">/);
+ assert.doesNotMatch(html,/itemscope itemtype="https:\/\/schema.org\/DiscussionForumPosting"/, '중복 Microdata 노드는 없어야 함');
+ const scripts=[...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(x=>JSON.parse(x[1]));
+ const forum=scripts.filter(o=>o['@type']==='DiscussionForumPosting');
+ assert.equal(forum.length,1,'DiscussionForumPosting은 정확히 한 개여야 함');
+ assert.equal(forum[0].author.name,'실제 테스트 작성자');
+ assert.equal(forum[0].datePublished,'2026-10-20T00:10:00Z');
+ assert.equal(forum[0].url,`https://albam09.com/explore/post/${slug}/`);
+ assert.equal(forum[0].text,post.content);
+
  assert.match(html,/name="albam09-generated" content="explore-post"/);
  assert.match(map,new RegExp(slug));
  assert.match(await readFile(path.join(temp,'explore/archive/index.html'),'utf8'),new RegExp(slug));
