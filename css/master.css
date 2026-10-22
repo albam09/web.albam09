@@ -1,34 +1,23 @@
-
-
-
 html, body, *, h1, h2, h3, h4, h5, h6, p, a, span, li, div { font-family:'Albam09Cute',sans-serif!important; }
 /*
    키티의 💡 참고사항:
    로컬 폰트 파일 대신 CDN으로 변경하여 404 오류 해결
 */
-
-/* 🚩 핵심 수정 1: [purple] 색상 변경! 대비율을 높이기 위해 #9349ff에서 #5F009F로 변경했습니다. */
 [purple] {
   color: #5F009F; /* 기존 #9349ff -> #5F009F */
 }
-
 [blue] {
   color: #626DFF;
 }
-
 [red] {
   color: #ff3a4e;
 }
-
-/* 🚩 핵심 수정 2: [gray] 색상을 더 진하게 변경하여 대비율을 높였습니다. */
 [gray] {
   color: #6c757d; /* 기존 #babfc4 -> #6c757d */
 }
-
 [yellow] {
   color: #f9e000;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +26,6 @@ html, body, *, h1, h2, h3, h4, h5, h6, p, a, span, li, div { font-family:'Albam0
   font-family:'Albam09Cute',sans-serif!important; 
   outline: none;
 }
-
 body {
   color: #343a40;
 }
@@ -45,28 +33,22 @@ body[lock] {
   height: 100vh;
   overflow: hidden;
 }
-
 a {
   color: #626DFF;
   text-decoration: none;
 }
 a:hover {
-  /* [purple]이 변경되었으므로 이 부분도 자동으로 #5F009F로 반영됩니다. */
   color: #5F009F; /* 기존 #9349ff -> #5F009F */
   text-decoration: underline;
 }
-
 a span[count] {
   font-size: 0.9em;
-  /* [purple]이 변경되었으므로 이 부분도 자동으로 #5F009F로 반영됩니다. */
   color: #5F009F; /* 기존 #9349ff -> #5F009F */
 }
-
 img {
   display: inline-block;
   width: 100%;
 }
-
 h2,
 h3,
 h4,
@@ -74,11 +56,9 @@ h5,
 h6 {
   margin: 0.5em 0;
 }
-
 [pin] {
   font-size: 0.9em;
 }
-
 form {
   width: 100%;
   max-width: 600px;
@@ -87,7 +67,6 @@ form {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   border-radius: 0.4em;
 }
-
 label,
 input,
 textarea,
@@ -96,14 +75,12 @@ button {
   display: block;
   width: 100%;
 }
-
 label {
   margin-left: 0.5em;
   margin-bottom: 0.25em;
   font-size: 0.9em;
   color: #868e96;
 }
-
 input,
 textarea,
 select {
@@ -112,7 +89,6 @@ select {
   -webkit-border-radius: 0;
   border-radius: 0.4em;
 }
-
 input,
 textarea,
 select {
@@ -123,31 +99,24 @@ select {
   border: 1px solid #babfc4;
   color: #343a40;
 }
-
 input[type="password"] {
   font-family:'Albam09Cute',sans-serif!important;
 }
-
-/* 🚩 핵심 수정 3: 플레이스홀더 색상도 대비율을 높였습니다. */
 input::placeholder {
   color: #868e96; /* 기존 #babfc4 -> #868e96 */
   font-size: 0.9em;
 }
-
 textarea {
   resize: none;
   height: 200px;
 }
-
 select {
   background: #fff;
 }
-
 button {
   margin-top: 2em;
   padding: 0.5em;
   cursor: pointer;
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   background-size: 150% 150%;
   color: #fff;
@@ -161,13 +130,10 @@ button {
 button:hover {
   background-position: 50% 50%;
 }
-
-/* 🚩 핵심 수정 4: 비활성화 버튼 텍스트 색상도 대비율을 높였습니다. */
 button[type="submit"][disabled] {
   color: #adb5bd; /* 기존 #babfc4 -> #adb5bd */
   cursor: wait;
 }
-
 header {
   position: relative;
   padding: 1em;
@@ -199,47 +165,30 @@ header div[logo] div {
 header div[logo] div[svg-box] {
   width: 1.3em;
 }
-
-/* 🚩 키티의 💖 최종 보완 수정: div[data-title] - '전체와 조화롭게' 더욱 선명하고 세련되게! */
 div[data-title] {
-  
   font-family:'Albam09Cute',sans-serif!important;
-  
-  /* 폰트 굵기를 다시 'bold (700)'로 설정하여 제목의 존재감을 확실히 하고, 선명한 인상을 줍니다. */
   font-weight: 700; /* 존재감 있는 제목을 위해 다시 700 (bold)으로 변경 */
-
   font-size: 26px; /* 폰트 사이즈를 24px에서 26px로 약간 키워 시각적 강조! */
   letter-spacing: 0.5px; /* 기존 간격 유지 */
-
   /*
      🎨 색상 조정: 전체 그라데이션(#5F009F - #ff3a4e)과 잘 어우러지면서도
      눈에 더 잘 들어오도록 '미드톤의 퍼플' 계열을 선택했습니다.
      메인 그라데이션의 시작 색상인 #5F009F와 #626DFF (블루) 사이에서 조화롭게 연결될 거예요.
   */
   color: #7A3AA9; /* 기존 #4A0072보다 밝지만 깊이 있는 퍼플로 변경, 더 선명하고 조화로운 느낌 */
-
-  /* 텍스트 그림자를 다시 약간 강조하여 글씨가 배경에 묻히지 않도록 합니다. */
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* 그림자 효과를 약간 더 주어 입체감 부여 */
 }
-
-
-/* 🚩 핵심 수정 5-2: 로고 SVG 수정 (index.html에서 옮겨옴) */
 div[svg-box] svg {
   width: 100%;
   height: 100%;
   display: block;
 }
-
-/* header div[logo] div[title]에 그라데이션이 적용되어 있던 원래 스타일 (이제 [data-title]이 대신합니다.) */
-/* HTML 구조 상 <div data-title> 이 사용되므로 이 부분은 주석 처리합니다. */
 /* header div[logo] div[title] {
   font-size: 1.3em;
   background: linear-gradient(125deg, #5F009F, #ff3a4e);
   color: transparent;
   -webkit-background-clip: text;
 } */
-
-
 header div[profile] {
   position: absolute;
   top: 1em;
@@ -255,7 +204,6 @@ header div[profile] a[signin] {
   font-weight: 700;
   margin-top: 0.3em;
 }
-
 div[path] {
   width: 100%;
   max-width: 1200px;
@@ -266,16 +214,13 @@ div[path] {
 div[path] a {
   color: #626DFF;
 }
-/* 이 부분은 위쪽 a:hover와 중복됩니다. 위에 정의된 것을 따르도록 유지합니다. */
 /* a:hover {
   color: #5F009F;
 } */
-/* 🚩 핵심 수정 6: 경로 화살표 색상도 대비율을 높였습니다. */
 div[path] span[arrow] {
   font-size: 0.9em;
   color: #868e96; /* 기존 #babfc4 -> #868e96 */
 }
-
 main {
   padding: 1em;
   width: 100%;
@@ -292,7 +237,6 @@ main section > h2 {
   display: inline-block;
   font-weight: 400;
   font-size: 1.4em;
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -300,7 +244,6 @@ main section > h2 {
 main section[title] {
   padding: 5em 1em 4em;
   margin-top: 0;
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   background-size: 150% 150%;
   border-radius: 0.4em;
@@ -330,13 +273,11 @@ main section[list] {
   text-align: center;
   box-shadow: none;
 }
-/* 🚩 추가: 업소 목록 그리드 간격 증가 */
 main section[list] div[wrapper] {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.5em; /* 기존 1em에서 1.5em으로 증가 */
 }
-/* 🚩 추가: 각 업소 목록 박스 크기 줄이기 */
 main section[list] div[wrapper] ul {
   display: block;
   padding: 1em; /* 기존 1.5em에서 1em으로 줄임 */
@@ -348,8 +289,6 @@ main section[list] div[wrapper] ul {
   justify-content: flex-start;
   align-items: center;
 }
-
-/* 🚩 추가: 업소 목록 제목 크기 증가 */
 main section[list] div[wrapper] ul h3 {
   font-size: 1.2em; /* 기존 1.1em에서 1.2em으로 증가 */
   margin-top: 0;
@@ -359,17 +298,14 @@ main section[list] div[wrapper] ul h3 {
 }
 main section[list] div[wrapper] ul h3 a {
   border-bottom: 1px solid rgba(0, 0, 0, 0);
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
 }
 main section[list] div[wrapper] ul h3 a:hover {
-  /* [purple]이 변경되었으므로 이 부분도 자동으로 #5F009F로 반영됩니다. */
   border-bottom: 1px solid #5F009F; /* 기존 #9349ff -> #5F009F */
 }
 main section[list] div[wrapper] ul h3[name] {
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -378,11 +314,9 @@ main section[list] div[wrapper] ul li {
   list-style-type: none;
   margin-bottom: 0.5em;
 }
-/* 🚩 핵심 수정 7: 'empty' 상태 목록 텍스트 색상 대비율을 높였습니다. */
 main section[list] div[wrapper] ul li[empty] {
   color: #868e96; /* 기존 #babfc4 -> #868e96 */
 }
-/* 🚩 핵심 수정 8: 'empty' 상태 목록 내 링크 텍스트 색상 대비율을 높였습니다. */
 main section[list] div[wrapper] ul li[empty] a[telegram] {
   color: #868e96; /* 기존 #babfc4 -> #868e96 */
 }
@@ -396,7 +330,6 @@ main section[contents] div[information] {
   grid-gap: 1em;
 }
 main section[contents] div[information] h2 {
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -412,7 +345,6 @@ main section[contents] div[information] ul h3 {
   font-size: 1.1em;
   font-weight: 600;
   display: inline-block;
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -427,7 +359,6 @@ main section[map] {
 }
 main section[map] h2 {
   display: inline-block;
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -452,7 +383,6 @@ main section[article] article > div {
   margin-bottom: 2em;
 }
 main section[article] article > div h3 {
-  /* [purple]이 변경되었으므로 그라데이션 시작 색상도 #5F009F로 반영됩니다. */
   background: linear-gradient(125deg, #5F009F, #ff3a4e); /* 기존 #9349ff -> #5F009F */
   color: transparent;
   -webkit-background-clip: text;
@@ -469,7 +399,6 @@ main section[article] article > div ul li {
 main section[article] article div[partials] {
   padding: 1em;
 }
-
 footer {
   margin-top: 5em;
   padding: 3em 1em;
@@ -479,7 +408,6 @@ footer {
   color: #868e96;
   box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.1);
 }
-
 div[modals] {
   position: fixed;
   top: 0;
@@ -512,7 +440,6 @@ div[modals] div[modal] div[contents] div[loading] {
   text-align: center;
   margin: 5em 0;
 }
-
 div[alert-wrapper] {
   position: fixed;
   top: 0;
@@ -543,7 +470,6 @@ div[alert-wrapper] div[alert] {
   border-radius: 0.4em;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 }
-
 @-webkit-keyframes introBg {
   0% {
     background-position: 0% 50%;
@@ -577,22 +503,18 @@ div[alert-wrapper] div[alert] {
     background-position: 0% 50%;
   }
 }
-
 @media (max-width: 500px) {
   main section[list] div[wrapper],
   main section[contents] div[information] {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* 🚩 슬라이드 컨테이너 높이도 함께 줄이기 */
 .rotating-list-container {
   position: relative;
   height: 30px;
   overflow: hidden;
   margin-bottom: 10px;
 }
-
 .rotating-list-container li {
   position: absolute;
   top: 50%; /* 박스의 세로 중앙 */
@@ -605,7 +527,6 @@ div[alert-wrapper] div[alert] {
   padding: 8px 0;
   transform: translateY(-50%); /* 정확한 중앙 정렬을 위해 */
 }
-
 .rotating-list-container li.is-active {
   left: 0;
   opacity: 1;
@@ -613,7 +534,6 @@ div[alert-wrapper] div[alert] {
   top: 50%; /* 활성화 시에도 동일하게 중앙 */
   transform: translateY(-50%); /* 정확한 중앙 정렬을 위해 */
 }
-/* 🚩 핵심 추가 10: 그레이 그라데이션 애니메이션 효과 */
 .gradient-text-animation {
   background: linear-gradient(90deg, #868e96, #adb5bd, #6c757d, #868e96);
   background-size: 300% 100%;
@@ -622,7 +542,6 @@ div[alert-wrapper] div[alert] {
   color: transparent;
   animation: gradientShift 3s ease-in-out infinite;
 }
-
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -634,14 +553,10 @@ div[alert-wrapper] div[alert] {
     background-position: 0% 50%;
   }
 }
-
-/* 🚩 핵심 추가 11: 업소명과 설명의 시각적 차이를 위한 스타일 */
 main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
   font-weight: bold;
   font-size: 1.1em; /* 글씨 크기 약간 키움 */
 }
-
-/* 🚩 핵심 추가 12: .business-description-section 및 관련 스타일 추가 */
 .business-description-section {
     padding: 25px; /* 기존 20px에서 25px로 패딩 증가 */
     background-color: #f5f5f5;
@@ -649,7 +564,6 @@ main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
     margin-top: 40px; /* 상단 마진 증가로 더 아래로 내림 */
     box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* 그림자 강조 */
 }
-
 .business-description-section h2 {
     font-size: 26px; /* 기존 24px에서 26px로 키움 */
     color: #222;
@@ -657,7 +571,6 @@ main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
     text-align: center;
     font-weight: 700;
 }
-
 .business-description-section h3 {
     font-size: 22px; /* 기존 20px에서 22px로 키움 */
     color: #444;
@@ -666,8 +579,6 @@ main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
     padding-bottom: 12px; /* 패딩 증가 */
     border-bottom: 3px solid #ddd; /* 선 두께 증가 */
 }
-
-
 .business-description-item {
     background-color: #ffffff;
     border: 2px solid #e0e0e0; /* 테두리 두께 증가 */
@@ -683,15 +594,12 @@ main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
     box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* 호버 시 그림자 강조 */
     transform: translateY(-3px); /* 호버 시 이동 거리 증가 */
 }
-
-/* 🚩 핵심 수정 13: .business-description-item strong 색상 및 애니메이션 */
 .business-description-item strong {
     color: #5F009F;
     font-weight: 700; /* 굵기 증가 */
     font-size: 1.1em; /* 크기 증가 */
     animation: police-siren-blink 2s infinite;
 }
-
 @keyframes police-siren-blink {
     0%, 100% {
         color: #5F009F; /* 변경된 보라색 */
@@ -706,43 +614,30 @@ main section[list] ul li[itemprop="mainEntity"] [itemprop="name"] {
         text-shadow: 0 0 8px rgba(220, 53, 69, 0.8);
     }
 }
-/*# sourceMappingURL=master.css.map */
-
-/* Luxury Enhancement */
-
 h1, h2, h3 {
     font-weight: 600 !important;
     letter-spacing: 0.6px !important;
     line-height: 1.32 !important;
 }
-
 p, li, span, a {
     font-weight: 400 !important;
     letter-spacing: 0.15px !important;
     line-height: 1.55 !important;
 }
-
 body {
     background-color: #fafafa !important;
 }
-
-
-
-
-/* === Luxury UI Upgrade === */
 header div[data-title] {
     font-weight: 600 !important;
     font-size: 1.25rem !important;
     letter-spacing: 0.4px !important;
 }
-
 a {
     transition: opacity .25s ease, color .25s ease;
 }
 a:hover {
     opacity: .75;
 }
-
 button, .btn {
     border-radius: 14px !important;
     padding: 10px 18px !important;
@@ -753,15 +648,10 @@ button:hover, .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
-
-
-/* ALBAM09 TOP12 REAL NEAREST RESTORE */
 #floating-top12-btn{position:fixed;right:12px;bottom:142px;z-index:9998;min-width:92px;padding:11px 14px;border-radius:999px;background:linear-gradient(135deg,#c9b6ff,#8d5cff);color:#fff;font-weight:800;font-size:13px;letter-spacing:.2px;text-align:center;box-shadow:0 10px 26px rgba(70,38,130,.42);border:1px solid rgba(255,255,255,.22);cursor:pointer;user-select:none;}
 #floating-top12-btn:hover{filter:brightness(1.05);transform:translateY(-1px);}
 #nearest-open-button{box-shadow:0 10px 26px rgba(70,38,130,.32)!important;}
 #nearest-panel,#top12-panel{box-sizing:border-box;}
-
-
 :root {
   --albam-font-sans:var(--albam09-font-main);
   --albam-font-display:var(--albam09-font-main);
@@ -771,26 +661,22 @@ button:hover, .btn:hover {
   --albam-pink: #f23d8f;
   --albam-soft-line: rgba(109, 40, 217, .12);
 }
-
 html {
   font-family:'Albam09Cute',sans-serif!important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-
 body,
 body *:not(svg):not(path) {
   font-family:'Albam09Cute',sans-serif!important;
   letter-spacing: -0.018em;
 }
-
 body {
   color: var(--albam-ink);
   font-weight: 500;
   word-break: keep-all;
 }
-
 h1, h2, h3, h4, h5, h6,
 header div[logo] div[title],
 header div[logo] div[data-title],
@@ -804,14 +690,11 @@ button {
   font-weight: 850 !important;
   letter-spacing: -0.042em;
 }
-
-/* 로고/상단 타이틀: 기존 기본 글씨 느낌 제거 */
 header div[logo] {
   display: inline-flex !important;
   align-items: center;
   gap: 8px;
 }
-
 header div[logo] div[title],
 header div[logo] div[data-title] {
   font-size: clamp(1.18rem, 2.6vw, 1.72rem) !important;
@@ -824,8 +707,6 @@ header div[logo] div[data-title] {
   background-clip: text;
   text-shadow: none !important;
 }
-
-/* 히어로 제목: 얇고 허전한 느낌 제거 */
 main section[title] h1 {
   font-size: clamp(2.05rem, 5.4vw, 4.1rem) !important;
   font-weight: 950 !important;
@@ -833,7 +714,6 @@ main section[title] h1 {
   letter-spacing: -0.075em;
   margin-bottom: .42em;
 }
-
 main section[title] p {
   font-size: clamp(.98rem, 2vw, 1.12rem);
   line-height: 1.72;
@@ -841,19 +721,15 @@ main section[title] p {
   letter-spacing: -0.032em;
   opacity: .94;
 }
-
 main section > h2 {
   font-size: clamp(1.45rem, 2.3vw, 1.85rem) !important;
   font-weight: 950 !important;
   letter-spacing: -0.06em;
   line-height: 1.2;
 }
-
-/* 업소 목록 카드: 폰트만 바꾸는 게 아니라 글씨가 살아 보이게 카드도 정돈 */
 main section[list] div[wrapper] {
   gap: clamp(14px, 2vw, 24px) !important;
 }
-
 main section[list] div[wrapper] ul {
   border: 1px solid var(--albam-soft-line);
   border-radius: 18px !important;
@@ -861,20 +737,17 @@ main section[list] div[wrapper] ul {
   box-shadow: 0 12px 28px rgba(28, 18, 45, .08) !important;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-
 main section[list] div[wrapper] ul:hover {
   transform: translateY(-3px);
   border-color: rgba(109, 40, 217, .22);
   box-shadow: 0 18px 36px rgba(28, 18, 45, .13) !important;
 }
-
 main section[list] div[wrapper] ul h3 {
   border-bottom: 0 !important;
   padding-bottom: 0 !important;
   margin: 10px 10px 12px !important;
   line-height: 1.18;
 }
-
 main section[list] div[wrapper] ul h3::after {
   content: "";
   display: block;
@@ -884,7 +757,6 @@ main section[list] div[wrapper] ul h3::after {
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(109,40,217,.20), rgba(242,61,143,.36));
 }
-
 main section[list] div[wrapper] ul h3 a,
 main section[list] div[wrapper] ul h3[name] {
   font-size: clamp(1.08rem, 2vw, 1.36rem) !important;
@@ -894,7 +766,6 @@ main section[list] div[wrapper] ul h3[name] {
   text-decoration: none !important;
   text-shadow: none !important;
 }
-
 main section[list] div[wrapper] ul li,
 main section[contents] div[information] ul li,
 .business-description-item,
@@ -906,52 +777,42 @@ main section[contents] div[information] ul li,
   font-weight: 530;
   letter-spacing: -0.026em;
 }
-
-/* 지역 메뉴 */
 .area-list li a {
   font-weight: 800 !important;
   letter-spacing: -0.035em;
   border: 1px solid rgba(0,0,0,.05);
 }
-
-/* 상세페이지 */
 .place-hero h1 {
   font-size: clamp(2.15rem, 5vw, 3.8rem) !important;
   font-weight: 950 !important;
   letter-spacing: -0.075em;
   line-height: 1.05;
 }
-
 .place-hero p,
 .place-info dd,
 .place-desc p {
   word-break: keep-all;
 }
-
 .place-card h2 {
   font-size: 1.42rem !important;
   letter-spacing: -0.052em;
 }
-
 .place-info dt {
   color: var(--albam-purple) !important;
   font-size: .98rem;
 }
-
 button,
 .place-btn {
   font-weight: 900 !important;
   letter-spacing: -0.04em;
   text-shadow: none;
 }
-
 input,
 textarea,
 select {
   font-family:'Albam09Cute',sans-serif!important;
   font-weight: 550;
 }
-
 @media (max-width: 640px) {
   body, body *:not(svg):not(path) {
     letter-spacing: -0.025em;
@@ -968,7 +829,6 @@ select {
     font-size: 1.08rem !important;
   }
 }
-
 /* =========================================================
    ALBAM09 PATCH: 모바일 로컬 인스타 가이드 2열 compact 표시
    - 전 페이지 .insta-guide 공통 적용
@@ -1028,7 +888,6 @@ select {
     overflow: hidden !important;
   }
 }
-
 @media (max-width: 360px) {
   .insta-guide {
     padding: 0 4px !important;
@@ -1048,8 +907,6 @@ select {
     font-size: 9.3px !important;
   }
 }
-
-/* === 업소 상세 설명 카드 전체 클릭 패치 === */
 a.business-description-item,
 a.business-description-link {
     display: block;
@@ -1057,17 +914,14 @@ a.business-description-link {
     cursor: pointer;
     position: relative;
 }
-
 a.business-description-item:visited,
 a.business-description-link:visited {
     color: #2f2a3c;
 }
-
 a.business-description-item:hover,
 a.business-description-link:hover {
     text-decoration: none !important;
 }
-
 a.business-description-link::after {
     content: "상세보기";
     display: inline-block;
@@ -1082,7 +936,6 @@ a.business-description-link::after {
     vertical-align: middle;
     opacity: .92;
 }
-
 @media (max-width: 640px) {
     a.business-description-item,
     a.business-description-link {
@@ -1100,9 +953,6 @@ a.business-description-link::after {
         margin-left: 6px;
     }
 }
-
-
-/* === 전 페이지 통합검색창 패치 === */
 .global-place-search {
     width: min(920px, calc(100% - 28px));
     margin: 18px auto 22px;
@@ -1254,9 +1104,6 @@ a.business-description-link::after {
         font-size: .7rem;
     }
 }
-
-
-/* === 통합검색창 열맞춤/수직정렬 강제 보정 2026-05-16 === */
 .global-place-search,
 .global-place-search * {
     box-sizing: border-box !important;
@@ -1393,8 +1240,6 @@ a.business-description-link::after {
         font-size: .72rem !important;
     }
 }
-
-/* === 통합검색창 가로폭/좌우정렬 강제 보정 2026-05-16 === */
 .global-place-search,
 .global-place-search * {
     box-sizing: border-box !important;
@@ -1522,8 +1367,6 @@ a.business-description-link::after {
         font-size: .7rem !important;
     }
 }
-
-
 /* =========================================================
    ALBAM09 PATCH: 슬라이드 속도/그림자 보강
    - 첫 진입 시 멈춘 느낌을 줄이기 위해 업소명 슬라이드 전환을 0.52초로 단축
@@ -1557,8 +1400,6 @@ main section[list] div[wrapper] ul:hover {
   transform: translateY(-2px);
   box-shadow: 0 22px 46px rgba(0,0,0,.24), 0 8px 22px rgba(95,0,159,.18) !important;
 }
-
-
 /* =========================================================
    ALBAM09 PATCH: 물레방아식 연속 슬라이드
    - 업소명이 오른쪽에서 들어오고 왼쪽으로 빠지며 빈칸 없이 이어짐
@@ -1602,8 +1443,6 @@ main section[list] div[wrapper] ul:hover {
 .rotating-list-container li [itemprop="name"] {
   text-shadow: 0 2px 8px rgba(95, 0, 159, .18), 0 1px 2px rgba(255,255,255,.45) !important;
 }
-
-
 /* =========================================================
    ALBAM09 PATCH: 지역/업소 터치 영역 명확 분리
    - 카드 전체 터치 이동을 제거하고, 지역명 버튼과 업소명 버튼을 시각적으로 분리
@@ -1757,8 +1596,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:active,
     font-size: .92rem !important;
   }
 }
-
-
 /* =========================================================
    ALBAM09 PATCH: 지역/업소 터치 구분 - 부드러운 버전
    - 이전 버전의 배지/안내문구가 부담스럽게 보이지 않도록 제거
@@ -1857,7 +1694,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:active,
     font-size: .93rem !important;
   }
 }
-
 /* =========================================================
    ALBAM09 PATCH: 지역명 그라데이션 원상복구 + 업소명 그림자 복구
    - 부드러운 터치 구분은 유지하면서 지역명 폰트색을 기존 그라데이션 텍스트로 복원
@@ -1888,8 +1724,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
 .rotating-list-container[data-card-href] li.is-active [itemprop="name"] {
   text-shadow: 0 2px 8px rgba(95, 0, 159, .18), 0 1px 2px rgba(255,255,255,.45) !important;
 }
-
-/* 지역별 키워드 게시판형 안내 섹션 - 2026-05-23 */
 .regional-keyword-board{
   width:100%;
   max-width:1160px;
@@ -2022,10 +1856,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .regional-keyword-board h2{font-size:1.22rem;}
   .regional-keyword-board .rkb-card{min-height:auto;padding:14px;}
 }
-
-
-/* 2026-05-23 밝은 리스트형 기사 게시판 */
-/* 배포/로컬 동일 적용: 하단 기사 게시판 밝은 리스트형 강제 스타일 */
 .seo-article-board{margin:38px auto 46px!important;padding:0 14px!important;max-width:1160px!important;box-sizing:border-box!important;font-family:'Albam09Cute',sans-serif!important;}
 .seo-article-inner{background:linear-gradient(180deg,#fffaf3 0%,#ffffff 52%,#fffdf8 100%)!important;border:1px solid rgba(216,155,73,.34)!important;border-radius:24px!important;padding:24px!important;box-shadow:0 18px 44px rgba(94,54,17,.14)!important;color:#2b2118!important;overflow:hidden!important;}
 .seo-article-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:18px!important;margin:0 0 16px!important;padding:0 0 18px!important;border-bottom:1px solid rgba(216,155,73,.22)!important;}
@@ -2073,8 +1903,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .seo-article-head h2{font-size:19px!important;}
   .seo-article-card p{font-size:13.4px!important;}
 }
-
-/* 2026-05-23 기존 벚꽃 톤 보존 섹션 - brand-tone override가 최종 적용 */
 .seo-article-board{margin:42px auto 50px!important;padding:0 14px!important;max-width:1160px!important;box-sizing:border-box!important;font-family:'Albam09Cute',sans-serif!important;}
 .seo-article-inner{position:relative!important;background:linear-gradient(180deg,#fff7fb 0%,#fff 48%,#fff8f1 100%)!important;border:1px solid rgba(255,174,197,.62)!important;border-radius:28px!important;padding:26px!important;box-shadow:0 18px 42px rgba(202,95,126,.14)!important;color:#322128!important;overflow:hidden!important;}
 .seo-article-inner::before{content:'🌸';position:absolute!important;right:26px!important;top:18px!important;font-size:42px!important;line-height:1!important;opacity:.28!important;pointer-events:none!important;filter:drop-shadow(0 8px 14px rgba(236,136,166,.18))!important;}
@@ -2148,10 +1976,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .seo-article-card p{font-size:13.4px!important;}
   .insta-guide .insta-card{height:124px!important;}
 }
-
-
-/* ===== 2026-05-23 premium blossom final override ===== */
-/* 2026-05-23 프리미엄 톤 과거 섹션 - brand-tone override가 최종 적용 */
 .seo-article-board{margin:46px auto 54px!important;padding:0 16px!important;max-width:1160px!important;box-sizing:border-box!important;font-family:'Albam09Cute',sans-serif!important;}
 .seo-article-inner{position:relative!important;background:linear-gradient(180deg,#fffdfc 0%,#fff 58%,#fffaf6 100%)!important;border:1px solid rgba(225,188,196,.58)!important;border-radius:26px!important;padding:28px!important;box-shadow:0 20px 50px rgba(70,44,52,.09)!important;color:#2f2528!important;overflow:hidden!important;}
 .seo-article-inner::before{content:''!important;position:absolute!important;right:-90px!important;top:-100px!important;width:260px!important;height:260px!important;border-radius:999px!important;background:radial-gradient(circle,rgba(239,182,195,.24) 0%,rgba(255,250,246,0) 70%)!important;pointer-events:none!important;}
@@ -2225,10 +2049,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .seo-article-card::before{left:12px!important;}
   .insta-guide .insta-card{height:122px!important;}
 }
-
-
-/* === 모바일 박스/게시판 최종 오버라이드 20260523 === */
-/* 2026-05-23 모바일 박스 정리: 사이트 보라/화이트 톤, 스마트폰 2열/요약형 */
 .seo-article-board{margin:44px auto 54px!important;padding:0 16px!important;max-width:1160px!important;box-sizing:border-box!important;font-family:'Albam09Cute',sans-serif!important;}
 .seo-article-inner{position:relative!important;background:linear-gradient(180deg,#fffefd 0%,#fff 62%,#fffaf8 100%)!important;border:1px solid rgba(226,202,207,.72)!important;border-radius:24px!important;padding:26px!important;box-shadow:0 16px 38px rgba(70,44,52,.07)!important;color:#2f2528!important;overflow:hidden!important;}
 .seo-article-inner::before{content:''!important;position:absolute!important;right:-110px!important;top:-120px!important;width:280px!important;height:280px!important;border-radius:999px!important;background:radial-gradient(circle,rgba(232,170,184,.20) 0%,rgba(255,250,246,0) 68%)!important;pointer-events:none!important;}
@@ -2317,10 +2137,6 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .seo-article-card h3{font-size:.87rem!important;}
   .seo-article-card p{font-size:.75rem!important;}
 }
-
-
-
-/* 2026-05-23 brand-tone override: 사이트 전체 보라/화이트 분위기 맞춤, 벚꽃 핑크 제거 */
 .seo-article-board{margin:42px auto 50px!important;padding:0 14px!important;max-width:1160px!important;box-sizing:border-box!important;font-family:'Albam09Cute',sans-serif!important;}
 .seo-article-inner{position:relative!important;background:linear-gradient(180deg,#ffffff 0%,#ffffff 58%,#fbf8ff 100%)!important;border:1px solid rgba(95,0,159,.18)!important;border-radius:24px!important;padding:26px!important;box-shadow:0 16px 38px rgba(38,16,74,.075)!important;color:#2f2a3c!important;overflow:hidden!important;}
 .seo-article-inner::before{content:''!important;position:absolute!important;right:-105px!important;top:-115px!important;width:270px!important;height:270px!important;border-radius:999px!important;background:radial-gradient(circle,rgba(95,0,159,.13) 0%,rgba(147,73,255,.08) 42%,rgba(255,255,255,0) 70%)!important;pointer-events:none!important;filter:none!important;}
@@ -2405,33 +2221,20 @@ main section[list] div[wrapper] ul[data-card-href] h3 a:focus-visible {
   .insta-guide .insta-card .text{font-size:.77rem!important;padding:8px!important;}
   .insta-guide .insta-card .text .sub{font-size:.65rem!important;}
 }
-
-
-
-/* 20260530 H1 clean balance: visible H1 stays short, SEO keyline stays readable */
-/* 20260530: 히어로 화면용 제목은 검색용 title과 분리. 원래 그라데이션 분위기에 맞춰 흰색으로 고정 */
 main section[title], section[title]{color:#fff!important;}
 main section[title] h1, section[title] h1{font-size:clamp(1.55rem,3.35vw,2.55rem)!important;line-height:1.18!important;letter-spacing:-.055em!important;word-break:keep-all!important;margin:0 0 .62em!important;max-width:900px!important;color:#fff!important;text-shadow:0 2px 16px rgba(0,0,0,.16)!important;}
 main section[title] .hero-keyline, section[title] .hero-keyline{display:flex!important;justify-content:center!important;flex-wrap:wrap!important;gap:7px!important;margin:0 0 .72em!important;padding:0!important;line-height:1.45!important;}
 main section[title] .hero-keyline span, section[title] .hero-keyline span{display:inline-flex!important;align-items:center!important;border:1px solid rgba(255,255,255,.26)!important;background:rgba(255,255,255,.14)!important;color:#fff!important;border-radius:999px!important;padding:4px 10px!important;font-size:clamp(.76rem,2.4vw,.88rem)!important;font-weight:750!important;letter-spacing:-.035em!important;backdrop-filter:blur(6px)!important;}
 main section[title] .hero-desc, section[title] .hero-desc, main section[title] p, section[title] p{font-size:clamp(.9rem,2vw,1rem)!important;line-height:1.72!important;color:rgba(255,255,255,.9)!important;word-break:keep-all!important;font-weight:650!important;text-shadow:0 1px 10px rgba(0,0,0,.12)!important;}
 @media (max-width:480px){main section[title],section[title]{padding:3.1em 14px 2.7em!important;}main section[title] h1,section[title] h1{font-size:clamp(1.48rem,7.2vw,2.05rem)!important;line-height:1.2!important;margin-bottom:.56em!important;}main section[title] .hero-keyline,section[title] .hero-keyline{gap:5px!important;margin-bottom:.65em!important;}main section[title] .hero-keyline span,section[title] .hero-keyline span{padding:3px 7px!important;font-size:.74rem!important;}main section[title] .hero-desc,section[title] .hero-desc,main section[title] p,section[title] p{font-size:.88rem!important;line-height:1.62!important;}}
-
-
-/* 20260530 H1 centerfix: 모든 히어로 요소 중앙 정렬 강제 */
 main section[title], section[title]{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;box-sizing:border-box!important;}
 main section[title] h1, section[title] h1{display:block!important;width:100%!important;max-width:980px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;color:#fff!important;}
 main section[title] .hero-keyline, section[title] .hero-keyline{width:100%!important;max-width:980px!important;margin-left:auto!important;margin-right:auto!important;justify-content:center!important;align-items:center!important;text-align:center!important;}
 main section[title] .hero-desc, section[title] .hero-desc, main section[title] > p:not(.hero-keyline), section[title] > p:not(.hero-keyline){width:100%!important;max-width:980px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;color:rgba(255,255,255,.92)!important;}
 @media (max-width:640px){main section[title],section[title]{padding-left:16px!important;padding-right:16px!important;}main section[title] h1,section[title] h1{max-width:100%!important;text-align:center!important;}main section[title] .hero-keyline,section[title] .hero-keyline{max-width:100%!important;}main section[title] .hero-desc,section[title] .hero-desc,main section[title] > p:not(.hero-keyline),section[title] > p:not(.hero-keyline){max-width:100%!important;}}
-
-/* report-page-svg-guard-20260530 */
 header div[logo] div[svg-box]{width:1.3em!important;height:1.3em!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;}
 header div[logo] div[svg-box] svg{width:100%!important;height:100%!important;display:block!important;}
 header div[logo]{display:inline-flex!important;align-items:center!important;gap:.45em!important;}
-
-
-/* report page nav/layout fallback 20260530 */
 body.report-page .area-wrap{width:100%;max-width:1200px;margin:0 auto!important;padding:0 16px!important;box-sizing:border-box;}
 body.report-page .area-list{width:100%!important;display:flex!important;justify-content:center!important;align-items:center!important;margin:14px 0 22px!important;padding:0!important;}
 body.report-page .area-list ul{list-style:none!important;padding:0!important;margin:0!important;display:flex!important;flex-wrap:wrap!important;gap:8px!important;justify-content:center!important;align-items:center!important;}
@@ -2441,10 +2244,7 @@ body.report-page .area-list li.current a,body.report-page .area-list li a:hover{
 body.report-page main{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0 0 42px!important;}
 body.report-page header div[logo] div[data-title]{background:linear-gradient(125deg,#5f009f,#ff3a74)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;text-shadow:none!important;}
 @media(max-width:760px){body.report-page .area-wrap{padding:0 10px!important;}body.report-page .area-list{margin:10px 0 16px!important;}body.report-page .area-list ul{gap:6px!important;}body.report-page .area-list li a{padding:7px 9px!important;border-radius:10px!important;font-size:12px!important;}}
-
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;}
-
-/* ===== TOP AD BANNER SLOTS START ===== */
 .top-ad-zone{
   width:100%;
   max-width:1200px;
@@ -2495,19 +2295,14 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
     border-radius:10px;
   }
 }
-/* ===== TOP AD BANNER SLOTS END ===== */
-
-/* ===== TOP AD RECRUIT BANNERS START ===== */
 .top-ad-zone{
   padding:14px 16px 6px !important;
 }
-
 .top-ad-grid{
   display:grid !important;
   grid-template-columns:repeat(2,minmax(0,1fr)) !important;
   gap:18px !important;
 }
-
 .top-ad-slot{
   position:relative;
   height:104px !important;
@@ -2519,7 +2314,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
     0 16px 34px rgba(57,38,72,.08),
     0 3px 10px rgba(57,38,72,.035) !important;
 }
-
 .top-ad-recruit{
   position:relative;
   display:flex !important;
@@ -2535,8 +2329,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   color:#241d2c !important;
   transition:transform .22s ease, box-shadow .22s ease;
 }
-
-/* 펄빛 유리광 */
 .top-ad-recruit::before{
   content:"";
   position:absolute;
@@ -2549,8 +2341,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
       rgba(255,255,255,.30) 58%,
       rgba(255,255,255,.82) 100%);
 }
-
-/* 오른쪽 은은한 오로라 */
 .top-ad-recruit::after{
   content:"";
   position:absolute;
@@ -2563,8 +2353,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   filter:blur(1px);
   opacity:.90;
 }
-
-/* 밝은 고급 컬러 */
 .top-ad-recruit--liquor{
   background:
     linear-gradient(135deg,#fffafd 0%,#f8effb 52%,#f3e7f6 100%) !important;
@@ -2577,7 +2365,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
       rgba(211,174,225,.18) 38%,
       rgba(255,255,255,0) 70%);
 }
-
 .top-ad-recruit--fruit{
   background:
     linear-gradient(135deg,#fcfff9 0%,#f1f8ee 52%,#f8f1df 100%) !important;
@@ -2590,13 +2377,11 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
       rgba(225,197,124,.18) 42%,
       rgba(255,255,255,0) 72%);
 }
-
 .top-ad-recruit__left{
   position:relative;
   z-index:3;
   min-width:0;
 }
-
 .top-ad-recruit__eyebrow{
   display:inline-flex;
   align-items:center;
@@ -2614,7 +2399,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
 }
-
 .top-ad-recruit__title{
   margin:0 !important;
   color:#251e2b !important;
@@ -2624,14 +2408,12 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   letter-spacing:-.035em !important;
   text-shadow:none !important;
 }
-
 .top-ad-recruit--liquor .top-ad-recruit__title{
   color:#54325f !important;
 }
 .top-ad-recruit--fruit .top-ad-recruit__title{
   color:#355642 !important;
 }
-
 .top-ad-recruit__sub{
   margin-top:6px !important;
   color:#746b79 !important;
@@ -2643,7 +2425,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   overflow:hidden;
   text-overflow:ellipsis;
 }
-
 .top-ad-recruit__icon{
   position:relative;
   z-index:3;
@@ -2664,8 +2445,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
-
-/* 아주 얇은 금속성 외곽광 */
 .top-ad-slot::before{
   content:"";
   position:absolute;
@@ -2677,7 +2456,6 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
     inset 0 1px 0 rgba(255,255,255,.95);
   z-index:4;
 }
-
 @media (hover:hover) and (pointer:fine){
   .top-ad-slot:hover{
     transform:translateY(-2px);
@@ -2686,18 +2464,14 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
       0 4px 12px rgba(57,38,72,.045) !important;
   }
 }
-
-/* 모바일도 밝고 고급스럽게 */
 @media(max-width:760px){
   .top-ad-zone{
     padding:9px 9px 4px !important;
   }
-
   .top-ad-grid{
     grid-template-columns:1fr !important;
     gap:9px !important;
   }
-
   .top-ad-slot{
     height:78px !important;
     border-radius:15px !important;
@@ -2705,41 +2479,34 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
       0 9px 22px rgba(57,38,72,.07),
       0 2px 6px rgba(57,38,72,.03) !important;
   }
-
   .top-ad-recruit{
     padding:12px 14px;
     gap:10px;
   }
-
   .top-ad-recruit--liquor,
   .top-ad-recruit--fruit{
     box-shadow:inset 3px 0 0 rgba(120,90,145,.45);
   }
-
   .top-ad-recruit__eyebrow{
     margin-bottom:4px;
     padding:3px 7px;
     font-size:7.4px !important;
   }
-
   .top-ad-recruit__title{
     font-size:17px !important;
     line-height:1.08 !important;
   }
-
   .top-ad-recruit__sub{
     margin-top:4px !important;
     font-size:8.7px !important;
     max-width:270px;
   }
-
   .top-ad-recruit__icon{
     width:42px;
     height:42px;
     border-radius:13px;
     font-size:22px;
   }
-
   .top-ad-recruit::after{
     width:150px;
     height:150px;
@@ -2747,15 +2514,11 @@ body.report-page header div[logo] div[data-title]{background:linear-gradient(125
     top:-60px;
   }
 }
-
 @media(max-width:390px){
   .top-ad-recruit__sub{
     max-width:210px;
   }
 }
-/* ===== TOP AD RECRUIT BANNERS END ===== */
-
-/* ===== PARTNER CONTACT STANDARD CARD START ===== */
 main section[list] div[wrapper] ul.partner-contact-card{
   min-height:150px !important;
   padding:1em !important;
@@ -2793,36 +2556,25 @@ main section[list] div[wrapper] ul.partner-contact-card li[empty]{
     font-size:.76rem !important;
   }
 }
-/* ===== PARTNER CONTACT STANDARD CARD END ===== */
-
-
-
-/* ===== ARTICLE VISIBILITY FINAL FIX START ===== */
 html body .seo-article-board[data-article-board] .seo-article-list .seo-article-card[data-board-page]{
   display:none !important;
 }
 html body .seo-article-board[data-article-board] .seo-article-list .seo-article-card[data-board-page].article-page-visible{
   display:block !important;
 }
-/* ===== ARTICLE VISIBILITY FINAL FIX END ===== */
-
-/* ===== BUSINESS DESCRIPTION FINAL RESPONSIVE START ===== */
 /* 업소 상세 설명 모음:
    '정리 방식'만 2열/1열 카드로 사용하고
    색상/질감은 사이트 본래 화이트 + 보라/핑크 테마에 맞춤
 */
-
 a.business-description-link::after{
   content:none !important;
   display:none !important;
 }
-
 .business-description-section.business-description-showcase{
   width:100% !important;
   margin:34px auto 0 !important;
   padding:24px 26px 26px !important;
   box-sizing:border-box !important;
-
   background:
     radial-gradient(circle at 100% 0%, rgba(152,77,232,.055), transparent 30%),
     linear-gradient(180deg,#ffffff 0%,#fdfbff 100%) !important;
@@ -2830,7 +2582,6 @@ a.business-description-link::after{
   border-radius:24px !important;
   box-shadow:0 16px 36px rgba(62,35,94,.07) !important;
 }
-
 .business-description-section.business-description-showcase > h2,
 .business-description-fold__content > h2{
   margin:0 0 18px !important;
@@ -2843,7 +2594,6 @@ a.business-description-link::after{
   font-weight:900 !important;
   letter-spacing:-.045em !important;
 }
-
 .business-description-section.business-description-showcase > h2::after,
 .business-description-fold__content > h2::after{
   content:"";
@@ -2854,14 +2604,12 @@ a.business-description-link::after{
   border-radius:999px;
   background:linear-gradient(90deg,#7c2ce7,#ed4a9a);
 }
-
 .business-desc-grid{
   display:grid !important;
   grid-template-columns:repeat(2,minmax(0,1fr)) !important;
   gap:13px 14px !important;
   align-items:stretch !important;
 }
-
 .business-desc-group-title{
   grid-column:1 / -1 !important;
   display:inline-flex !important;
@@ -2879,33 +2627,27 @@ a.business-description-link::after{
   font-weight:900 !important;
   letter-spacing:-.03em !important;
 }
-
-/* 데스크탑: 2열, 설명 왼쪽 / 작은 상세보기 오른쪽 */
 a.business-desc-card{
   position:relative !important;
   display:grid !important;
   grid-template-columns:minmax(0,1fr) 92px !important;
   align-items:center !important;
   gap:12px !important;
-
   min-width:0 !important;
   min-height:106px !important;
   margin:0 !important;
   padding:14px 14px 14px 17px !important;
   box-sizing:border-box !important;
-
   border:1px solid rgba(119,61,195,.13) !important;
   border-radius:17px !important;
   background:#fff !important;
   box-shadow:0 7px 18px rgba(53,31,79,.045) !important;
-
   color:#302937 !important;
   text-decoration:none !important;
   white-space:normal !important;
   overflow:hidden !important;
   transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease !important;
 }
-
 a.business-desc-card::before{
   content:"";
   position:absolute;
@@ -2917,20 +2659,17 @@ a.business-desc-card::before{
   background:linear-gradient(180deg,#7a31e2,#ee4b99);
   opacity:.72;
 }
-
 a.business-desc-card:hover{
   transform:translateY(-1px) !important;
   border-color:rgba(119,61,195,.24) !important;
   box-shadow:0 11px 24px rgba(53,31,79,.075) !important;
 }
-
 .business-desc-copy{
   display:flex !important;
   flex-direction:column !important;
   justify-content:center !important;
   min-width:0 !important;
 }
-
 .business-desc-card__title{
   display:block !important;
   margin:0 0 6px !important;
@@ -2940,13 +2679,11 @@ a.business-desc-card:hover{
   font-weight:950 !important;
   letter-spacing:-.045em !important;
 }
-
 .business-desc-card__text{
   display:-webkit-box !important;
   -webkit-box-orient:vertical !important;
   -webkit-line-clamp:2 !important;
   overflow:hidden !important;
-
   color:#554e5c !important;
   font-size:.82rem !important;
   line-height:1.5 !important;
@@ -2954,33 +2691,27 @@ a.business-desc-card:hover{
   letter-spacing:-.018em !important;
   word-break:keep-all !important;
 }
-
 .business-desc-card__button{
   display:inline-flex !important;
   align-items:center !important;
   justify-content:center !important;
-
   justify-self:end !important;
   width:86px !important;
   min-width:86px !important;
   height:34px !important;
   padding:0 10px !important;
   box-sizing:border-box !important;
-
   border:1px solid rgba(124,49,218,.12) !important;
   border-radius:999px !important;
   background:linear-gradient(135deg,#7d31e5,#e84998) !important;
   color:#fff !important;
   box-shadow:0 5px 12px rgba(111,47,190,.13) !important;
-
   font-size:.72rem !important;
   line-height:1 !important;
   font-weight:900 !important;
   letter-spacing:-.03em !important;
   text-align:center !important;
 }
-
-/* 등록 업소가 없는 페이지 */
 .business-desc-empty{
   grid-column:1 / -1 !important;
   padding:24px 16px !important;
@@ -2992,8 +2723,6 @@ a.business-desc-card:hover{
   font-size:.85rem !important;
   font-weight:700 !important;
 }
-
-/* 모바일: 사진의 '정리 방식'만 적용 — 1열, 버튼 오른쪽 */
 @media(max-width:760px){
   .business-description-section.business-description-showcase{
     margin-top:22px !important;
@@ -3002,32 +2731,27 @@ a.business-desc-card:hover{
     background:
       linear-gradient(180deg,#fff 0%,#fdfbff 100%) !important;
   }
-
   .business-description-section.business-description-showcase > h2,
 .business-description-fold__content > h2{
     margin-bottom:12px !important;
     padding-bottom:11px !important;
     font-size:1.16rem !important;
   }
-
   .business-description-section.business-description-showcase > h2::after,
 .business-description-fold__content > h2::after{
     width:42px;
     height:2px;
     margin-top:7px;
   }
-
   .business-desc-grid{
     grid-template-columns:1fr !important;
     gap:8px !important;
   }
-
   .business-desc-group-title{
     margin-bottom:1px !important;
     padding:4px 8px !important;
     font-size:.68rem !important;
   }
-
   a.business-desc-card{
     grid-template-columns:minmax(0,1fr) 82px !important;
     gap:8px !important;
@@ -3037,24 +2761,20 @@ a.business-desc-card:hover{
     background:#fff !important;
     box-shadow:0 5px 13px rgba(53,31,79,.04) !important;
   }
-
   a.business-desc-card::before{
     top:10px;
     bottom:10px;
     width:2px;
   }
-
   .business-desc-card__title{
     margin-bottom:5px !important;
     font-size:.84rem !important;
   }
-
   .business-desc-card__text{
     -webkit-line-clamp:2 !important;
     font-size:.69rem !important;
     line-height:1.42 !important;
   }
-
   .business-desc-card__button{
     width:78px !important;
     min-width:78px !important;
@@ -3064,22 +2784,18 @@ a.business-desc-card:hover{
     box-shadow:none !important;
   }
 }
-
 @media(max-width:380px){
   a.business-desc-card{
     grid-template-columns:minmax(0,1fr) 72px !important;
     min-height:98px !important;
     padding:10px 8px 10px 11px !important;
   }
-
   .business-desc-card__title{
     font-size:.79rem !important;
   }
-
   .business-desc-card__text{
     font-size:.64rem !important;
   }
-
   .business-desc-card__button{
     width:69px !important;
     min-width:69px !important;
@@ -3087,9 +2803,6 @@ a.business-desc-card:hover{
     font-size:.58rem !important;
   }
 }
-/* ===== BUSINESS DESCRIPTION FINAL RESPONSIVE END ===== */
-
-/* ===== REGION ROOMMAP LOGO LABEL START ===== */
 header [logo] > [title],
 header [logo] > [data-title]{
   white-space:nowrap !important;
@@ -3107,11 +2820,6 @@ header [logo] > [data-title]{
     font-size:1.04rem !important;
   }
 }
-/* ===== REGION ROOMMAP LOGO LABEL END ===== */
-
-/* ===== ALBAM09 SITE DRAWER MENU START ===== */
-
-/* 일반 지역/메인 헤더: 로고 왼쪽, 햄버거 오른쪽 */
 body:not(.detail-renew) > header.site-menu-host{
   display:flex !important;
   align-items:center !important;
@@ -3121,8 +2829,6 @@ body:not(.detail-renew) > header.site-menu-host{
 body:not(.detail-renew) > header.site-menu-host > a{
   min-width:0 !important;
 }
-
-/* 햄버거 버튼 */
 .site-menu-trigger{
   appearance:none;
   -webkit-appearance:none;
@@ -3165,8 +2871,6 @@ body:not(.detail-renew) > header.site-menu-host > a{
 .site-menu-trigger[aria-expanded="true"] > span:nth-child(3){
   transform:translateY(-8px) rotate(-45deg);
 }
-
-/* place 상세페이지 히어로 안에서는 우측 상단 고정 */
 body.detail-renew > header.site-menu-host{
   position:relative !important;
 }
@@ -3178,8 +2882,6 @@ body.detail-renew > header.site-menu-host .site-menu-trigger{
   background:rgba(255,255,255,.92) !important;
   box-shadow:0 10px 26px rgba(0,0,0,.14) !important;
 }
-
-/* 전체 오버레이 */
 .site-drawer{
   position:fixed;
   inset:0;
@@ -3211,8 +2913,6 @@ body.detail-renew > header.site-menu-host .site-menu-trigger{
 .site-drawer.is-open .site-drawer__panel{
   transform:translateX(0);
 }
-
-/* 상단 */
 .site-drawer__top{
   min-height:92px;
   padding:20px 26px;
@@ -3257,8 +2957,6 @@ body.detail-renew > header.site-menu-host .site-menu-trigger{
   line-height:1;
   cursor:pointer;
 }
-
-/* 본문: 사진 3처럼 좌측 카테고리 / 우측 상세 */
 .site-drawer__body{
   flex:1 1 auto;
   min-height:0;
@@ -3362,8 +3060,6 @@ body.detail-renew > header.site-menu-host .site-menu-trigger{
   font-weight:650;
   line-height:1.35;
 }
-
-/* 메뉴 하단 짧은 설명 */
 .site-drawer__foot{
   padding:14px 34px 22px;
   border-top:1px solid #eeeaf1;
@@ -3372,19 +3068,14 @@ body.detail-renew > header.site-menu-host .site-menu-trigger{
   line-height:1.5;
   background:#fff;
 }
-
-/* 메뉴 열렸을 때 배경 스크롤 차단 */
 html.site-drawer-open,
 html.site-drawer-open body{
   overflow:hidden !important;
 }
-
-/* 태블릿/모바일 */
 @media(max-width:700px){
   body:not(.detail-renew) > header.site-menu-host{
     align-items:center !important;
   }
-
   .site-menu-trigger{
     width:44px;
     height:44px;
@@ -3402,14 +3093,12 @@ html.site-drawer-open body{
   .site-menu-trigger[aria-expanded="true"] > span:nth-child(3){
     transform:translateY(-7px) rotate(-45deg);
   }
-
   body.detail-renew > header.site-menu-host .site-menu-trigger{
     top:12px !important;
     right:12px !important;
     width:44px !important;
     height:44px !important;
   }
-
   .site-drawer{
     justify-content:stretch;
   }
@@ -3436,7 +3125,6 @@ html.site-drawer-open body{
     font-size:1.8rem;
     background:#fff;
   }
-
   .site-drawer__body{
     grid-template-columns:31% minmax(0,69%);
   }
@@ -3475,19 +3163,12 @@ html.site-drawer-open body{
     font-size:.68rem;
   }
 }
-/* ===== ALBAM09 SITE DRAWER MENU END ===== */
-
-
-/* ===== CLS RANDOM STABILITY START ===== */
 html.albam09-random-pending section[list] div[wrapper] > ul,
 html.albam09-random-pending .business-desc-grid > a.business-desc-card,
 html.albam09-random-pending .seo-article-list > article.seo-article-card,
 html.albam09-random-pending .insta-grid > .insta-card,
 html.albam09-random-pending .place-list > a.place-list-card{visibility:hidden !important;}
 body[data-current-page="index"] .rotating-list-container{contain:layout paint !important;}
-/* ===== CLS RANDOM STABILITY END ===== */
-
-/* ===== INDEX PARTNER FULL CLICK CARD 20260901 START ===== */
 body[data-current-page="index"] main section[list] > div[wrapper] > a.index-partner-contact-card--link{
   position:relative !important;
   width:100% !important;
@@ -3570,9 +3251,6 @@ body[data-current-page="index"] main section[list] > div[wrapper] > a.index-part
     font-size:.72rem !important;
   }
 }
-/* ===== INDEX PARTNER FULL CLICK CARD 20260901 END ===== */
-
-/* ===== ROTATING LIST FAILSAFE 20260901 ===== */
 .rotating-list-container > li.is-active{
   left:0 !important;
   opacity:1 !important;
@@ -3583,14 +3261,7 @@ body[data-current-page="index"] main section[list] > div[wrapper] > a.index-part
   visibility:visible !important;
   opacity:1 !important;
 }
-/* ===== ROTATING LIST FAILSAFE END ===== */
-
-/* 20260907 venue detail summary cards */
 .home-business-description{margin-top:42px}.home-business-description .business-description-intro{max-width:980px;margin:0 auto 22px;text-align:center}.home-business-description .business-desc-group-title{margin-top:28px}
-
-
-/* ===== LIST SEMANTICS + MOBILE NEAREST COMPACT 20260907 START ===== */
-/* Semantic LI wrappers: preserve the existing visual card layout. */
 main section[list] div[wrapper] ul > li.venue-list-a11y-item{
   list-style:none !important; margin:0 !important; padding:0 !important; width:100% !important;
   display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:flex-start !important;
@@ -3610,7 +3281,6 @@ ul[data-card-href] > li.static-list-heading[empty]{
 }
 .rotating-list-container > li.rotating-list-heading[empty] h3{margin:0 !important;}
 ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:0 !important; width:100% !important;}
-/* Keep the location shortcut compact on phones without changing its behavior. */
 @media(max-width:640px){
   #nearest-open-button{
     width:auto !important; min-width:0 !important; max-width:calc(100vw - 20px) !important;
@@ -3619,9 +3289,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
     box-shadow:0 5px 14px rgba(95,0,159,.16) !important;
   }
 }
-/* ===== LIST SEMANTICS + MOBILE NEAREST COMPACT 20260907 END ===== */
-
-/* ===== COMPACT BUSINESS INFO CARDS 20260907 ===== */
 .business-desc-grid > article.business-desc-card{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) 76px!important;align-items:center!important;gap:8px!important;min-width:0!important;min-height:0!important;margin:0!important;padding:11px 11px 11px 14px!important;box-sizing:border-box!important;border:1px solid rgba(119,61,195,.13)!important;border-radius:14px!important;background:#fff!important;box-shadow:0 5px 13px rgba(53,31,79,.04)!important;color:#302937!important;overflow:visible!important}
 .business-desc-grid > article.business-desc-card::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:2px;border-radius:999px;background:linear-gradient(180deg,#7a31e2,#ee4b99);opacity:.72}
 .business-desc-card__title-link{display:block!important;color:inherit!important;text-decoration:none!important;min-width:0!important}.business-desc-card__title-link::after{content:none!important}
@@ -3633,9 +3300,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
 .business-desc-grid article .business-desc-card__button{justify-self:end!important;width:72px!important;min-width:72px!important;height:29px!important;padding:0 6px!important;font-size:.59rem!important;text-decoration:none!important}
 @media(max-width:760px){.business-description-section.business-description-showcase{padding:11px 10px 12px!important;margin-top:17px!important}.business-description-section.business-description-showcase>h2{font-size:1.02rem!important;margin-bottom:9px!important;padding-bottom:8px!important}.business-desc-grid{gap:6px!important}.business-desc-grid>article.business-desc-card{grid-template-columns:minmax(0,1fr) 66px!important;gap:6px!important;padding:8px 8px 8px 11px!important;border-radius:12px!important}.business-desc-grid article .business-desc-card__title{font-size:.78rem!important;margin-bottom:4px!important}.business-desc-card__facts{grid-template-columns:minmax(0,1fr) minmax(0,.8fr)!important;gap:2px 6px!important}.business-desc-fact{font-size:.61rem!important}.business-desc-fact--price{grid-column:2!important}.business-desc-more{margin-top:3px!important}.business-desc-more>summary{font-size:.59rem!important}.business-desc-more .business-desc-card__text{font-size:.62rem!important;padding:6px 7px!important}.business-desc-grid article .business-desc-card__button{width:63px!important;min-width:63px!important;height:27px!important;font-size:.55rem!important}}
 @media(max-width:380px){.business-desc-grid>article.business-desc-card{grid-template-columns:minmax(0,1fr) 60px!important;padding:7px 7px 7px 10px!important}.business-desc-grid article .business-desc-card__button{width:58px!important;min-width:58px!important;height:26px!important;font-size:.52rem!important}.business-desc-fact{font-size:.58rem!important}}
-/* ===== COMPACT BUSINESS INFO CARDS END ===== */
-
-/* BBS preview compact fold - 20260907 */
 .home-bbs-preview .bbs-preview-fold{margin:0;padding:0;border:0;background:transparent}
 .home-bbs-preview .bbs-preview-fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border:1px solid rgba(112,45,189,.16);border-radius:12px;background:rgba(255,255,255,.78);font-weight:800;line-height:1.25}
 .home-bbs-preview .bbs-preview-fold>summary::-webkit-details-marker{display:none}
@@ -3645,9 +3309,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
 .home-bbs-preview .bbs-preview-fold[open] .bbs-preview-fold__action{font-size:0}
 .home-bbs-preview .bbs-preview-fold__content{padding-top:10px}
 @media(max-width:640px){.home-bbs-preview{margin-block:10px!important;padding-block:0!important}.home-bbs-preview .bbs-preview-fold>summary{padding:8px 11px;border-radius:10px}.home-bbs-preview .bbs-preview-fold__title{font-size:13px}.home-bbs-preview .bbs-preview-fold__action{font-size:11px}.home-bbs-preview .bbs-preview-fold__content{padding-top:8px}}
-
-
-/* 2026-09-08: 등록 업소 이용 안내 기본 접힘 - 내용은 HTML에 그대로 유지 */
 .business-description-fold{display:block;width:100%}
 .business-description-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;padding:12px 14px;border:1px solid rgba(111,45,189,.18);border-radius:13px;background:rgba(255,255,255,.72);font-weight:800;line-height:1.25}
 .business-description-fold>summary::-webkit-details-marker{display:none}
@@ -3657,10 +3318,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
 .business-description-fold[open] .business-description-fold__action::after{content:"접기";font-size:.78rem}
 .business-description-fold__content{min-width:0}
 @media(max-width:760px){.business-description-fold>summary{padding:9px 11px;border-radius:11px;font-size:.84rem}.business-description-fold__action{font-size:.68rem}.business-description-fold[open] .business-description-fold__action::after{font-size:.68rem}.business-description-fold[open]>summary{margin-bottom:8px}.business-description-fold__content>.business-description-intro{margin-top:0}}
-
-
-/* ===== 2026-09-08 PUBLIC FOLD UI UNIFIED ===== */
-/* 등록 업소 안내 + BBS 접힘 영역을 모든 공개 페이지에서 동일 컴포넌트로 표시 */
 .business-description-section.business-description-showcase,
 .home-bbs-preview,
 .regional-bbs-preview{
@@ -3677,8 +3334,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
   box-shadow:0 8px 24px rgba(55,31,83,.055) !important;
   overflow:visible !important;
 }
-
-/* 페이지별 장식/가상요소 차이 제거 */
 .business-description-section.business-description-showcase::before,
 .business-description-section.business-description-showcase::after,
 .home-bbs-preview::before,
@@ -3688,7 +3343,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
   content:none !important;
   display:none !important;
 }
-
 .business-description-fold,
 .home-bbs-preview .bbs-preview-fold{
   display:block !important;
@@ -3698,7 +3352,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
   border:0 !important;
   background:transparent !important;
 }
-
 .business-description-fold>summary,
 .home-bbs-preview .bbs-preview-fold>summary{
   display:flex !important;
@@ -3724,7 +3377,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
 }
 .business-description-fold>summary::-webkit-details-marker,
 .home-bbs-preview .bbs-preview-fold>summary::-webkit-details-marker{display:none !important}
-
 .business-description-fold__action,
 .home-bbs-preview .bbs-preview-fold__action{
   display:inline-flex !important;
@@ -3769,7 +3421,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
   margin:0 !important;
   padding:0 !important;
 }
-
 @media(max-width:760px){
   .business-description-section.business-description-showcase,
   .home-bbs-preview,
@@ -3804,9 +3455,6 @@ ul[data-card-href] > li.static-list-heading[empty]{margin:0 !important; padding:
     margin-bottom:8px !important;
   }
 }
-/* ===== PUBLIC FOLD UI UNIFIED END ===== */
-
-/* ===== PARTNER CONTACT EMAIL FIT 20260911 START ===== */
 main section[list] div[wrapper] ul.partner-contact-card li[empty] a[href^="mailto:"]{
   display:inline-block !important;
   max-width:100% !important;
@@ -3828,10 +3476,6 @@ main section[list] div[wrapper] ul.partner-contact-card li[empty] a[href^="mailt
     font-size:.58rem !important;
   }
 }
-/* ===== PARTNER CONTACT EMAIL FIT 20260911 END ===== */
-
-
-/* ===== FREE PARTNERSHIP CARD: MATCH ADJACENT CARD HEIGHT ===== */
 .partner-contact-card{
   height:100% !important;
   min-height:0 !important;
@@ -3842,8 +3486,6 @@ main section[list] div[wrapper] ul.partner-contact-card li[empty] a[href^="mailt
 .partner-contact-card.partner-card{
   box-sizing:border-box !important;
 }
-
-/* ===== INDEX ALL VENUES COLLAPSED 20261007 ===== */
 .index-all-venues-collapsed{
   width:min(1180px,calc(100% - 28px));
   margin:28px auto;
@@ -3913,9 +3555,6 @@ main section[list] div[wrapper] ul.partner-contact-card li[empty] a[href^="mailt
 @media(max-width:420px){
   .index-all-venues-list{grid-template-columns:1fr}
 }
-/* ===== END INDEX ALL VENUES COLLAPSED ===== */
-
-/* 2026-10-16 mobile search overflow regression guard */
 .global-place-search__input{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
 .global-place-search__form{max-width:100%!important;box-sizing:border-box!important}
 @media(max-width:600px){
