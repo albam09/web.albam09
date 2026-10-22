@@ -1,0 +1,77 @@
+/* Local venue description: independently authored, visible in initial HTML.
+   Restricted to 09 karaoke regional business-description panel only.
+   Does not style or modify the homepage rotating venue slider. */
+.business-description-section .business-desc-grid article.ab09-venue-copy-card {
+  min-height:124px !important;
+  align-items:center !important;
+  padding:14px 16px !important;
+  gap:12px !important;
+}
+.business-description-section .business-desc-grid article.ab09-venue-copy-card .business-desc-copy {
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:7px !important;
+  min-width:0 !important;
+}
+.business-description-section .business-desc-grid article.ab09-venue-copy-card .business-desc-card__title {
+  margin:0 !important;
+  font-size:clamp(.98rem,1.15vw,1.08rem) !important;
+  line-height:1.3 !important;
+}
+.business-description-section .business-desc-grid article.ab09-venue-copy-card .ab09-visible-venue-copy {
+  display:block !important;
+  -webkit-line-clamp:unset !important;
+  max-height:none !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  white-space:normal !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:none !important;
+  color:#51495c !important;
+  font-size:.85rem !important;
+  line-height:1.58 !important;
+  font-weight:500 !important;
+  letter-spacing:-.015em !important;
+  word-break:keep-all !important;
+}
+.business-description-section .business-desc-grid article.ab09-venue-copy-card .business-desc-card__button {
+  align-self:center !important;
+  justify-self:end !important;
+  font-size:.72rem !important;
+  min-width:80px !important;
+  width:80px !important;
+  height:34px !important;
+}
+@media (max-width:760px) {
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card {
+    min-height:0 !important;
+    grid-template-columns:minmax(0,1fr) 67px !important;
+    padding:13px 12px !important;
+    gap:9px !important;
+  }
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card .business-desc-card__title {
+    font-size:.95rem !important;
+  }
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card .ab09-visible-venue-copy {
+    font-size:.79rem !important;
+    line-height:1.54 !important;
+  }
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card .business-desc-card__button {
+    width:64px !important;
+    min-width:64px !important;
+    height:30px !important;
+    font-size:.61rem !important;
+    padding:0 5px !important;
+  }
+}
+@media (max-width:380px) {
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card {
+    grid-template-columns:minmax(0,1fr) 60px !important;
+    padding:12px 9px !important;
+  }
+  .business-description-section .business-desc-grid article.ab09-venue-copy-card .ab09-visible-venue-copy {
+    font-size:.75rem !important;
+  }
+}
