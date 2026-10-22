@@ -1,0 +1,71 @@
+/* v7: region cards — reserved middle venue slot, no overlapping captions. */
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href]{
+  position:relative !important; display:block !important;
+  height:306px !important; min-height:306px !important; max-height:none !important;
+  box-sizing:border-box !important; overflow:hidden !important;
+  padding:21px 19px 20px !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty]{
+  position:relative !important; display:flex !important; flex-direction:column !important;
+  align-items:center !important; gap:0 !important;
+  width:100% !important; height:auto !important; min-height:0 !important; max-height:none !important;
+  padding:0 !important; margin:0 !important; text-align:center !important;
+  transform:none !important; opacity:1 !important; overflow:visible !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading h3{
+  display:block !important; width:100% !important; margin:0 0 3px !important;
+  padding:0 0 10px !important; border-bottom:1px solid rgba(155,26,168,.12) !important;
+  height:auto !important; min-height:0 !important; max-height:none !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading h3 a{
+  font-family:'Albam09Cute',sans-serif !important; color:#9b1aa8 !important;
+  font-size:clamp(1.15rem,2.1vw,1.55rem) !important;
+  line-height:1.3 !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__venue-slot{
+  display:block !important; flex:none !important; width:100% !important; height:70px !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__title{
+  display:block !important; width:100% !important; margin:0 0 9px !important;
+  font-family:'Albam09Cute',sans-serif !important; color:#9b1aa8 !important;
+  font-size:clamp(.98rem,1.8vw,1.3rem) !important; line-height:1.4 !important;
+  text-align:center !important; word-break:keep-all !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__description{
+  display:block !important; width:100% !important; margin:0 !important;
+  font-family:'Albam09Cute',sans-serif !important; color:#6c5f77 !important;
+  font-size:clamp(.83rem,1.3vw,.98rem) !important; line-height:1.55 !important;
+  text-align:center !important; word-break:keep-all !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li:not(.rotating-list-heading),
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active{
+  position:absolute !important; top:79px !important; bottom:auto !important; left:19px !important; right:19px !important;
+  width:auto !important; height:52px !important; min-height:52px !important; max-height:52px !important;
+  transform:none !important; margin:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a{
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  width:auto !important; height:44px !important; min-height:44px !important; max-height:44px !important;
+  padding:7px 18px !important; border-radius:14px !important;
+  background:#fffaff !important; box-shadow:0 8px 20px rgba(125,57,160,.17) !important;
+  color:#713eb4 !important; font-family:'Albam09Cute',sans-serif !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a span:first-child{
+  color:#713eb4 !important; font-family:'Albam09Cute',sans-serif !important;
+  font-size:1.19rem !important; line-height:1.2 !important;
+}
+@media(max-width:640px){
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href]{
+    height:292px !important; min-height:292px !important; max-height:none !important; padding:17px 12px 19px !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__venue-slot{height:65px !important;}
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__title{font-size:1.02rem !important;line-height:1.35 !important;}
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__description{font-size:.85rem !important;line-height:1.48 !important;}
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li:not(.rotating-list-heading),
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active{
+    top:70px !important; left:12px !important; right:12px !important;
+    height:48px !important; min-height:48px !important; max-height:48px !important; transform:none !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a{height:40px !important;min-height:40px !important;max-height:40px !important;}
+}
