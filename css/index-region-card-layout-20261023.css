@@ -1,0 +1,132 @@
+/* 2026-10-23 region merged card layout + text override */
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href]{
+  position:relative !important;
+  min-height:220px !important;
+  padding:20px 18px 18px !important;
+  box-sizing:border-box !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty]{
+  position:static !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  gap:8px !important;
+  width:100% !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty] h3,
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty] h3 a{
+  font-family:'Albam09Cute',sans-serif !important;
+  color:#9b1aa8 !important;
+  font-size:clamp(1.05rem,1.9vw,1.45rem) !important;
+  line-height:1.15 !important;
+  letter-spacing:-0.03em !important;
+  margin:0 !important;
+  text-decoration:none !important;
+}
+body[data-current-page="index"] .ab09-region-card__title{
+  display:block !important;
+  font-family:'Albam09Cute',sans-serif !important;
+  color:#9b1aa8 !important;
+  font-size:clamp(1.02rem,1.8vw,1.32rem) !important;
+  line-height:1.23 !important;
+  letter-spacing:-0.03em !important;
+  margin:2px 0 0 !important;
+  word-break:keep-all !important;
+}
+body[data-current-page="index"] .ab09-region-card__description{
+  display:block !important;
+  font-family:'Albam09Cute',sans-serif !important;
+  color:#6c5f77 !important;
+  font-size:0.98rem !important;
+  line-height:1.34 !important;
+  letter-spacing:-0.01em !important;
+  margin:88px 0 0 !important;
+  word-break:keep-all !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li:not(.rotating-list-heading){
+  top:112px !important;
+  bottom:auto !important;
+  left:18px !important;
+  right:18px !important;
+  height:48px !important;
+  min-height:48px !important;
+  max-height:48px !important;
+  transform:none !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active{
+  top:112px !important;
+  transform:none !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:46px !important;
+  min-height:46px !important;
+  max-height:46px !important;
+  padding:8px 18px !important;
+  border-radius:16px !important;
+  background:linear-gradient(180deg,#fbf6ff 0%,#fff 100%) !important;
+  border:1px solid rgba(155,26,168,.14) !important;
+  box-shadow:0 10px 24px rgba(132,67,159,.14) !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a > span:first-child{
+  font-family:'Albam09Cute',sans-serif !important;
+  color:#7e39b3 !important;
+  font-size:1.22rem !important;
+  line-height:1.1 !important;
+  font-weight:800 !important;
+  letter-spacing:-0.02em !important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a::after{
+  color:#8f56b9 !important;
+}
+@media (max-width: 640px){
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href]{
+    min-height:188px !important;
+    padding:16px 14px 14px !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty]{
+    gap:6px !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty] h3,
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.rotating-list-heading[empty] h3 a{
+    font-size:1.2rem !important;
+  }
+  body[data-current-page="index"] .ab09-region-card__title{
+    font-size:1.18rem !important;
+    line-height:1.18 !important;
+  }
+  body[data-current-page="index"] .ab09-region-card__description{
+    margin-top:72px !important;
+    font-size:0.9rem !important;
+    line-height:1.28 !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li:not(.rotating-list-heading),
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active{
+    top:90px !important;
+    left:14px !important;
+    right:14px !important;
+    height:42px !important;
+    min-height:42px !important;
+    max-height:42px !important;
+    transform:none !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a{
+    height:40px !important;
+    min-height:40px !important;
+    max-height:40px !important;
+    padding:6px 14px !important;
+    border-radius:14px !important;
+  }
+  body[data-current-page="index"] main section[list] > div[wrapper] > ul.rotating-list-container.ab09-region-card--merged[data-card-href] > li.is-active > a > span:first-child{
+    font-size:1.08rem !important;
+  }
+}
