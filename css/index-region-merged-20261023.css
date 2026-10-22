@@ -1,0 +1,90 @@
+/* ALBAM09 home: merge local SEO guide text into the EXISTING region slider cards.
+   Scoped to the five approved region cards only. No slider JS or venue li changed. */
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged{
+  height:214px!important;
+  min-height:214px!important;
+  max-height:214px!important;
+  position:relative!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+/* Override old 34px absolute heading: keep original linked count heading, then descriptive copy. */
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading[empty]{
+  top:13px!important;
+  left:12px!important;
+  right:12px!important;
+  bottom:auto!important;
+  width:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow:visible!important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading[empty] h3{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  padding:0 0 7px!important;
+  border-bottom:1px solid rgba(95,0,159,.12)!important;
+  line-height:1.14!important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__title{
+  display:block!important;
+  width:100%!important;
+  font:700 13px/1.38 system-ui,-apple-system,'Malgun Gothic',sans-serif!important;
+  color:#392d45!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__description{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0 2px!important;
+  font:400 11px/1.5 system-ui,-apple-system,'Malgun Gothic',sans-serif!important;
+  color:#666070!important;
+  text-align:center!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+/* The active venue name remains in its own bottom row; old center row overrides are disabled here only. */
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged.rotating-list-container[data-card-href] > li:not(.rotating-list-heading),
+body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged.rotating-list-container[data-card-href] > li.is-active{
+  top:auto!important;
+  bottom:12px!important;
+  transform:none!important;
+}
+@media (min-width:761px) and (max-width:1023px){
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged{
+  height:222px!important;min-height:222px!important;max-height:222px!important;
+ }
+}
+@media (max-width:760px){
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged{
+  height:222px!important;min-height:222px!important;max-height:222px!important;
+ }
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading[empty]{
+  top:9px!important;left:7px!important;right:7px!important;gap:4px!important;
+ }
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged > li.rotating-list-heading[empty] h3{
+  padding:0 0 6px!important;
+ }
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__title{
+  font-size:11px!important;line-height:1.4!important;
+ }
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged .ab09-region-card__description{
+  font-size:10px!important;line-height:1.43!important;
+ }
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged.rotating-list-container[data-card-href] > li:not(.rotating-list-heading),
+ body[data-current-page="index"] main section[list] > div[wrapper] > ul.ab09-region-card--merged.rotating-list-container[data-card-href] > li.is-active{
+  top:auto!important;bottom:11px!important;transform:none!important;
+ }
+}
