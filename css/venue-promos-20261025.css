@@ -1,0 +1,8 @@
+/* Individual venue promotional information. Existing card layout preserved. */
+.business-desc-card .venue-promo-lead{font:500 .82rem/1.55 system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#53465d;margin:9px 0 6px;word-break:keep-all;}
+.business-desc-card .venue-promo-details{margin-top:5px;}
+.business-desc-card .venue-promo-details>summary{cursor:pointer;}
+.business-desc-card .venue-promo-body p{font:400 .8rem/1.75 system-ui,-apple-system,'Malgun Gothic',sans-serif;margin:9px 0;word-break:keep-all;color:#524958;}
+.business-desc-card .venue-promo-body b{font-weight:700;color:#703887;}
+.business-desc-card .venue-promo-body .venue-promo-fineprint{font-size:.69rem;color:#807685;}
+@media(max-width:640px){.business-desc-card .venue-promo-lead{font-size:.75rem;line-height:1.5}.business-desc-card .venue-promo-body p{font-size:.74rem}}
