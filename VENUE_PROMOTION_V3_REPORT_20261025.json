@@ -1,0 +1,18 @@
+{
+  "base_zip": "albam09_full_20261025_venue_bbs_editorial_v2.zip",
+  "total_revised_venues": 64,
+  "index_preview_cards": 64,
+  "bbs_html_retained": 58,
+  "changed_files": [
+    "index.html",
+    "css/venue-promos-20261025.css",
+    "page/karaoke1/index.html",
+    "page/karaoke2/index.html",
+    "page/karaoke3/index.html",
+    "page/karaoke4/index.html",
+    "page/karaoke5/index.html",
+    "page/karaoke6/index.html"
+  ],
+  "deployment": "NOT deployed to albam09.com",
+  "note": "Confirmed location and listed hours retained from existing registration. No unverified full staffing, unlimited choices, events, special services, or guaranteed hours are stated."
+}

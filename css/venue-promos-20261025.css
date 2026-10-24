@@ -6,3 +6,14 @@
 .business-desc-card .venue-promo-body b{font-weight:700;color:#703887;}
 .business-desc-card .venue-promo-body .venue-promo-fineprint{font-size:.69rem;color:#807685;}
 @media(max-width:640px){.business-desc-card .venue-promo-lead{font-size:.75rem;line-height:1.5}.business-desc-card .venue-promo-body p{font-size:.74rem}}
+
+/* Promotional leads: typography only, preserve existing card layout and local typeface. */
+.business-desc-card .venue-promo-lead--ad{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;font-weight:700;color:#7a268d;line-height:1.65;letter-spacing:-.015em;}
+.business-desc-card .venue-promo-ad-detail{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#4e355c;}
+@media(max-width:640px){.business-desc-card .venue-promo-lead--ad{font-size:.76rem;line-height:1.55}}
+
+/* v4: concise genuine advertising tone with native font and restrained emphasis. */
+.business-desc-card .venue-promo-lead--ad{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif !important;font-size:clamp(.84rem,1.32vw,1.03rem) !important;line-height:1.55 !important;font-weight:800 !important;color:#97239e !important;}
+.business-desc-card .venue-promo-lead--ad .venue-promo-hook{display:block;font-weight:600;font-size:.89em;line-height:1.55;color:#62466b;margin-top:5px;}
+.index-venue-preview-card .index-venue-preview-excerpt{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;font-weight:700;color:#852f95;line-height:1.5;overflow-wrap:anywhere;}
+@media(max-width:640px){.business-desc-card .venue-promo-lead--ad{font-size:.83rem !important}.business-desc-card .venue-promo-lead--ad .venue-promo-hook{font-size:.89em}}

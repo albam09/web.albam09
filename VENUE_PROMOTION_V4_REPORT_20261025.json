@@ -1,0 +1,17 @@
+{
+  "venue_ad_cards": 64,
+  "homepage_preview_cards": 64,
+  "bbs_detail_pages_unchanged": 58,
+  "changed_files": [
+    "page/karaoke1/index.html",
+    "page/karaoke2/index.html",
+    "page/karaoke3/index.html",
+    "page/karaoke4/index.html",
+    "page/karaoke5/index.html",
+    "page/karaoke6/index.html",
+    "index.html",
+    "css/venue-promos-20261025.css"
+  ],
+  "base": "albam09_full_20261025_venue_promo_index_v3.zip",
+  "deployed": false
+}
