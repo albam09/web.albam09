@@ -12,9 +12,8 @@
 .business-desc-card .venue-promo-ad-detail{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#4e355c;}
 @media(max-width:640px){.business-desc-card .venue-promo-lead--ad{font-size:.76rem;line-height:1.55}}
 
-/* v4 venue copy: emphatic but site-native typography; marketing separate from fact chips */
-.business-desc-card .venue-promo-lead--ad{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;font-size:clamp(.78rem,.92vw,.94rem);font-weight:800;color:#77258e;line-height:1.5;margin:9px 0 6px;word-break:keep-all;}
-.business-desc-card .venue-promo-body--campaign .venue-promo-ad-detail{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;font-weight:500;color:#493452;font-size:.84rem;line-height:1.7;}
-.business-desc-card .venue-promo-region-tag{color:#9a4a98;font-size:.74rem;font-weight:700;line-height:1.5;}
-.index-venue-preview-card .index-venue-preview-excerpt{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#713c81;line-height:1.56;}
-@media(max-width:640px){.business-desc-card .venue-promo-lead--ad{font-size:.76rem;line-height:1.48}.business-desc-card .venue-promo-body--campaign .venue-promo-ad-detail{font-size:.76rem;line-height:1.6}.index-venue-preview-card .index-venue-preview-excerpt{font-size:.76rem}}
+/* v4: concise genuine advertising tone with native font and restrained emphasis. */
+.business-desc-card .venue-promo-lead--ad{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif !important;font-size:clamp(.84rem,1.32vw,1.03rem) !important;line-height:1.55 !important;font-weight:800 !important;color:#97239e !important;}
+.business-desc-card .venue-promo-lead--ad .venue-promo-hook{display:block;font-weight:600;font-size:.89em;line-height:1.55;color:#62466b;margin-top:5px;}
+.index-venue-preview-card .index-venue-preview-excerpt{font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;font-weight:700;color:#852f95;line-height:1.5;overflow-wrap:anywhere;}
+@media(max-width:640px){.business-desc-card .venue-promo-lead--ad{font-size:.83rem !important}.business-desc-card .venue-promo-lead--ad .venue-promo-hook{font-size:.89em}}

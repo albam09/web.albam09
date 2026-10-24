@@ -847,9 +847,3 @@ body.bbs-page .site-menu-host .site-menu-trigger{
   .bbs-hero > .bbs-wrap > h1{font-size:28px!important}
   .bbs-hero > .bbs-wrap > p{font-size:13px!important;margin-bottom:14px!important}
 }
-
-/* Individualized venue ad excerpts in BBS comparison articles */
-.bbs-venue-evidence--ads li{padding:12px 14px;}
-.bbs-venue-evidence--ads .bbs-venue-ad-text{display:block;margin:6px 0;color:#7a268d;font-weight:700;line-height:1.52;font-family:'Albam09Cute',system-ui,-apple-system,'Malgun Gothic',sans-serif;}
-.bbs-venue-evidence--ads .bbs-venue-ad-facts{display:block;color:#786b7b;font-size:.77rem;line-height:1.55;}
-@media(max-width:640px){.bbs-venue-evidence--ads li{padding:10px 11px}.bbs-venue-evidence--ads .bbs-venue-ad-text{font-size:.85rem;}}
