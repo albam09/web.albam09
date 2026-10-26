@@ -16,13 +16,21 @@
   var PAGE_REGION_MAP = {
     'index': 'ALL',
     'karaoke1': '서구1',
+    'karaoke01': '서구1',
     'karaoke2': '서구2',
+    'karaoke02': '서구2',
     'karaoke3': '북구2',
+    'karaoke03': '북구2',
     'karaoke4': '북구1',
+    'karaoke04': '북구1',
     'karaoke5': '광산구',
+    'karaoke05': '광산구',
     'karaoke6': '목포',
+    'karaoke06': '목포',
     'karaoke7': '동구',
+    'karaoke07': '동구',
     'karaoke8': '남구',
+    'karaoke08': '남구',
     'room': '룸소주방',
   };
 
@@ -152,7 +160,7 @@
     try { path = String(location.pathname || ''); } catch (e) {}
     path = path.replace(/\\/g, '/');
 
-    // /page/karaoke1, /page/karaoke1, /page/karaoke1 모두 같은 페이지로 인식
+    // /page/karaoke1, /page/karaoke1, /page/karaoke01 모두 같은 페이지로 인식
     var parts = path.split('/').filter(function (part) { return part && part.trim(); });
     var file = parts.length ? parts[parts.length - 1] : 'index';
     file = file.replace(/\.html?$/i, '');
@@ -163,7 +171,7 @@
     try {
       var canonical = document.querySelector('link[rel="canonical"]');
       var href = canonical ? String(canonical.getAttribute('href') || '') : '';
-      var m = href.match(/\/(karaoke[1-8]|room)\/?(?:[#?].*)?$/i);
+      var m = href.match(/\/(karaoke0?[1-8]|room)\/?(?:[#?].*)?$/i);
       if (m && m[1] && (m[1] in PAGE_REGION_MAP)) return m[1];
     } catch (e) {}
 

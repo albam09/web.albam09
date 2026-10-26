@@ -1,3 +1,30 @@
+# 2026-10-27: restore canonical regional URLs to /page/karaoke1/ ... /page/karaoke8/
+# Temporary /page/karaoke01/...08 URLs permanently redirect to the original URLs.
+/page/karaoke01/ /page/karaoke1/ 301!
+/page/karaoke01 /page/karaoke1/ 301!
+/page/karaoke01/index.html /page/karaoke1/ 301!
+/page/karaoke02/ /page/karaoke2/ 301!
+/page/karaoke02 /page/karaoke2/ 301!
+/page/karaoke02/index.html /page/karaoke2/ 301!
+/page/karaoke03/ /page/karaoke3/ 301!
+/page/karaoke03 /page/karaoke3/ 301!
+/page/karaoke03/index.html /page/karaoke3/ 301!
+/page/karaoke04/ /page/karaoke4/ 301!
+/page/karaoke04 /page/karaoke4/ 301!
+/page/karaoke04/index.html /page/karaoke4/ 301!
+/page/karaoke05/ /page/karaoke5/ 301!
+/page/karaoke05 /page/karaoke5/ 301!
+/page/karaoke05/index.html /page/karaoke5/ 301!
+/page/karaoke06/ /page/karaoke6/ 301!
+/page/karaoke06 /page/karaoke6/ 301!
+/page/karaoke06/index.html /page/karaoke6/ 301!
+/page/karaoke07/ /page/karaoke7/ 301!
+/page/karaoke07 /page/karaoke7/ 301!
+/page/karaoke07/index.html /page/karaoke7/ 301!
+/page/karaoke08/ /page/karaoke8/ 301!
+/page/karaoke08 /page/karaoke8/ 301!
+/page/karaoke08/index.html /page/karaoke8/ 301!
+
 # albam09.com — canonical URL rules
 # Root physical file remains /index.html, but public canonical URL is /.
 # Regional public pages use /page/karaoke1/ style directory URLs.

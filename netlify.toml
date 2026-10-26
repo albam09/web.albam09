@@ -1,4 +1,4 @@
-# URL contract frozen 2026-10-10: /page/karaoke1/ ... /page/karaoke8/ are canonical public URLs.
+# Current canonical regional URLs: /page/karaoke01/ ... /page/karaoke08/; old /page/karaoke1-8/ URLs 301 redirect.
 [build]
   command = "node scripts/build-site.mjs"
   publish = "."

@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (!cur || cur === '/') cur = 'index';
+  // Public route karaoke01-08; legacy navigation keys remain karaoke1-8.
+  cur = cur.replace(/^karaoke0([1-8])$/, 'karaoke$1');
 
   document.querySelectorAll('.area-list li[data-page]').forEach(function (li) {
     var isCurrent = li.getAttribute('data-page') === cur;

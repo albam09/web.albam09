@@ -1,0 +1,24 @@
+albam09.com | 지역 메인 페이지 URL 이전 안내 (2026-10-26)
+
+변경 주소
+/page/karaoke1/ -> /page/karaoke01/ (상무지구)
+/page/karaoke2/ -> /page/karaoke02/ (광천동)
+/page/karaoke3/ -> /page/karaoke03/ (신안동)
+/page/karaoke4/ -> /page/karaoke04/ (용봉동)
+/page/karaoke5/ -> /page/karaoke05/ (첨단지구)
+/page/karaoke6/ -> /page/karaoke06/ (목포)
+/page/karaoke7/ -> /page/karaoke07/ (광주 동구)
+/page/karaoke8/ -> /page/karaoke08/ (광주 남구)
+
+운영 Netlify: _redirects에 기존 /page/karaoke1..8/ 을 새 페이지로 강제 301.
+기존 /karaoke1, /karaoke1.html 등 옛 별칭 주소도 새 페이지로 직접 301.
+INDEX, BBS, 내부 메뉴, 검색 데이터, sitemap, canonical, OG, JSON-LD의 지역 페이지 링크 수정.
+탐험기 URL(/explore/karaoke1..8/), 기사 지역 URL(/bbs/region/karaoke1..8/) 및
+Supabase 관련 내부 board key(karaoke1..8)는 변경하지 않음(기존 데이터/게시글 보호).
+SQL 파일과 CSS 파일 포함 모든 기존 자산은 보존, 기존 DB에는 어떤 변경도 가하지 않음.
+
+Windows 로컬 파일 직접 보기: index.html 더블클릭 (내부 이동 보조 JS 포함)
+운영 배포: 이 ZIP 전체를 Netlify에 배포하고 /page/karaoke1/ 의 301과
+/page/karaoke01/ 의 200을 확인. 구 주소는 같은 페이지 200으로 남기지 마세요.
+SEO: URL 이전은 검색 순위 상승을 보장하지 않으며 Google 재처리 동안 일시 변동 가능.
+확인하지 않은 실제 서버 응답/사용자 Windows 브라우저 결과는 성공으로 보고하지 않음.

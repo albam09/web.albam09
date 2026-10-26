@@ -20,12 +20,12 @@
 </script><script defer="" src="../../js/analytics-lazy.js?v=20261010-cwv"></script>
 <!-- Import Global JS -->
 <script defer="" src="../../js/global.js?ver=20260523-mobilebox"></script>
-<meta content="광주버블여지도 | 목포노래방 | 목포가라오케" property="og:title"/>
+<meta content="광주버블여지도 | 목포노래방 | 목포가라오케 | 목포유흥주점 | 목포단란주점" property="og:title"/>
 <meta content="목포노래방·목포가라오케 정보를 목포 생활권의 등록 업소 목록과 관련 검색 기사로 정리한 지역 페이지입니다." property="og:description"/>
 <meta content="https://albam09.com/page/karaoke6/" property="og:url"/>
 <meta content="ko_KR" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="광주버블여지도 | 목포노래방 | 목포가라오케" name="twitter:title"/>
+<meta content="광주버블여지도 | 목포노래방 | 목포가라오케 | 목포유흥주점 | 목포단란주점" name="twitter:title"/>
 <meta content="목포노래방·목포가라오케 정보를 목포 생활권의 등록 업소 목록과 관련 검색 기사로 정리한 지역 페이지입니다." name="twitter:description"/>
 <style>
 .area-wrap{
@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (!cur || cur === '/') cur = 'index';
+  // Public route karaoke01-08; legacy navigation keys remain karaoke1-8.
+  cur = cur.replace(/^karaoke0([1-8])$/, 'karaoke$1');
 
   document.querySelectorAll('.area-list li[data-page]').forEach(function (li) {
     var isCurrent = li.getAttribute('data-page') === cur;
@@ -366,7 +368,7 @@ h3,section[list] h3,.seo-article-card h3{font-size:clamp(1.22rem,2.25vw,1.58rem)
 <main class="daum-wm-content"><nav aria-label="현재 위치" class="seo-breadcrumb"><a href="/">홈</a><span> › </span><span aria-current="page">목포</span></nav>
 <section title="">
 <h1 class="daum-wm-title">목포노래방 · 목포가라오케</h1><p class="hero-keyline">목포가라오케 목포노래홀 목포노래주점</p>
-<p class="daum-wm-content hero-desc">목포노래방과 목포가라오케를 중심으로 목포노래홀, 목포노래주점, 목포가라오케 정보를 전남권 기준으로 정리한 안내 페이지입니다.</p>
+<p class="daum-wm-content hero-desc">광주 지역 안내와 구분해 전남 목포에서 노래 공간을 찾는 분들만을 위한 지역 페이지입니다. 목포노래방과 목포가라오케를 알아볼 때 하당·평화광장·옥암동 등 목포의 주요 생활권 사이의 이동 계획을 먼저 세우고, 실제 등록된 업소 주소를 기준으로 비교하도록 했습니다. 목포유흥주점 및 목포단란주점은 업소별 등록 분류를 살펴봐야 하며, 광고에 쓰인 표현과 영업허가 업종이 항상 같다고 가정하지 않습니다. 여행이나 출장으로 목포를 방문하는 경우에도 인원·이동 수단·영업시간을 확인해 적절한 문의 대상을 찾을 수 있도록 목포의 기사와 탐험기만 따로 묶었습니다.</p>
 </section><section aria-label="업소 통합검색" class="global-place-search" role="search"><form autocomplete="off" class="global-place-search__form"><span aria-hidden="true" class="global-place-search__icon">⌕</span><input aria-label="업소명 또는 지역명 검색" class="global-place-search__input" inputmode="search" placeholder="업소명·지역명 검색 후 바로 이동" type="search"/><button class="global-place-search__button" type="submit">검색</button></form><div class="global-place-search__suggestions" hidden=""></div></section>
 <section list="">
 <h2 id="spots">가게 목록</h2>

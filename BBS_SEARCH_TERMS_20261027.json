@@ -1,0 +1,24 @@
+{
+  "source": "albam09_20261026_karaoke01-08_redirects_unified.zip",
+  "updated_at": "2026-10-27",
+  "changed_existing_bbs": [
+    "002",
+    "339",
+    "344"
+  ],
+  "new_articles": {
+    "360": "광주 상무지구 셔츠룸｜치평동에서 업종·룸 구성·예약을 비교하는 방법",
+    "361": "상무지구 야구장 가격｜등록 업소 ‘야구장’ 이용요금과 예약 조건 확인",
+    "362": "상무지구 풀살롱 검색 가이드｜치평동 룸 업종과 이용조건 비교"
+  },
+  "region": "karaoke1: 상무지구 only",
+  "new_total": 61,
+  "new_karaoke1_total": 24,
+  "links": [
+    "/page/karaoke1/",
+    "/bbs/region/karaoke1/",
+    "/bbs/",
+    "/bbs/page7/"
+  ],
+  "claim_policy": "No invented verified price, review, facility, staff count, service or permit."
+}
