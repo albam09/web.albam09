@@ -113,7 +113,10 @@ async function main(){
     if(!slug||slug!==d.slug)continue;
     const dir=path.join(root,'explore/post',slug);
     await fs.mkdir(dir,{recursive:true});
-    await fs.writeFile(path.join(dir,'index.html'),withMeta(template,d),'utf8');
+    // Rebase static resource paths from explore/post/ to explore/post/<slug>/.
+    // The template must also work as a local file:// page; retain clean canonical URLs.
+    const generated=withMeta(template,d).replace(/((?:href|src|poster)=[\"'])(\.\.\/\.\.\/)(?=(?:css|js|img|fonts|data|favicon\.ico|site\.webmanifest))/g, '$1../$2');
+    await fs.writeFile(path.join(dir,'index.html'),generated,'utf8');
   }
 
   const sitemapPath=path.join(root,'sitemap.xml');
