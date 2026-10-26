@@ -339,7 +339,41 @@ h1,.daum-wm-title,.detail-hero h1,main section[title] h1,section[title] h1,.plac
 h2,.detail-section h2,section[list] h2,.business-description-section h2{font-size:clamp(1.55rem,2.85vw,2.10rem)!important;font-weight:400!important;}
 h3,section[list] h3,.seo-article-card h3{font-size:clamp(1.22rem,2.25vw,1.58rem)!important;font-weight:400!important;}
 </style>
-<link rel="stylesheet" href="../../css/venue-promos-20261025.css"/></head>
+<link rel="stylesheet" href="../../css/venue-promos-20261025.css"/>
+<style id="albam-hero-more-native-20261027">
+/* Static HTML <details>: visible summary, full body available to crawlers at first response. */
+main section[title] > p.hero-intro-teaser {margin-bottom:0!important;}
+main section[title] > details.hero-intro-details {
+  display:block!important;box-sizing:border-box;width:100%!important;max-width:980px!important;
+  margin:0 auto!important;padding:0!important;text-align:center!important;
+  color:inherit!important;background:transparent!important;border:0!important;
+}
+main section[title] > details.hero-intro-details > summary {
+  display:inline-flex!important;align-items:center;justify-content:center;gap:.3em;
+  list-style:none!important;cursor:pointer;min-height:42px;box-sizing:border-box;
+  margin:.15rem auto 0!important;padding:7px 15px!important;border-radius:999px;
+  border:1px solid rgba(255,255,255,.55)!important;background:rgba(255,255,255,.13)!important;
+  color:#fff!important;font:inherit!important;font-size:.93rem!important;font-weight:700!important;
+  line-height:1.4!important;text-shadow:none!important;transition:background-color .15s ease;
+}
+main section[title] > details.hero-intro-details > summary::-webkit-details-marker{display:none;}
+main section[title] > details.hero-intro-details > summary::marker {content:'';}
+main section[title] > details.hero-intro-details > summary:hover {background:rgba(255,255,255,.23)!important;}
+main section[title] > details.hero-intro-details > summary:focus-visible {outline:3px solid #fff;outline-offset:3px;}
+main section[title] > details.hero-intro-details .hero-intro-close {display:none;}
+main section[title] > details.hero-intro-details[open] .hero-intro-open {display:none;}
+main section[title] > details.hero-intro-details[open] .hero-intro-close {display:inline;}
+main section[title] > details.hero-intro-details > p.hero-intro-rest {
+  margin:.65rem auto 0!important;padding:0!important;max-width:980px!important;
+  text-align:center!important;word-break:keep-all!important;
+}
+@media (max-width:640px){
+  main section[title] > details.hero-intro-details {max-width:100%!important;}
+  main section[title] > details.hero-intro-details > summary {font-size:.88rem!important;min-height:44px;}
+  main section[title] > details.hero-intro-details > p.hero-intro-rest {max-width:100%!important;}
+}
+</style>
+</head>
 <body data-current-page="karaoke2" class="ui-unified-page">
 <div aria-label="상단 광고 배너 영역" class="top-ad-zone" data-top-ad-zone="true"><div class="top-ad-grid"><div aria-label="광고 배너 1 자리" class="top-ad-slot" data-ad-position="top-1" data-ad-slot="1" data-ad-type="liquor-recruit"><div class="top-ad-recruit top-ad-recruit--liquor"><div class="top-ad-recruit__left"><div class="top-ad-recruit__eyebrow">AD PARTNER</div><div class="top-ad-recruit__title">주류회사 광고모집</div><div class="top-ad-recruit__sub">주류 브랜드 · 유통사 · 지역 제휴 배너 모집</div></div><div aria-hidden="true" class="top-ad-recruit__icon">🥂</div></div></div><div aria-label="광고 배너 2 자리" class="top-ad-slot" data-ad-position="top-2" data-ad-slot="2" data-ad-type="fruit-recruit"><div class="top-ad-recruit top-ad-recruit--fruit"><div class="top-ad-recruit__left"><div class="top-ad-recruit__eyebrow">PARTNERSHIP</div><div class="top-ad-recruit__title">과일 제휴 광고모집</div><div class="top-ad-recruit__sub">과일 · 안주 · 식자재 업체 제휴 배너 모집</div></div><div aria-hidden="true" class="top-ad-recruit__icon">🍓</div></div></div></div></div><header class="site-menu-host">
 <a href="/">
@@ -368,7 +402,10 @@ h3,section[list] h3,.seo-article-card h3{font-size:clamp(1.22rem,2.25vw,1.58rem)
 <main class="daum-wm-content"><nav aria-label="현재 위치" class="seo-breadcrumb"><a href="/">홈</a><span> › </span><span aria-current="page">상무·광천동</span></nav>
 <section title="">
 <h1 class="daum-wm-title">상무노래방 · 상무가라오케 · 광천동노래방 · 광천동가라오케</h1><p class="hero-keyline">상무가라오케 광천동가라오케</p>
-<p class="daum-wm-content hero-desc">광천동은 광주종합버스터미널(유스퀘어)과 주변 도로를 중심으로 약속 장소를 잡는 경우가 많아 이동 편의가 중요한 지역입니다. 광천동노래방과 광천동가라오케를 검색하는 방문객이 광천동을 중심으로 금호동·쌍촌동 등 인접 생활권과 헷갈리지 않도록 위치 기준을 분명히 했습니다. 광천동유흥주점 또는 광천동단란주점을 알아볼 때도 간판에 쓰인 명칭과 실제 영업 업종을 구분하고, 등록 업소의 개별 안내·연락 경로를 확인하도록 구성했습니다. 터미널 도착 후 합류하는 모임이라면 거리보다 차량 진입·주차·약속 시간 등을 먼저 비교하는 편이 편리합니다.</p>
+<p class="daum-wm-content hero-desc hero-intro-teaser">광천동은 광주종합버스터미널(유스퀘어)과 주변 도로를 중심으로 약속 장소를 잡는 경우가 많아 이동 편의가 중요한 지역입니다.</p>
+<details class="hero-intro-details"><summary><span class="hero-intro-open">+ 더보기</span><span class="hero-intro-close">− 접기</span></summary>
+<p class="daum-wm-content hero-desc hero-intro-rest">광천동노래방과 광천동가라오케를 검색하는 방문객이 광천동을 중심으로 금호동·쌍촌동 등 인접 생활권과 헷갈리지 않도록 위치 기준을 분명히 했습니다. 광천동유흥주점 또는 광천동단란주점을 알아볼 때도 간판에 쓰인 명칭과 실제 영업 업종을 구분하고, 등록 업소의 개별 안내·연락 경로를 확인하도록 구성했습니다. 터미널 도착 후 합류하는 모임이라면 거리보다 차량 진입·주차·약속 시간 등을 먼저 비교하는 편이 편리합니다.</p>
+</details>
 </section><section aria-label="업소 통합검색" class="global-place-search" role="search"><form autocomplete="off" class="global-place-search__form"><span aria-hidden="true" class="global-place-search__icon">⌕</span><input aria-label="업소명 또는 지역명 검색" class="global-place-search__input" inputmode="search" placeholder="업소명·지역명 검색 후 바로 이동" type="search"/><button class="global-place-search__button" type="submit">검색</button></form><div class="global-place-search__suggestions" hidden=""></div></section>
 <section list="">
 <h2 id="spots">가게 목록</h2>
