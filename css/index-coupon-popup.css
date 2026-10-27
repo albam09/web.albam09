@@ -138,3 +138,33 @@ body.ab09-coupon-is-open{overflow:hidden!important}
   .ab09-coupon-options{margin-top:5px}
 }
 @media(prefers-reduced-motion:reduce){.ab09-coupon-dialog,.ab09-coupon-reward:after{animation:none!important}.ab09-coupon-cta{transition:none}}
+
+/* 2026-10-27: narrow/short viewports: the actions always remain visible.
+   Only the body of the popup scrolls; original copy/images are retained. */
+.ab09-coupon-overlay{padding:12px;min-height:0;}
+.ab09-coupon-dialog{
+  display:flex;flex-direction:column;
+  width:min(100%,444px);height:auto;max-height:calc(100vh - 24px);
+  max-height:calc(100dvh - 24px);overflow:hidden;
+  padding:18px 18px 12px;
+}
+.ab09-coupon-content{min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  flex:0 1 auto;padding:8px 7px 4px;scrollbar-width:thin;}
+.ab09-coupon-cross{position:absolute;top:8px;right:8px;z-index:5;
+  background:#17171a;border-color:rgba(222,191,137,.45);}
+.ab09-coupon-options{position:relative;flex:0 0 auto;margin-top:8px;
+  padding-top:7px;border-top:1px solid rgba(217,187,134,.22);
+  background:#111216;z-index:4;}
+.ab09-coupon-options button{min-height:40px;}
+@media(max-width:480px){
+  .ab09-coupon-overlay{padding:8px;}
+  .ab09-coupon-dialog{width:min(100%,390px);max-height:calc(100vh - 16px);
+    max-height:calc(100dvh - 16px);padding:14px 13px 9px;}
+  .ab09-coupon-content{padding:8px 4px 3px;}
+  .ab09-coupon-options{margin-top:6px;padding-top:5px;}
+}
+@media(max-height:460px){
+  .ab09-coupon-dialog{padding:7px 12px;}
+  .ab09-coupon-options{margin-top:3px;padding-top:2px;}
+  .ab09-coupon-options button{min-height:34px;}
+}
