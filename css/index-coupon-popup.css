@@ -192,3 +192,11 @@ body.ab09-coupon-is-open{overflow:hidden!important}
   .ab09-coupon-cta{min-height:30px;}
   .ab09-coupon-options button{min-height:28px;}
 }
+
+/* Homepage popup: no scroll traps, CTA/footer always fit inside mobile viewport. */
+@media (max-width:600px) {
+  .ab09-coupon-overlay {overflow:hidden; align-items:center; justify-items:center;}
+  .ab09-coupon-dialog {height:auto; max-height:none; overflow:visible; flex-shrink:0; transform-origin:center center;}
+  .ab09-coupon-content {flex:0 0 auto; overflow:visible;}
+  .ab09-coupon-options {flex:0 0 auto;}
+}

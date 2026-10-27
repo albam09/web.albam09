@@ -5,8 +5,7 @@
  */
 (()=>{
   'use strict';
-  const path=window.location.pathname;
-  if(path!=='/' && path!=='/index.html') return;
+  // Included only by the homepage; pathname may be a Windows file:// path.
 
   const key='albam09.explorerCoupon.hideDate.v1';
   const cookieKey='albam09_explorer_coupon_hide_date';
@@ -15,6 +14,8 @@
   const dialog=overlay.querySelector('.ab09-coupon-dialog');
   const focusable='a[href],button:not([disabled])';
   let lastFocused=null;
+  const forcePreview = new URLSearchParams(window.location.search).get('showCoupon')==='1';
+  let resizeObserver=null;
 
   function localDay(){
     const d=new Date();
@@ -25,6 +26,7 @@
     return v?decodeURIComponent(v.slice(cookieKey.length+1)):null;
   }
   function shouldHide(){
+    if(forcePreview)return false;
     const today=localDay();
     try{if(window.localStorage.getItem(key)===today)return true;}catch(_){/* cookie fallback */}
     return cookieDay()===today;
@@ -41,6 +43,7 @@
     overlay.hidden=true;
     document.body.classList.remove('ab09-coupon-is-open');
     document.removeEventListener('keydown',onKeydown);
+    if(resizeObserver){resizeObserver.disconnect();resizeObserver=null;}
     if(lastFocused?.isConnected)lastFocused.focus({preventScroll:true});
   }
   function onKeydown(e){
@@ -51,12 +54,24 @@
     if(e.shiftKey&&document.activeElement===els[0]){e.preventDefault();els[els.length-1].focus();}
     else if(!e.shiftKey&&document.activeElement===els[els.length-1]){e.preventDefault();els[0].focus();}
   }
+  function fitMobile(){
+    dialog.style.removeProperty('zoom');
+    if(!window.matchMedia('(max-width:600px)').matches)return;
+    const available=Math.max(250,window.innerHeight-16);
+    const actual=dialog.scrollHeight;
+    if(actual>available){
+      const factor=Math.max(.58,Math.min(1,available/actual));
+      dialog.style.zoom=String(factor);
+    }
+  }
   function open(){
     if(shouldHide())return;
     lastFocused=document.activeElement;
     overlay.hidden=false;
     document.body.classList.add('ab09-coupon-is-open');
     document.addEventListener('keydown',onKeydown);
+    fitMobile();
+    // Height adaptation also runs on viewport resize; no observation loop needed.
     const closeButton=overlay.querySelector('[data-coupon-action="close"]');
     closeButton?.focus({preventScroll:true});
   }
@@ -66,6 +81,7 @@
     if(action==='today'){rememberToday();close();}
     if(action==='close')close();
   });
+  window.addEventListener('resize',()=>{if(!overlay.hidden)fitMobile();},{passive:true});
   window.addEventListener('storage',e=>{
     if(e.key===key && shouldHide())close();
   });
