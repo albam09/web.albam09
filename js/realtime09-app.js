@@ -81,7 +81,27 @@ async function init(){
     if(!S.supabaseUrl||!S.supabaseAnonKey||!window.supabase?.createClient)throw new Error('missing_config');
     sb=window.supabase.createClient(S.supabaseUrl,S.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
     const x=await sb.auth.getSession();session=x.data.session||null;if(session){await ensureProfile();await loadStaff()}
-    await renderBar(true);if(session)subscribeUnread();await setupPresence();
+    await renderBar(true);
+    if(session){
+      subscribeUnread();
+      await setupPresence();
+    } else {
+      // Presence is optional for anonymous visitors. Wait for a genuine interaction
+      // rather than making a WebSocket attempt during passive page/audit loading.
+      // This does not delay authentication, posts, or member message subscriptions.
+      let started=false;
+      const activatePresence=()=>{
+        if(started)return;
+        started=true;
+        window.removeEventListener('pointerdown',activatePresence);
+        window.removeEventListener('keydown',activatePresence);
+        window.removeEventListener('touchstart',activatePresence);
+        setupPresence().catch(e=>console.warn('[presence activation]',e));
+      };
+      window.addEventListener('pointerdown',activatePresence,{passive:true});
+      window.addEventListener('keydown',activatePresence);
+      window.addEventListener('touchstart',activatePresence,{passive:true});
+    }
     window.ALBAM09={sb,get session(){return session},get profile(){return profile},get staff(){return staff},get isAdmin(){return !!staff},get isSuper(){return staff?.level==='super_admin'},requireAuth,goLogin,login:goLogin,googleLogin,logout,toast,esc,fmt,presenceSummary,refreshProfile:ensureProfile,refreshStaff:loadStaff,renderBar,config:S};
     window.ALBAM09_READY=true;
     window.dispatchEvent(new CustomEvent('ab09-ready',{detail:{session,profile,staff}}));publishPresence();

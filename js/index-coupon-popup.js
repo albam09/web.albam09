@@ -22,8 +22,12 @@
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
   function cookieDay(){
-    const v=document.cookie.split('; ').find(s=>s.startsWith(cookieKey+'='));
-    return v?decodeURIComponent(v.slice(cookieKey.length+1)):null;
+    // Browsers may reject cookie reads (privacy settings, sandboxed previews, file://).
+    // A storage error must never prevent opening the popup.
+    try {
+      const v=document.cookie.split('; ').find(s=>s.startsWith(cookieKey+'='));
+      return v?decodeURIComponent(v.slice(cookieKey.length+1)):null;
+    } catch(_){ return null; }
   }
   function shouldHide(){
     if(forcePreview)return false;
@@ -36,7 +40,9 @@
     try{window.localStorage.setItem(key,today);}catch(_){/* cookie fallback */}
     const now=new Date();
     const midnight=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
-    document.cookie=`${cookieKey}=${encodeURIComponent(today)}; expires=${midnight.toUTCString()}; path=/; SameSite=Lax`;
+    try {
+      document.cookie=`${cookieKey}=${encodeURIComponent(today)}; expires=${midnight.toUTCString()}; path=/; SameSite=Lax`;
+    } catch(_){ /* Cookie access can be disabled; localStorage remains primary. */ }
   }
   function close(){
     if(overlay.hidden)return;
