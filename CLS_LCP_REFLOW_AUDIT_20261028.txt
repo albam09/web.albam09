@@ -1,0 +1,42 @@
+ALBAM09 performance source-level revision / 2026-10-28
+Baseline: albam09_20261028_REGION_PREFIXED_ROOM_TITLES.zip
+Report scope: PAGE SPEED CLS 0.354 / LCP text render delay 2,800ms / popup forced reflow 29ms / render-blocking 20 homepage stylesheets.
+
+Verified source-level changes:
+1. Unmodified font outlines with WOFF2: TTF 2,026,460 bytes -> WOFF2 986,680 bytes. Glyph coverage and font UPM/ascent matched. The original TTF was RETAINED as an explicit fallback. Main and regional HTML preloads/CSS refer to compressed format.
+2. Homepage CSS stylesheets: 20 request entries -> 8 request entries. Only consecutive stylesheets were bundled; inlined CSS/script positions and source cascade ordering remain. Original individual CSS files all retained and unchanged except the coupon stylesheet below.
+3. Homepage popup: synchronous zoom-reset -> scrollHeight measurement moved to a different animation frame; close cancels pending fit. Original popup button events/suppression logic retained.
+4. Popup scroll lock: stable scrollbar gutter on homepage to reduce horizontal layout jumps when modal opens.
+5. No structural page content, title, canonical, hreflang, Supabase address, SQL, BBS text, explore, JS business logic, sitemap or robots changes.
+
+Known limitation:
+This environment blocks Chromium navigation with ERR_BLOCKED_BY_ADMINISTRATOR (even data: URL), so real browser CLS and LCP cannot be measured. These are technically grounded optimizations and NOT proof that Google PageSpeed CLS dropped to <=0.1. Deploy and rerun PageSpeed to quantify; if CLS remains high, use Chrome DevTools Performance Layout Shifts to find which ancestor changes size. Current screenshot identifies main.daum-wm-content but not the exact root cause.
+
+Bundled CSS source mapping:
+css/ab09-index-bundle-1-20261028.css <- css/master.css, css/index-inline-seo.css
+css/ab09-index-bundle-2-20261028.css <- css/albam09-local-font.css, css/albam09-final-force.css, css/index-mobile-pc-final-20260622.css, css/footer-contact-20260626.css
+css/ab09-index-bundle-3-20261028.css <- css/fold-unified-20260908.css, css/info-panel-stack-20260908.css, css/map-preview-card-20260911.css, css/contact-link-fix-20260911.css
+css/ab09-index-bundle-4-20261028.css <- css/explore-submenu.css, css/albam09-ui-lock-20261011.css, css/albam09-global-ui-lock-20261011.css, css/official-brand-icon.css, css/home-latest-explore-fold.css
+css/ab09-index-bundle-5-20261028.css <- css/site-account-bar.css, css/index-coupon-popup.css
+
+Modified original existing files (13):
+css/albam09-local-font.css
+css/index-coupon-popup.css
+index.html
+js/index-coupon-popup.js
+page/karaoke1/index.html
+page/karaoke2/index.html
+page/karaoke3/index.html
+page/karaoke4/index.html
+page/karaoke5/index.html
+page/karaoke6/index.html
+page/karaoke7/index.html
+page/karaoke8/index.html
+page/room/index.html
+Added new files (6):
+css/ab09-index-bundle-1-20261028.css
+css/ab09-index-bundle-2-20261028.css
+css/ab09-index-bundle-3-20261028.css
+css/ab09-index-bundle-4-20261028.css
+css/ab09-index-bundle-5-20261028.css
+fonts/Albam09Cute.woff2

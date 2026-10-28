@@ -50,6 +50,7 @@
     document.body.classList.remove('ab09-coupon-is-open');
     document.removeEventListener('keydown',onKeydown);
     if(resizeObserver){resizeObserver.disconnect();resizeObserver=null;}
+    if(scheduledFit){window.cancelAnimationFrame(scheduledFit);scheduledFit=0;}
     if(lastFocused?.isConnected)lastFocused.focus({preventScroll:true});
   }
   function onKeydown(e){
@@ -60,15 +61,27 @@
     if(e.shiftKey&&document.activeElement===els[0]){e.preventDefault();els[els.length-1].focus();}
     else if(!e.shiftKey&&document.activeElement===els[els.length-1]){e.preventDefault();els[0].focus();}
   }
+  let scheduledFit=0;
   function fitMobile(){
+    if(scheduledFit){window.cancelAnimationFrame(scheduledFit);scheduledFit=0;}
     dialog.style.removeProperty('zoom');
     if(!window.matchMedia('(max-width:600px)').matches)return;
-    const available=Math.max(250,window.innerHeight-16);
-    const actual=dialog.scrollHeight;
-    if(actual>available){
-      const factor=Math.max(.58,Math.min(1,available/actual));
-      dialog.style.zoom=String(factor);
-    }
+    // Do not read scrollHeight synchronously after a style mutation. That was the
+    // exact forced reflow reported by Lighthouse for this popup.
+    scheduledFit=window.requestAnimationFrame(()=>{
+      scheduledFit=window.requestAnimationFrame(()=>{
+        scheduledFit=0;
+        if(overlay.hidden)return;
+        const available=Math.max(250,window.innerHeight-16);
+        const actual=dialog.scrollHeight;
+        if(actual>available){
+          const factor=Math.max(.58,Math.min(1,available/actual));
+          window.requestAnimationFrame(()=>{
+            if(!overlay.hidden)dialog.style.zoom=String(factor);
+          });
+        }
+      });
+    });
   }
   function open(){
     if(shouldHide())return;

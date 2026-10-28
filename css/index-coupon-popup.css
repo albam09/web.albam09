@@ -200,3 +200,6 @@ body.ab09-coupon-is-open{overflow:hidden!important}
   .ab09-coupon-content {flex:0 0 auto; overflow:visible;}
   .ab09-coupon-options {flex:0 0 auto;}
 }
+
+/* 2026-10-28: reserve scrollbar gutter when the coupon opens so the main column does not shift. */
+@supports (scrollbar-gutter: stable){html:has(body[data-current-page="index"]){scrollbar-gutter:stable;}}

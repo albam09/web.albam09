@@ -4,7 +4,7 @@
 */
 @font-face{
   font-family:'Albam09Cute';
-  src:url('../fonts/Albam09Cute.ttf') format('truetype');
+  src:url('../fonts/Albam09Cute.woff2') format('woff2'),url('../fonts/Albam09Cute.ttf') format('truetype');
   font-weight:100 900;
   font-style:normal;
   font-display:block;
