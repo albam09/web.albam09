@@ -178,7 +178,7 @@ async function buildBubbleAlba(){
 await main();
 try { await buildBubbleAlba(); }
 catch(e) {
-  if(process.env.ALBAM09_BUBBLE_ALBA_STRICT==='1')throw e;
+  if(process.env.ALBAM09_BUBBLE_ALBA_STRICT==='1' || process.env.NETLIFY==='true')throw e;
   // Avoid failing an otherwise valid main-site deployment if the bubble tables were not yet installed.
   console.warn('[build-site] bubble-alba static hydration skipped; client-side data retrieval remains available:',e.message);
 }

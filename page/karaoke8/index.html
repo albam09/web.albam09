@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (!cur || cur === '/') cur = 'index';
-  // Public route karaoke01-08; legacy navigation keys remain karaoke1-8.
+  // Official public routes are /page/karaoke1/ to /page/karaoke8/; zero-padded paths are legacy aliases.
   cur = cur.replace(/^karaoke0([1-8])$/, 'karaoke$1');
 
   document.querySelectorAll('.area-list li[data-page]').forEach(function (li) {

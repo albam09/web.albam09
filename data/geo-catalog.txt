@@ -1,14 +1,14 @@
 광주버블여지도 공개 지역 안내 데이터
 
 - 메인: https://albam09.com/
-- 상무지구·치평동: https://albam09.com/page/karaoke01/
-- 광천동·금호동: https://albam09.com/page/karaoke02/
-- 신안동·중흥동: https://albam09.com/page/karaoke03/
-- 용봉동·전대후문: https://albam09.com/page/karaoke04/
-- 첨단지구·쌍암동: https://albam09.com/page/karaoke05/
-- 목포·하당: https://albam09.com/page/karaoke06/
-- 광주 동구: https://albam09.com/page/karaoke07/
-- 광주 남구: https://albam09.com/page/karaoke08/
-- 기사게시판: https://albam09.com/bbs
+- 상무지구·치평동: https://albam09.com/page/karaoke1/
+- 광천동·금호동: https://albam09.com/page/karaoke2/
+- 신안동·중흥동: https://albam09.com/page/karaoke3/
+- 용봉동·전대후문: https://albam09.com/page/karaoke4/
+- 첨단지구·쌍암동: https://albam09.com/page/karaoke5/
+- 목포·하당: https://albam09.com/page/karaoke6/
+- 광주 동구: https://albam09.com/page/karaoke7/
+- 광주 남구: https://albam09.com/page/karaoke8/
+- 기사게시판: https://albam09.com/bbs/
 
 이 공개 카탈로그에는 개별 업소 상세페이지의 주소·영업정보·사진·상세설명을 포함하지 않습니다.

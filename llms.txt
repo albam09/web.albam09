@@ -4,15 +4,15 @@
 
 ## 주요 공개 페이지
 - [메인](https://albam09.com/)
-- [상무지구·치평동](https://albam09.com/page/karaoke01/)
-- [광천동·금호동](https://albam09.com/page/karaoke02/)
-- [신안동·중흥동](https://albam09.com/page/karaoke03/)
-- [용봉동·전대후문](https://albam09.com/page/karaoke04/)
-- [첨단지구·쌍암동](https://albam09.com/page/karaoke05/)
-- [목포·하당](https://albam09.com/page/karaoke06/)
-- [광주 동구](https://albam09.com/page/karaoke07/)
-- [광주 남구](https://albam09.com/page/karaoke08/)
-- [기사게시판](https://albam09.com/bbs)
+- [상무지구·치평동](https://albam09.com/page/karaoke1/)
+- [광천동·금호동](https://albam09.com/page/karaoke2/)
+- [신안동·중흥동](https://albam09.com/page/karaoke3/)
+- [용봉동·전대후문](https://albam09.com/page/karaoke4/)
+- [첨단지구·쌍암동](https://albam09.com/page/karaoke5/)
+- [목포·하당](https://albam09.com/page/karaoke6/)
+- [광주 동구](https://albam09.com/page/karaoke7/)
+- [광주 남구](https://albam09.com/page/karaoke8/)
+- [기사게시판](https://albam09.com/bbs/)
 
 ## 공개 데이터
 - [지역 GEO JSON](https://albam09.com/geo-catalog.json)

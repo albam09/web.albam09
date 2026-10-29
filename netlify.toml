@@ -1,6 +1,8 @@
-# Current canonical regional URLs: /page/karaoke01/ ... /page/karaoke08/; old /page/karaoke1-8/ URLs 301 redirect.
+# Canonical regional URLs are /page/karaoke1/ ... /page/karaoke8/.
+# Former /page/karaoke01/ ... /page/karaoke08/ aliases only redirect to those canonical URLs.
+# No SPA fallback rewrite to /index.html: each regional URL has its own static index.html.
 [build]
-  command = "node scripts/build-site.mjs"
+  command = "node scripts/check-release.mjs && node scripts/build-site.mjs"
   publish = "."
 
 [build.processing]
