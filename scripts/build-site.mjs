@@ -1,10 +1,14 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {createRequire} from 'node:module';
+const bubbleInlineMedia=createRequire(import.meta.url)('../js/inline-media.js');
 
 const root=process.cwd();
 const SUPABASE_URL=process.env.ALBAM09_SUPABASE_URL || 'https://ldyysvafgegsgmvpslui.supabase.co';
 const SUPABASE_KEY=process.env.ALBAM09_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_qFOVO12BzMv6U2LjgLhR4Q_IKVfM06x';
 const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at,profiles!albam09_explorer_posts_author_fkey(nickname)&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
+const ALBA_POSTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_posts?select=id,title,summary,content,created_at,published_at,updated_at&status=eq.published&is_deleted=eq.false&order=published_at.desc&limit=100`;
+const ALBA_COMMENTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_comments?select=post_id,guest_name,content,created_at&status=eq.published&order=created_at.asc&limit=1000`;
 const PAGE_SIZE=1000;
 const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -138,4 +142,44 @@ async function main(){
   console.log(`[build-site] 공개 탐험기 ${posts.length}개: 정적 상세페이지 + sitemap + archive 생성 완료`);
 }
 
+
+// Restored 2026-10-21 bubble-alba feature. Independent of explore-post output.
+async function buildBubbleAlba(){
+  const page=path.join(root,'bubble-alba/index.html');
+  const rx=/<!-- ALBA_STATIC_START -->[\s\S]*?<!-- ALBA_STATIC_END -->/;
+  let html=await fs.readFile(page,'utf8');
+  if(!rx.test(html))throw new Error('bubble-alba static markers missing');
+  const get=async(url)=>{
+    const r=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+    if(!r.ok)throw new Error('bubble-alba REST HTTP '+r.status);
+    const rows=await r.json();if(!Array.isArray(rows))throw new Error('bubble-alba REST invalid payload');
+    return rows;
+  };
+  const [posts,comments]=await Promise.all([get(ALBA_POSTS_API),get(ALBA_COMMENTS_API)]);
+  const markup=posts.map(p=>{
+    if(!p.id || !p.title || !p.content || !Number.isFinite(Date.parse(p.published_at||p.created_at)))throw new Error('bubble-alba incomplete published post');
+    const when=dateOnly(p.published_at||p.created_at);
+    const replies=comments.filter(c=>c.post_id===p.id).slice(0,30);
+    const cHtml=replies.map(c=>`<div class="balba-comment"><strong>${esc(c.guest_name)}</strong><p>${bubbleInlineMedia.render(c.content)}</p></div>`).join('');
+    return `<article class="balba-item" data-post-id="${esc(p.id)}"><span class="balba-badge">운영자 안내</span><time class="balba-itemtime" datetime="${when}">${when}</time><h3>${esc(p.title)}</h3>${p.summary?`<p class="balba-itemsummary">${esc(p.summary)}</p>`:''}<div class="balba-itembody">${bubbleInlineMedia.render(p.content)}</div>${cHtml?`<div class="balba-static-comments"><h4>공개 댓글</h4>${cHtml}</div>`:''}<p class="balba-help">최신 댓글 및 공고는 페이지 실행 후 갱신됩니다.</p></article>`;
+  }).join('')||'<div class="balba-empty">현재 공개된 모집 안내가 없습니다. 공고가 등록되면 이곳에서 확인할 수 있습니다.</div>';
+  html=html.replace(rx,'<!-- ALBA_STATIC_START -->'+markup+'<!-- ALBA_STATIC_END -->');
+  await fs.writeFile(page,html,'utf8');
+  if(posts.length){
+    const sitemap=path.join(root,'sitemap.xml');let map=await fs.readFile(sitemap,'utf8');
+    const dates=posts.map(p=>Date.parse(p.updated_at||p.published_at||p.created_at)).filter(Number.isFinite);
+    const last=dates.length?new Date(Math.max(...dates)).toISOString().slice(0,10):null;
+    if(last)map=map.replace(/(<loc>https:\/\/albam09\.com\/bubble-alba\/<\/loc>\s*<lastmod>)[^<]+(<\/lastmod>)/,'$1'+last+'$2');
+    await fs.writeFile(sitemap,map,'utf8');
+  }
+  console.log('[build-site] bubble-alba '+posts.length+' published notices, '+comments.length+' comments');
+}
+
 await main();
+try { await buildBubbleAlba(); }
+catch(e) {
+  if(process.env.ALBAM09_BUBBLE_ALBA_STRICT==='1')throw e;
+  // Avoid failing an otherwise valid main-site deployment if the bubble tables were not yet installed.
+  console.warn('[build-site] bubble-alba static hydration skipped; client-side data retrieval remains available:',e.message);
+}
+

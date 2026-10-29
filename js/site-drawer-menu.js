@@ -10,6 +10,14 @@
     var trigger = q('.site-menu-trigger');
     if(!drawer || !trigger) return;
 
+    // 09 공통 드로어에 신규 버블알바 메뉴를 한 번만 주입. 기존 메뉴/탭 구조 보존.
+    var browseLinks=q('[data-menu-panel="browse"] .site-drawer__links',drawer);
+    if(browseLinks && !q('.site-drawer__link[href="/bubble-alba/"]',browseLinks)){
+      var alba=document.createElement('a');alba.className='site-drawer__link';alba.href='/bubble-alba/';
+      alba.innerHTML='<span>버블알바<span class="site-drawer__sub">광주 지역 모집 공고·댓글</span></span><span aria-hidden="true" class="site-drawer__arrow">›</span>';
+      browseLinks.appendChild(alba);
+    }
+
     var closeBtn = q('.site-drawer__close', drawer);
     var panel = q('.site-drawer__panel', drawer);
     var lastFocus = null;

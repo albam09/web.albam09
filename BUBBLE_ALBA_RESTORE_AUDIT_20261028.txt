@@ -1,0 +1,8 @@
+BUBBLE ALBA RESTORATION — 2026-10-28
+Restored from albam09_full_20261023_v7_overlap_fixed.zip.
+Latest 2026-10-28 main content, menus, CSS, JS, sitemap, Supabase config preserved except listed patches.
+Added files: ['bubble-alba/index.html', 'css/bubble-alba.css', 'js/bubble-alba.js', 'js/inline-media.js', 'css/inline-media.css', 'supabase/ALBAM09_BUBBLE_ALBA_20261021.sql', 'BUBBLE_ALBA_SETUP_20261021.md']
+Changed HTML navigation pages: 91; drawer pages: 103.
+No database SQL executed. Admin notice/comment features require old database objects in preexisting Supabase.
+Build script SSR: optional if REST table absent; set ALBAM09_BUBBLE_ALBA_STRICT=1 to enforce.
+Live Supabase/admin/browser tests have not been executed.
