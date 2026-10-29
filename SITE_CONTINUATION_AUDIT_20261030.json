@@ -1,0 +1,110 @@
+{
+  "source_zip": "albam09_20261030_REGION_GUIDES_LANDMARK_PARKING_FULL.zip",
+  "report_date": "2026-10-30",
+  "venue_count": 64,
+  "record_count": 64,
+  "region_counts": {
+    "karaoke1": 23,
+    "karaoke2": 14,
+    "karaoke3": 9,
+    "karaoke4": 9,
+    "karaoke5": 7,
+    "karaoke6": 2,
+    "karaoke7": 0,
+    "karaoke8": 0
+  },
+  "flags": {
+    "실제 주소 대조 필요": 41,
+    "동일 좌표 다른 업소와 공유": 8,
+    "광천동 페이지와 좌표 권역 불일치 의심": 14,
+    "같은 페이지 다른 업소 좌표군과 거리 큼": 1,
+    "위경도 누락": 2
+  },
+  "duplicate_coordinate_groups": {
+    "35.15494924,126.84984605": [
+      "기생",
+      "러시아퍼블릭"
+    ],
+    "35.15464609,126.85048525": [
+      "로엘vip",
+      "루비룸카페"
+    ],
+    "35.15458899,126.84992577": [
+      "롤렉스",
+      "룸꽃사슴"
+    ],
+    "35.15326325,126.84988142": [
+      "유튜브",
+      "은밀한그곳"
+    ]
+  },
+  "outliers": {
+    "북구1": [
+      "top"
+    ]
+  },
+  "new_parking_information_sources": [
+    {
+      "page": "karaoke1",
+      "sources": [
+        "https://www.news1.kr/amp/local/gwangju-jeonnam/4840133",
+        "https://www.gwangju.go.kr/traffic/contentsView.do?pageId=traffic18"
+      ]
+    },
+    {
+      "page": "karaoke2",
+      "sources": [
+        "https://www.google.com/maps/search/?api=1&query=%EA%B4%91%EC%A3%BC+%EC%9C%A0%EC%8A%A4%ED%80%98%EC%96%B4+%ED%84%B0%EB%AF%B8%EB%84%90+%EC%A3%BC%EC%B0%A8%EC%9E%A5",
+        "https://www.shinsegae.com/store/main.do?storeCd=SC00006"
+      ]
+    },
+    {
+      "page": "karaoke3",
+      "sources": [
+        "https://rsve.gbfmc.or.kr/board.es?act=view&bid=0004&list_no=8579&mid=a10204000000&tag="
+      ]
+    },
+    {
+      "page": "karaoke4",
+      "sources": [
+        "https://fcpk.purpleo.co.kr/view/14632"
+      ]
+    },
+    {
+      "page": "karaoke5",
+      "sources": [
+        "https://tour.gwangju.go.kr/home/tour/info/park/003.cs?act=view&infoId=266"
+      ]
+    },
+    {
+      "page": "karaoke6",
+      "sources": [
+        "https://www.mokpo.go.kr/www/mokpo_news/press_release/report_material?idx=548820&mode=view&page=7"
+      ]
+    },
+    {
+      "page": "karaoke7",
+      "sources": [
+        "https://www.acc.go.kr/main/contents.do?PID=060103"
+      ]
+    },
+    {
+      "page": "karaoke8",
+      "sources": [
+        "https://www.welfarehello.com/community/hometownNews/%EB%B4%89%EC%84%A0%EC%8B%9C%EC%9E%A5-%EA%B3%B5%EC%98%81%EC%A3%BC%EC%B0%A8%EC%9E%A5-%ED%8E%B8%ED%95%98%EA%B2%8C-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%84%B8%EC%9A%94--0233cdb5-caa5-47d0-991a-aab7b8f8f010"
+      ]
+    }
+  ],
+  "reassurances": [
+    "No venue latitude/longitude modified",
+    "No changes to Supabase JS or SQL",
+    "No venue address or parking partnership invented",
+    "No remote deployment",
+    "800 pre-existing editorial keyword candidates are NOT verified search volume"
+  ],
+  "files_added": [
+    "VENUE_COORDINATE_AND_REGION_AUDIT_20261030.csv",
+    "data/venue-location-audit-20261030.json",
+    "SITE_CONTINUATION_AUDIT_20261030.json"
+  ]
+}

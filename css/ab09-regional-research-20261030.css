@@ -1,0 +1,41 @@
+/* Shared regional research + intent navigation; only karaoke1..8 */
+.ab09-region-intent{box-sizing:border-box;width:100%;max-width:100%;margin:18px 0 22px;padding:20px 22px;border:1px solid #eadbff;border-radius:20px;background:linear-gradient(145deg,#fff 8%,#fbf7ff 100%);box-shadow:0 5px 18px rgba(70,27,113,.04);color:#25172e}
+.ab09-region-intent h2{margin:0 0 14px!important;font-size:clamp(19px,2vw,25px)!important;line-height:1.38!important;color:#33243e!important;font-weight:800!important;text-align:left!important}
+.ab09-region-intent__links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ab09-region-intent__links a{display:inline-flex;max-width:100%;box-sizing:border-box;align-items:center;justify-content:center;min-height:38px;padding:8px 13px;border-radius:999px;border:1px solid #e7d7ff;background:white;color:#4c3264!important;font-size:clamp(13px,1.15vw,15px)!important;font-weight:700!important;line-height:1.35!important;white-space:normal;overflow-wrap:anywhere;text-decoration:none!important}
+.ab09-region-intent__links a:hover,.ab09-region-intent__links a:focus-visible{border-color:#9258d9;color:#6c32be!important;background:#f5ebff;outline-offset:3px}
+.ab09-research-guide{margin:22px 0 10px;padding:18px 20px;border-radius:16px;background:#fcfaff;border:1px solid #e9def6;color:#342b3b}
+.ab09-research-guide h3{font-size:clamp(17px,1.65vw,20px)!important;line-height:1.45!important;margin:12px 0 9px!important;font-weight:800!important;color:#4b2b6e!important}
+.ab09-research-guide p{font-size:clamp(14px,1.2vw,16px)!important;line-height:1.8!important;margin:0 0 12px!important;color:#332c38!important;overflow-wrap:break-word}
+.ab09-research-guide__sources{padding-top:10px;margin-top:14px;border-top:1px solid #e9def6;font-size:13px;line-height:1.7;color:#625471}
+.ab09-research-guide__sources a{margin-right:12px;overflow-wrap:anywhere;text-underline-offset:2px;color:#603a85}
+@media(max-width:760px){.ab09-region-intent{padding:15px 13px!important;border-radius:15px!important;margin:12px 0 15px!important}.ab09-region-intent h2{font-size:18px!important;margin:0 0 12px!important}.ab09-region-intent__links{gap:7px!important}.ab09-region-intent__links a{min-height:40px!important;padding:9px 11px!important;font-size:13px!important;line-height:1.35!important}.ab09-research-guide{padding:14px 12px!important;margin:15px 0 6px!important}.ab09-research-guide h3{font-size:16px!important;line-height:1.45!important}.ab09-research-guide p{font-size:14px!important;line-height:1.75!important}.ab09-research-guide__sources{font-size:12px!important}.ab09-research-guide__sources a{display:inline-block;margin-bottom:5px}}
+@media(max-width:360px){.ab09-region-intent__links a{font-size:12px!important;padding:9px 10px!important}.ab09-region-intent h2{font-size:17px!important}}
+/* Compact, equal-footing readable fold controls and BBS titles for the eight regional pages. */
+body.ui-unified-page .business-description-fold>summary,
+body.ui-unified-page .bbs-preview-fold>summary{box-sizing:border-box;min-height:50px;line-height:1.55!important;font-size:clamp(14px,1.15vw,16px)!important;overflow-wrap:anywhere}
+body.ui-unified-page .bbs-preview-fold .bbs-preview-fold__title{font-size:inherit!important;line-height:inherit!important}
+body.ui-unified-page .home-bbs-item .title{font-size:clamp(13px,1.14vw,15px)!important;line-height:1.55!important;overflow-wrap:anywhere}
+@media(max-width:760px){body.ui-unified-page .business-description-fold>summary,body.ui-unified-page .bbs-preview-fold>summary{min-height:52px!important;padding:12px 13px!important;font-size:14px!important}body.ui-unified-page .home-bbs-item .title{font-size:13px!important}body.ui-unified-page .bbs-preview-fold__action,body.ui-unified-page .business-description-fold__action{font-size:12px!important;flex-shrink:0}body.ui-unified-page .home-bbs-item{min-width:0;gap:8px}}
+
+/* 2026-10-30 checked local evidence / coordinate caveat. Independent of original typography and brand color. */
+.ab09-evidence-guide{border-top:1px solid #e4dcec;margin-top:17px;padding-top:15px;max-width:100%;min-width:0}
+.ab09-evidence-guide .ab09-parking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;margin:13px 0}
+.ab09-evidence-guide .ab09-parking-option{display:flex;flex-direction:column;gap:6px;min-width:0;padding:12px 14px;border:1px solid #ddd3ea;border-radius:12px;background:#fff}
+.ab09-evidence-guide .ab09-parking-option strong{font-size:15px;line-height:1.5;color:#40244f}
+.ab09-evidence-guide .ab09-parking-option span{font-size:14px;line-height:1.55}
+.ab09-evidence-guide .ab09-parking-option small{font-size:13px;line-height:1.6;color:#5e5266}
+.ab09-evidence-guide .ab09-parking-option a{align-self:flex-start;font-size:13px;line-height:1.5;overflow-wrap:anywhere;color:#603a85;text-decoration:underline}
+.ab09-evidence-guide .ab09-geo-notice{margin:12px 0;padding:10px 12px;border-inline-start:3px solid #ad95bf;background:#f8f5fb}
+.ab09-evidence-guide .ab09-venue-coords{border:1px solid #ddd3ea;border-radius:10px;background:#fff;margin:12px 0}
+.ab09-evidence-guide .ab09-venue-coords>summary{cursor:pointer;padding:12px 14px;font-size:14px;line-height:1.6;font-weight:700;color:#46324f;overflow-wrap:anywhere}
+.ab09-evidence-guide .ab09-venue-coords>summary span{font-size:12px;font-weight:400;color:#655b6b}
+.ab09-evidence-guide .ab09-venue-coords>p{margin:4px 12px 10px;font-size:13px;line-height:1.7}
+.ab09-evidence-guide .ab09-coord-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:7px;padding:0 10px 12px;margin:0;list-style:none}
+.ab09-evidence-guide .ab09-coord-list>li{display:flex;flex-direction:column;align-items:flex-start;gap:3px;margin:0;padding:10px;border-radius:9px;border:1px solid #eee5f1;min-width:0}
+.ab09-evidence-guide .ab09-coord-list strong{font-size:14px;color:#392843;overflow-wrap:anywhere}
+.ab09-evidence-guide .ab09-coord-list span{font-size:12px;line-height:1.55;color:#53465b}
+.ab09-evidence-guide .ab09-coord-list small{font-size:12px;line-height:1.6;color:#655a6d}
+.ab09-evidence-guide .ab09-coord-list a{font-size:12px;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:2px;color:#603a85}
+.ab09-evidence-guide .ab09-geo-tag{display:inline-block;padding:2px 6px;border-radius:5px;background:#f4edf8;color:#553b63!important}
+@media(max-width:620px){.ab09-evidence-guide .ab09-parking-grid,.ab09-evidence-guide .ab09-coord-list{grid-template-columns:minmax(0,1fr)}.ab09-evidence-guide .ab09-venue-coords>summary{padding:13px;font-size:13px}.ab09-evidence-guide .ab09-parking-option{padding:10px 11px}}
