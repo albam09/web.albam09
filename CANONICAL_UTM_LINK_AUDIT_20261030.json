@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-30",
+  "source": "albam09_20261030_CONTINUED_VENUE_GEO_PARKING_VERIFIED.zip",
+  "output": "albam09_20261030_CONTINUED_CANONICAL_LINK_AUDITED_FULL.zip",
+  "scope": [
+    "8 region HTML content release markers",
+    "8 region nav link corrections",
+    "browser HTML revalidation header",
+    "offline and live canonical query audit script"
+  ],
+  "fixed_links": [
+    {
+      "page": "karaoke1",
+      "before_text": "상무지구 노래방 후기",
+      "before_url": "/bbs/362/",
+      "after_text": "치평동 가라오케 후기",
+      "after_url": "/bbs/354/",
+      "article_title": "치평동 가라오케 후기｜상무지구와 같이 비교해야 하는 이유 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke1",
+      "before_text": "상무지구 가라오케 위치",
+      "before_url": "/bbs/361/",
+      "after_text": "상무역 근처 노래방·치평동 도보 이동",
+      "after_url": "/bbs/352/",
+      "article_title": "상무역 근처 노래방 찾기｜도보 이동과 치평동 중심 상권을 함께 보는 방법 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke2",
+      "before_text": "치평동 노래방 위치",
+      "before_url": "/bbs/135/",
+      "after_text": "광천동·금호동 가라오케·노래방 정보",
+      "after_url": "/bbs/135/",
+      "article_title": "광천동·금호동 가라오케·노래방 정보를 한눈에 보는 방법 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke3",
+      "before_text": "신안동 가라오케",
+      "before_url": "/bbs/020/",
+      "after_text": "신안동 노래방 검색 가이드",
+      "after_url": "/bbs/020/",
+      "article_title": "신안동 노래방 검색 정보와 지역별 확인 포인트 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke4",
+      "before_text": "용봉동 노래방 후기",
+      "before_url": "/bbs/358/",
+      "after_text": "용봉동 노래방 추천·전대후문 소규모 모임",
+      "after_url": "/bbs/358/",
+      "article_title": "용봉동 노래방 추천｜전대후문에서 소규모 모임 장소 고르는 기준 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke5",
+      "before_text": "쌍암동 가라오케",
+      "before_url": "/bbs/355/",
+      "after_text": "첨단지구 노래방 추천·쌍암동 주차",
+      "after_url": "/bbs/355/",
+      "article_title": "첨단지구 노래방 추천｜쌍암동·월계동 모임에서 위치와 주차 먼저 보기 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke6",
+      "before_text": "목포 평화광장 가라오케",
+      "before_url": "/bbs/039/",
+      "after_text": "목포 하당 노래방·평화광장 이동",
+      "after_url": "/bbs/039/",
+      "article_title": "목포 하당 노래방 찾기｜평화광장·상동까지 이동 범위 보는 법 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke7",
+      "before_text": "충장로 노래방",
+      "before_url": "/bbs/174/",
+      "after_text": "광주 동구 노래방·가라오케 정보",
+      "after_url": "/bbs/174/",
+      "article_title": "광주 동구 가라오케·노래방 정보를 한눈에 보는 방법 | 광주버블여지도"
+    },
+    {
+      "page": "karaoke8",
+      "before_text": "봉선동 노래방",
+      "before_url": "/bbs/182/",
+      "after_text": "광주 남구 노래방·가라오케 정보",
+      "after_url": "/bbs/182/",
+      "article_title": "광주 남구 가라오케·노래방 정보를 한눈에 보는 방법 | 광주버블여지도"
+    }
+  ],
+  "url_policy": "?utm_source=... remains accepted by design. Same static HTML content and self-canonical; no tracking redirect.",
+  "published_verification": "NOT EXECUTED: no access to the Netlify deployment or external HTTP from container",
+  "background": "web crawled karaoke1 with and without utm and found different intro, so remote deploy/cache version comparison must be tested after next deploy",
+  "media_js_sql": "no changes to images, fonts, existing JavaScript, Supabase scripts or SQL",
+  "guides_and_venues": "8 regional evidence guides and 64 public-venue coordinate audits retained from source"
+}

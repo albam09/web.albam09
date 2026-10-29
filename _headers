@@ -1,3 +1,9 @@
+# Regional HTML: revalidate when revisiting after a deployment, including UTM variants.
+# Netlify static assets are invalidated on new deploy; this is browser revalidation safety.
+# Do NOT redirect ?utm_* or cache-bust CSS/images; retain attribution and asset caching.
+/page/*
+  Cache-Control: public, max-age=0, must-revalidate
+
 /*
   Permissions-Policy: geolocation=(self)
 

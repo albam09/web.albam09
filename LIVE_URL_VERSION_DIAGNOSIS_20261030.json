@@ -1,0 +1,29 @@
+{
+  "verified_local_archives": [
+    {
+      "archive": "20261030_INDEX_TITLE_3_KEYWORDS_ADDED",
+      "sha256_html": "0b2dc0b17faea4358bb861c87761c470b80b6458554d42cfbe4de6919f3d6b2a",
+      "has_old_intro": true,
+      "has_new_intro": false,
+      "title": "광주버블여지도 | 상무지구노래방 | 상무지구가라오케 | 상무지구유흥주점 | 상무지구단란주점 | 상무지구프라이빗룸"
+    },
+    {
+      "archive": "20261030_REGION_GUIDES_LANDMARK_PARKING_FULL",
+      "sha256_html": "00c945d723cff1a555ad24767ddbd958bfaaace837c2dcf5f56b17c541ad698e",
+      "has_old_intro": false,
+      "has_new_intro": true,
+      "title": "상무지구노래방 | 상무지구가라오케 | 치평동노래방 | 상무지구유흥주점 | 상무지구단란주점 | 상무지구프라이빗룸 | 광주버블여지도"
+    },
+    {
+      "archive": "20261030_CONTINUED_VENUE_GEO_PARKING_VERIFIED",
+      "sha256_html": "f67f2b269aeb093aec233e77e700b4808ae3399621eee6d76bb7d0e620b4dd7a",
+      "has_old_intro": false,
+      "has_new_intro": true,
+      "title": "상무지구노래방 | 상무지구가라오케 | 치평동노래방 | 상무지구유흥주점 | 상무지구단란주점 | 상무지구프라이빗룸 | 광주버블여지도"
+    }
+  ],
+  "web_open_observation": "Two search-tool URL snapshots show intro corresponding to different archived local versions; search snapshots are NOT raw simultaneous server responses.",
+  "deployment_status": "Not changed. No access to production Netlify headers/Deploys.",
+  "diagnosis": "Likely URL-specific retrieval/cache snapshots or a temporally different deploy; live server divergence unproven.",
+  "recommendation": "Do not redirect/remove UTM; preserve both same self canonical, deploy one reviewed static version only after approval and compare raw GET response hashes; investigate actual cache/deployment only if hashes differ."
+}

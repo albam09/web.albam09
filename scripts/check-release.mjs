@@ -31,4 +31,6 @@ must(read('bubble-alba/index.html').includes('ALBA_STATIC_START') && read('bubbl
 must(read('netlify.toml').includes('pretty_urls = true'),'Netlify pretty URL setting missing');
 must(redirects.includes('/explore/post/* /explore/post/index.html 200'),'dynamic explore rewrite missing');
 must(!/\/\*\s+\/index\.html\s+200/.test(redirects),'homepage catchall would replace regional pages');
+must(present('scripts/verify-url-variants.mjs'),'URL variant audit script missing');
+// Follow-up QA: canonical UTM aliases share the same region page; link map is not duplicated.
 console.log('[release-check] PASS: canonical 8, sitemap, llms, GEO, 301 aliases, bubble-alba, explorer, Netlify');
