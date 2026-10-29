@@ -1,0 +1,229 @@
+{
+  "base": "albam09_20261030_URL_VARIANTS_DIAGNOSIS_AND_FIX_FULL.zip",
+  "release": "albam09_20261030_FULL_SITE_DUPLICATE_CONTENT_CODE_QA_FINAL.zip",
+  "scope": {
+    "files_total": 427,
+    "html_total": 127,
+    "js_files": 47,
+    "json_files": 24,
+    "article_count": 61,
+    "region_count": 8,
+    "modified_files": 65
+  },
+  "article_text_overlap_method": "TF-IDF char 3–5 grams cosine similarity on .bbs-content, not a Google metric",
+  "article_metrics": {
+    "before_max": 0.73,
+    "after_max": 0.58129,
+    "before_pairs_ge_65": 3,
+    "after_pairs_ge_65": 0,
+    "before_pairs_ge_70": 2,
+    "after_pairs_ge_70": 0,
+    "top_pairs_after": [
+      {
+        "similarity": 0.58129,
+        "first": "bbs/174/index.html",
+        "second": "bbs/182/index.html"
+      },
+      {
+        "similarity": 0.52986,
+        "first": "bbs/060/index.html",
+        "second": "bbs/151/index.html"
+      },
+      {
+        "similarity": 0.48724,
+        "first": "bbs/020/index.html",
+        "second": "bbs/357/index.html"
+      },
+      {
+        "similarity": 0.48085,
+        "first": "bbs/039/index.html",
+        "second": "bbs/352/index.html"
+      },
+      {
+        "similarity": 0.47466,
+        "first": "bbs/003/index.html",
+        "second": "bbs/338/index.html"
+      },
+      {
+        "similarity": 0.46827,
+        "first": "bbs/010/index.html",
+        "second": "bbs/128/index.html"
+      },
+      {
+        "similarity": 0.45892,
+        "first": "bbs/331/index.html",
+        "second": "bbs/335/index.html"
+      },
+      {
+        "similarity": 0.4157,
+        "first": "bbs/332/index.html",
+        "second": "bbs/334/index.html"
+      },
+      {
+        "similarity": 0.41257,
+        "first": "bbs/013/index.html",
+        "second": "bbs/336/index.html"
+      },
+      {
+        "similarity": 0.40079,
+        "first": "bbs/166/index.html",
+        "second": "bbs/359/index.html"
+      },
+      {
+        "similarity": 0.39525,
+        "first": "bbs/031/index.html",
+        "second": "bbs/039/index.html"
+      },
+      {
+        "similarity": 0.39292,
+        "first": "bbs/351/index.html",
+        "second": "bbs/355/index.html"
+      },
+      {
+        "similarity": 0.38855,
+        "first": "bbs/162/index.html",
+        "second": "bbs/355/index.html"
+      },
+      {
+        "similarity": 0.38628,
+        "first": "bbs/039/index.html",
+        "second": "bbs/166/index.html"
+      },
+      {
+        "similarity": 0.38383,
+        "first": "bbs/350/index.html",
+        "second": "bbs/355/index.html"
+      },
+      {
+        "similarity": 0.3836,
+        "first": "bbs/039/index.html",
+        "second": "bbs/359/index.html"
+      },
+      {
+        "similarity": 0.38329,
+        "first": "bbs/019/index.html",
+        "second": "bbs/021/index.html"
+      },
+      {
+        "similarity": 0.38082,
+        "first": "bbs/334/index.html",
+        "second": "bbs/347/index.html"
+      },
+      {
+        "similarity": 0.38074,
+        "first": "bbs/004/index.html",
+        "second": "bbs/005/index.html"
+      },
+      {
+        "similarity": 0.37961,
+        "first": "bbs/350/index.html",
+        "second": "bbs/351/index.html"
+      }
+    ]
+  },
+  "verbatim_editorial_paragraphs": {
+    "before": 31,
+    "after": 0,
+    "minimum_length": 70
+  },
+  "regional_long_shared_paragraphs": 0,
+  "regional_shared_examples": [],
+  "duplicate_venue_facts_expected": "Business name, address, hours, factual directory entries may be repeated as citations. This audit does not assert zero similar words across the entire website.",
+  "static_qa": {
+    "node_js_syntax_failures": [],
+    "node_tests_exitcode": 0,
+    "node_tests_summary": "TAP version 13\n# PASS: staff dashboard loads comment review independent of post review; approve/reject buttons and source article link rendered\n# Subtest: scripts/tests/test-admin-comments.mjs\nok 1 - scripts/tests/test-admin-comments.mjs\n  ---\n  duration_ms: 39.648527\n  type: 'test'\n  ...\n# PASS: published => 정적 HTML/canonical/index/sitemap/archive; fetch error => 빌드 실패 & 기존 sitemap 보존; hidden => 정적 HTML/sitemap 제거\n# Subtest: scripts/tests/test-build-site.mjs\nok 2 - scripts/tests/test-build-site.mjs\n  ---\n  duration_ms: 163.73786\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 175.806983\n",
+    "json_parsing_failures": [],
+    "local_references_scanned": 7571,
+    "unresolved_local_references": [],
+    "seo_h1_canonical_description_errors": [],
+    "all_existing_anchors_scripts_styles_and_ids_unchanged": true,
+    "site_root_slash_navigation_handled": true
+  },
+  "modified_paths": [
+    "bbs/001/index.html",
+    "bbs/002/index.html",
+    "bbs/003/index.html",
+    "bbs/004/index.html",
+    "bbs/005/index.html",
+    "bbs/006/index.html",
+    "bbs/008/index.html",
+    "bbs/010/index.html",
+    "bbs/011/index.html",
+    "bbs/013/index.html",
+    "bbs/019/index.html",
+    "bbs/020/index.html",
+    "bbs/021/index.html",
+    "bbs/023/index.html",
+    "bbs/027/index.html",
+    "bbs/031/index.html",
+    "bbs/036/index.html",
+    "bbs/039/index.html",
+    "bbs/048/index.html",
+    "bbs/049/index.html",
+    "bbs/060/index.html",
+    "bbs/128/index.html",
+    "bbs/135/index.html",
+    "bbs/144/index.html",
+    "bbs/151/index.html",
+    "bbs/162/index.html",
+    "bbs/166/index.html",
+    "bbs/174/index.html",
+    "bbs/182/index.html",
+    "bbs/331/index.html",
+    "bbs/332/index.html",
+    "bbs/333/index.html",
+    "bbs/334/index.html",
+    "bbs/335/index.html",
+    "bbs/336/index.html",
+    "bbs/337/index.html",
+    "bbs/338/index.html",
+    "bbs/339/index.html",
+    "bbs/340/index.html",
+    "bbs/341/index.html",
+    "bbs/342/index.html",
+    "bbs/343/index.html",
+    "bbs/344/index.html",
+    "bbs/345/index.html",
+    "bbs/346/index.html",
+    "bbs/347/index.html",
+    "bbs/348/index.html",
+    "bbs/349/index.html",
+    "bbs/350/index.html",
+    "bbs/351/index.html",
+    "bbs/352/index.html",
+    "bbs/353/index.html",
+    "bbs/354/index.html",
+    "bbs/355/index.html",
+    "bbs/356/index.html",
+    "bbs/357/index.html",
+    "bbs/358/index.html",
+    "bbs/359/index.html",
+    "bbs/362/index.html",
+    "page/karaoke1/index.html",
+    "page/karaoke2/index.html",
+    "page/karaoke3/index.html",
+    "page/karaoke4/index.html",
+    "page/karaoke5/index.html",
+    "page/karaoke6/index.html"
+  ],
+  "integrity_and_limits": [
+    "All image, font, CSS, JS, Supabase, redirects, sitemap and non-edited files identical to source ZIP (hash-comparison)",
+    "User-accessible production deployment and Supabase account actions were not performed",
+    "No current web SEO search-volume metrics/Google ranking outcomes were inferred",
+    "Responsive live layout not browser-tested in a real production environment",
+    "Cross-article similarity heuristic; 0 duplicate paragraphs does not imply Google uniqueness guarantee"
+  ],
+  "site_policy": "No new noindex tags, redirect rules, domain rewrites, or removal of original pages performed",
+  "all_HTML_editorial_main_article_audit": {
+    "pages_scanned": 127,
+    "identical_full_content_bodies_100_plus_chars": 0,
+    "identical_paragraphs_across_pages_85_plus_chars": 0,
+    "note": "Only p within main/article/.bbs-content; shared headers/footer, repeated facts in lists and generated dynamic content not included"
+  },
+  "legacy_numeric_alias_01_to_08": {
+    "count": 8,
+    "status": "301 redirects from /page/karaoke01/…08/ to /page/karaoke1/…8/ in _redirects; fallback files have noindex and canonical to primary; these are not separate indexable regional articles",
+    "changed": false
+  }
+}
