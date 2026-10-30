@@ -159,3 +159,35 @@ html body[data-current-page="index"] main .info-panel-stack > #index-secondary-s
   width:100%!important;max-width:100%!important;min-width:0!important;white-space:normal!important;
  }
 }
+
+/* 2026-10-31: final responsive navigation grid — keep all 12 links within the page.
+   Overrides the historical fixed-width/flex and hard desktop grid rules above. */
+html body.ui-unified-page > .area-wrap nav.area-list {min-width:0!important;}
+html body.ui-unified-page > .area-wrap nav.area-list > ul {
+ display:grid!important; grid-template-columns:repeat(12,minmax(0,1fr))!important;
+ gap:10px!important; width:100%!important; max-width:100%!important; min-width:0!important;
+ justify-content:stretch!important; align-items:stretch!important;
+ overflow:visible!important; flex-wrap:unset!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
+ box-sizing:border-box!important; margin:0!important; padding:0!important;
+ width:100%!important; min-width:0!important; max-width:100%!important; flex:none!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+ box-sizing:border-box!important; display:flex!important; width:100%!important; min-width:0!important;
+ max-width:100%!important; min-height:56px!important; height:56px!important;
+ padding:6px 3px!important; font-size:clamp(10px,.8vw,13px)!important;
+ white-space:normal!important; word-break:keep-all!important; overflow-wrap:break-word!important;
+ line-height:1.25!important; border-radius:14px!important;
+}
+@media(max-width:1379px) {
+ html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;}
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:13px!important;height:49px!important;min-height:49px!important;}
+}
+@media(max-width:700px) {
+ html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;}
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:12px!important;height:45px!important;min-height:45px!important;padding:5px 2px!important;}
+}
+@media(max-width:360px) {
+ html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+}
