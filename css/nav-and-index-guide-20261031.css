@@ -1,7 +1,7 @@
 /* ALBAM09 unified site navigation. No legacy conflicting responsive rules. */
 html body.ui-unified-page > .area-wrap {
-  display:block!important; width:calc(100% - 28px)!important;
-  max-width:1560px!important; min-width:0!important;
+  display:block!important; width:calc(100% - 36px)!important;
+  max-width:1144px!important; min-width:0!important;
   margin:0 auto 24px!important; padding:0!important;
   overflow:visible!important; box-sizing:border-box!important;
 }

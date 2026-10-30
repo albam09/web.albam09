@@ -1,108 +1,107 @@
-/* 2026-10-31 responsive header. Logo | compact account controls | menu icon. */
-@media(max-width:700px) {
+/* 2026-10-31 final: mobile first. Brand + menu on first row;
+   all signed-in account controls on ONE right-aligned line below. */
+@media (max-width:700px) {
  html body.ui-unified-page > header.site-menu-host,
  html body:not(.detail-renew) > header.site-menu-host {
-   display:grid!important;grid-template-columns:minmax(0,1fr) 128px 40px!important;
-   grid-template-rows:58px!important;align-items:center!important;
-   justify-content:normal!important;column-gap:6px!important;row-gap:0!important;
-   margin:10px auto 12px!important;padding:6px 10px!important;
-   width:100%!important;max-width:100%!important;min-width:0!important;
-   min-height:0!important;height:auto!important;box-sizing:border-box!important;
-   overflow:visible!important;
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr) 42px!important;
+   grid-template-rows:44px 28px!important;
+   gap:4px 6px!important;align-items:center!important;
+   width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;
+   min-width:0!important;height:auto!important;min-height:0!important;
+   margin:10px auto 13px!important;padding:0!important;
+   overflow:visible!important;box-sizing:border-box!important;
  }
  html body.ui-unified-page > header.site-menu-host > a,
  html body:not(.detail-renew) > header.site-menu-host > a {
-   grid-column:1!important;grid-row:1!important;display:flex!important;
-   align-items:center!important;justify-self:stretch!important;
+   display:flex!important;grid-column:1!important;grid-row:1!important;
+   align-items:center!important;justify-self:start!important;
    width:100%!important;max-width:100%!important;min-width:0!important;
    margin:0!important;padding:0!important;overflow:visible!important;
-   flex:0 1 auto!important;
  }
  html body.ui-unified-page > header.site-menu-host [logo],
  html body:not(.detail-renew) > header.site-menu-host [logo] {
-   display:flex!important;align-items:center!important;gap:4px!important;
-   width:100%!important;min-width:0!important;max-width:100%!important;
-   overflow:visible!important;flex-shrink:1!important;
+   display:flex!important;align-items:center!important;gap:5px!important;
+   width:100%!important;max-width:100%!important;min-width:0!important;
+   overflow:visible!important;
  }
  html body.ui-unified-page > header.site-menu-host [svg-box],
- html body.ui-unified-page > header.site-menu-host [svg-box] svg,
  html body:not(.detail-renew) > header.site-menu-host [svg-box],
+ html body.ui-unified-page > header.site-menu-host [svg-box] svg,
  html body:not(.detail-renew) > header.site-menu-host [svg-box] svg {
-   display:block!important;flex:0 0 28px!important;width:28px!important;height:28px!important;
-   min-width:28px!important;min-height:28px!important;max-width:28px!important;
-   max-height:28px!important;overflow:visible!important;
+   display:block!important;flex:0 0 29px!important;
+   width:29px!important;height:29px!important;
+   min-width:29px!important;max-width:29px!important;
+   min-height:29px!important;max-height:29px!important;
+   overflow:visible!important;
  }
  html body.ui-unified-page > header.site-menu-host [logo] > div:last-child,
  html body:not(.detail-renew) > header.site-menu-host [logo] > div:last-child,
  html body.ui-unified-page > header.site-menu-host [title],
  html body:not(.detail-renew) > header.site-menu-host [title] {
-   display:block!important;min-width:0!important;max-width:100%!important;
-   flex:1 1 auto!important;width:auto!important;
-   font-size:clamp(11px,3vw,14px)!important;line-height:1.2!important;
-   letter-spacing:-.07em!important;white-space:nowrap!important;
-   overflow:hidden!important;text-overflow:ellipsis!important;
+   display:block!important;flex:1 1 auto!important;min-width:0!important;
+   width:auto!important;max-width:100%!important;
+   font-size:clamp(12px,3.8vw,16px)!important;
+   line-height:1.16!important;letter-spacing:-.07em!important;
+   white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
  }
+ html body.ui-unified-page > header.site-menu-host .site-menu-trigger,
+ html body:not(.detail-renew) > header.site-menu-host .site-menu-trigger {
+   display:flex!important;grid-column:2!important;grid-row:1!important;
+   justify-self:end!important;align-self:center!important;
+   position:static!important;flex:0 0 42px!important;
+   width:42px!important;height:42px!important;
+   min-width:42px!important;max-width:42px!important;
+   min-height:42px!important;max-height:42px!important;
+   margin:0!important;padding:8px!important;box-sizing:border-box!important;
+   overflow:visible!important;border-radius:12px!important;
+ }
+ /* The entire member group has its own second row; never push the brand. */
  html body.ui-unified-page > header.site-menu-host #ab09-memberbar.site-member-tools,
- html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar {
-   grid-column:2!important;grid-row:1!important;display:grid!important;
-   grid-template-columns:repeat(2,minmax(0,1fr))!important;
-   grid-template-rows:repeat(2,25px)!important;
-   grid-auto-flow:row!important;gap:3px!important;
-   align-items:center!important;justify-items:stretch!important;align-content:center!important;
-   position:static!important;z-index:3!important;
-   width:128px!important;max-width:128px!important;min-width:0!important;
-   height:53px!important;max-height:53px!important;min-height:53px!important;
-   margin:0!important;padding:0!important;overflow:visible!important;
-   background:transparent!important;box-shadow:none!important;border:0!important;
-   justify-self:end!important;align-self:center!important;box-sizing:border-box!important;
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar.site-member-tools {
+   display:flex!important;flex-wrap:nowrap!important;flex-direction:row!important;
+   grid-column:1 / -1!important;grid-row:2!important;
+   align-items:center!important;justify-content:flex-end!important;
+   justify-self:end!important;align-self:center!important;
+   gap:4px!important;position:static!important;
+   width:max-content!important;max-width:100%!important;min-width:0!important;
+   height:28px!important;min-height:28px!important;max-height:28px!important;
+   margin:0!important;padding:0!important;
+   background:transparent!important;border:0!important;box-shadow:none!important;
+   overflow:visible!important;white-space:nowrap!important;box-sizing:border-box!important;
  }
  html body.ui-unified-page > header.site-menu-host #ab09-memberbar > a,
  html body.ui-unified-page > header.site-menu-host #ab09-memberbar > button,
  html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > a,
  html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > button {
-   display:flex!important;align-items:center!important;justify-content:center!important;
-   width:100%!important;min-width:0!important;max-width:100%!important;
-   height:25px!important;min-height:25px!important;max-height:25px!important;
-   margin:0!important;padding:0 3px!important;border-radius:7px!important;
-   font-size:9px!important;line-height:1.1!important;letter-spacing:-.06em!important;
-   box-sizing:border-box!important;white-space:nowrap!important;
-   overflow:hidden!important;text-overflow:ellipsis!important;flex:none!important;
+   display:block!important;flex:0 0 auto!important;
+   width:auto!important;max-width:none!important;min-width:0!important;
+   height:26px!important;min-height:26px!important;max-height:26px!important;
+   margin:0!important;padding:0 6px!important;
+   font:800 9.5px/25px var(--albam09-font-main,Arial,sans-serif)!important;
+   letter-spacing:-.045em!important;border-radius:8px!important;
+   white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+   box-sizing:border-box!important;
  }
- html body.ui-unified-page > header.site-menu-host #ab09-memberbar > :nth-child(3):last-child,
- html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > :nth-child(3):last-child {
-   grid-column:2!important;
+ html body.ui-unified-page > header.site-menu-host #ab09-memberbar > .ab09-member-name,
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > .ab09-member-name {
+   max-width:92px!important;flex:0 1 92px!important;
  }
- html body.ui-unified-page > header.site-menu-host #ab09-memberbar > .site-member-login:only-child,
- html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > .site-member-login:only-child {
-   grid-column:2!important;grid-row:1!important;
- }
- html body.ui-unified-page > header.site-menu-host .site-menu-trigger,
- html body:not(.detail-renew) > header.site-menu-host .site-menu-trigger {
-   display:flex!important;grid-column:3!important;grid-row:1!important;
-   justify-self:end!important;align-self:center!important;
-   position:static!important;flex:0 0 40px!important;
-   width:40px!important;height:40px!important;
-   min-width:40px!important;min-height:40px!important;
-   max-width:40px!important;max-height:40px!important;
-   margin:0!important;padding:8px!important;box-sizing:border-box!important;
-   overflow:visible!important;border-radius:12px!important;
+ html body.ui-unified-page > header.site-menu-host #ab09-memberbar .ab09-badge,
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar .ab09-badge {
+   min-width:13px!important;height:13px!important;margin-left:2px!important;
+   padding:0 2px!important;font-size:8px!important;
  }
 }
-@media(max-width:350px) {
- html body.ui-unified-page > header.site-menu-host,
- html body:not(.detail-renew) > header.site-menu-host {
-   grid-template-columns:minmax(0,1fr) 116px 38px!important;
-   column-gap:4px!important;padding-left:8px!important;padding-right:8px!important;
+@media(max-width:350px){
+ html body.ui-unified-page > header.site-menu-host #ab09-memberbar > a,
+ html body.ui-unified-page > header.site-menu-host #ab09-memberbar > button,
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > a,
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > button {
+   padding:0 4px!important;font-size:9px!important;
  }
- html body.ui-unified-page > header.site-menu-host #ab09-memberbar.site-member-tools,
- html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar {width:116px!important;max-width:116px!important;}
- html body.ui-unified-page > header.site-menu-host #ab09-memberbar > *,
- html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > * {
-   font-size:8.4px!important;
- }
- html body.ui-unified-page > header.site-menu-host .site-menu-trigger,
- html body:not(.detail-renew) > header.site-menu-host .site-menu-trigger {
-   width:38px!important;min-width:38px!important;max-width:38px!important;
-   height:38px!important;min-height:38px!important;max-height:38px!important;
+ html body.ui-unified-page > header.site-menu-host #ab09-memberbar > .ab09-member-name,
+ html body:not(.detail-renew) > header.site-menu-host #ab09-memberbar > .ab09-member-name {
+   max-width:78px!important;flex-basis:78px!important;
  }
 }
