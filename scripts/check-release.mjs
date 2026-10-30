@@ -30,6 +30,19 @@ must(sitemap.includes('<loc>https://albam09.com/bubble-alba/</loc>'),'bubble-alb
 must(read('bubble-alba/index.html').includes('ALBA_STATIC_START') && read('bubble-alba/index.html').includes('ALBA_STATIC_END'),'bubble static build markers missing');
 must(read('netlify.toml').includes('pretty_urls = true'),'Netlify pretty URL setting missing');
 must(redirects.includes('/explore/post/* /explore/post/index.html 200'),'dynamic explore rewrite missing');
+
+// A fallback /explore/post/<slug>/ resolves ../../css as /explore/css: broken.
+const explorerTemplate=read('explore/post/index.html');
+for(const [,asset] of explorerTemplate.matchAll(/(?:href|src|poster)=["']([^"']+)["']/g)){
+ if(/^(?:\.\.\/)+/.test(asset))throw new Error('[release-check] Explorer rewrite asset must be root absolute: '+asset);
+ if(/^\/(?:css|js|img|fonts|data)\//.test(asset) || asset==='/favicon.ico' || asset==='/site.webmanifest'){
+   const local=asset.replace(/^\//,'').split('?')[0];
+   must(present(local),'Explorer asset missing: '+local);
+ }
+}
+must(explorerTemplate.includes('src="/js/explorer-post.js'), 'Explorer runtime script root-absolute path missing');
+must(explorerTemplate.includes('href="/css/master.css'), 'Explorer stylesheet root-absolute path missing');
+
 must(!/\/\*\s+\/index\.html\s+200/.test(redirects),'homepage catchall would replace regional pages');
 must(present('scripts/verify-url-variants.mjs'),'URL variant audit script missing');
 // Follow-up QA: canonical UTM aliases share the same region page; link map is not duplicated.
