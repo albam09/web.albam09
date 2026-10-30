@@ -1,0 +1,629 @@
+{
+  "note": "Coordinates are historical site records, not verified business addresses. No reverse geocoder available; no street number or floor fabricated.",
+  "changes": {
+    "links_changed": 384,
+    "search_route": 64,
+    "addr_replaced": 128,
+    "names_changed": 2
+  },
+  "region_pages": [
+    [
+      1,
+      92,
+      23
+    ],
+    [
+      2,
+      56,
+      14
+    ],
+    [
+      3,
+      36,
+      9
+    ],
+    [
+      4,
+      36,
+      9
+    ],
+    [
+      5,
+      28,
+      7
+    ],
+    [
+      6,
+      8,
+      2
+    ],
+    [
+      7,
+      0,
+      0
+    ],
+    [
+      8,
+      0,
+      0
+    ]
+  ],
+  "location_audit": [
+    {
+      "slug": "7seven",
+      "name": "7seven",
+      "area": "상무지구",
+      "location": "등록 좌표 35.156906, 126.849951",
+      "latitude": 35.15690649608998,
+      "longitude": 126.84995125004352,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "puppy",
+      "name": "강아지노래홀",
+      "area": "상무지구",
+      "location": "주변 단서: 상무지구 별미집 부근 · 등록 좌표 35.153274, 126.841856",
+      "latitude": 35.15327401976874,
+      "longitude": 126.84185570289276,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "gisaeng",
+      "name": "기생",
+      "area": "상무지구",
+      "location": "주변 단서: 서구 치평동 라마다호텔부근 · 등록 좌표 35.154949, 126.849846",
+      "latitude": 35.154949239970065,
+      "longitude": 126.84984604822804,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "running-rabbit",
+      "name": "달리는토끼",
+      "area": "상무지구",
+      "location": "주변 단서: 라마다호텔근처 · 등록 좌표 35.154980, 126.850483",
+      "latitude": 35.15497970521285,
+      "longitude": 126.85048259985928,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "russian-public",
+      "name": "러시아퍼블릭",
+      "area": "상무지구",
+      "location": "주변 단서: 광명메이루즈 부근 · 등록 좌표 35.154949, 126.849846",
+      "latitude": 35.154949239970065,
+      "longitude": 126.84984604822804,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "royal",
+      "name": "로얄",
+      "area": "상무지구",
+      "location": "주변 단서: 상무지구 라마다호텔 부근 · 등록 좌표 35.154751, 126.849913",
+      "latitude": 35.15475122760367,
+      "longitude": 126.84991349862538,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "roel-vip",
+      "name": "로엘vip",
+      "area": "상무지구",
+      "location": "주변 단서: 서구 센트럴 사거리 부근 · 등록 좌표 35.154646, 126.850485",
+      "latitude": 35.15464608990658,
+      "longitude": 126.85048525142092,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "rolex",
+      "name": "롤렉스",
+      "area": "상무지구",
+      "location": "주변 단서: 치평동 라마다 호텔 · 등록 좌표 35.154589, 126.849926",
+      "latitude": 35.154588987187026,
+      "longitude": 126.8499257683848,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "ruby-room-cafe",
+      "name": "루비룸카페",
+      "area": "상무지구",
+      "location": "주변 단서: 서구 센트럴 사거리 부근 · 등록 좌표 35.154646, 126.850485",
+      "latitude": 35.15464608990658,
+      "longitude": 126.85048525142092,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "room-flower-deer",
+      "name": "룸꽃사슴",
+      "area": "상무지구",
+      "location": "주변 단서: 상무 광명메이루즈 부근 · 등록 좌표 35.154589, 126.849926",
+      "latitude": 35.154588987187026,
+      "longitude": 126.8499257683848,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "room-my-my",
+      "name": "룸마이마이",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154427, 126.849916",
+      "latitude": 35.15442662895196,
+      "longitude": 126.84991608076236,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "room-beauty",
+      "name": "룸미인",
+      "area": "상무지구",
+      "location": "주변 단서: 광주 서구 치평동 · 등록 좌표 35.154312, 126.850488",
+      "latitude": 35.15431247458175,
+      "longitude": 126.85048790293904,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "flex-membership",
+      "name": "플렉스멤버쉽",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154273, 126.849917",
+      "latitude": 35.154273346249205,
+      "longitude": 126.84991730009044,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "3no",
+      "name": "3no",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154860, 126.849580",
+      "latitude": 35.15486,
+      "longitude": 126.84958,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "gaeingi",
+      "name": "개인기",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154720, 126.849710",
+      "latitude": 35.15472,
+      "longitude": 126.84971,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "goguryeo",
+      "name": "고구려",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154550, 126.849620",
+      "latitude": 35.15455,
+      "longitude": 126.84962,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "goodshot-business-room",
+      "name": "굿샷비즈니스룸",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154380, 126.849760",
+      "latitude": 35.15438,
+      "longitude": 126.84976,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "playground",
+      "name": "놀이터",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154220, 126.849590",
+      "latitude": 35.15422,
+      "longitude": 126.84959,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "multinational-pool-salon",
+      "name": "다국적-가라오케",
+      "area": "상무지구",
+      "location": "등록 좌표 35.154040, 126.849750",
+      "latitude": 35.15404,
+      "longitude": 126.84975,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "running-puppy",
+      "name": "달리는강아지",
+      "area": "상무지구",
+      "location": "등록 좌표 35.153880, 126.849610",
+      "latitude": 35.15388,
+      "longitude": 126.84961,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "baseball",
+      "name": "야구장",
+      "area": "상무지구",
+      "location": "등록 좌표 35.153700, 126.849770",
+      "latitude": 35.1537,
+      "longitude": 126.84977,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "you-and-me",
+      "name": "유앤미",
+      "area": "상무지구",
+      "location": "등록 좌표 35.153520, 126.849630",
+      "latitude": 35.15352,
+      "longitude": 126.84963,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "chocolate",
+      "name": "초콜렛",
+      "area": "상무지구",
+      "location": "등록 좌표 35.153350, 126.849780",
+      "latitude": 35.15335,
+      "longitude": 126.84978,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "art-gallery",
+      "name": "미술관",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 상무지구 (치평동) · 등록 좌표 35.154093, 126.849919",
+      "latitude": 35.15409301365272,
+      "longitude": 126.84991873458232,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "salute",
+      "name": "샬루트",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 광주광역시 서구 치평동 (상무지구) · 등록 좌표 35.154087, 126.850490",
+      "latitude": 35.1540870588112,
+      "longitude": 126.85048969448066,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "simple-public",
+      "name": "심플퍼블릭",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 광주 서구 치평동 · 등록 좌표 35.153741, 126.849911",
+      "latitude": 35.153741306167774,
+      "longitude": 126.84991055323292,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "wangga-joseon",
+      "name": "왕가구조선",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 화정동 골드클래스 2차 앞 /// 스퀘어 터미널 뒷편 아이파크 사거리 모텔골목 · 등록 좌표 35.153735, 126.850492",
+      "latitude": 35.15373541019222,
+      "longitude": 126.85049248924584,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "youtube",
+      "name": "유튜브가라오케",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 광명메이루즈 부근 · 등록 좌표 35.153263, 126.849881",
+      "latitude": 35.15326324801246,
+      "longitude": 126.84988141905023,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "secret-place",
+      "name": "은밀한그곳",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 광주 서구 치평동 라마다호텔 부근 · 등록 좌표 35.153263, 126.849881",
+      "latitude": 35.15326324801246,
+      "longitude": 126.84988141905023,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "chair-king",
+      "name": "의자왕",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 광주 서구 치평동 마스터즈룸 건너편 · 등록 좌표 35.152515, 126.849920",
+      "latitude": 35.15251504429832,
+      "longitude": 126.84992030743544,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "jottang",
+      "name": "조땅",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 볼튼호텔부근 · 등록 좌표 35.152248, 126.850515",
+      "latitude": 35.152247724656746,
+      "longitude": 126.85051529108938,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "tiffany",
+      "name": "티파니",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 람바다 사거리 · 등록 좌표 35.152200, 126.849934",
+      "latitude": 35.15219952106175,
+      "longitude": 126.84993379597763,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "face",
+      "name": "페이스",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 볼튼호텔부근 · 등록 좌표 35.151054, 126.849932",
+      "latitude": 35.151054349685026,
+      "longitude": 126.84993192564316,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "fix",
+      "name": "픽스",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 상무지구 센트럴호텔 부근 · 등록 좌표 35.150667, 126.849924",
+      "latitude": 35.150666575487854,
+      "longitude": 126.84992403118912,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "homerun",
+      "name": "홈런",
+      "area": "광천동 · 금호동",
+      "location": "주변 단서: 서구 상무지구 번화가에 위치 · 등록 좌표 35.150477, 126.849926",
+      "latitude": 35.15047722614822,
+      "longitude": 126.84992553718854,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "someday",
+      "name": "썸데이",
+      "area": "상무·광천동",
+      "location": "등록 좌표 35.151880, 126.850130",
+      "latitude": 35.15188,
+      "longitude": 126.85013,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "elite",
+      "name": "엘리트",
+      "area": "상무·광천동",
+      "location": "등록 좌표 35.151660, 126.850340",
+      "latitude": 35.15166,
+      "longitude": 126.85034,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "top",
+      "name": "top탑",
+      "area": "용봉동",
+      "location": "전철우 사거리 스타벅스 밑 (저불로55) · 등록 좌표 35.167304, 126.911921",
+      "latitude": 35.16730419568191,
+      "longitude": 126.91192149800943,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "cat-songhall",
+      "name": "고양이노래홀",
+      "area": "용봉동",
+      "location": "광주광역시 북구 중흥로 99 2층 고양이노래홀 · 등록 좌표 35.178696, 126.894301",
+      "latitude": 35.17869602942011,
+      "longitude": 126.89430051443948,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "numberone-songhall",
+      "name": "넘버원노래홀",
+      "area": "용봉동",
+      "location": "북구 무등로 218번길 55 (구 완도청정바다) · 등록 좌표 35.178455, 126.894786",
+      "latitude": 35.1784549947399,
+      "longitude": 126.89478552787436,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "sweet-karaoke",
+      "name": "달콤노래방",
+      "area": "용봉동",
+      "location": "북구 신안동 118-4( 북구 중흥로107) · 등록 좌표 35.178331, 126.893469",
+      "latitude": 35.17833118600354,
+      "longitude": 126.89346856024147,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "luxury-songhall",
+      "name": "명품노래홀",
+      "area": "용봉동",
+      "location": "주변 단서: 북구 신안동 엔씨백화점 뒤 세븐일레븐 옆건물 1층 · 등록 좌표 35.179023, 126.894847",
+      "latitude": 35.179023374231804,
+      "longitude": 126.8948472096304,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "hundred-percent-songhall",
+      "name": "백프로노래홀",
+      "area": "용봉동",
+      "location": "주변 단서: 광주 북구 신안동 · 등록 좌표 35.178311, 126.893095",
+      "latitude": 35.17831128232386,
+      "longitude": 126.8930953073586,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "boss",
+      "name": "보스",
+      "area": "용봉동",
+      "location": "광주 북구 유동 101-10 · 등록 좌표 35.179485, 126.895140",
+      "latitude": 35.17948470553554,
+      "longitude": 126.89514031873776,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "bingo-songhall",
+      "name": "빙고노래홀",
+      "area": "용봉동",
+      "location": "광주 북구 신안동120-4, 2층 · 등록 좌표 35.179864, 126.895192",
+      "latitude": 35.17986367988189,
+      "longitude": 126.89519242409352,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "orange",
+      "name": "오렌지",
+      "area": "용봉동",
+      "location": "등록 좌표 35.178920, 126.894180",
+      "latitude": 35.17892,
+      "longitude": 126.89418,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "padam-padam",
+      "name": "빠담빠담",
+      "area": "신안동",
+      "location": "북구 용봉동1365-4(네모 무인텔 옆) · 등록 좌표 35.161399, 126.906606",
+      "latitude": 35.16139916796464,
+      "longitude": 126.90660571041704,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "heart-songhall",
+      "name": "심쿵노래홀",
+      "area": "신안동",
+      "location": "광주광역시 북구 중흥로86 , 2층 심쿵노래홀 · 등록 좌표 35.161128, 126.906465",
+      "latitude": 35.161127967260924,
+      "longitude": 126.9064649391682,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "fox-songhall",
+      "name": "여우노래홀",
+      "area": "신안동",
+      "location": "광주광역시 북구 경양로 138 (유동101-1 ,2층) · 등록 좌표 35.160640, 126.906293",
+      "latitude": 35.160640203773994,
+      "longitude": 126.90629280240849,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "ilbeon-songhall",
+      "name": "일번노래홀",
+      "area": "신안동",
+      "location": "북구 신안동 136-6 · 등록 좌표 35.160216, 126.906109",
+      "latitude": 35.16021550322143,
+      "longitude": 126.9061092293366,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "first",
+      "name": "첫번째",
+      "area": "신안동",
+      "location": "광주 북구 유동 101-18 2층 첫번쨰 노래홀 · 등록 좌표 35.159913, 126.905046",
+      "latitude": 35.159912726086354,
+      "longitude": 126.90504637893152,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "kungkungtta-songhall",
+      "name": "쿵쿵따노래홀",
+      "area": "신안동",
+      "location": "신안동 14-2번지 광주 북구 역전지구대 부분 · 등록 좌표 35.159547, 126.905785",
+      "latitude": 35.159546651017,
+      "longitude": 126.90578469513574,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "queen",
+      "name": "퀸",
+      "area": "신안동",
+      "location": "북구 유동 102-5번지 퀸노래홀(2층) · 등록 좌표 35.160196, 126.905846",
+      "latitude": 35.16019617774741,
+      "longitude": 126.90584585106808,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "taehoo-songhall",
+      "name": "태후노래홀",
+      "area": "신안동",
+      "location": "광주광역시 북구 중흥로83 (신안동,2층) · 등록 좌표 35.160681, 126.905359",
+      "latitude": 35.160680710159774,
+      "longitude": 126.90535920700358,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "hong-songhall",
+      "name": "홍노래홀",
+      "area": "신안동",
+      "location": "북구 유동 102-19 2F 홍노래홀 · 등록 좌표 35.160938, 126.906269",
+      "latitude": 35.16093764780333,
+      "longitude": 126.90626868090143,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "K-1",
+      "name": "K-1",
+      "area": "첨단지구",
+      "location": "좌표 미등록",
+      "latitude": null,
+      "longitude": null,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "geurae-music-hall",
+      "name": "그래음악홀",
+      "area": "첨단지구",
+      "location": "주변 단서: 첨단 엠파이어호텔 부근 · 등록 좌표 35.218819, 126.843558",
+      "latitude": 35.21881854571878,
+      "longitude": 126.8435575329068,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "white-house",
+      "name": "백악관",
+      "area": "첨단지구",
+      "location": "주변 단서: 광산구 쌍암동 [첨단] · 등록 좌표 35.218811, 126.843788",
+      "latitude": 35.21881078010531,
+      "longitude": 126.84378833907957,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "zzang-songhall",
+      "name": "짱노래홀",
+      "area": "첨단지구",
+      "location": "주변 단서: 첨단 쌍암동 · 등록 좌표 35.219297, 126.843686",
+      "latitude": 35.21929713623533,
+      "longitude": 126.84368553361568,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "cheomdan-i",
+      "name": "첨단아이",
+      "area": "첨단지구",
+      "location": "첨단중앙로152번길 81-4 1층 · 등록 좌표 35.218657, 126.843779",
+      "latitude": 35.21865743966588,
+      "longitude": 126.8437785855439,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "king-songhall",
+      "name": "킹노래홀",
+      "area": "첨단지구",
+      "location": "주변 단서: 쌍암동 · 등록 좌표 35.218823, 126.842733",
+      "latitude": 35.218823091118004,
+      "longitude": 126.84273341176588,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "yeodaesaeng",
+      "name": "여대생",
+      "area": "첨단지구",
+      "location": "좌표 미등록",
+      "latitude": null,
+      "longitude": null,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "partner",
+      "name": "파트너",
+      "area": "목포",
+      "location": "주변 단서: 방일해장국 부근 · 등록 좌표 34.798410, 126.429411",
+      "latitude": 34.79840956168879,
+      "longitude": 126.42941111083648,
+      "needs_actual_business_address_confirmation": true
+    },
+    {
+      "slug": "oracle-karaoke-pub",
+      "name": "오라클가요주점",
+      "area": "목포",
+      "location": "주변 단서: 남악 · 등록 좌표 34.797641, 126.433291",
+      "latitude": 34.797641099701494,
+      "longitude": 126.4332906878556,
+      "needs_actual_business_address_confirmation": true
+    }
+  ]
+}

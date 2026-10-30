@@ -7,7 +7,7 @@
     var slug=String(v.slug||v.id||'').trim();
     var region=String(v.region||'').trim();
     if(!name||!slug)return;
-    SEARCH_ITEMS.push({name:name,route:'https://ilovebam11.com/place/'+encodeURIComponent(slug)+'/',kind:'업소',region:region,aliases:[name,region+' '+name,name+' '+region,name+' 업소',name+' 상세',name+' 상세페이지',name+' 지역목록']});
+    SEARCH_ITEMS.push({name:name,route:'/map/'+({'서구1':'karaoke1','서구2':'karaoke2','북구2':'karaoke3','북구1':'karaoke4','광산구':'karaoke5','목포':'karaoke6'}[region]||'')+'/?venue='+encodeURIComponent(slug),kind:'업소',region:region,aliases:[name,region+' '+name,name+' '+region,name+' 업소',name+' 상세',name+' 상세페이지',name+' 지역목록']});
   });
   function normalize(s){return String(s||'').toLowerCase().replace(/\s+/g,'').replace(/[·ㆍ・.]/g,'').replace(/[^0-9a-z가-힣]/g,'');}
   function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}

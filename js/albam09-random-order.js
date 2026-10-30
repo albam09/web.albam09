@@ -37,7 +37,7 @@ function isIndex(){
     var count=0;
     document.querySelectorAll('section[list] div[wrapper]').forEach(function(box){
       var cards=Array.prototype.slice.call(box.children).filter(function(el){
-        return el.tagName==='UL' && el.querySelector('a[href^="/place/"], a[href^="https://ilovebam11.com/place/"]');
+        return el.tagName==='UL' && el.querySelector('a[href^="/place/"], a[href^="https://ilovebam11.com/place/"], a[href^="/map/karaoke"][href*="?venue="]');
       });
       if(cards.length>1){
         shuffle(cards).forEach(function(el){ box.insertBefore(el, box.firstChild); });
