@@ -210,3 +210,25 @@ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {box-sizing:b
 @media (max-width:350px) {
  html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(3,minmax(0,1fr))!important;}
 }
+
+/* 20261031 mobile compact header: long logged-in usernames must never push logo or menu off-screen */
+@media (max-width:700px){
+ html body:not(.detail-renew)>header.site-menu-host,
+ html body.ui-unified-page>header.site-menu-host{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,auto) 40px!important;align-items:center!important;column-gap:6px!important;padding-left:10px!important;padding-right:10px!important;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important;}
+ html body:not(.detail-renew)>header.site-menu-host>a{min-width:0!important;max-width:100%!important;overflow:hidden!important;}
+ html body:not(.detail-renew)>header.site-menu-host [logo]{min-width:0!important;max-width:100%!important;gap:4px!important;overflow:hidden!important;}
+ html body:not(.detail-renew)>header.site-menu-host [svg-box] svg{width:28px!important;height:28px!important;flex-shrink:0!important;}
+ html body:not(.detail-renew)>header.site-menu-host [logo]>div:last-child{min-width:0!important;max-width:100%!important;font-size:clamp(12px,3.6vw,18px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{display:flex!important;min-width:0!important;max-width:152px!important;width:auto!important;overflow:hidden!important;flex-wrap:nowrap!important;gap:3px!important;justify-content:flex-end!important;}
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{min-width:0!important;max-width:64px!important;min-height:30px!important;height:30px!important;padding:0 5px!important;font-size:10px!important;line-height:1.15!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;flex:0 1 auto!important;border-radius:8px!important;}
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar .site-member-login{max-width:64px!important;}
+ html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{width:40px!important;height:40px!important;min-width:40px!important;max-width:40px!important;padding:8px!important;margin:0!important;box-sizing:border-box!important;}
+ html body.ui-unified-page>.area-wrap nav.area-list>ul{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;}
+ html body.ui-unified-page>.area-wrap nav.area-list>ul>li>a{min-height:40px!important;max-height:46px!important;padding:5px 2px!important;font-size:11px!important;}
+}
+@media (max-width:390px){
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{max-width:118px!important;}
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{max-width:51px!important;font-size:9px!important;padding:0 3px!important;}
+}
