@@ -232,3 +232,61 @@ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {box-sizing:b
  html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
  html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{max-width:51px!important;font-size:9px!important;padding:0 3px!important;}
 }
+
+/* 2026-10-31 corrective mobile member header: two rows preserve all role buttons.
+   Avoid squeezing memberbar into one too-small column and clipping admin actions. */
+@media(max-width:700px){
+ html body header.site-menu-host,
+ html body.ui-unified-page>header.site-menu-host,
+ html body:not(.detail-renew)>header.site-menu-host{
+  display:grid!important;grid-template-columns:minmax(0,1fr) 44px!important;
+  grid-template-rows:auto auto!important;align-items:center!important;
+  column-gap:8px!important;row-gap:10px!important;
+  padding:12px 12px!important;width:100%!important;max-width:100%!important;
+  min-width:0!important;overflow:visible!important;box-sizing:border-box!important;
+ }
+ html body header.site-menu-host>a,
+ html body:not(.detail-renew)>header.site-menu-host>a{
+  grid-column:1!important;grid-row:1!important;width:auto!important;
+  min-width:0!important;max-width:100%!important;overflow:hidden!important;
+  display:flex!important;align-items:center!important;
+ }
+ html body header.site-menu-host .site-menu-trigger,
+ html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{
+  grid-column:2!important;grid-row:1!important;position:static!important;
+  display:flex!important;width:44px!important;min-width:44px!important;
+  max-width:44px!important;height:44px!important;margin:0!important;
+  justify-self:end!important;box-sizing:border-box!important;
+ }
+ html body header.site-menu-host #ab09-memberbar,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar,
+ html body.ui-unified-page>header.site-menu-host #ab09-memberbar.site-member-tools{
+  grid-column:1/-1!important;grid-row:2!important;position:static!important;
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+  justify-content:flex-end!important;gap:6px!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  margin:0!important;padding:0!important;overflow:visible!important;box-sizing:border-box!important;
+ }
+ html body header.site-menu-host #ab09-memberbar a,
+ html body header.site-menu-host #ab09-memberbar button,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{
+  flex:0 0 auto!important;width:auto!important;max-width:none!important;
+  min-width:0!important;min-height:34px!important;height:34px!important;
+  padding:0 9px!important;font-size:11px!important;
+  line-height:1.2!important;border-radius:10px!important;
+  overflow:visible!important;white-space:nowrap!important;text-overflow:clip!important;
+  box-sizing:border-box!important;
+ }
+ html body header.site-menu-host [logo],
+ html body:not(.detail-renew)>header.site-menu-host [logo]{min-width:0!important;max-width:100%!important;overflow:hidden!important;}
+}
+@media(max-width:390px){
+ html body header.site-menu-host #ab09-memberbar a,
+ html body header.site-menu-host #ab09-memberbar button,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
+ html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{
+  max-width:none!important;min-height:32px!important;height:32px!important;
+  padding:0 7px!important;font-size:10px!important;
+ }
+}
