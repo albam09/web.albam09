@@ -1,292 +1,87 @@
-/* ALBAM09 NAV PARITY: single source of truth for every page. 2026-10-31.
-   Explicitly supersedes older index bundle and region-only nav CSS. */
-html body.ui-unified-page > header.site-menu-host {
-  width:100%!important;max-width:none!important;box-sizing:border-box!important;
-  padding-left:clamp(16px,3.5vw,62px)!important;
-  padding-right:clamp(16px,3.5vw,62px)!important;
-  margin:28px auto 22px!important;
-}
+/* ALBAM09 unified site navigation. No legacy conflicting responsive rules. */
 html body.ui-unified-page > .area-wrap {
-  width:100%!important;max-width:none!important;box-sizing:border-box!important;
-  padding:0 clamp(16px,3.5vw,62px)!important;
-  margin:0 auto 28px!important;
-  overflow:visible!important;
+  display:block!important; width:calc(100% - 28px)!important;
+  max-width:1560px!important; min-width:0!important;
+  margin:0 auto 24px!important; padding:0!important;
+  overflow:visible!important; box-sizing:border-box!important;
 }
 html body.ui-unified-page > .area-wrap nav.area-list {
-  width:100%!important;max-width:100%!important;
-  display:block!important;margin:0!important;padding:0!important;box-sizing:border-box!important;
+  display:block!important; width:100%!important; max-width:100%!important;
+  min-width:0!important; margin:0!important; padding:0!important;
+  box-sizing:border-box!important; overflow:hidden!important;
 }
 html body.ui-unified-page > .area-wrap nav.area-list > ul {
-  display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
-  justify-content:flex-start!important;justify-items:initial!important;
-  gap:9px!important;width:100%!important;max-width:100%!important;min-width:0!important;
-  padding:0!important;margin:0!important;list-style:none!important;
-  overflow-x:auto!important;overflow-y:hidden!important;
-  scrollbar-width:thin!important;box-sizing:border-box!important;
+  display:grid!important; grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  align-items:stretch!important; justify-content:initial!important;
+  gap:8px!important; width:100%!important; max-width:100%!important;
+  min-width:0!important; padding:0!important; margin:0!important;
+  list-style:none!important; overflow:visible!important; box-sizing:border-box!important;
+  flex-wrap:unset!important;
 }
 html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
-  flex:0 0 auto!important;width:auto!important;max-width:none!important;min-width:0!important;
-  display:list-item!important;padding:0!important;margin:0!important;list-style:none!important;
+  display:block!important; min-width:0!important; width:100%!important; max-width:100%!important;
+  margin:0!important; padding:0!important; flex:none!important; box-sizing:border-box!important;
+  list-style:none!important;
 }
 html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  width:auto!important;max-width:none!important;min-width:0!important;
-  box-sizing:border-box!important;height:44px!important;min-height:44px!important;
-  padding:0 13px!important;border-radius:12px!important;
-  font-size:13px!important;line-height:1.15!important;letter-spacing:-.035em!important;
-  white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;
-  text-decoration:none!important;text-align:center!important;font-weight:800!important;
-  border:1px solid #e7e4ec!important;background:#fff!important;color:#181525!important;
-  box-shadow:0 4px 14px rgba(0,0,0,.035)!important;
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  width:100%!important; max-width:100%!important; min-width:0!important;
+  height:44px!important; min-height:44px!important; max-height:44px!important;
+  margin:0!important; padding:3px 3px!important; box-sizing:border-box!important;
+  font-size:clamp(10px,.78vw,12px)!important; line-height:1.16!important;
+  letter-spacing:-.065em!important; font-weight:750!important;
+  white-space:normal!important; word-break:keep-all!important; overflow-wrap:anywhere!important;
+  overflow:hidden!important; border:1px solid #e7e2ef!important;
+  border-radius:12px!important; background:#fff!important; color:#21182f!important;
+  text-align:center!important; text-decoration:none!important;
+  box-shadow:0 3px 12px rgba(25,12,54,.035)!important;
 }
 html body.ui-unified-page > .area-wrap nav.area-list > ul > li.current > a,
 html body.ui-unified-page > .area-wrap nav.area-list > ul > li[aria-current="page"] > a {
-  background:linear-gradient(135deg,#9b49ff,#8233e6)!important;color:#fff!important;
-  border-color:transparent!important;box-shadow:0 8px 18px rgba(130,51,230,.16)!important;
+  background:linear-gradient(135deg,#9945f4,#8635ee)!important;
+  border-color:transparent!important; color:#fff!important;
+  box-shadow:0 5px 14px rgba(136,61,231,.14)!important;
 }
-/* Tablet: uniform two rows without inconsistent stretching. */
-@media(max-width:900px) {
-  html body.ui-unified-page > .area-wrap nav.area-list > ul {
-    display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
-    gap:7px!important;overflow:visible!important;align-items:stretch!important;
-    justify-content:initial!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
-    min-width:0!important;width:100%!important;max-width:100%!important;
-  }
+@media (min-width:701px) and (max-width:1050px) {
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {gap:5px!important;}
   html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
-    min-width:0!important;width:100%!important;max-width:100%!important;height:40px!important;
-    min-height:40px!important;padding:5px 4px!important;font-size:12px!important;
-    line-height:1.2!important;white-space:normal!important;overflow-wrap:anywhere!important;
+    height:43px!important;min-height:43px!important;max-height:43px!important;
+    font-size:10px!important;padding:2px!important;border-radius:10px!important;
   }
 }
-@media(max-width:520px) {
-  html body.ui-unified-page > header.site-menu-host {
-    margin:18px auto 14px!important;padding-left:12px!important;padding-right:12px!important;
-  }
-  html body.ui-unified-page > .area-wrap {
-    padding:0 10px!important;margin:0 auto 18px!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul {
-    display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
-    gap:6px!important;overflow:visible!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
-    height:auto!important;min-height:38px!important;border-radius:10px!important;
-    font-size:11.5px!important;letter-spacing:-.05em!important;
-  }
-}
-@media(max-width:340px) {
-  html body.ui-unified-page > .area-wrap nav.area-list > ul {
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  }
-}
-/* INDEX guide is the final accordion below the BBS list, matching its sibling widths. */
-html body[data-current-page="index"] main .info-panel-stack > #index-secondary-search-guide {
-  width:100%!important;max-width:100%!important;box-sizing:border-box!important;
-  padding:0!important;margin:0!important;
-}
-/* Mobile brand controls: old grid styles pushed the login into a separate row. */
-@media(max-width:520px){
-  html body.ui-unified-page > header.site-menu-host {
-    display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
-    align-items:center!important;justify-content:space-between!important;
-    gap:8px!important;
-  }
-  html body.ui-unified-page > header.site-menu-host > a {
-    display:inline-flex!important;min-width:0!important;flex:0 1 auto!important;
-    overflow:hidden!important;
-  }
-  html body.ui-unified-page > header.site-menu-host > a [logo] {min-width:0!important;gap:6px!important;}
-  html body.ui-unified-page > header.site-menu-host > a [title] {font-size:clamp(16px,5vw,23px)!important;overflow:hidden!important;text-overflow:ellipsis!important;}
-  html body.ui-unified-page > header.site-menu-host .site-member-tools {
-    display:flex!important;position:static!important;grid-column:auto!important;
-    width:auto!important;min-width:0!important;max-width:max-content!important;
-    margin:0 0 0 auto!important;flex:0 0 auto!important;
-  }
-  html body.ui-unified-page > header.site-menu-host .site-menu-trigger {
-    position:static!important;flex:0 0 46px!important;
-    width:46px!important;height:46px!important;margin:0!important;
-  }
-}
-@media(max-width:520px){
-  html body.ui-unified-page:not(.detail-renew) > header.site-menu-host #ab09-memberbar.site-member-tools {
-    flex:0 0 auto!important;
-    width:auto!important;max-width:max-content!important;min-width:0!important;
-    grid-column:auto!important;grid-row:auto!important;
-    margin:0 0 0 auto!important;padding:0!important;
-    justify-content:flex-end!important;align-self:center!important;
-  }
-  html body.ui-unified-page:not(.detail-renew)>header.site-menu-host > a {
-    width:auto!important;max-width:calc(100% - 120px)!important;
-    min-width:0!important;flex:0 1 auto!important;
-  }
-  html body.ui-unified-page:not(.detail-renew)>header.site-menu-host > a [title] {
-    font-size:clamp(16px,4.2vw,20px)!important;
-    max-width:100%!important;min-width:0!important;
-    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
-  }
-}
-
-
-/* FINAL DESKTOP NAV WIDTH CORRECTION (2026-10-31). Desktop buttons must fill
-   the shared content width, without space-between, horizontal scroll or left clustering. */
-@media (min-width: 1101px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {
-  display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;
-  width:100%!important;gap:9px!important;justify-content:stretch!important;
-  overflow:visible!important;align-items:stretch!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
-  width:100%!important;min-width:0!important;max-width:100%!important;
-  flex:none!important;margin:0!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
-  width:100%!important;max-width:100%!important;min-width:0!important;
-  box-sizing:border-box!important;padding:0 5px!important;font-size:12px!important;
-  white-space:normal!important;overflow-wrap:normal!important;word-break:keep-all!important;
- }
-}
-@media (min-width:901px) and (max-width:1100px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {
-  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
-  gap:9px!important;overflow:visible!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
-  width:100%!important;min-width:0!important;max-width:100%!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
-  width:100%!important;max-width:100%!important;min-width:0!important;white-space:normal!important;
- }
-}
-
-/* 2026-10-31: final responsive navigation grid — keep all 12 links within the page.
-   Overrides the historical fixed-width/flex and hard desktop grid rules above. */
-html body.ui-unified-page > .area-wrap nav.area-list {min-width:0!important;}
-html body.ui-unified-page > .area-wrap nav.area-list > ul {
- display:grid!important; grid-template-columns:repeat(12,minmax(0,1fr))!important;
- gap:10px!important; width:100%!important; max-width:100%!important; min-width:0!important;
- justify-content:stretch!important; align-items:stretch!important;
- overflow:visible!important; flex-wrap:unset!important;
-}
-html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
- box-sizing:border-box!important; margin:0!important; padding:0!important;
- width:100%!important; min-width:0!important; max-width:100%!important; flex:none!important;
-}
-html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
- box-sizing:border-box!important; display:flex!important; width:100%!important; min-width:0!important;
- max-width:100%!important; min-height:56px!important; height:56px!important;
- padding:6px 3px!important; font-size:clamp(10px,.8vw,13px)!important;
- white-space:normal!important; word-break:keep-all!important; overflow-wrap:break-word!important;
- line-height:1.25!important; border-radius:14px!important;
-}
-@media(max-width:1379px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;}
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:13px!important;height:49px!important;min-height:49px!important;}
-}
-@media(max-width:700px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;}
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:12px!important;height:45px!important;min-height:45px!important;padding:5px 2px!important;}
-}
-@media(max-width:360px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(3,minmax(0,1fr))!important;}
-}
-
-/* 2026-10-31 verified no-overflow override: constrain the nav to its viewport. */
-html body.ui-unified-page > .area-wrap { width:100%!important;max-width:100vw!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important; }
-html body.ui-unified-page > .area-wrap nav.area-list {max-width:100%!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important;}
-html body.ui-unified-page > .area-wrap nav.area-list > ul {display:grid!important;width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:0!important;gap:9px!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;justify-content:initial!important;overflow:visible!important;}
-html body.ui-unified-page > .area-wrap nav.area-list > ul > li {min-width:0!important;width:auto!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:0!important;}
-html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;min-height:52px!important;padding:7px 4px!important;display:flex!important;align-items:center!important;justify-content:center!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:keep-all!important;line-height:1.25!important;font-size:clamp(10px,.75vw,13px)!important;}
-@media (max-width:1640px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(6,minmax(0,1fr))!important;}
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:13px!important;min-height:48px!important;}
-}
+/* Phone and narrow tablet: SIX columns * TWO rows, never horizontal scroll. */
 @media (max-width:700px) {
- html body.ui-unified-page > .area-wrap {padding-left:10px!important;padding-right:10px!important;}
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;}
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {font-size:11.5px!important;min-height:46px!important;padding:5px 2px!important;border-radius:10px!important;}
+  html body.ui-unified-page > .area-wrap {
+    width:calc(100% - 20px)!important; max-width:calc(100% - 20px)!important;
+    margin:0 auto 16px!important;padding:0!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:5px!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+    font-size:clamp(8.8px,2.45vw,10.5px)!important;
+    line-height:1.17!important;letter-spacing:-.065em!important;
+    min-height:40px!important;height:40px!important;max-height:40px!important;
+    padding:2px 1px!important;border-radius:9px!important;
+    white-space:normal!important;overflow-wrap:anywhere!important;word-break:keep-all!important;
+  }
 }
 @media (max-width:350px) {
- html body.ui-unified-page > .area-wrap nav.area-list > ul {grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {gap:4px!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+    font-size:8.5px!important;max-height:42px!important;height:42px!important;
+  }
 }
-
-/* 20261031 mobile compact header: long logged-in usernames must never push logo or menu off-screen */
-@media (max-width:700px){
- html body:not(.detail-renew)>header.site-menu-host,
- html body.ui-unified-page>header.site-menu-host{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,auto) 40px!important;align-items:center!important;column-gap:6px!important;padding-left:10px!important;padding-right:10px!important;width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important;}
- html body:not(.detail-renew)>header.site-menu-host>a{min-width:0!important;max-width:100%!important;overflow:hidden!important;}
- html body:not(.detail-renew)>header.site-menu-host [logo]{min-width:0!important;max-width:100%!important;gap:4px!important;overflow:hidden!important;}
- html body:not(.detail-renew)>header.site-menu-host [svg-box] svg{width:28px!important;height:28px!important;flex-shrink:0!important;}
- html body:not(.detail-renew)>header.site-menu-host [logo]>div:last-child{min-width:0!important;max-width:100%!important;font-size:clamp(12px,3.6vw,18px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{display:flex!important;min-width:0!important;max-width:152px!important;width:auto!important;overflow:hidden!important;flex-wrap:nowrap!important;gap:3px!important;justify-content:flex-end!important;}
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{min-width:0!important;max-width:64px!important;min-height:30px!important;height:30px!important;padding:0 5px!important;font-size:10px!important;line-height:1.15!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;flex:0 1 auto!important;border-radius:8px!important;}
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar .site-member-login{max-width:64px!important;}
- html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{width:40px!important;height:40px!important;min-width:40px!important;max-width:40px!important;padding:8px!important;margin:0!important;box-sizing:border-box!important;}
- html body.ui-unified-page>.area-wrap nav.area-list>ul{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;}
- html body.ui-unified-page>.area-wrap nav.area-list>ul>li>a{min-height:40px!important;max-height:46px!important;padding:5px 2px!important;font-size:11px!important;}
+html body[data-current-page="index"] main .info-panel-stack > #index-secondary-search-guide {
+  width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:0!important;
 }
-@media (max-width:390px){
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar{max-width:118px!important;}
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{max-width:51px!important;font-size:9px!important;padding:0 3px!important;}
-}
-
-/* 2026-10-31 corrective mobile member header: two rows preserve all role buttons.
-   Avoid squeezing memberbar into one too-small column and clipping admin actions. */
-@media(max-width:700px){
- html body header.site-menu-host,
- html body.ui-unified-page>header.site-menu-host,
- html body:not(.detail-renew)>header.site-menu-host{
-  display:grid!important;grid-template-columns:minmax(0,1fr) 44px!important;
-  grid-template-rows:auto auto!important;align-items:center!important;
-  column-gap:8px!important;row-gap:10px!important;
-  padding:12px 12px!important;width:100%!important;max-width:100%!important;
-  min-width:0!important;overflow:visible!important;box-sizing:border-box!important;
+/* At the narrowest supported phone width, show the concise location label in the
+   same navigation cell. The original full link text remains in the HTML. */
+@media(max-width:350px) {
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a {
+  font-size:0!important;
  }
- html body header.site-menu-host>a,
- html body:not(.detail-renew)>header.site-menu-host>a{
-  grid-column:1!important;grid-row:1!important;width:auto!important;
-  min-width:0!important;max-width:100%!important;overflow:hidden!important;
-  display:flex!important;align-items:center!important;
- }
- html body header.site-menu-host .site-menu-trigger,
- html body:not(.detail-renew)>header.site-menu-host .site-menu-trigger{
-  grid-column:2!important;grid-row:1!important;position:static!important;
-  display:flex!important;width:44px!important;min-width:44px!important;
-  max-width:44px!important;height:44px!important;margin:0!important;
-  justify-self:end!important;box-sizing:border-box!important;
- }
- html body header.site-menu-host #ab09-memberbar,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar,
- html body.ui-unified-page>header.site-menu-host #ab09-memberbar.site-member-tools{
-  grid-column:1/-1!important;grid-row:2!important;position:static!important;
-  display:flex!important;flex-wrap:wrap!important;align-items:center!important;
-  justify-content:flex-end!important;gap:6px!important;
-  width:100%!important;max-width:100%!important;min-width:0!important;
-  margin:0!important;padding:0!important;overflow:visible!important;box-sizing:border-box!important;
- }
- html body header.site-menu-host #ab09-memberbar a,
- html body header.site-menu-host #ab09-memberbar button,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{
-  flex:0 0 auto!important;width:auto!important;max-width:none!important;
-  min-width:0!important;min-height:34px!important;height:34px!important;
-  padding:0 9px!important;font-size:11px!important;
-  line-height:1.2!important;border-radius:10px!important;
-  overflow:visible!important;white-space:nowrap!important;text-overflow:clip!important;
-  box-sizing:border-box!important;
- }
- html body header.site-menu-host [logo],
- html body:not(.detail-renew)>header.site-menu-host [logo]{min-width:0!important;max-width:100%!important;overflow:hidden!important;}
-}
-@media(max-width:390px){
- html body header.site-menu-host #ab09-memberbar a,
- html body header.site-menu-host #ab09-memberbar button,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar a,
- html body:not(.detail-renew)>header.site-menu-host #ab09-memberbar button{
-  max-width:none!important;min-height:32px!important;height:32px!important;
-  padding:0 7px!important;font-size:10px!important;
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after {
+  content:"광천동";font-size:8.5px;letter-spacing:-.03em;
  }
 }
