@@ -363,7 +363,7 @@ const TILE_URL='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const TILE_SIZE=256,MIN_ZOOM=11,MAX_ZOOM=19;
 
 /* 실제 주소/좌표를 받으면 아래 값만 정확히 교체하면 됩니다. */
-const places=[{"name":"파트너","area":"목포","address":"주변 단서: 방일해장국 부근 · 등록 좌표 34.798410, 126.429411","lat":34.79840956168879,"lng":126.42941111083648,"url":"https://ilovebam11.com/place/partner/","slug":"partner","locationStatus":"coordinate-unverified","phone":"050371528028","image":"/thumbs/venues/partner.webp"},{"name":"오라클가요주점","area":"목포","address":"주변 단서: 남악 · 등록 좌표 34.797641, 126.433291","lat":34.797641099701494,"lng":126.4332906878556,"url":"https://ilovebam11.com/place/oracle-karaoke-pub/","slug":"oracle-karaoke-pub","locationStatus":"coordinate-unverified","phone":"050371528028","image":"/thumbs/venues/oracle-karaoke-pub.webp"}];
+const places=[{"name":"파트너","area":"목포","address":"전라남도 목포·남악권 · 지번 확인 중","lat":34.79840956168879,"lng":126.42941111083648,"url":"https://ilovebam11.com/place/partner/","slug":"partner","locationStatus":"coordinate-unverified","phone":"050371528028","image":"/thumbs/venues/partner.webp","addressVerified":false},{"name":"오라클가요주점","area":"목포","address":"전라남도 목포·남악권 · 지번 확인 중","lat":34.797641099701494,"lng":126.4332906878556,"url":"https://ilovebam11.com/place/oracle-karaoke-pub/","slug":"oracle-karaoke-pub","locationStatus":"coordinate-unverified","phone":"050371528028","image":"/thumbs/venues/oracle-karaoke-pub.webp","addressVerified":false}];
 
 const map=document.getElementById('map'),tiles=document.getElementById('tiles'),markers=document.getElementById('markers'),popup=document.getElementById('popup'),search=document.getElementById('search'),placeList=document.getElementById('placeList'),scaleBox=document.getElementById('scale'),count=document.getElementById('count');
 let center={lat:34.7980253,lng:126.4313509},zoom=15,dragging=false,startX=0,startY=0,startCenterPx=null,selected=-1;
@@ -378,20 +378,63 @@ function tileUrl(z,x,y){return TILE_URL.replace('{z}',z).replace('{x}',x).replac
 function filteredPlaces(){const q=search.value.trim().toLowerCase();return places.map((p,i)=>({...p,_i:i})).filter(p=>!q||p.name.toLowerCase().includes(q)||p.area.toLowerCase().includes(q)||p.address.toLowerCase().includes(q))}
 function renderTiles(){const r=map.getBoundingClientRect(),cx=lngToX(center.lng,zoom),cy=latToY(center.lat,zoom),left=cx-r.width/2,top=cy-r.height/2,minX=Math.floor(left/TILE_SIZE)-1,maxX=Math.floor((left+r.width)/TILE_SIZE)+1,minY=Math.floor(top/TILE_SIZE)-1,maxY=Math.floor((top+r.height)/TILE_SIZE)+1,n=Math.pow(2,zoom);tiles.innerHTML='';for(let x=minX;x<=maxX;x++)for(let y=minY;y<=maxY;y++){if(y<0||y>=n)continue;const img=document.createElement('img');img.className='tile';img.alt='';img.style.opacity='0';img.src=tileUrl(zoom,((x%n)+n)%n,y);img.onload=()=>{img.style.transition='opacity .12s linear';img.style.opacity='1'};img.style.left=(x*TILE_SIZE-left)+'px';img.style.top=(y*TILE_SIZE-top)+'px';img.onerror=()=>{img.style.background='#e7ebed';img.removeAttribute('src')};tiles.appendChild(img)}scaleBox.textContent='확대 '+zoom}
 function renderMarkers(){markers.innerHTML='';filteredPlaces().forEach(p=>{if(!Number.isFinite(p.lat)||!Number.isFinite(p.lng))return;const pt=latLngToScreen(p.lat,p.lng);if(pt.x<-100||pt.y<-100||pt.x>map.clientWidth+100||pt.y>map.clientHeight+100)return;const el=document.createElement('div');el.className='marker'+(selected===p._i?' selected':'');el.style.left=pt.x+'px';el.style.top=pt.y+'px';el.innerHTML=`<div class="marker-label">${p.name}</div><div class="pin"></div>`;el.onclick=e=>{e.stopPropagation();selectPlace(p._i,true)};markers.appendChild(el)})}
+/* Address reverse lookup for a clicked marker only.
+ * OSM Nominatim public API: 1 request per second globally per browser tab, stored cache.
+ * Existing recorded street/landlot addresses are never overwritten. No bulk automated lookup.
+ * Reverse-geocoded results describe the coordinate's parcel, not proof of business tenancy.
+ */
+const addressWait={last:0,pending:new Map()};
+function reverseSelectedVenue(p){
+ if(p.addressVerified || !Number.isFinite(p.lat) || !Number.isFinite(p.lng)) return;
+ const coordKey=p.lat.toFixed(6)+','+p.lng.toFixed(6),cacheKey='ab09-address-v2:'+coordKey;
+ try {const old=JSON.parse(localStorage.getItem(cacheKey)||'null');
+  if(old && typeof old.value==='string' && Date.now()-old.at<2592000000){
+    if(old.value && old.value!==p.address){p.address=old.value;renderList();if(places[selected]===p)showPopup(p);}
+    return;
+  }
+ }catch(_e){}
+ if(addressWait.pending.has(coordKey))return;
+ const job=(async()=>{
+  const wait=Math.max(0,1300-(Date.now()-addressWait.last));
+  if(wait)await new Promise(r=>setTimeout(r,wait));
+  addressWait.last=Date.now();
+  const url='https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=18&addressdetails=1&accept-language=ko&lat='+encodeURIComponent(p.lat)+'&lon='+encodeURIComponent(p.lng);
+  try {
+   const resp=await fetch(url,{headers:{'Accept':'application/json'},mode:'cors'});
+   if(!resp.ok)return;
+   const body=await resp.json(),a=body.address||{};
+   const road=a.road||a.pedestrian||a.residential||'';
+   const house=a.house_number||'';
+   const dong=a.suburb||a.neighbourhood||a.quarter||a.city_district||a.town||a.village||'';
+   const province=a.state||a.province||'';
+   const city=a.city||a.county||a.municipality||'';
+   const streetOrLot=house && road?road+' '+house:(house && dong?dong+' '+house:'');
+   if(!streetOrLot)return; // No house number: don't manufacture or mislabel a parcel.
+   const result=[province,city,streetOrLot].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
+   if(!result)return;
+   p.address=result;
+   try{localStorage.setItem(cacheKey,JSON.stringify({value:result,at:Date.now()}));}catch(_e){}
+   renderList();if(places[selected]===p)showPopup(p);
+  }catch(_e){/* Offline or geocoding service unavailable; broad area remains visible. */}
+ })();
+ addressWait.pending.set(coordKey,job);
+ job.finally(()=>addressWait.pending.delete(coordKey));
+}
+
 function renderList(){const arr=filteredPlaces();count.textContent='('+arr.length+')';placeList.innerHTML='';arr.forEach(p=>{const el=document.createElement('div');el.className='place-item'+(selected===p._i?' active':'');el.innerHTML=`<div class="place-name">${p.name}</div><div class="place-meta">${p.area}<br>${p.address}${(!Number.isFinite(p.lat)||!Number.isFinite(p.lng))?'<br>좌표 미등록':''}</div>`;el.onclick=()=>selectPlace(p._i,true);placeList.appendChild(el)})}
 function showPopup(p){
  const hasCoord=Number.isFinite(p.lat)&&Number.isFinite(p.lng);
  const pt=hasCoord?latLngToScreen(p.lat,p.lng):{x:map.clientWidth/2,y:map.clientHeight/2};
  const digits=String(p.phone||'').replace(/\D/g,'');
  const esc=(v)=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- popup.innerHTML=`<div class="pop-top"><img class="pop-image" src="${esc(p.image)}" alt="${esc(p.name)} 업소 사진" loading="lazy"><div><div class="pop-title">${esc(p.name)}</div><div class="pop-sub">${esc(p.area)}</div></div></div><div class="pop-sub pop-address">${esc(p.address)}</div><div class="pop-actions">${digits?`<a class="pop-link pop-phone" href="tel:${digits}">전화 ${esc(p.phone)}</a>`:''}<a class="pop-link" href="${esc(p.url)}" rel="nofollow noopener">11 상세정보</a></div>`;
+ popup.innerHTML=`<div class="pop-top"><img class="pop-image" src="${esc(p.image)}" alt="${esc(p.name)} 업소 사진" loading="lazy"><div><div class="pop-title">${esc(p.name)}</div><div class="pop-sub">${esc(p.area)}</div></div></div><div class="pop-sub pop-address">${esc(p.address)}</div><div class="pop-actions">${digits?`<a class="pop-link pop-phone" href="tel:${digits}">전화 ${esc(p.phone)}</a>`:''}<a class="pop-link" href="${esc(p.url)}" rel="nofollow noopener">상세보기</a></div>`;
  popup.style.display='block';
  const maxX=Math.max(8,map.clientWidth-popup.offsetWidth-8);
  const maxY=Math.max(8,map.clientHeight-popup.offsetHeight-8);
  popup.style.left=clamp(pt.x+16,8,maxX)+'px';
  popup.style.top=clamp(pt.y-popup.offsetHeight-20,8,maxY)+'px';
 }
-function selectPlace(i,fly){selected=i;const p=places[i];if(fly&&Number.isFinite(p.lat)&&Number.isFinite(p.lng)){center={lat:p.lat,lng:p.lng};zoom=Math.max(zoom,18)}renderTiles();renderMarkers();renderList();showPopup(p)}
+function selectPlace(i,fly){selected=i;const p=places[i];if(fly&&Number.isFinite(p.lat)&&Number.isFinite(p.lng)){center={lat:p.lat,lng:p.lng};zoom=Math.max(zoom,18)}renderTiles();renderMarkers();renderList();showPopup(p);reverseSelectedVenue(p)}
 function render(){renderTiles();renderMarkers();renderList();popup.style.display='none'}
 function setView(lat,lng,z){center={lat,lng};zoom=clamp(z,MIN_ZOOM,MAX_ZOOM);selected=-1;render()}
 function zoomAt(delta,cx,cy){const old=zoom,nz=clamp(zoom+delta,MIN_ZOOM,MAX_ZOOM);if(nz===old)return;const r=map.getBoundingClientRect(),sx=cx-r.left,sy=cy-r.top,ocx=lngToX(center.lng,old),ocy=latToY(center.lat,old),ax=ocx+(sx-r.width/2),ay=ocy+(sy-r.height/2),alng=xToLng(ax,old),alat=yToLat(ay,old);zoom=nz;const nax=lngToX(alng,nz),nay=latToY(alat,nz);setCenterFromPixels(nax-(sx-r.width/2),nay-(sy-r.height/2));render()}
