@@ -68,3 +68,70 @@ body.auth-protected.auth-ready main{visibility:visible}
   .global-place-search__input{width:100%!important;min-width:0!important;padding-left:8px!important;padding-right:8px!important}
   .global-place-search__button{width:auto!important;min-width:0!important;padding-left:12px!important;padding-right:12px!important;white-space:nowrap!important}
 }
+
+
+/* 2026-10-30: Responsive region navigation parity with the homepage (INDEX).
+   Applies to internal pages only. The homepage's own rules remain unchanged.
+   One row above 760px; compact 4/6/3-column grid on narrower screens. */
+html body:not([data-current-page="index"]) > .area-wrap {
+  width:100%!important; max-width:1180px!important; margin:0 auto 24px!important;
+  padding:0 18px!important; box-sizing:border-box!important; min-width:0!important;
+}
+html body:not([data-current-page="index"]) > .area-wrap .area-list {
+  display:block!important; width:100%!important; min-width:0!important;
+  margin:0!important; padding:0!important; box-sizing:border-box!important;
+}
+html body:not([data-current-page="index"]) > .area-wrap .area-list ul {
+  display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important;
+  align-items:center!important; justify-content:space-between!important;
+  width:100%!important; max-width:100%!important; min-width:0!important;
+  margin:0!important; padding:0!important; gap:6px!important; list-style:none!important;
+  overflow-x:auto!important; overflow-y:hidden!important; scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important; box-sizing:border-box!important;
+}
+html body:not([data-current-page="index"]) > .area-wrap .area-list ul::-webkit-scrollbar {display:none!important}
+html body:not([data-current-page="index"]) > .area-wrap .area-list li {
+  display:block!important; flex:0 1 auto!important; min-width:0!important;
+  width:auto!important; margin:0!important; padding:0!important; list-style:none!important;
+}
+html body:not([data-current-page="index"]) > .area-wrap .area-list li > a {
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  min-width:0!important; width:auto!important; height:42px!important; min-height:42px!important;
+  padding:0 9px!important; font-size:14px!important; letter-spacing:-.025em!important;
+  white-space:nowrap!important; line-height:1!important; box-sizing:border-box!important;
+  border-radius:10px!important; font-weight:900!important; text-align:center!important;
+}
+html body:not([data-current-page="index"]) > .area-wrap .area-list li.current > a,
+html body:not([data-current-page="index"]) > .area-wrap .area-list li[aria-current="page"] > a {
+  background:linear-gradient(135deg,#9b49ff,#8233e6)!important; color:#fff!important;
+  border-color:transparent!important;
+}
+@media (min-width:761px) and (max-width:1139px) {
+  html body:not([data-current-page="index"]) > .area-wrap .area-list ul {gap:7px!important; justify-content:flex-start!important}
+  html body:not([data-current-page="index"]) > .area-wrap .area-list li {flex:0 0 auto!important}
+  html body:not([data-current-page="index"]) > .area-wrap .area-list li > a {padding:0 12px!important}
+}
+@media (max-width:760px) {
+  html body:not([data-current-page="index"]) > .area-wrap {margin:0 auto 18px!important; padding:0 10px!important; overflow:visible!important}
+  html body:not([data-current-page="index"]) > .area-wrap .area-list ul {
+    display:grid!important; grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:6px!important; overflow:visible!important; align-items:stretch!important;
+    justify-items:stretch!important; width:100%!important;
+  }
+  html body:not([data-current-page="index"]) > .area-wrap .area-list li {
+    display:block!important; flex:none!important; width:100%!important; max-width:100%!important; min-width:0!important;
+  }
+  html body:not([data-current-page="index"]) > .area-wrap .area-list li > a {
+    display:flex!important; width:100%!important; max-width:100%!important; min-width:0!important;
+    height:auto!important; min-height:38px!important; padding:5px 3px!important; font-size:12px!important;
+    line-height:1.3!important; letter-spacing:-.03em!important; white-space:normal!important;
+    text-align:center!important; word-break:keep-all!important; overflow-wrap:anywhere!important;
+    border-radius:10px!important;
+  }
+}
+@media (min-width:501px) and (max-width:760px) {
+  html body:not([data-current-page="index"]) > .area-wrap .area-list ul {grid-template-columns:repeat(6,minmax(0,1fr))!important}
+}
+@media (max-width:340px) {
+  html body:not([data-current-page="index"]) > .area-wrap .area-list ul {grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
