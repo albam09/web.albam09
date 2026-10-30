@@ -117,9 +117,9 @@ async function main(){
     if(!slug||slug!==d.slug)continue;
     const dir=path.join(root,'explore/post',slug);
     await fs.mkdir(dir,{recursive:true});
-    // Rebase static resource paths from explore/post/ to explore/post/<slug>/.
-    // The template must also work as a local file:// page; retain clean canonical URLs.
-    const generated=withMeta(template,d).replace(/((?:href|src|poster)=[\"'])(\.\.\/\.\.\/)(?=(?:css|js|img|fonts|data|favicon\.ico|site\.webmanifest))/g, '$1../$2');
+    // Root-absolute asset paths also work when Netlify serves this HTML
+    // via a 200 rewrite for /explore/post/<slug>/.
+    const generated=withMeta(template,d);
     await fs.writeFile(path.join(dir,'index.html'),generated,'utf8');
   }
 

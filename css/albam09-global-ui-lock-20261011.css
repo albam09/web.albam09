@@ -83,9 +83,9 @@ html body:not([data-current-page="index"]) > .area-wrap .area-list {
 }
 html body:not([data-current-page="index"]) > .area-wrap .area-list ul {
   display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important;
-  align-items:center!important; justify-content:space-between!important;
+  align-items:center!important; justify-content:center!important;
   width:100%!important; max-width:100%!important; min-width:0!important;
-  margin:0!important; padding:0!important; gap:6px!important; list-style:none!important;
+  margin:0!important; padding:0!important; gap:12px!important; list-style:none!important;
   overflow-x:auto!important; overflow-y:hidden!important; scrollbar-width:none!important;
   -webkit-overflow-scrolling:touch!important; box-sizing:border-box!important;
 }
@@ -135,3 +135,5 @@ html body:not([data-current-page="index"]) > .area-wrap .area-list li[aria-curre
 @media (max-width:340px) {
   html body:not([data-current-page="index"]) > .area-wrap .area-list ul {grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
+
+/* 2026-10-30 visual QA: desktop nav evenly compact, 12px adjacent spacing (not spread across shell). */
