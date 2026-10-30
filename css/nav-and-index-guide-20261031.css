@@ -1,0 +1,129 @@
+/* ALBAM09 NAV PARITY: single source of truth for every page. 2026-10-31.
+   Explicitly supersedes older index bundle and region-only nav CSS. */
+html body.ui-unified-page > header.site-menu-host {
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+  padding-left:clamp(16px,3.5vw,62px)!important;
+  padding-right:clamp(16px,3.5vw,62px)!important;
+  margin:28px auto 22px!important;
+}
+html body.ui-unified-page > .area-wrap {
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+  padding:0 clamp(16px,3.5vw,62px)!important;
+  margin:0 auto 28px!important;
+  overflow:visible!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list {
+  width:100%!important;max-width:100%!important;
+  display:block!important;margin:0!important;padding:0!important;box-sizing:border-box!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul {
+  display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+  justify-content:flex-start!important;justify-items:initial!important;
+  gap:9px!important;width:100%!important;max-width:100%!important;min-width:0!important;
+  padding:0!important;margin:0!important;list-style:none!important;
+  overflow-x:auto!important;overflow-y:hidden!important;
+  scrollbar-width:thin!important;box-sizing:border-box!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
+  flex:0 0 auto!important;width:auto!important;max-width:none!important;min-width:0!important;
+  display:list-item!important;padding:0!important;margin:0!important;list-style:none!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:auto!important;max-width:none!important;min-width:0!important;
+  box-sizing:border-box!important;height:44px!important;min-height:44px!important;
+  padding:0 13px!important;border-radius:12px!important;
+  font-size:13px!important;line-height:1.15!important;letter-spacing:-.035em!important;
+  white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;
+  text-decoration:none!important;text-align:center!important;font-weight:800!important;
+  border:1px solid #e7e4ec!important;background:#fff!important;color:#181525!important;
+  box-shadow:0 4px 14px rgba(0,0,0,.035)!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li.current > a,
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[aria-current="page"] > a {
+  background:linear-gradient(135deg,#9b49ff,#8233e6)!important;color:#fff!important;
+  border-color:transparent!important;box-shadow:0 8px 18px rgba(130,51,230,.16)!important;
+}
+/* Tablet: uniform two rows without inconsistent stretching. */
+@media(max-width:900px) {
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {
+    display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    gap:7px!important;overflow:visible!important;align-items:stretch!important;
+    justify-content:initial!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
+    min-width:0!important;width:100%!important;max-width:100%!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+    min-width:0!important;width:100%!important;max-width:100%!important;height:40px!important;
+    min-height:40px!important;padding:5px 4px!important;font-size:12px!important;
+    line-height:1.2!important;white-space:normal!important;overflow-wrap:anywhere!important;
+  }
+}
+@media(max-width:520px) {
+  html body.ui-unified-page > header.site-menu-host {
+    margin:18px auto 14px!important;padding-left:12px!important;padding-right:12px!important;
+  }
+  html body.ui-unified-page > .area-wrap {
+    padding:0 10px!important;margin:0 auto 18px!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {
+    display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:6px!important;overflow:visible!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a {
+    height:auto!important;min-height:38px!important;border-radius:10px!important;
+    font-size:11.5px!important;letter-spacing:-.05em!important;
+  }
+}
+@media(max-width:340px) {
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+/* INDEX guide is the final accordion below the BBS list, matching its sibling widths. */
+html body[data-current-page="index"] main .info-panel-stack > #index-secondary-search-guide {
+  width:100%!important;max-width:100%!important;box-sizing:border-box!important;
+  padding:0!important;margin:0!important;
+}
+/* Mobile brand controls: old grid styles pushed the login into a separate row. */
+@media(max-width:520px){
+  html body.ui-unified-page > header.site-menu-host {
+    display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+    align-items:center!important;justify-content:space-between!important;
+    gap:8px!important;
+  }
+  html body.ui-unified-page > header.site-menu-host > a {
+    display:inline-flex!important;min-width:0!important;flex:0 1 auto!important;
+    overflow:hidden!important;
+  }
+  html body.ui-unified-page > header.site-menu-host > a [logo] {min-width:0!important;gap:6px!important;}
+  html body.ui-unified-page > header.site-menu-host > a [title] {font-size:clamp(16px,5vw,23px)!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  html body.ui-unified-page > header.site-menu-host .site-member-tools {
+    display:flex!important;position:static!important;grid-column:auto!important;
+    width:auto!important;min-width:0!important;max-width:max-content!important;
+    margin:0 0 0 auto!important;flex:0 0 auto!important;
+  }
+  html body.ui-unified-page > header.site-menu-host .site-menu-trigger {
+    position:static!important;flex:0 0 46px!important;
+    width:46px!important;height:46px!important;margin:0!important;
+  }
+}
+@media(max-width:520px){
+  html body.ui-unified-page:not(.detail-renew) > header.site-menu-host #ab09-memberbar.site-member-tools {
+    flex:0 0 auto!important;
+    width:auto!important;max-width:max-content!important;min-width:0!important;
+    grid-column:auto!important;grid-row:auto!important;
+    margin:0 0 0 auto!important;padding:0!important;
+    justify-content:flex-end!important;align-self:center!important;
+  }
+  html body.ui-unified-page:not(.detail-renew)>header.site-menu-host > a {
+    width:auto!important;max-width:calc(100% - 120px)!important;
+    min-width:0!important;flex:0 1 auto!important;
+  }
+  html body.ui-unified-page:not(.detail-renew)>header.site-menu-host > a [title] {
+    font-size:clamp(16px,4.2vw,20px)!important;
+    max-width:100%!important;min-width:0!important;
+    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  }
+}
