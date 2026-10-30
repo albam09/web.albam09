@@ -32,8 +32,8 @@
 /data/*
   Cache-Control: public, max-age=3600
 
+# Map pages with venues are indexable; empty map pages retain HTML noindex.
 /map/*
-  X-Robots-Tag: noindex, follow
   Cache-Control: public, max-age=3600
 
 /login/*
