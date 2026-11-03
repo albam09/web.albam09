@@ -1,0 +1,145 @@
+/* 광주버블여지도 / premium floating 3D V3: additive design only.
+   Original font files, cards, venue records, scripts and interactivity preserved. */
+:root{
+ --v3-bevel:#edcadb;
+ --v3-rose:#b782a2;
+ --v3-shadow:rgba(40,14,47,.39);
+}
+/* Dark recessed atmosphere beyond the 3D sheet (physically visible 15px gap). */
+html:has(body.ui-unified-page){
+ background:radial-gradient(ellipse 85% 380px at 50% -20px,#6d4869 0%,#3b293b 45%,#201725 100%) fixed!important;
+ background-color:#271a2d!important;
+}
+html body.ui-unified-page{
+ box-sizing:border-box!important;
+ width:calc(100% - 34px)!important;
+ max-width:none!important;
+ margin:17px auto 23px!important;
+ min-height:calc(100vh - 40px)!important;
+ border:1px solid #fef9fb!important;
+ border-radius:19px 19px 12px 12px!important;
+ outline:2px solid rgba(116,72,106,.86)!important;
+ background-color:#fffafc!important;
+ box-shadow:
+   inset 0 2px 0 rgba(255,255,255,1),
+   inset 2px 0 4px rgba(255,255,255,.9),
+   inset -2px 0 4px rgba(255,255,255,.8),
+   0 0 0 4px #cda2ba,
+   0 0 0 6px #f6e4ee,
+   0 0 0 8px #64405f,
+   0 6px 0 8px #321f38,
+   0 19px 28px 13px rgba(22,8,30,.48),
+   0 36px 62px 14px rgba(14,7,27,.52),
+   0 72px 120px rgba(17,6,30,.28)!important;
+ position:relative;
+ isolation:isolate;
+}
+/* A narrow reflective line down the actual outer sides; transparent to clicks. */
+html body.ui-unified-page::before{
+ content:"";position:absolute;inset:1px 1px 0;z-index:8;pointer-events:none;
+ border-radius:17px 17px 11px 11px;
+ border-top:2px solid rgba(255,255,255,.96);
+ border-left:2px solid rgba(255,255,255,.56);
+ border-right:2px solid rgba(115,54,99,.26);
+ box-shadow:inset 0 2px 5px rgba(255,255,255,.45),inset 0 0 0 2px rgba(255,240,250,.12);
+}
+/* Fixed glass-bevel viewport surround follows the visitor while scrolling. */
+#bubble-viewport-frame{
+ position:fixed!important;inset:11px 10px 10px!important;
+ z-index:2147483630!important;pointer-events:none!important;
+ overflow:hidden!important;background:transparent!important;
+ border-radius:18px!important;border:1px solid #fff!important;
+ box-shadow:
+   inset 0 0 0 2px rgba(255,255,255,.94),
+   inset 0 0 0 4px rgba(207,153,181,.83),
+   inset 0 0 0 6px rgba(255,247,252,.93),
+   inset 0 0 8px 9px rgba(92,37,84,.26),
+   0 0 0 1px #67415d,
+   0 0 0 4px #d0a0b9,
+   0 0 0 6px #422a43,
+   0 11px 16px 9px rgba(16,5,26,.29),
+   0 31px 39px 12px rgba(19,6,31,.32)!important;
+}
+#bubble-viewport-frame::before{
+ content:"";position:absolute;inset:0;opacity:1!important;filter:none!important;
+ background:
+   linear-gradient(180deg,#fff 0%,#faedf4 28%,rgba(173,104,146,.8) 100%) top / 100% 8px no-repeat,
+   linear-gradient(0deg,#55354e 0%,#c18fab 52%,#fff 100%) bottom / 100% 8px no-repeat,
+   linear-gradient(90deg,#fff 0%,#f7e2ef 35%,#a97099 100%) left / 8px 100% no-repeat,
+   linear-gradient(270deg,#fff 0%,#f7e2ef 35%,#a97099 100%) right / 8px 100% no-repeat;
+}
+#bubble-viewport-frame::after{
+ content:"";position:absolute;inset:8px!important;border-radius:10px!important;
+ border:1px solid rgba(255,255,255,.97)!important;
+ box-shadow:inset 0 2px 6px rgba(69,22,58,.16),0 0 2px rgba(255,255,255,.8)!important;
+}
+#bubble-viewport-frame .bubble-gloss-top{
+ top:2px!important;height:4px!important;left:14%!important;right:12%!important;
+ background:linear-gradient(90deg,transparent,#fff 23%,#fff 63%,transparent)!important;
+}
+#bubble-viewport-frame .bubble-gloss-left{left:1px!important;width:5px!important;opacity:.78!important}
+#bubble-viewport-frame .bubble-frame-corner{width:36px!important;height:36px!important;opacity:.92!important}
+/* Stronger but refined depth on the existing components, no new filler UI. */
+html body.ui-unified-page :is(.balba-hero,.explore-index-hero,.explorer-hero,.ui-karaoke-hero){
+ outline:1px solid rgba(255,255,255,.8)!important;
+ box-shadow:inset 0 2px 1px rgba(255,255,255,.50),inset 0 -7px 15px rgba(72,7,83,.22),
+ 0 7px 0 rgba(94,43,103,.44),0 17px 22px rgba(54,15,74,.26),0 33px 44px rgba(67,17,84,.13)!important;
+}
+html body.ui-unified-page :is(.balba-section,.balba-sidecard,.business-desc-card,.index-venue-preview-card,.info-fold-card,.explore-index-card,.bbs-article-card,.explorer-panel){
+ box-shadow:inset 0 2px 1px rgba(255,255,255,.96),inset 0 -1px 4px rgba(95,46,110,.06),
+ 0 5px 0 rgba(175,125,167,.30),0 17px 24px rgba(62,18,83,.19),0 32px 44px rgba(62,18,83,.07)!important;
+}
+html body.ui-unified-page :is(.top-ad-zone .top-ad-slot,.top-ad-zone .top-ad-recruit, .top-ad-zone .partner-contact-card){
+ box-shadow:inset 0 2px 2px rgba(255,255,255,.97),0 5px 0 rgba(157,101,148,.33),
+ 0 13px 21px rgba(59,20,75,.18),0 25px 38px rgba(59,20,75,.09)!important;
+}
+/* Every region label: same computed font size and placement on mobile. */
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{
+ font-size:11px!important;line-height:1.15!important;font-weight:800!important;
+ text-align:center!important;text-size-adjust:100%!important;-webkit-text-size-adjust:100%!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:3px 2px!important;white-space:normal!important;word-break:keep-all!important;
+}
+@media(max-width:760px){
+ html body.ui-unified-page{
+  width:calc(100% - 16px)!important;
+  margin:8px auto 11px!important;
+  min-height:calc(100vh - 19px)!important;
+  border-radius:11px!important;
+  outline:1px solid #744a6d!important;
+  box-shadow:inset 0 1px 0 #fff,0 0 0 2px #deb8cd,0 0 0 4px #4a3149,
+   0 7px 12px 4px rgba(14,5,22,.31),0 17px 25px 3px rgba(20,7,29,.38)!important;
+ }
+ html body.ui-unified-page::before{border-radius:10px!important}
+ #bubble-viewport-frame{
+  inset:4px 4px 4px!important;border-radius:9px!important;
+  box-shadow:inset 0 0 0 1px #fff,inset 0 0 0 2px #d2a1bc,
+   inset 0 0 0 4px rgba(255,255,255,.75),0 0 0 1px #613950,
+   0 0 0 3px #d5a4be,0 6px 10px 3px rgba(17,5,24,.34)!important;
+ }
+ #bubble-viewport-frame::before{background:
+   linear-gradient(180deg,#fff,#ad759a) top/100% 4px no-repeat,
+   linear-gradient(0deg,#70445c,#fff) bottom/100% 4px no-repeat,
+   linear-gradient(90deg,#fff,#a97399) left/4px 100% no-repeat,
+   linear-gradient(270deg,#fff,#a97399) right/4px 100% no-repeat!important;
+ }
+ #bubble-viewport-frame::after{inset:4px!important;border-radius:6px!important}
+ #bubble-viewport-frame .bubble-frame-corner{width:19px!important;height:19px!important}
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{
+  font-size:9.4px!important;line-height:1.18!important;padding:2px 1px!important;
+  letter-spacing:-.05em!important;font-weight:800!important;
+ }
+}
+@media(max-width:355px){
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{font-size:8.7px!important;letter-spacing:-.055em!important}
+}
+/* Map fullscreen and other non-UI pages: preserve viewport math, add visual frame only. */
+html:has(body:not(.ui-unified-page) #bubble-viewport-frame){background:#231c2e!important}
+html body:not(.ui-unified-page) #bubble-viewport-frame{border-radius:9px!important}
+@media print{html body.ui-unified-page{width:100%!important;margin:0!important;box-shadow:none!important}#bubble-viewport-frame{display:none!important}}
