@@ -1,0 +1,150 @@
+/* ALBAM08 -> ALBAM09: UI transplant adaptation. Preserve ALBAM09 routing, DOM and JS. */
+:root {--compact-accent:#d9ad45;--acid:#d9ad45;--brand-gold:#d9ad45;--brand-gold-light:#f5df9a;--paper:#f6f0e7;--compact-line:rgba(217,173,69,.19);--compact-card:#0d0d0f;--compact-max:1180px;--ui-theme-gold:#d9ad45}
+html {background:#060607!important}
+body.ab08-transplant{background:#060607!important;color:#f5eee2!important}
+body.ab08-transplant:before{background:radial-gradient(circle at 86% 7%,rgba(217,173,69,.075),transparent 34%),linear-gradient(180deg,transparent,rgba(7,7,7,.22))!important;z-index:0!important}
+body.ab08-transplant .top-ad-zone{background:#080809!important;color:#dfd4c4!important;border-color:rgba(217,173,69,.16)!important}
+body.ab08-transplant header.site-menu-host{position:sticky!important;top:0!important;max-width:none!important;width:100%!important;height:64px!important;margin:0!important;padding:0 max(18px,calc((100vw - 1140px)/2))!important;z-index:1003!important;border-bottom:1px solid rgba(217,173,69,.17)!important;background:rgba(6,6,7,.96)!important;display:flex!important;align-items:center!important;gap:18px!important;box-shadow:0 12px 38px rgba(0,0,0,.3)!important}
+body.ab08-transplant header.site-menu-host>a{width:auto!important;flex:0 1 auto!important;height:64px!important;min-width:0!important;margin-right:auto!important;display:flex!important;align-items:center!important;gap:12px!important;letter-spacing:0!important}
+body.ab08-transplant header.site-menu-host>a::before{content:""!important;display:block!important;width:34px!important;height:34px!important;flex:0 0 34px!important;background:url('/img/brand/ab08-icon.svg') center/contain no-repeat!important}
+body.ab08-transplant header.site-menu-host>a [logo]{min-width:0!important;gap:0!important;width:auto!important;align-items:center!important}
+body.ab08-transplant header.site-menu-host>a [svg-box]{display:none!important}
+body.ab08-transplant header.site-menu-host>a [data-title]{font-size:0!important;line-height:1.05!important;letter-spacing:0!important;white-space:nowrap!important}
+body.ab08-transplant header.site-menu-host>a [data-title]::before{content:"광주버블여지도"!important;display:block!important;font-size:clamp(1rem,1.55vw,1.35rem)!important;font-weight:900!important;letter-spacing:-.06em!important;color:#f5df9a!important}
+body.ab08-transplant header.site-menu-host>a [data-title]::after{content:"GWANGJU NIGHT GUIDE"!important;display:block!important;margin-top:4px!important;font-family:Arial,sans-serif!important;font-size:.48rem!important;letter-spacing:.21em!important;color:#9b8c6b!important}
+body.ab08-transplant header.site-menu-host .site-member-tools,body.ab08-transplant header.site-menu-host .ab09-memberbar{margin-left:auto!important;flex:0 0 auto!important;color:#f3dfb6!important}
+body.ab08-transplant header.site-menu-host .site-member-tools a,body.ab08-transplant header.site-menu-host .site-menu-trigger{background:#121111!important;color:#f5df9a!important;border:1px solid rgba(217,173,69,.26)!important;box-shadow:none!important;border-radius:8px!important}
+body.ab08-transplant header.site-menu-host .site-menu-trigger{width:40px!important;height:40px!important;flex:0 0 40px!important}
+body.ab08-transplant .area-wrap{position:sticky!important;top:64px!important;z-index:992!important;max-width:none!important;width:100%!important;margin:0!important;background:rgba(7,7,8,.97)!important;padding:0 18px!important;border-bottom:1px solid rgba(217,173,69,.14)!important;overflow:hidden!important}
+body.ab08-transplant .area-list{width:100%!important;max-width:1180px!important;margin:0 auto!important}
+body.ab08-transplant .area-list ul{width:100%!important;max-width:none!important;min-height:48px!important;display:flex!important;gap:0!important;flex-wrap:nowrap!important;align-items:stretch!important;overflow-x:auto!important;overflow-y:hidden!important;justify-content:flex-start!important;scrollbar-width:none!important}
+body.ab08-transplant .area-list li{flex:0 0 auto!important;display:flex!important;min-width:0!important}
+body.ab08-transplant .area-list a{display:flex!important;align-items:center!important;justify-content:center!important;color:#9c9183!important;background:transparent!important;min-height:48px!important;padding:0 13px!important;font-weight:650!important;border:0!important;border-right:1px solid rgba(217,173,69,.16)!important;border-radius:0!important;box-shadow:none!important;white-space:nowrap!important;font-size:.79rem!important;text-shadow:none!important}
+body.ab08-transplant .area-list a:hover,body.ab08-transplant .area-list .current a{color:#f5df9a!important;background:rgba(217,173,69,.075)!important;box-shadow:inset 0 -2px 0 #d9ad45!important;transform:none!important}
+body.ab08-transplant main.daum-wm-content{position:relative!important;max-width:1180px!important;width:100%!important;margin:0 auto!important;padding:22px 18px 75px!important;min-width:0!important}
+body.ab08-transplant main>section[title].ab08-stage{position:relative!important;isolation:isolate!important;min-height:438px!important;height:auto!important;display:grid!important;grid-template-columns:minmax(0,1fr) 205px!important;grid-template-rows:1fr auto!important;align-items:end!important;padding:50px 40px 35px!important;margin:0 0 18px!important;overflow:hidden!important;border:1px solid rgba(217,173,69,.22)!important;border-radius:17px!important;clip-path:none!important;background:#09090b!important;box-shadow:0 18px 70px rgba(0,0,0,.33)!important}
+body.ab08-transplant .ab08-stage .albam11-hero-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;z-index:-3!important;filter:saturate(.45) contrast(1.17) brightness(.56)!important;transform:scale(1.03)!important;pointer-events:none!important}
+body.ab08-transplant main>section[title].ab08-stage:before{content:""!important;position:absolute!important;inset:0!important;z-index:-2!important;background:linear-gradient(90deg,rgba(5,5,6,.97),rgba(5,5,6,.70) 58%,rgba(5,5,6,.37)),linear-gradient(0deg,rgba(5,5,6,.9),transparent 62%)!important}
+body.ab08-transplant main>section[title].ab08-stage:after{content:"GWANGJU / NIGHT GUIDE  /  2026"!important;position:absolute!important;top:21px!important;left:40px!important;font-size:.55rem!important;letter-spacing:.24em!important;color:#e9cb89!important;font-weight:700!important}
+body.ab08-transplant .ab08-stage .hero-copy{grid-column:1!important;position:relative!important;z-index:1!important;align-self:end!important;max-width:730px!important;min-width:0!important}
+body.ab08-transplant .ab08-stage .albam11-eyebrow{display:block!important;margin:0 0 13px!important;color:#d9ad45!important;font-size:.64rem!important;letter-spacing:.22em!important;font-family:Arial,sans-serif!important}
+body.ab08-transplant .ab08-stage h1.daum-wm-title{display:block!important;margin:0 0 14px!important;padding:0!important;font-size:clamp(1.85rem,4vw,3.4rem)!important;font-weight:800!important;line-height:1.13!important;letter-spacing:-.06em!important;text-align:left!important;max-width:760px!important;color:#f5efe4!important;text-shadow:0 3px 12px rgba(0,0,0,.5)!important;font-family:Arial,'Noto Sans KR',sans-serif!important}
+body.ab08-transplant .ab08-stage h1.daum-wm-title::before,body.ab08-transplant .ab08-stage h1.daum-wm-title::after{content:none!important;display:none!important}
+body.ab08-transplant .ab08-stage .hero-keyline{margin:0 0 15px!important;color:#e7c98b!important;font-size:.82rem!important;letter-spacing:.08em!important;line-height:1.5!important}
+body.ab08-transplant .ab08-stage .hero-desc,body.ab08-transplant .ab08-stage .hero-copy>p{color:#c2b8a8!important;font-size:.84rem!important;line-height:1.75!important;max-width:740px!important}
+body.ab08-transplant .ab08-stage .hero-legal{color:#a39a89!important;font-size:.73rem!important}
+body.ab08-transplant .ab08-stage .hero-aside{position:relative!important;grid-column:2!important;grid-row:1/span 2!important;align-self:end!important;margin:0 0 10px 20px!important;padding:0 0 0 18px!important;border-left:1px solid rgba(217,173,69,.24)!important;z-index:2!important;display:block!important}
+body.ab08-transplant .ab08-stage .hero-aside-label{font-size:.6rem!important;letter-spacing:.15em!important;color:#e9cb89!important}
+body.ab08-transplant .ab08-stage .hero-stat{padding:13px 0!important;border-top:1px solid rgba(217,173,69,.19)!important;display:flex!important;flex-direction:column!important;gap:6px!important}
+body.ab08-transplant .ab08-stage .hero-stat strong{font-family:Georgia,serif!important;font-size:1.28rem!important;line-height:1.15!important;color:#f6eddf!important;font-weight:400!important}
+body.ab08-transplant .ab08-stage .hero-stat a{font-size:.75rem!important;color:#d5b975!important;text-decoration:none!important}
+body.ab08-transplant .ab08-stage .hero-stat a:hover{color:white!important;text-decoration:underline!important}
+body.ab08-transplant .ab08-stage .hero-scroll{grid-column:1!important;display:flex!important;margin-top:15px!important;align-items:center!important;gap:12px!important;color:#a19482!important;font-size:.57rem!important;letter-spacing:.18em!important}
+body.ab08-transplant .ab08-stage .hero-scroll:before{content:"";display:block;width:40px;height:1px;background:#d9ad45}
+body.ab08-transplant .ab08-stage details,body.ab08-transplant .ab08-stage details p{color:#cfc6b7!important}
+body.ab08-transplant .ab08-stage summary{color:#e1c680!important;cursor:pointer!important}
+body.ab08-transplant .editorial-strip{display:grid!important;grid-template-columns:1.25fr 1fr 1fr!important;gap:1px!important;margin:0 0 20px!important;background:#211c15!important;border:1px solid rgba(217,173,69,.22)!important;border-radius:13px!important;overflow:hidden!important}
+body.ab08-transplant .editorial-tile{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:space-between!important;min-height:115px!important;padding:17px 20px!important;background:#101011!important;color:#f5ecdf!important}
+body.ab08-transplant .editorial-tile:first-child{background:linear-gradient(135deg,#e1be69,#bd9036)!important;color:#090909!important}
+body.ab08-transplant .editorial-tile small{font-size:.6rem!important;letter-spacing:.16em!important}
+body.ab08-transplant .editorial-tile strong{font-family:Georgia,'Noto Sans KR',serif!important;font-size:1.4rem!important;font-weight:500!important;line-height:1.25!important}
+body.ab08-transplant .editorial-tile a{font-size:.75rem!important;color:inherit!important;text-underline-offset:5px!important}
+body.ab08-transplant .global-place-search{margin:0 0 25px!important;max-width:none!important;width:100%!important}
+body.ab08-transplant .global-place-search:before{content:"DISCOVER"!important;color:#d9ad45!important;margin-bottom:7px!important;font-size:.61rem!important;letter-spacing:.18em!important}
+body.ab08-transplant .global-place-search__form{background:#0d0d0f!important;border:1px solid rgba(217,173,69,.22)!important;border-radius:12px!important;min-height:56px!important;padding:6px 8px 6px 16px!important;box-shadow:none!important}
+body.ab08-transplant .global-place-search__input{color:#eee7db!important;background:transparent!important;font-size:1rem!important}
+body.ab08-transplant .global-place-search__input::placeholder{color:#8b8174!important}
+body.ab08-transplant .global-place-search__button{color:#0b0906!important;background:#d9ad45!important;border:0!important;border-radius:8px!important;min-width:76px!important;min-height:40px!important;padding:0 15px!important;font-size:.85rem!important;font-weight:750!important;box-shadow:none!important}
+body.ab08-transplant .global-place-search__suggestions{background:#111113!important;color:#fff!important;border-color:rgba(217,173,69,.25)!important;z-index:500!important}
+body.ab08-transplant section[list]{margin:24px 0 0!important}
+body.ab08-transplant section[list] h2{font-family:Georgia,'Noto Sans KR',serif!important;color:#f5eee2!important;font-size:clamp(1.7rem,3vw,2.4rem)!important}
+body.ab08-transplant section[list] h2:before{content:"광주버블여지도 / "!important;color:#d9ad45!important;font-size:.6rem!important}
+body.ab08-transplant section[list] [wrapper]{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;background:transparent!important}
+body.ab08-transplant section[list] ul,body.ab08-transplant section[list] ul:nth-child(n){grid-column:auto!important;min-width:0!important;max-width:100%!important;background:#101013!important;color:#f8eee1!important;border:1px solid rgba(217,173,69,.17)!important;border-radius:12px!important;box-shadow:none!important;min-height:160px!important;padding:20px!important}
+body.ab08-transplant section[list] ul:hover{background:#17171a!important;border-color:rgba(217,173,69,.5)!important;transform:translateY(-2px)!important}
+body.ab08-transplant section[list] h3,body.ab08-transplant section[list] h3 a{color:#f3dc9c!important;font-family:Arial,'Noto Sans KR',sans-serif!important;font-size:1.17rem!important;font-weight:750!important}
+body.ab08-transplant section[list] li,body.ab08-transplant section[list] li a{color:#cfc4b0!important}
+body.ab08-transplant section[list] .rotating-list-heading{border:0!important;background:transparent!important;border-radius:0!important;padding:0!important;min-height:0!important;box-shadow:none!important}
+body.ab08-transplant section[list] ul .rotating-list-heading:hover{transform:none!important;background:transparent!important}
+body.ab08-transplant main .info-panel-stack{color:#d7ccbd!important}
+body.ab08-transplant main .info-panel-stack h2,body.ab08-transplant main .info-panel-stack h3{color:#f6ebd9!important;text-shadow:none!important}
+body.ab08-transplant main .info-panel-stack :is(.info-panel,.info-panel-card,.venue-preview,.venue-card,.latest-explore-card,.explore-preview-card,.content-panel,.card){border-color:rgba(217,173,69,.20)!important;background-color:#101012!important;box-shadow:0 7px 26px rgba(0,0,0,.13)!important}
+body.ab08-transplant main :is(.info-panel-stack,.business-description-section,.main-seo-guide,.seo-article-board,.insta-guide){--pink:#d9ad45;--primary:#d9ad45;--accent:#d9ad45;color:#cfc4b1!important}
+body.ab08-transplant main a{accent-color:#d9ad45}
+body.ab08-transplant :is(.main-seo-guide,.business-description-section,.seo-article-card,.detail-section,.bbs-related,.explore-region-card,.explore-card){border-color:rgba(217,173,69,.22)!important;background:#101012!important;color:#d4c9b8!important;box-shadow:none!important}
+body.ab08-transplant main :is(button,[role=button],.btn,.view-more,.more-link):not(.ab09-coupon-overlay button){border-radius:9px}
+body.ab08-transplant footer{background:#070708!important;color:#9e9586!important;border-top:1px solid rgba(217,173,69,.22)!important}
+body.ab08-transplant .site-drawer{background:#101012!important;color:#e8d9c4!important}
+body.ab08-transplant .site-drawer a{color:#e6d4af!important}
+body.ab08-transplant .ab09-coupon-overlay{z-index:2001!important}
+@media(max-width:900px){body.ab08-transplant main>section[title].ab08-stage{grid-template-columns:1fr!important;min-height:390px!important}body.ab08-transplant .ab08-stage .hero-aside{display:none!important}body.ab08-transplant section[list] [wrapper]{grid-template-columns:repeat(2,minmax(0,1fr))!important}body.ab08-transplant .area-wrap{top:64px!important}}
+@media(max-width:700px){body.ab08-transplant header.site-menu-host{height:60px!important;padding:0 12px!important;gap:8px!important}body.ab08-transplant header.site-menu-host>a{height:60px!important;max-width:calc(100% - 94px)!important}body.ab08-transplant header.site-menu-host>a::before{width:27px!important;height:27px!important;flex-basis:27px!important}body.ab08-transplant header.site-menu-host>a [data-title]::before{font-size:clamp(.94rem,3.7vw,1.08rem)!important}body.ab08-transplant header.site-menu-host>a [data-title]::after{font-size:.39rem!important;letter-spacing:.14em!important}body.ab08-transplant header.site-menu-host .site-member-tools{max-width:75px!important;min-width:0!important}body.ab08-transplant header.site-menu-host .site-member-tools a{font-size:.7rem!important;padding:6px!important}body.ab08-transplant header.site-menu-host .site-menu-trigger{width:35px!important;flex-basis:35px!important;height:35px!important}body.ab08-transplant .area-wrap{top:60px!important;padding:0 8px!important}body.ab08-transplant .area-list ul{min-height:42px!important}body.ab08-transplant .area-list a{min-height:42px!important;padding:0 11px!important;font-size:.72rem!important}body.ab08-transplant main.daum-wm-content{padding:12px 10px 50px!important}body.ab08-transplant main>section[title].ab08-stage{min-height:356px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;padding:48px 20px 24px!important;border-radius:13px!important;margin:0 0 12px!important}body.ab08-transplant main>section[title].ab08-stage:after{top:17px!important;left:20px!important;font-size:.47rem!important}body.ab08-transplant .ab08-stage .hero-copy{max-width:100%!important}body.ab08-transplant .ab08-stage h1.daum-wm-title{font-size:clamp(1.75rem,7vw,2.8rem)!important;line-height:1.18!important;overflow-wrap:break-word!important}body.ab08-transplant .ab08-stage .hero-desc,body.ab08-transplant .ab08-stage .hero-copy>p{font-size:.74rem!important;line-height:1.56!important}body.ab08-transplant .ab08-stage .hero-scroll{display:none!important}body.ab08-transplant .editorial-strip{grid-template-columns:1fr 1fr!important;gap:1px!important;margin:0 0 14px!important}body.ab08-transplant .editorial-tile{min-height:103px!important;padding:14px!important}body.ab08-transplant .editorial-tile:first-child{grid-column:span 2!important}body.ab08-transplant .editorial-tile strong{font-size:1.16rem!important}body.ab08-transplant section[list] [wrapper]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}body.ab08-transplant section[list] ul,body.ab08-transplant section[list] ul:nth-child(n){padding:12px!important;min-height:125px!important}body.ab08-transplant section[list] h3,body.ab08-transplant section[list] h3 a{font-size:.99rem!important}body.ab08-transplant .global-place-search{margin-bottom:15px!important}body.ab08-transplant .global-place-search:before{display:block!important}body.ab08-transplant .global-place-search__input{min-width:0!important;font-size:.86rem!important}body.ab08-transplant .global-place-search__button{min-width:57px!important;padding:0 12px!important;font-size:.78rem!important}}
+@media(max-width:370px){body.ab08-transplant section[list] [wrapper]{grid-template-columns:1fr!important}body.ab08-transplant .editorial-strip{grid-template-columns:1fr!important}body.ab08-transplant .editorial-tile:first-child{grid-column:auto!important}}
+@media(prefers-reduced-motion:reduce){body.ab08-transplant *{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+/* Compatibility priority layer: old 09 UI-lock rules have !important and very high specificity. */
+html body.ab08-transplant header.site-menu-host:not(#__ab08_specificity__){
+  box-sizing:border-box!important;min-height:64px!important;max-height:64px!important;height:64px!important;
+  display:flex!important;flex-wrap:nowrap!important;align-items:center!important;
+  padding-block:0!important;margin:0!important;border-radius:0!important;
+}
+html body.ab08-transplant header.site-menu-host>a:not(#__ab08_specificity__){height:64px!important;min-height:0!important;flex:1 1 auto!important;max-width:none!important;margin:0 auto 0 0!important;order:1!important}
+html body.ab08-transplant header.site-menu-host>a [logo] div[data-title]:not(#__ab08_specificity__){font-size:0!important;line-height:0!important;color:transparent!important;letter-spacing:0!important;text-shadow:none!important}
+html body.ab08-transplant header.site-menu-host>a [logo] div[data-title]::before{content:"광주버블여지도"!important;color:#f5df9a!important;font-size:1.24rem!important;line-height:1.12!important;letter-spacing:-.06em!important;text-shadow:none!important}
+html body.ab08-transplant header.site-menu-host>a [logo] div[data-title]::after{content:"GWANGJU NIGHT GUIDE"!important;color:#aa9776!important;font-size:.47rem!important;letter-spacing:.18em!important;line-height:1.35!important;text-shadow:none!important}
+html body.ab08-transplant header.site-menu-host .site-member-tools:not(#__ab08_specificity__){display:flex!important;position:static!important;inset:auto!important;margin:0!important;order:2!important;flex:0 0 auto!important;transform:none!important;max-width:none!important;min-width:0!important}
+html body.ab08-transplant header.site-menu-host .site-member-tools a:not(#__ab08_specificity__){display:flex!important;align-items:center!important;justify-content:center!important;min-height:34px!important;height:34px!important;min-width:0!important;background:#141314!important;color:#ead29b!important;border:1px solid rgba(217,173,69,.34)!important;border-radius:8px!important;box-shadow:none!important}
+html body.ab08-transplant header.site-menu-host .site-menu-trigger:not(#__ab08_specificity__){display:flex!important;position:static!important;inset:auto!important;align-items:center!important;justify-content:center!important;min-height:35px!important;max-height:38px!important;width:40px!important;flex:0 0 40px!important;margin:0!important;order:3!important;transform:none!important;background:#161416!important;color:#f4daa2!important;border:1px solid rgba(217,173,69,.3)!important;border-radius:9px!important;box-shadow:none!important}
+html body.ab08-transplant .area-wrap:not(#__ab08_specificity__){top:64px!important;max-width:100%!important;width:100%!important;margin:0!important;min-height:48px!important;border-radius:0!important;padding-block:0!important;box-shadow:none!important;background:#09090b!important}
+html body.ab08-transplant .area-wrap .area-list:not(#__ab08_specificity__){max-width:1180px!important;width:100%!important;overflow:visible!important}
+html body.ab08-transplant .area-wrap .area-list ul:not(#__ab08_specificity__){display:flex!important;flex-flow:row nowrap!important;gap:0!important;min-height:48px!important;padding:0!important;margin:0!important;justify-content:flex-start!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important}
+html body.ab08-transplant .area-wrap .area-list li:not(#__ab08_specificity__){display:flex!important;flex:0 0 auto!important;min-width:0!important;background:transparent!important;border:none!important;padding:0!important;margin:0!important}
+html body.ab08-transplant .area-wrap .area-list li a:not(#__ab08_specificity__){display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-height:48px!important;height:48px!important;padding:0 13px!important;margin:0!important;background:transparent!important;color:#9e9486!important;box-shadow:none!important;border:0!important;border-right:1px solid rgba(217,173,69,.17)!important;border-radius:0!important;text-shadow:none!important;transform:none!important;white-space:nowrap!important}
+html body.ab08-transplant .area-wrap .area-list li.current a:not(#__ab08_specificity__),html body.ab08-transplant .area-wrap .area-list li a:not(#__ab08_specificity__):hover{background:rgba(217,173,69,.09)!important;color:#f5df9a!important;border-bottom:2px solid #d9ad45!important}
+@media(max-width:700px){
+ html body.ab08-transplant header.site-menu-host:not(#__ab08_specificity__){min-height:60px!important;max-height:60px!important;height:60px!important;padding:0 10px!important}
+ html body.ab08-transplant header.site-menu-host>a:not(#__ab08_specificity__){height:60px!important;max-width:calc(100% - 115px)!important}
+ html body.ab08-transplant header.site-menu-host>a [logo] div[data-title]::before{font-size:1rem!important}
+ html body.ab08-transplant header.site-menu-host>a [logo] div[data-title]::after{font-size:.39rem!important}
+ html body.ab08-transplant header.site-menu-host .site-member-tools a:not(#__ab08_specificity__){font-size:.68rem!important;padding:0 8px!important}
+ html body.ab08-transplant header.site-menu-host .site-menu-trigger:not(#__ab08_specificity__){width:34px!important;flex-basis:34px!important}
+ html body.ab08-transplant .area-wrap:not(#__ab08_specificity__){top:60px!important;min-height:42px!important}
+ html body.ab08-transplant .area-wrap .area-list ul:not(#__ab08_specificity__){min-height:42px!important}
+ html body.ab08-transplant .area-wrap .area-list li a:not(#__ab08_specificity__){height:42px!important;min-height:42px!important;padding:0 11px!important;font-size:.72rem!important}
+}
+/* Keep the whole regional menu visible. 09's drawer-mode CSS hid the non-current nav items. */
+html body.ab08-transplant .area-wrap .area-list ul li:not(#__ab08_specificity__){
+  display:flex!important;visibility:visible!important;opacity:1!important;position:static!important;
+  min-width:0!important;min-height:0!important;max-height:none!important;max-width:none!important;
+  overflow:visible!important;clip-path:none!important;transform:none!important;
+}
+html body.ab08-transplant .area-wrap .area-list ul li a:not(#__ab08_specificity__){
+  visibility:visible!important;opacity:1!important;display:flex!important;text-decoration:none!important;
+}
+html body.ab08-transplant header.site-menu-host>a .ab08-brand-icon:not(#__ab08_specificity__){
+  display:block!important;opacity:1!important;visibility:visible!important;position:static!important;
+  width:34px!important;height:34px!important;min-width:34px!important;max-width:34px!important;
+  flex:0 0 34px!important;object-fit:contain!important;margin-right:10px!important;
+}
+html body.ab08-transplant header.site-menu-host>a:not(#__ab08_specificity__)::before{content:none!important;display:none!important}
+html body.ab08-transplant .ab08-stage .hero-copy:not(#__ab08_specificity__),html body.ab08-transplant .ab08-stage .hero-copy:not(#__ab08_specificity__) > :is(h1,p,details){text-align:left!important;align-self:stretch!important;margin-left:0!important;margin-right:0!important}
+html body.ab08-transplant .ab08-stage .hero-copy .hero-keyline:not(#__ab08_specificity__){text-align:left!important}
+@media(max-width:700px){html body.ab08-transplant header.site-menu-host>a .ab08-brand-icon:not(#__ab08_specificity__){width:29px!important;height:29px!important;min-width:29px!important;max-width:29px!important;flex-basis:29px!important;margin-right:7px!important}}
+/* Unset the old full-width navigation cells. Each item must fit its label, not the viewport. */
+html body.ab08-transplant .area-wrap .area-list ul li:not(#__ab08_specificity__){
+ width:auto!important;flex:0 0 auto!important;flex-basis:auto!important;flex-grow:0!important;flex-shrink:0!important;
+}
+html body.ab08-transplant .area-wrap .area-list ul li a:not(#__ab08_specificity__){
+ width:auto!important;max-width:none!important;flex:0 0 auto!important;flex-basis:auto!important;min-width:0!important;
+}
+/* Match ALBAM08's charcoal/gold editorial palette on the retained ALBAM09 ad slots. */
+html body.ab08-transplant .top-ad-zone .top-ad-recruit:not(#__ab08_specificity__){
+ background:linear-gradient(145deg,#151416,#0c0c0d)!important;
+ color:#f0e6d5!important;border:1px solid rgba(217,173,69,.24)!important;
+ box-shadow:0 8px 24px rgba(0,0,0,.28)!important;
+}
+html body.ab08-transplant .top-ad-zone .top-ad-recruit__eyebrow:not(#__ab08_specificity__){
+ color:#d9ad45!important;border-color:rgba(217,173,69,.23)!important;background:#1b1917!important;
+}
+html body.ab08-transplant .top-ad-zone .top-ad-recruit__title:not(#__ab08_specificity__){color:#f3e3c6!important}
+html body.ab08-transplant .top-ad-zone .top-ad-recruit__sub:not(#__ab08_specificity__){color:#9e9688!important}
+html body.ab08-transplant .top-ad-zone .top-ad-recruit__icon:not(#__ab08_specificity__){background:#1c1915!important;border:1px solid rgba(217,173,69,.2)!important}

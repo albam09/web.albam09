@@ -1,0 +1,15 @@
+
+/* 광주룸빵달리기 브랜드 통합 레이어 */
+:root{--brand-gold:#d9ad45;--brand-gold-light:#f5df9a;--brand-black:#080808;--brand-panel:#11110f}
+header>a{gap:12px!important;min-width:max-content}
+header>a [logo]{display:flex!important;align-items:center!important;gap:12px!important}
+header>a [svg-box]{display:none!important}
+header>a [data-title]{font-size:0!important;line-height:1!important}
+header>a [data-title]::before{content:"광주룸빵달리기";font-size:clamp(1.1rem,2vw,1.55rem);font-weight:900;letter-spacing:-.055em;color:var(--brand-gold-light)}
+header>a [data-title]::after{content:"GWANGJU NIGHT GUIDE";display:block;margin-top:4px;font-family:Arial,sans-serif;font-size:.58rem;letter-spacing:.22em;color:#9b8c6b}
+header>a::before{content:"";width:38px;height:38px;flex:0 0 38px;background:url('/img/brand/icon.svg') center/contain no-repeat}
+.albam11-hero .albam11-eyebrow{color:var(--brand-gold-light)!important}
+.albam11-hero h1.daum-wm-title{font-size:0!important}
+.albam11-hero h1.daum-wm-title::before{content:"광주룸빵";font-size:clamp(2.25rem,6vw,5.2rem);font-weight:900;color:#fff}
+.albam11-hero h1.daum-wm-title::after{content:"달리기";display:block;font-size:clamp(2.25rem,6vw,5.2rem);font-weight:900;color:var(--brand-gold)}
+@media(max-width:700px){header>a::before{width:32px;height:32px;flex-basis:32px}header>a [data-title]::before{font-size:1rem}header>a [data-title]::after{font-size:.46rem}}

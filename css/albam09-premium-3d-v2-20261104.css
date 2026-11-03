@@ -1,0 +1,253 @@
+/* ALBAM09 / Premium Solid 3D - Preview V2 (2026-11-04)
+   ONLY visual CSS. All original site HTML, JS, font resources, page links,
+   cards and slider logic remain unchanged in this preview package.
+   The frame and shadows are deliberately substantial, unlike the V1 hairline rim. */
+
+:root{--ab09-3d-shadow:rgba(72,19,89,.27);--ab09-3d-deep:rgba(40,10,55,.19)}
+
+/* Visible 16px solid-pearlescent edge, inner well, chrome corners and a cast shadow. */
+#bubble-viewport-frame{
+  position:fixed!important;inset:0!important;z-index:2147483630!important;
+  pointer-events:none!important;overflow:hidden!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  box-shadow:
+   inset 0 0 0 2px rgba(255,255,255,1),
+   inset 0 0 0 5px #ca94b7,
+   inset 0 0 0 8px #fff7fc,
+   inset 0 0 0 12px #92507e,
+   inset 0 0 0 16px #f5dce9,
+   inset 0 0 7px 17px rgba(46,14,48,.42),
+   inset 0 0 35px 23px rgba(65,14,64,.27),
+   inset 0 0 68px 21px rgba(169,65,143,.11)!important;
+}
+#bubble-viewport-frame::before{
+  content:"";position:absolute;inset:0;opacity:1;
+  background:
+    linear-gradient(180deg,#fff 0%,#fff1fa 20%,#b06d9e 67%,#73385e 100%) top/100% 13px no-repeat,
+    linear-gradient(0deg,#573153 0%,#a56190 26%,#fff 94%) bottom/100% 16px no-repeat,
+    linear-gradient(90deg,#fff 0%,#f6dfe9 31%,#985d88 84%,#653057 100%) left/15px 100% no-repeat,
+    linear-gradient(270deg,#fff 0%,#f5d3e4 32%,#9d5c8f 78%,#5a2c56 100%) right/15px 100% no-repeat;
+  filter:drop-shadow(0 4px 4px rgba(38,6,40,.16));
+}
+#bubble-viewport-frame::after{
+  content:"";position:absolute;inset:15px;
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 0 0 1px rgba(110,34,91,.29),inset 0 6px 15px rgba(52,13,60,.19),0 0 2px 1px rgba(255,255,255,.6);
+}
+#bubble-viewport-frame .bubble-gloss-top{
+  position:absolute;left:11%;right:13%;top:1px;height:7px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.92) 18%,#fff 55%,rgba(255,255,255,.95) 86%,transparent);
+  filter:blur(.7px);
+}
+#bubble-viewport-frame .bubble-gloss-left{
+  position:absolute;top:11%;bottom:18%;left:2px;width:7px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.85) 25%,#fff 54%,rgba(255,255,255,.82) 80%,transparent);
+  filter:blur(.7px);
+}
+#bubble-viewport-frame .bubble-frame-corner{
+  position:absolute;width:52px;height:52px;
+  border:solid rgba(255,255,255,.99);border-width:0;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.9));
+}
+#bubble-viewport-frame .tl{top:0;left:0;border-width:3px 0 0 3px}
+#bubble-viewport-frame .tr{top:0;right:0;border-width:3px 3px 0 0}
+#bubble-viewport-frame .bl{bottom:0;left:0;border-width:0 0 3px 3px}
+#bubble-viewport-frame .br{bottom:0;right:0;border-width:0 3px 3px 0}
+
+/* Ambient spotlight behind the site, preserving its original layout. */
+html body.ui-unified-page{background-image:radial-gradient(ellipse 62% 420px at 50% -9%,rgba(230,192,239,.28),transparent 78%),linear-gradient(180deg,#fff 0%,#fff 57%,#fff9fe 100%)!important}
+
+/* Top partnership panels: an actual underside and shadow, not just a thin stroke. */
+html body .top-ad-zone .top-ad-slot,
+html body .top-ad-zone .top-ad-recruit,
+html body .top-ad-zone .partner-contact-card{
+  border:1px solid rgba(255,255,255,.96)!important;
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.95),
+    inset 0 -2px 5px rgba(89,39,92,.07),
+    0 5px 0 rgba(157,109,156,.30),
+    0 16px 32px rgba(72,23,94,.23),
+    0 30px 45px rgba(89,24,103,.07)!important;
+}
+
+/* Equal typography for EVERY region button, karaoke2 and room included. */
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
+html body:not(.detail-renew) > .area-wrap nav.area-list > ul > li > a{
+  font-family:var(--albam09-font-main,inherit)!important;
+  font-size:11px!important;font-weight:800!important;
+  line-height:1.16!important;letter-spacing:-.06em!important;
+  padding:3px!important;white-space:normal!important;word-break:keep-all!important;
+  box-shadow:
+    inset 0 2px 1px rgba(255,255,255,1),
+    inset 0 -1px 2px rgba(104,43,91,.09),
+    0 4px 0 rgba(122,81,121,.32),
+    0 11px 19px rgba(81,25,111,.18)!important;
+  border:1px solid rgba(222,207,230,.95)!important;
+}
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li.current > a,
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[aria-current="page"] > a{
+  box-shadow:inset 0 2px 1px rgba(255,255,255,.36),
+    inset 0 -3px 8px rgba(53,7,109,.26),
+    0 4px 0 #56239c,0 13px 21px rgba(128,48,178,.29)!important;
+  border:1px solid rgba(203,149,255,.8)!important;
+}
+/* Cancel legacy special-sized/shortened karaoke2 label so every item uses identical type. */
+@media(max-width:350px){
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a{
+   font-size:8.8px!important;
+ }
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after{content:none!important}
+}
+
+/* A thick floating gradient hero block - original colors and text unchanged. */
+html body main.daum-wm-content > section[title]{
+  position:relative!important;isolation:isolate;
+  border:2px solid rgba(255,255,255,.85)!important;
+  border-radius:24px!important;
+  box-shadow:inset 0 3px 2px rgba(255,255,255,.24),
+     inset 0 -8px 15px rgba(70,0,72,.20),
+     0 8px 0 rgba(126,27,119,.56),
+     0 19px 18px rgba(84,21,104,.23),
+     0 34px 52px rgba(112,22,129,.22),
+     0 58px 74px rgba(87,22,122,.07)!important;
+}
+/* Illuminated rim on top, dramatic bottom lip. This visual does NOT alter HTML. */
+html body main.daum-wm-content > section[title]::after{
+  content:"";position:absolute;inset:2px;z-index:-1;pointer-events:none;
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,transparent 35%,transparent 72%,rgba(53,2,91,.18) 100%);
+}
+
+html body main .global-place-search__form{
+  border:1px solid rgba(244,229,252,.94)!important;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,1),
+   0 5px 0 rgba(122,84,140,.30),
+   0 15px 24px rgba(61,26,93,.22),
+   0 26px 40px rgba(74,34,92,.08)!important;
+}
+html body main .global-place-search__button{
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.24),inset 0 -2px 2px rgba(10,0,27,.19),
+  0 3px 0 rgba(39,17,63,.38),0 8px 15px rgba(64,24,91,.21)!important;
+}
+
+/* Below fold: visually stacked floating region cards and panels. */
+html body main section[list] .rotating-list-container,
+html body main .info-panel-stack .balba-home-promo,
+html body main .info-panel-stack .info-fold-card,
+html body main .info-panel-stack .home-bbs-preview,
+html body main .index-venue-preview-card,
+html body main .index-venue-region,
+html body main .info-map-card{
+  border:1px solid rgba(255,255,255,.86)!important;
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.95),
+    inset 0 -2px 5px rgba(99,46,95,.06),
+    0 5px 0 rgba(162,103,157,.28),
+    0 14px 25px rgba(68,22,87,.17),
+    0 30px 48px rgba(70,18,95,.08)!important;
+}
+html body main section[list] h2{
+  text-shadow:0 2px 0 rgba(255,255,255,.95),0 8px 11px rgba(111,28,125,.20)!important;
+}
+
+@media(max-width:700px){
+ #bubble-viewport-frame{box-shadow:
+   inset 0 0 0 1px #fff,inset 0 0 0 3px #dcb4cf,inset 0 0 0 5px #fff,
+   inset 0 0 0 7px #9e628d,inset 0 0 0 9px #f8e8f1,
+   inset 0 0 9px 10px rgba(46,12,60,.28),
+   inset 0 0 25px 13px rgba(100,29,94,.13)!important;}
+ #bubble-viewport-frame::before{background:
+    linear-gradient(180deg,#fff 0%,#c999b8 70%,#703654) top/100% 8px no-repeat,
+    linear-gradient(0deg,#5e3158 0%,#e5bfd5 70%,#fff) bottom/100% 8px no-repeat,
+    linear-gradient(90deg,#fff 0%,#dca9c9 55%,#753f6a) left/8px 100% no-repeat,
+    linear-gradient(270deg,#fff 0%,#dca9c9 55%,#753f6a) right/8px 100% no-repeat;}
+ #bubble-viewport-frame::after{inset:8px;border-width:1px}
+ #bubble-viewport-frame .bubble-frame-corner{width:24px;height:24px}
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
+ html body:not(.detail-renew) > .area-wrap nav.area-list > ul > li > a{
+   font-size:clamp(8.8px,2.45vw,10.5px)!important;
+   line-height:1.17!important;padding:2px 1px!important;
+   box-shadow:inset 0 1px 0 #fff,0 3px 0 rgba(122,81,121,.34),0 7px 12px rgba(81,25,111,.15)!important;
+ }
+ html body main.daum-wm-content > section[title]{
+   box-shadow:inset 0 2px 2px rgba(255,255,255,.24),inset 0 -5px 10px rgba(70,0,72,.15),
+   0 5px 0 rgba(126,27,119,.48),0 11px 16px rgba(84,21,104,.20),0 22px 35px rgba(112,22,129,.14)!important;
+ }
+ html body .top-ad-zone .top-ad-slot,
+ html body main section[list] .rotating-list-container{
+   box-shadow:inset 0 1px 2px #fff,0 3px 0 rgba(157,109,156,.26),0 10px 16px rgba(72,23,94,.17)!important;
+ }
+}
+@media print{#bubble-viewport-frame{display:none!important}}
+/* V2 font parity: beat older mobile-only per-item rules by including their data-page specificity. */
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
+html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a {
+ font-size:11px!important;
+}
+@media(max-width:700px){
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
+ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{
+   font-size:clamp(8.8px,2.45vw,10.5px)!important;
+   padding:2px 1px!important;
+ }
+}
+
+
+/* SITE-WIDE additive depth: secondary pages retain their own layout/content. */
+html body.ui-unified-page :is(.business-desc-card,.info-guide-card,.explore-index-card,
+  .explorer-panel,.explorer-board-panel,.bbs-table,.bbs-article-card,.bbs-hero,
+  .auth-card,.balba-section,.balba-sidecard,.balba-editor,.info-fold-card,
+  .explorer-grid-cta,.index-venue-preview-card,.explore-index-hero){
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,.95),
+    inset 0 -2px 4px rgba(91,36,98,.07),
+    0 5px 0 rgba(150,95,155,.24),
+    0 15px 30px rgba(75,29,102,.17),
+    0 30px 44px rgba(68,20,84,.055)!important;
+  border-color:rgba(231,206,239,.94)!important;
+}
+/* Header / page hero: bright glass rim, stronger lower lip, original colors. */
+html body.ui-unified-page :is(.explorer-hero,.ui-karaoke-hero,.explore-index-hero,.balba-hero){
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.24),
+    inset 0 -8px 13px rgba(60,8,77,.13),
+    0 7px 0 rgba(136,59,147,.30),
+    0 18px 30px rgba(80,20,110,.20),
+    0 31px 53px rgba(79,20,113,.09)!important;
+}
+html body.ui-unified-page :is(.business-desc-card__button,.explorer-btn,.balba-button,
+  .explorer-grid-cta__button){
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.38),
+    0 3px 0 rgba(79,34,105,.28),0 8px 16px rgba(63,22,91,.17)!important;
+}
+html body.ui-unified-page .bbs-row:hover,
+html body.ui-unified-page .explore-index-card:hover,
+html body.ui-unified-page .business-desc-card:hover{
+  filter:brightness(1.025);
+}
+/* Full-page map layout remains functional: add a deep, polished dark map shell. */
+html body:has(#map) #top{
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.16),
+    0 5px 0 rgba(29,19,39,.35),0 14px 23px rgba(7,5,14,.35)!important;
+}
+html body:has(#map) #panel{
+  border-color:rgba(220,194,231,.36)!important;
+  box-shadow:inset 2px 0 0 rgba(255,255,255,.15),
+    -5px 0 0 rgba(141,107,161,.20),-14px 0 27px rgba(16,8,33,.28)!important;
+}
+html body:has(#map) :is(.btn,.chip,.pop-link){
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.15),
+    0 3px 0 rgba(0,0,0,.23),0 8px 12px rgba(2,2,7,.19)!important;
+}
+html body:has(#map) #popup{
+  box-shadow:0 5px 0 rgba(72,35,88,.23),
+    0 13px 26px rgba(15,9,30,.32)!important;
+}
+/* Keep form and interactive regions unobstructed. Frame never steals events. */
+#bubble-viewport-frame,#bubble-viewport-frame *{pointer-events:none!important}
+@media(max-width:700px){
+ html body.ui-unified-page :is(.business-desc-card,.explorer-panel,.explorer-board-panel,
+   .bbs-table,.bbs-article-card,.bbs-hero,.balba-section,.auth-card){
+   box-shadow:inset 0 1px 1px #fff,0 3px 0 rgba(151,100,157,.23),
+     0 11px 20px rgba(75,29,102,.15)!important;
+ }
+ html body:has(#map) #panel{box-shadow:0 -4px 0 rgba(134,97,156,.26),
+   0 -13px 25px rgba(14,9,29,.21)!important}
+}
