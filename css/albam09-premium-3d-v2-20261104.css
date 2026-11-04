@@ -251,39 +251,3 @@ html body:has(#map) #popup{
  html body:has(#map) #panel{box-shadow:0 -4px 0 rgba(134,97,156,.26),
    0 -13px 25px rgba(14,9,29,.21)!important}
 }
-
-/* V4 mobile menu override: readable labels and no bottom clipping. */
-@media(max-width:760px){
- html body.ui-unified-page > .area-wrap{
-  margin:0 auto 24px!important;
-  padding:0 10px 12px!important;
-  overflow:visible!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul{
-  gap:6px!important;
-  padding-bottom:10px!important;
-  margin-bottom:4px!important;
-  overflow:visible!important;
- }
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{
-  min-height:40px!important;
-  height:auto!important;
-  padding:6px 5px!important;
-  font-size:11.6px!important;
-  line-height:1.16!important;
-  letter-spacing:-.04em!important;
-  border-radius:11px!important;
-  box-sizing:border-box!important;
- }
-}
-@media(max-width:355px){
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
- html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{
-  font-size:10.7px!important;
-  min-height:38px!important;
-  padding:5px 4px!important;
- }
-}
