@@ -16,13 +16,14 @@ const xml=s=>esc(s);
 const dateOnly=v=>{try{return new Date(v).toISOString().slice(0,10)}catch{return new Date().toISOString().slice(0,10)}};
 const safeSlug=s=>/^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/.test(String(s||''))?String(s):'';
 const publicVenues=JSON.parse(await fs.readFile(path.join(root,'data/public-venues.json'),'utf8'));
-function venueLink(name){
+const regionForBoard={karaoke1:'서구1',karaoke2:'서구2',karaoke3:'북구2',karaoke4:'북구1',karaoke5:'광산구',karaoke6:'목포',karaoke7:'동구',karaoke8:'남구'};
+function venueLink(name,board){
  const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,'').toLocaleLowerCase('ko-KR');
- const hits=publicVenues.filter(v=>norm(v.name)===norm(name));
- if(hits.length!==1||!/^[a-z0-9-]+$/i.test(hits[0].slug||''))return null;
- return `https://ilovebam11.com/place/${encodeURIComponent(hits[0].slug)}/`;
+ if(!Object.hasOwn(regionForBoard,board))return null;
+ const hits=publicVenues.filter(v=>v.region===regionForBoard[board]&&norm(v.name)===norm(name));
+ if(hits.length!==1||!/^[a-z0-9_-]+$/i.test(hits[0].slug||''))return null;
+ return `/map/${encodeURIComponent(board)}/?venue=${encodeURIComponent(hits[0].slug)}`;
 }
-
 
 function articleHtml(d){
   const label=labels[d.board]||'지역';
@@ -30,7 +31,7 @@ function articleHtml(d){
   const when=d.published_at||d.created_at||'';
   const imgs=Array.isArray(d.images)?d.images:[];
   const gallery=imgs.length?`<div class="explorer-gallery">${imgs.map((im,i)=>`<figure><img src="${esc(im.url||'')}" alt="${esc(im.alt||`${d.title} 탐험기 사진 ${i+1}`)}" loading="${i?'lazy':'eager'}" decoding="async"${i?'':' fetchpriority="high"'}><figcaption>${esc(im.caption||im.alt||`${d.title} 현장 이미지`)}</figcaption></figure>`).join('')}</div>`:'';
-  const venue=d.venue_name?(venueLink(d.venue_name)?`<a class="explorer-post-venue explorer-post-venue--link" href="${esc(venueLink(d.venue_name))}" aria-label="${esc(d.venue_name)} 업소 상세페이지 바로가기"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong><span class="explorer-post-venue__hint" aria-hidden="true">상세보기 ↗</span></a>`:`<div class="explorer-post-venue"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong></div>`):'';
+  const venue=d.venue_name?(venueLink(d.venue_name,d.board)?`<a class="explorer-post-venue explorer-post-venue--link" href="${esc(venueLink(d.venue_name,d.board))}" aria-label="${esc(d.venue_name)} 지도에서 위치 보기"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong><span class="explorer-post-venue__hint" aria-hidden="true">지도 보기 ↗</span></a>`:`<div class="explorer-post-venue"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong></div>`):'';
   const summary=d.summary?`<div class="explorer-post-summary">${esc(d.summary)}</div>`:'';
   return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1>${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
 }

@@ -5,8 +5,39 @@ const boards={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신
 const qs=new URLSearchParams(location.search);let board=qs.get('board')||'karaoke1';if(!boards[board])board='karaoke1';const editId=qs.get('edit');let existingImages=[],editAllowed=false;
 const boardSel=document.getElementById('explorerBoard');Object.entries(boards).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent=n;o.selected=v===board;boardSel.appendChild(o)});
 function safeText(v){return String(v||'').trim()}
+const venueSearch=document.getElementById('explorerVenueSearch');
+const venuePicker=document.getElementById('explorerVenuePicker');
+const venueInput=document.getElementById('explorerVenue');
+const venueHelp=document.getElementById('explorerVenueHelp');
+const regionForBoard={karaoke1:'서구1',karaoke2:'서구2',karaoke3:'북구2',karaoke4:'북구1',karaoke5:'광산구',karaoke6:'목포',karaoke7:'동구',karaoke8:'남구'};
+const normalizeVenue=s=>String(s||'').normalize('NFKC').replace(/\s+/g,'').toLocaleLowerCase('ko-KR');
+function availableVenues(){return Array.isArray(window.PUBLIC_VENUES)?window.PUBLIC_VENUES.filter(v=>v&&v.name&&v.slug&&regionForBoard[boardSel.value]===v.region):[]}
+function updateVenueOptions(){
+ if(!venuePicker)return;
+ const phrase=normalizeVenue(venueSearch?.value),items=availableVenues();
+ const filtered=items.filter(v=>!phrase||normalizeVenue(v.name).includes(phrase));
+ const old=venuePicker.value;
+ venuePicker.replaceChildren();
+ const start=new Option(filtered.length?'업소를 선택하세요':'일치하는 등록 업소 없음','');venuePicker.appendChild(start);
+ for(const v of filtered){const o=new Option(v.name,v.slug);venuePicker.appendChild(o)}
+ if(filtered.some(v=>v.slug===old))venuePicker.value=old;
+}
+function reflectVenueFromName(){
+ if(!venuePicker)return;
+ const items=availableVenues().filter(v=>normalizeVenue(v.name)===normalizeVenue(venueInput?.value));
+ const exact=items.length===1?items[0]:null;
+ venueSearch.value='';updateVenueOptions();venuePicker.value=exact?.slug||'';
+ if(venueHelp)venueHelp.textContent=exact?'등록 업소 선택됨 · 탐험기에서 지도 위치로 이동합니다.':'등록되지 않은 장소명은 자동 지도 연결이 제공되지 않습니다.';
+}
+if(venuePicker){
+ boardSel.addEventListener('change',()=>{venueSearch.value='';venuePicker.value='';venueInput.value='';updateVenueOptions();if(venueHelp)venueHelp.textContent='지역에 등록된 업소를 선택해 주세요.'});
+ venueSearch.addEventListener('input',updateVenueOptions);
+ venuePicker.addEventListener('change',()=>{const item=availableVenues().find(v=>v.slug===venuePicker.value);if(item){venueInput.value=item.name;if(venueHelp)venueHelp.textContent='등록 업소 선택됨 · 탐험기에서 지도 위치로 이동합니다.'}else if(venueHelp)venueHelp.textContent='등록 업소를 선택해 주세요.'});
+ venueInput.addEventListener('input',()=>{venuePicker.value='';if(venueHelp)venueHelp.textContent='직접 입력한 장소명은 등록 업소와 정확히 일치할 때만 지도에 연결됩니다.'});
+ updateVenueOptions();
+}
 function redrawExisting(A){const box=document.getElementById('existingImages');box.innerHTML=existingImages.map((x,i)=>`<div class="explorer-upload-item"><img src="${A.esc(x.url)}" alt="${A.esc(x.alt||'기존 이미지')}"><label>이미지 설명</label><input class="explorer-input" data-existing-alt="${i}" value="${A.esc(x.alt||'')}"><button type="button" class="explorer-btn danger" data-remove-existing="${i}" style="margin-top:7px">제거</button></div>`).join('');box.querySelectorAll('[data-existing-alt]').forEach(el=>el.oninput=()=>{existingImages[+el.dataset.existingAlt].alt=el.value;existingImages[+el.dataset.existingAlt].caption=el.value});box.querySelectorAll('[data-remove-existing]').forEach(el=>el.onclick=()=>{existingImages.splice(+el.dataset.removeExisting,1);redrawExisting(A)})}
-async function loadEdit(A){if(!editId)return;if(A.refreshStaff)await A.refreshStaff();const {data,error}=await A.sb.from('albam09_explorer_posts').select('*').eq('id',editId).maybeSingle();if(error||!data){A.toast('수정할 글을 찾지 못했습니다: '+(error?.message||''));form.style.display='none';return}editAllowed=!!(A.isAdmin||A.session?.user?.id===data.author_id);if(!editAllowed){A.toast('이 글을 수정할 권한이 없습니다.');form.style.display='none';return}board=data.board;boardSel.value=board;document.getElementById('explorerTitle').value=data.title||'';document.getElementById('explorerSummary').value=data.summary||'';document.getElementById('explorerVenue').value=data.venue_name||'';document.getElementById('explorerLocation').value=data.location_text||'';document.getElementById('explorerContent').value=data.content||'';existingImages=Array.isArray(data.images)?data.images:[];redrawExisting(A);document.getElementById('explorerWriteHeading').textContent='탐험기 수정'}
+async function loadEdit(A){if(!editId)return;if(A.refreshStaff)await A.refreshStaff();const {data,error}=await A.sb.from('albam09_explorer_posts').select('*').eq('id',editId).maybeSingle();if(error||!data){A.toast('수정할 글을 찾지 못했습니다: '+(error?.message||''));form.style.display='none';return}editAllowed=!!(A.isAdmin||A.session?.user?.id===data.author_id);if(!editAllowed){A.toast('이 글을 수정할 권한이 없습니다.');form.style.display='none';return}board=data.board;boardSel.value=board;updateVenueOptions();document.getElementById('explorerTitle').value=data.title||'';document.getElementById('explorerSummary').value=data.summary||'';document.getElementById('explorerVenue').value=data.venue_name||'';reflectVenueFromName();document.getElementById('explorerLocation').value=data.location_text||'';document.getElementById('explorerContent').value=data.content||'';existingImages=Array.isArray(data.images)?data.images:[];redrawExisting(A);document.getElementById('explorerWriteHeading').textContent='탐험기 수정'}
 async function uploadFiles(A,title){const input=document.getElementById('explorerImages');const files=[...input.files];if(files.length+existingImages.length>8)throw new Error('이미지는 최대 8장까지 등록할 수 있습니다.');const out=[];for(let i=0;i<files.length;i++){const f=files[i];if(!/^image\/(jpeg|png|webp)$/i.test(f.type))throw new Error('JPG, PNG, WEBP 이미지만 업로드할 수 있습니다.');if(f.size>8*1024*1024)throw new Error('이미지 한 장은 8MB 이하만 가능합니다.');const ext=(f.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';const path=`${A.session.user.id}/${Date.now()}-${i}-${Math.random().toString(36).slice(2,9)}.${ext}`;const r=await A.sb.storage.from(A.config.storageBucket).upload(path,f,{cacheControl:'31536000',upsert:false,contentType:f.type});if(r.error)throw r.error;const pub=A.sb.storage.from(A.config.storageBucket).getPublicUrl(path).data.publicUrl;const alt=`${boards[board]} ${safeText(document.getElementById('explorerVenue').value)||'노래방·가라오케'} 탐험기 - ${title} 사진 ${existingImages.length+i+1}`;out.push({url:pub,path,alt,caption:alt})}return out}
 async function initWrite(){const A=window.ALBAM09;const need=document.getElementById('explorerLoginNeed');if(!A?.session){need.style.display='block';form.style.display='none';return}need.style.display='none';form.style.display='block';await loadEdit(A)}
 if(window.ALBAM09_READY)initWrite();else window.addEventListener('ab09-ready',initWrite,{once:true});

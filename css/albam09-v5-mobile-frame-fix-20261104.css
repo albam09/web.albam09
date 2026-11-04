@@ -116,3 +116,54 @@ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"]
 @media print {
   html body.ui-unified-page {padding-bottom:0!important}
 }
+
+
+/* V6 / mobile 6 x 2 navigation — retains the V5 font size, avoids clipping. */
+@media (max-width:500px){
+  html body.ui-unified-page > .area-wrap nav.area-list > ul{
+    display:grid!important;
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    column-gap:5px!important;
+    row-gap:9px!important;
+    justify-content:stretch!important;
+    width:100%!important;
+    padding:4px 2px 18px!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li{
+    display:flex!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    box-sizing:border-box!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a{
+    width:100%!important;
+    min-width:0!important;
+    height:60px!important;
+    min-height:60px!important;
+    max-height:none!important;
+    padding:6px 2px!important;
+    white-space:normal!important;
+    overflow-wrap:anywhere!important;
+    word-break:keep-all!important;
+    hyphens:none!important;
+    line-height:1.15!important;
+  }
+  html body.ui-unified-page > .area-wrap{margin-bottom:27px!important;overflow:visible!important}
+}
+/* The former 360px rule had three columns. Keep two rows at 320px, too. */
+@media (max-width:360px){
+  html body.ui-unified-page > .area-wrap nav.area-list > ul{
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    column-gap:3px!important;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a{
+    height:62px!important;min-height:62px!important;padding:5px 1px!important;
+  }
+}
+

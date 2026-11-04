@@ -6,19 +6,20 @@ const slug=decodeURIComponent((location.pathname.match(/\/explore\/post\/([^/]+)
 let loaded=null,commentRows=[];
 const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 
-// Only link to an existing, exact-match registered business: never guess destination.
-function businessDetailUrl(name){
+// Exact-match registered venues only; map links stay within albam09.com.
+const regionForBoard={karaoke1:'서구1',karaoke2:'서구2',karaoke3:'북구2',karaoke4:'북구1',karaoke5:'광산구',karaoke6:'목포',karaoke7:'동구',karaoke8:'남구'};
+function venueMapUrl(name,board){
  const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,'').toLocaleLowerCase('ko-KR');
  const list=window.PUBLIC_VENUES;
- if(!Array.isArray(list)||!name)return null;
- const matches=list.filter(v=>norm(v.name)===norm(name));
- if(matches.length!==1||!/^[a-z0-9-]+$/i.test(matches[0].slug||''))return null;
- return `https://ilovebam11.com/place/${encodeURIComponent(matches[0].slug)}/`;
+ if(!Array.isArray(list)||!name||!Object.hasOwn(regionForBoard,board))return null;
+ const matches=list.filter(v=>v.region===regionForBoard[board]&&norm(v.name)===norm(name));
+ if(matches.length!==1||!/^[a-z0-9_-]+$/i.test(matches[0].slug||''))return null;
+ return `/map/${encodeURIComponent(board)}/?venue=${encodeURIComponent(matches[0].slug)}`;
 }
 function venueBadge(d,A){
  const name=String(d.venue_name||'').trim();if(!name)return '';
- const url=businessDetailUrl(name),content=`<span class="explorer-post-venue__label">업소</span><strong>${A.esc(name)}</strong>`;
- return url?`<a class="explorer-post-venue explorer-post-venue--link" href="${A.esc(url)}" aria-label="${A.esc(name)} 업소 상세페이지 바로가기">${content}<span class="explorer-post-venue__hint" aria-hidden="true">상세보기 ↗</span></a>`:
+ const url=venueMapUrl(name,d.board),content=`<span class="explorer-post-venue__label">업소</span><strong>${A.esc(name)}</strong>`;
+ return url?`<a class="explorer-post-venue explorer-post-venue--link" href="${A.esc(url)}" aria-label="${A.esc(name)} 지도에서 위치 보기">${content}<span class="explorer-post-venue__hint" aria-hidden="true">지도 보기 ↗</span></a>`:
  `<div class="explorer-post-venue">${content}</div>`;
 }
 
