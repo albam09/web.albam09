@@ -10,7 +10,7 @@ const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,bo
 const ALBA_POSTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_posts?select=id,title,summary,content,created_at,published_at,updated_at&status=eq.published&is_deleted=eq.false&order=published_at.desc&limit=100`;
 const ALBA_COMMENTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_comments?select=post_id,guest_name,content,created_at&status=eq.published&order=created_at.asc&limit=1000`;
 const PAGE_SIZE=1000;
-const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
+const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const xml=s=>esc(s);
 const dateOnly=v=>{try{return new Date(v).toISOString().slice(0,10)}catch{return new Date().toISOString().slice(0,10)}};
@@ -20,9 +20,10 @@ const regionForBoard={karaoke1:'서구1',karaoke2:'서구2',karaoke3:'북구2',k
 function venueLink(name,board){
  const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,'').toLocaleLowerCase('ko-KR');
  if(!Object.hasOwn(regionForBoard,board))return null;
- const hits=publicVenues.filter(v=>v.region===regionForBoard[board]&&norm(v.name)===norm(name));
+ const hits=publicVenues.filter(v=>norm(v.name)===norm(name));
  if(hits.length!==1||!/^[a-z0-9_-]+$/i.test(hits[0].slug||''))return null;
- return `/map/${encodeURIComponent(board)}/?venue=${encodeURIComponent(hits[0].slug)}`;
+ const targetBoard=Object.hasOwn(regionForBoard,hits[0].board)?hits[0].board:board;
+ return `/map/${encodeURIComponent(targetBoard)}/?venue=${encodeURIComponent(hits[0].slug)}`;
 }
 
 function articleHtml(d){

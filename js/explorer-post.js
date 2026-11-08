@@ -4,7 +4,7 @@ const box=document.getElementById('explorerPost');if(!box)return;
 const hasPrerender=()=>box.dataset.prerendered==='true';
 const slug=decodeURIComponent((location.pathname.match(/\/explore\/post\/([^/]+)\/?/)||[])[1]||new URLSearchParams(location.search).get('slug')||'');
 let loaded=null,commentRows=[];
-const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
+const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 
 // Exact-match registered venues only; map links stay within albam09.com.
 const regionForBoard={karaoke1:'서구1',karaoke2:'서구2',karaoke3:'북구2',karaoke4:'북구1',karaoke5:'광산구',karaoke6:'목포',karaoke7:'동구',karaoke8:'남구'};
@@ -12,9 +12,10 @@ function venueMapUrl(name,board){
  const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,'').toLocaleLowerCase('ko-KR');
  const list=window.PUBLIC_VENUES;
  if(!Array.isArray(list)||!name||!Object.hasOwn(regionForBoard,board))return null;
- const matches=list.filter(v=>v.region===regionForBoard[board]&&norm(v.name)===norm(name));
+ const matches=list.filter(v=>norm(v.name)===norm(name));
  if(matches.length!==1||!/^[a-z0-9_-]+$/i.test(matches[0].slug||''))return null;
- return `/map/${encodeURIComponent(board)}/?venue=${encodeURIComponent(matches[0].slug)}`;
+ const targetBoard=Object.hasOwn(regionForBoard,matches[0].board)?matches[0].board:board;
+ return `/map/${encodeURIComponent(targetBoard)}/?venue=${encodeURIComponent(matches[0].slug)}`;
 }
 function venueBadge(d,A){
  const name=String(d.venue_name||'').trim();if(!name)return '';

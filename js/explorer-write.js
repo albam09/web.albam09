@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const form=document.getElementById('explorerWriteForm');if(!form)return;
-const boards={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
+const boards={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const qs=new URLSearchParams(location.search);let board=qs.get('board')||'karaoke1';if(!boards[board])board='karaoke1';const editId=qs.get('edit');let existingImages=[],editAllowed=false;
 const boardSel=document.getElementById('explorerBoard');Object.entries(boards).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent=n;o.selected=v===board;boardSel.appendChild(o)});
 function safeText(v){return String(v||'').trim()}

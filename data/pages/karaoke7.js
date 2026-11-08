@@ -1,2 +1,2 @@
-/* 09 PUBLIC PAGE VENUES: karaoke7 */
+/* Generated 20261108-search-fix-v8: karaoke7 */
 window.PUBLIC_PAGE_VENUES=[];

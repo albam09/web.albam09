@@ -28,7 +28,11 @@ try{
    if(url.includes('albam09_bubble_alba_comments'))return {ok:true,json:async()=>JSON.parse(process.env.TEST_ALBA_COMMENTS||'[]')};
    return {ok:true,json:async()=>JSON.parse(process.env.TEST_POSTS||'[]')};
  };`);
- run([post]);
+ const movedBoss={...post,slug:slug+'-boss',board:'karaoke4',venue_name:'보스'};
+ const movedPadam={...post,slug:slug+'-padam',board:'karaoke3',venue_name:'빠담빠담'};
+ run([post,movedBoss,movedPadam]);
+ assert.match(await readFile(path.join(temp,'explore/post',movedBoss.slug,'index.html'),'utf8'),/href="\/map\/karaoke3\/\?venue=boss"/,'Historical posts must link to the corrected venue region');
+ assert.match(await readFile(path.join(temp,'explore/post',movedPadam.slug,'index.html'),'utf8'),/href="\/map\/karaoke4\/\?venue=padam-padam"/);
  const bubbleHtml=await readFile(path.join(temp,'bubble-alba/index.html'),'utf8');
  assert.match(bubbleHtml,/기존 관리자 구인 공고/);
  assert.match(bubbleHtml,/모집 내용을 유지하는 테스트/);

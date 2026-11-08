@@ -1,2 +1,2 @@
-/* 09 PUBLIC PAGE VENUES: room */
+/* Generated 20261108-search-fix-v8: room */
 window.PUBLIC_PAGE_VENUES=[];

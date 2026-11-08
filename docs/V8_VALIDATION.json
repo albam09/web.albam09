@@ -1,0 +1,30 @@
+{
+  "release": "20261108-search-fix-v8",
+  "original_files_missing": [],
+  "original_design_image_font_assets_preserved": 175,
+  "assets_changed": [],
+  "original_files_changed": 152,
+  "venues": 64,
+  "reclassified": 19,
+  "coordinate_conflicts_excluded": 9,
+  "browser_qa": {
+    "desktop_width": 1348,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "horizontal_overflow": false,
+    "menu_boxes_equal": true,
+    "search_boss_target": "/map/karaoke3/?venue=boss",
+    "map_all_count": 64,
+    "sinan_reset_count": 15
+  },
+  "live_google_ranking_verified": false,
+  "production_deployed": false,
+  "html_pages_checked": 127,
+  "missing_local_links_and_assets": 0,
+  "jsonld_blocks_parsed": 161,
+  "inline_scripts_parsed": 55,
+  "regression_tests_passed": 5,
+  "repeat_build_identical": true
+}

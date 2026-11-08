@@ -37,7 +37,7 @@
   var REGION_LABEL_MAP = {
     'ALL': '전체 업소',
     '서구1': '상무지구 업소',
-    '서구2': '상무 · 광천동 업소',
+    '서구2': '광천동·서구권 업소',
     '북구1': '용봉동 업소',
     '북구2': '신안동 업소',
     '광산구': '첨단지구 업소',
@@ -309,7 +309,9 @@
   function listPagePlaces(regionFilter) {
     var region = normalizeRegion(regionFilter);
     var places = getPlaces().filter(function (p) {
-      return p && isFinite(Number(p.lat)) && isFinite(Number(p.lng));
+      return p && p.lat!==null && p.lng!==null && p.lat!=='' && p.lng!=='' &&
+        Number.isFinite(Number(p.lat)) && Number.isFinite(Number(p.lng)) &&
+        Math.abs(Number(p.lat))<=90 && Math.abs(Number(p.lng))<=180;
     });
     if (region && region !== 'ALL') {
       places = places.filter(function (p) { return String(p.region || '').trim() === region; });
@@ -324,8 +326,8 @@
     var places = listPagePlaces(regionFilter);
     var label = regionLabel(regionFilter);
     if (!places.length) {
-      updateStatus(label + '에 등록된 좌표 업소가 없습니다.');
-      listEl.innerHTML = '<div class="nearest-note">이 페이지에 등록된 업소가 없어서 TOP 12를 표시할 수 없습니다.</div>';
+      updateStatus(label + '의 거리순 정렬에 사용할 지도 위치가 없습니다.');
+      listEl.innerHTML = '<div class="nearest-note">업소 목록에서 주소와 위치 단서를 확인해 주세요.</div>';
       return;
     }
 

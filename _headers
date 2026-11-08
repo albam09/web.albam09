@@ -47,3 +47,13 @@
 
 /scripts/*
   X-Robots-Tag: noindex, nofollow
+
+# SEARCH_DIRECTORY_RELEASE
+/data/venue-directory.json
+  X-Robots-Tag: noindex, nosnippet
+/data/region-guide-content.json
+  X-Robots-Tag: noindex, nosnippet
+/data/release.json
+  X-Robots-Tag: noindex, nosnippet
+/docs/*
+  X-Robots-Tag: noindex, nofollow

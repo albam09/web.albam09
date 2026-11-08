@@ -85,3 +85,21 @@ html body[data-current-page="index"] main .info-panel-stack > #index-secondary-s
   content:"광천동";font-size:8.5px;letter-spacing:-.03em;
  }
 }
+
+
+/* V7 mobile top menu: equal box sizes, strict two-row layout, slightly tighter bottom gap. */
+@media (max-width:700px) {
+  html body.ui-unified-page > .area-wrap{margin:0 auto 12px!important;padding:0!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul{grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-auto-rows:88px!important;column-gap:5px!important;row-gap:4px!important;align-items:stretch!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li{height:88px!important;min-height:88px!important;display:block!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a, html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a, html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{height:88px!important;min-height:88px!important;max-height:88px!important;padding:6px 3px!important;display:flex!important;align-items:center!important;justify-content:center!important;align-content:center!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a{font-size:0!important;letter-spacing:0!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after{content:"상무·\A광천동";white-space:pre-line;font-size:inherit!important;font-size:9.4px!important;line-height:1.18!important;letter-spacing:-.05em!important;font-weight:800!important;}
+}
+@media (max-width:355px) {
+  html body.ui-unified-page > .area-wrap{margin:0 auto 10px!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul{grid-auto-rows:82px!important;row-gap:4px!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li{height:82px!important;min-height:82px!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a, html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a, html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a{height:82px!important;min-height:82px!important;max-height:82px!important;}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after{font-size:8.7px!important;}
+}

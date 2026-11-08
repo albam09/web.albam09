@@ -1,0 +1,16 @@
+{
+  "release": "20261108-search-fix-v8",
+  "updatedAt": "2026-11-08",
+  "directorySha256": "93414cba4bf66e6488fe3be65aff9b19414b6fce2b31a95690eb4c3ef5aa10df",
+  "venueCount": 64,
+  "regions": {
+    "karaoke1": 34,
+    "karaoke2": 3,
+    "karaoke3": 15,
+    "karaoke4": 3,
+    "karaoke5": 7,
+    "karaoke6": 2,
+    "karaoke7": 0,
+    "karaoke8": 0
+  }
+}

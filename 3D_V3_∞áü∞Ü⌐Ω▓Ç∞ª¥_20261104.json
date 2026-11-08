@@ -1,0 +1,9 @@
+{
+  "3d_pages": 125,
+  "total_html": 127,
+  "design_stylesheet": "albam09-floating-premium-v3-20261104.css",
+  "paths_fixed": "Homepage .css/.js/.data asset path errors repaired",
+  "site_mutated": false,
+  "css_js_app_code_touched": false,
+  "notes": "Only static HTML asset paths corrected and one additive design stylesheet linked; no original JS/CSS files rewritten."
+}

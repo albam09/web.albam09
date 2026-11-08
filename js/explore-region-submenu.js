@@ -3,7 +3,7 @@
   'use strict';
   const REGION_LINKS=[
     ['상무지구','/explore/karaoke1/'],
-    ['상무 · 광천동','/explore/karaoke2/'],
+    ['광천동·서구권','/explore/karaoke2/'],
     ['신안동','/explore/karaoke3/'],
     ['용봉동','/explore/karaoke4/'],
     ['첨단지구','/explore/karaoke5/'],

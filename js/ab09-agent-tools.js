@@ -8,7 +8,7 @@
   var ORIGIN = 'https://albam09.com';
   var pages = [
     ['상무지구·치평동','/page/karaoke1/'],
-    ['상무·광천동','/page/karaoke2/'],
+    ['광천동·서구권','/page/karaoke2/'],
     ['신안동·광주역권','/page/karaoke3/'],
     ['용봉동·전남대권','/page/karaoke4/'],
     ['첨단지구·쌍암동','/page/karaoke5/'],

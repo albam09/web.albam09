@@ -7,7 +7,7 @@ if(!host||!list)return;
 
 const LABELS={
   karaoke1:'상무지구',
-  karaoke2:'상무·광천동',
+  karaoke2:'광천동·서구권',
   karaoke3:'신안동',
   karaoke4:'용봉동',
   karaoke5:'첨단지구',

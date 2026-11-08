@@ -2,7 +2,7 @@
 'use strict';
 const host=document.getElementById('explorerArchiveList');
 if(!host)return;
-const labels={karaoke1:'상무지구',karaoke2:'상무·광천동',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
+const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 function fmt(v){try{return new Date(v).toLocaleDateString('ko-KR')}catch{return''}}
 function render(rows,A){
   if(!rows.length){host.innerHTML='<div class="explorer-empty">아직 공개된 탐험기가 없습니다.</div>';return}
