@@ -2,30 +2,15 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 const bubbleInlineMedia=createRequire(import.meta.url)('../js/inline-media.js');
+const forum=createRequire(import.meta.url)('../js/forum-schema.js');
 
 const root=process.cwd();
 const SUPABASE_URL=process.env.ALBAM09_SUPABASE_URL || 'https://ldyysvafgegsgmvpslui.supabase.co';
 const SUPABASE_KEY=process.env.ALBAM09_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_qFOVO12BzMv6U2LjgLhR4Q_IKVfM06x';
-const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at,profiles!albam09_explorer_posts_author_fkey(nickname)&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
+const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,author_id,slug,board,title,summary,content,venue_name,location_text,images,published_at,updated_at,created_at,profiles!albam09_explorer_posts_author_fkey(nickname)&status=eq.published&is_deleted=eq.false&order=published_at.desc`;
 const ALBA_POSTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_posts?select=id,title,summary,content,created_at,published_at,updated_at&status=eq.published&is_deleted=eq.false&order=published_at.desc&limit=100`;
 const ALBA_COMMENTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_comments?select=post_id,guest_name,content,created_at&status=eq.published&order=created_at.asc&limit=1000`;
 const PAGE_SIZE=1000;
-// Retry transient API interruptions, but never silently publish stale public posts
-// when the live database cannot be reached (privacy/deletion safety).
-async function fetchPublicJson(url){
- let last;
- for(let attempt=0;attempt<3;attempt++){
-  try{
-   const response=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
-   if(response.ok){const data=await response.json();if(!Array.isArray(data))throw new Error('Supabase payload not an array');return data;}
-   last=new Error('Supabase HTTP '+response.status);
-   if(response.status!==429 && response.status<500)throw last;
-  }catch(e){last=e;if(attempt===2)throw e;}
-  if(attempt<2)await new Promise(resolve=>setTimeout(resolve,300*(attempt+1)));
- }
- throw last;
-}
-
 const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const xml=s=>esc(s);
@@ -42,18 +27,19 @@ function venueLink(name,board){
  return `/map/${encodeURIComponent(targetBoard)}/?venue=${encodeURIComponent(hits[0].slug)}`;
 }
 
-function articleHtml(d){
+function articleHtml(d,person){
   const label=labels[d.board]||'지역';
-  const author=d.profiles?.nickname||'광주버블여지도 회원';
-  const when=d.published_at||d.created_at||'';
+  const author=forum.name(d);
+  const when=forum.published(d)||'';
+  const byline=person.url?`<a class="explorer-author-link" rel="author" href="${esc(person.url.replace(forum.origin,''))}">${esc(author)}</a>`:esc(author);
   const imgs=Array.isArray(d.images)?d.images:[];
   const gallery=imgs.length?`<div class="explorer-gallery">${imgs.map((im,i)=>`<figure><img src="${esc(im.url||'')}" alt="${esc(im.alt||`${d.title} 탐험기 사진 ${i+1}`)}" loading="${i?'lazy':'eager'}" decoding="async"${i?'':' fetchpriority="high"'}><figcaption>${esc(im.caption||im.alt||`${d.title} 현장 이미지`)}</figcaption></figure>`).join('')}</div>`:'';
   const venue=d.venue_name?(venueLink(d.venue_name,d.board)?`<a class="explorer-post-venue explorer-post-venue--link" href="${esc(venueLink(d.venue_name,d.board))}" aria-label="${esc(d.venue_name)} 지도에서 위치 보기"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong><span class="explorer-post-venue__hint" aria-hidden="true">지도 보기 ↗</span></a>`:`<div class="explorer-post-venue"><span class="explorer-post-venue__label">업소</span><strong>${esc(d.venue_name)}</strong></div>`):'';
   const summary=d.summary?`<div class="explorer-post-summary">${esc(d.summary)}</div>`:'';
-  return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1>${esc(d.title)}</h1>${venue}<div class="explorer-meta">${esc(author)} · ${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
+  return `<article class="explorer-post" data-explorer-id="${esc(d.id)}" data-explorer-board="${esc(d.board)}"><div><span class="explorer-status published">공개</span> <span class="explorer-eyebrow">${esc(label)} 탐험기</span></div><h1>${esc(d.title)}</h1>${venue}<div class="explorer-meta">${byline} · <time datetime="${esc(when)}">${esc(when?new Date(when).toLocaleDateString('ko-KR'):'')}</time>${d.location_text?' · '+esc(d.location_text):''}</div>${summary}${gallery}<div class="explorer-post-content">${esc(d.content||'')}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글은 페이지 실행 후 표시됩니다.</div></div></section>`;
 }
 
-function withMeta(template,d){
+async function withMeta(template,d){
   const label=labels[d.board]||'지역';
   const url=`https://albam09.com/explore/post/${d.slug}/`;
   const desc=(d.summary||d.content||'').trim().slice(0,155);
@@ -67,10 +53,13 @@ function withMeta(template,d){
   if(!/rel="canonical"/i.test(s)) s=s.replace('</head>',`<link rel="canonical" href="${url}"><meta property="og:url" content="${url}"><meta name="twitter:card" content="summary_large_image"></head>`);
   const first=Array.isArray(d.images)&&d.images[0]?.url?d.images[0].url:'';
   if(first) s=s.replace('</head>',`<meta property="og:image" content="${esc(first)}"><meta name="twitter:image" content="${esc(first)}"></head>`);
-  const schema={'@context':'https://schema.org','@type':'Article',mainEntityOfPage:url,url,headline:d.title,text:d.content||'',datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
-  if(first)schema.image=(d.images||[]).map(x=>x.url).filter(Boolean);
+  const schema=await forum.post(d);
+  const errors=forum.issues(schema);
+  if(errors.length)throw new Error(`탐험기 구조화 데이터 오류 (${d.slug}): ${errors.join(', ')}`);
+  // One authoritative node, even when an older template is supplied.
+  s=s.replace(/<script\b[^>]*id=["']explorer-post-ld["'][^>]*>[\s\S]*?<\/script>/gi,'');
   s=s.replace('</head>',`<script id="explorer-post-ld" type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script></head>`);
-  s=s.replace('<div id="explorerPost"><div class="explorer-empty">탐험기를 불러오는 중입니다.</div></div>',`<div id="explorerPost" data-prerendered="true">${articleHtml(d)}</div>`);
+  s=s.replace('<div id="explorerPost"><div class="explorer-empty">탐험기를 불러오는 중입니다.</div></div>',`<div id="explorerPost" data-prerendered="true">${articleHtml(d,schema.author)}</div>`);
   s=s.replace('</head>','<meta name="albam09-generated" content="explore-post"></head>');
   return s;
 }
@@ -92,10 +81,12 @@ async function main(){
   let posts=[];
   try{
     for(let offset=0;;offset+=PAGE_SIZE){
-      const batch=await fetchPublicJson(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`);
+      const r=await fetch(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+      if(!r.ok)throw new Error(`Supabase ${r.status}`);
+      const batch=await r.json();
       if(!Array.isArray(batch))throw new Error('Invalid Supabase response');
       for(const item of batch){
-        if(!item || !safeSlug(item.slug) || item.slug!==safeSlug(item.slug) || !labels[item.board] || !item.title || !Number.isFinite(Date.parse(item.published_at||item.created_at))){
+        if(!item || !safeSlug(item.slug) || item.slug!==safeSlug(item.slug) || !labels[item.board] || !item.title || !forum.published(item)){
           throw new Error('Supabase 공개 탐험기에 유효하지 않은 slug/board/title/datePublished가 있습니다.');
         }
       }
@@ -135,9 +126,10 @@ async function main(){
     await fs.mkdir(dir,{recursive:true});
     // Root-absolute asset paths also work when Netlify serves this HTML
     // via a 200 rewrite for /explore/post/<slug>/.
-    const generated=withMeta(template,d);
+    const generated=await withMeta(template,d);
     await fs.writeFile(path.join(dir,'index.html'),generated,'utf8');
   }
+  await buildAuthors(posts);
 
   const sitemapPath=path.join(root,'sitemap.xml');
   let map=await fs.readFile(sitemapPath,'utf8');
@@ -158,6 +150,34 @@ async function main(){
   console.log(`[build-site] 공개 탐험기 ${posts.length}개: 정적 상세페이지 + sitemap + archive 생성 완료`);
 }
 
+async function buildAuthors(posts){
+ const template=await fs.readFile(path.join(root,'explore/author/index.html'),'utf8');
+ const groups=new Map();
+ for(const d of posts){
+  const key=await forum.authorKey(d.author_id);if(!key)continue;
+  if(!groups.has(key))groups.set(key,[]);groups.get(key).push(d);
+ }
+ const authorRoot=path.join(root,'explore/author');
+ for(const ent of await fs.readdir(authorRoot,{withFileTypes:true})){
+  if(!ent.isDirectory()||groups.has(ent.name)||!/^member-[a-f0-9]{24}$/.test(ent.name))continue;
+  const p=path.join(authorRoot,ent.name,'index.html'),old=await fs.readFile(p,'utf8').catch(()=>null);
+  if(old?.includes('name="albam09-generated" content="explore-author"'))await fs.rm(path.dirname(p),{recursive:true,force:true});
+ }
+ for(const [key,items] of groups){
+  const person=await forum.author(items[0]),url=person.url;
+  let html=template.replace(/<title>.*?<\/title>/i,`<title>${esc(person.name)} 공개 탐험기 | 광주버블여지도</title>`);
+  html=html.replace(/<meta name="robots" content="[^"]*">/i,'<meta name="robots" content="index, follow">');
+  html=html.replace(/<meta name="description" content="[^"]*">/i,`<meta name="description" content="${esc(person.name)} 회원이 공개한 지역 탐험기를 확인하세요.">`);
+  const markup=`<section class="explorer-panel"><span class="explorer-eyebrow">탐험기 작성자</span><h1>${esc(person.name)}</h1><p>공개 탐험기 ${items.length}개</p></section><div class="explorer-grid explorer-author-posts">${archiveBlock(items)}</div>`;
+  html=html.replace('<div id="explorerAuthor"><div class="explorer-empty">공개 프로필을 불러오는 중입니다.</div></div>',`<div id="explorerAuthor" data-prerendered="true" data-author-key="${key}">${markup}</div>`);
+  const schema={'@context':'https://schema.org','@type':'ProfilePage',url,mainEntity:person};
+  html=html.replace('</head>',`<link rel="canonical" href="${esc(url)}"><meta property="og:url" content="${esc(url)}"><script id="explorer-author-ld" type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script><meta name="albam09-generated" content="explore-author"></head>`);
+  await fs.mkdir(path.join(authorRoot,key),{recursive:true});
+  await fs.writeFile(path.join(authorRoot,key,'index.html'),html);
+ }
+ console.log(`[build-site] 공개 작성자 프로필 ${groups.size}개 생성 완료`);
+}
+
 
 // Restored 2026-10-21 bubble-alba feature. Independent of explore-post output.
 async function buildBubbleAlba(){
@@ -166,7 +186,10 @@ async function buildBubbleAlba(){
   let html=await fs.readFile(page,'utf8');
   if(!rx.test(html))throw new Error('bubble-alba static markers missing');
   const get=async(url)=>{
-    return await fetchPublicJson(url);
+    const r=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+    if(!r.ok)throw new Error('bubble-alba REST HTTP '+r.status);
+    const rows=await r.json();if(!Array.isArray(rows))throw new Error('bubble-alba REST invalid payload');
+    return rows;
   };
   const [posts,comments]=await Promise.all([get(ALBA_POSTS_API),get(ALBA_COMMENTS_API)]);
   const markup=posts.map(p=>{

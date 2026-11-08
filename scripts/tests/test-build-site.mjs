@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 const source=path.resolve(import.meta.dirname,'../..');
 const temp=await mkdtemp(path.join(tmpdir(),'albam09-explore-test-'));
 const slug='karaoke1-20261020010101-abcd1234';
-const post={slug,board:'karaoke1',title:'상무지구 탐험기 자동 색인 테스트',summary:'실제 탐험기 요약',content:'탐험기 내용 본문입니다.',venue_name:'',location_text:'상무지구',images:[],created_at:'2026-10-20T00:00:00Z',published_at:'2026-10-20T00:10:00Z',updated_at:'2026-10-20T00:10:00Z',profiles:{nickname:'실제 테스트 작성자'}};
+const post={slug,author_id:'c72acf53-9562-4334-aa0b-e5bfe462a067',board:'karaoke1',title:'상무지구 탐험기 자동 색인 테스트',summary:'실제 탐험기 요약',content:'탐험기 내용 본문입니다.',venue_name:'',location_text:'상무지구',images:[],created_at:'2026-10-20T00:00:00Z',published_at:'2026-10-20T00:10:00Z',updated_at:'2026-10-20T00:10:00Z',profiles:{nickname:'실제 테스트 작성자'}};
 function run(data,fail=false){
  const env={...process.env,TEST_POSTS:JSON.stringify(data),TEST_FAIL:fail?'1':'',
  TEST_ALBA_POSTS:JSON.stringify([{id:'job-1',title:'기존 관리자 구인 공고',content:'모집 내용을 유지하는 테스트',created_at:'2026-10-20T00:00:00Z',published_at:'2026-10-20T00:01:00Z',updated_at:'2026-10-20T00:01:00Z'}]),
@@ -18,7 +18,7 @@ function run(data,fail=false){
  return res;
 }
 try{
- for(const rel of ['scripts/build-site.mjs','explore/post/index.html','explore/archive/index.html','data/public-venues.json','js/inline-media.js','bubble-alba/index.html','sitemap.xml']){
+ for(const rel of ['scripts/build-site.mjs','explore/post/index.html','explore/author/index.html','explore/archive/index.html','data/public-venues.json','js/inline-media.js','js/forum-schema.js','bubble-alba/index.html','sitemap.xml']){
   const target=path.join(temp,rel);await mkdir(path.dirname(target),{recursive:true});await copyFile(path.join(source,rel),target);
  }
  await writeFile(path.join(temp,'mock-fetch.mjs'),`globalThis.fetch=async(url)=>{
@@ -44,12 +44,21 @@ try{
  assert.match(html,/<meta name="robots" content="index, follow, max-image-preview:large">/);
  assert.doesNotMatch(html,/itemscope itemtype="https:\/\/schema.org\/DiscussionForumPosting"/, '중복 Microdata 노드는 없어야 함');
  const scripts=[...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(x=>JSON.parse(x[1]));
- const forum=scripts.filter(o=>o['@type']==='Article');
- assert.equal(forum.length,1,'Article 정적 구조화 데이터는 정확히 한 개여야 함');
+ const forum=scripts.filter(o=>o['@type']==='DiscussionForumPosting');
+ assert.equal(forum.length,1,'DiscussionForumPosting은 정확히 한 개여야 함');
  assert.equal(forum[0].author.name,'실제 테스트 작성자');
- assert.equal(forum[0].datePublished,'2026-10-20T00:10:00Z');
+ assert.equal(forum[0].datePublished,'2026-10-20T00:10:00.000Z');
  assert.equal(forum[0].url,`https://albam09.com/explore/post/${slug}/`);
  assert.equal(forum[0].text,post.content);
+ assert.match(forum[0].author.url,/^https:\/\/albam09\.com\/explore\/author\/member-[a-f0-9]{24}\/$/);
+ assert.ok(!forum[0].author.url.includes(post.author_id),'Login identity must not be the public profile URL');
+ const authorPath=forum[0].author.url.replace('https://albam09.com/','')+'index.html';
+ const authorHtml=await readFile(path.join(temp,authorPath),'utf8');
+ assert.match(authorHtml,/<h1>실제 테스트 작성자<\/h1>/);
+ assert.match(authorHtml,/"@type":"ProfilePage"/);
+ assert.match(authorHtml,new RegExp(slug));
+ assert.match(html,/rel="author"/);
+ assert.match(html,/<time datetime="2026-10-20T00:10:00.000Z">/);
 
  assert.match(html,/name="albam09-generated" content="explore-post"/);
  assert.match(map,new RegExp(slug));
@@ -58,6 +67,7 @@ try{
  run([],true);
  assert.equal(await readFile(path.join(temp,'sitemap.xml'),'utf8'),prevMap,'실패시 기존 sitemap 변경 금지');
  run([]);
+ try{await stat(path.join(temp,authorPath));assert.fail('No public posts: generated profile must be removed')}catch(e){if(e.code!=='ENOENT')throw e;}
  assert.doesNotMatch(await readFile(path.join(temp,'sitemap.xml'),'utf8'),new RegExp(slug));
  try{await stat(path.join(temp,'explore/post',slug,'index.html'));assert.fail('숨김 글의 HTML이 남음')}catch(e){if(e.code!=='ENOENT')throw e;}
  console.log('PASS: published => 정적 HTML/canonical/index/sitemap/archive; fetch error => 빌드 실패 & 기존 sitemap 보존; hidden => 정적 HTML/sitemap 제거');

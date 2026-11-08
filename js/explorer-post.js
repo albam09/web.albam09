@@ -3,7 +3,7 @@
 const box=document.getElementById('explorerPost');if(!box)return;
 const hasPrerender=()=>box.dataset.prerendered==='true';
 const slug=decodeURIComponent((location.pathname.match(/\/explore\/post\/([^/]+)\/?/)||[])[1]||new URLSearchParams(location.search).get('slug')||'');
-let loaded=null,commentRows=[];
+let loaded=null,commentRows=[],schemaSequence=0;
 const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 
 // Exact-match registered venues only; map links stay within albam09.com.
@@ -56,16 +56,17 @@ function recoverPrerenderTools(A){
 }
 function statusText(s){return({pending:'관리자 검토중',published:'공개',rejected:'보완 필요',hidden:'숨김'}[s]||s)}
 function renderImages(images,title,A){if(!Array.isArray(images)||!images.length)return'';return `<div class="explorer-gallery">${images.map((im,i)=>`<figure><img src="${A.esc(im.url)}" alt="${A.esc(im.alt||title+' 탐험기 사진 '+(i+1))}" title="${A.esc(im.alt||title)}" loading="${i?'lazy':'eager'}" decoding="async" ${i?'':'fetchpriority="high"'}><figcaption>${A.esc(im.caption||im.alt||title+' 현장 이미지')}</figcaption></figure>`).join('')}</div>`}
-function injectSchema(d,comments){
- let old=document.getElementById('explorer-post-ld');if(old)old.remove();
- const url=`${location.origin}/explore/post/${d.slug}/`;
- const images=(d.images||[]).map(x=>x.url).filter(Boolean);
- if(!Number.isFinite(Date.parse(d.published_at||d.created_at)))return;
- const obj={'@context':'https://schema.org','@type':'Article',mainEntityOfPage:url,url,headline:d.title,text:d.content,datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
- if(images.length)obj.image=images;
- const schemaComments=(comments||[]).filter(c=>c && typeof c.content==='string' && c.content.trim() && Number.isFinite(Date.parse(c.created_at)) && c.id);
- if(schemaComments.length)obj.comment=schemaComments.map(c=>({'@type':'Comment',text:c.content,url:url+'#comment-'+encodeURIComponent(c.id),datePublished:new Date(c.created_at).toISOString(),author:{'@type':'Person',name:(c.profiles?.nickname||'회원')}}));
- const s=document.createElement('script');s.id='explorer-post-ld';s.type='application/ld+json';s.textContent=JSON.stringify(obj);document.head.appendChild(s);
+function clearSchema(){schemaSequence++;document.querySelectorAll('script#explorer-post-ld').forEach(s=>s.remove());}
+async function injectSchema(d,comments){
+ const sequence=++schemaSequence,F=window.ALBAM09_FORUM_SCHEMA;
+ if(!F)return;
+ try{
+  const obj=await F.post(d,comments);
+  if(sequence!==schemaSequence)return;
+  if(F.issues(obj).length){clearSchema();return;}
+  document.querySelectorAll('script#explorer-post-ld').forEach(s=>s.remove());
+  const s=document.createElement('script');s.id='explorer-post-ld';s.type='application/ld+json';s.textContent=JSON.stringify(obj);document.head.appendChild(s);
+ }catch(error){console.warn('[explorer-schema] 공개 글의 구조화 데이터를 확인하지 못했습니다:',error.message);}
 }
 async function load(){
  const A=window.ALBAM09;
@@ -73,13 +74,19 @@ async function load(){
  if(!A?.sb){if(hasPrerender()){recoverPrerenderTools(A);return;} setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">탐험기 데이터 연결을 준비하지 못했습니다. 잠시 후 다시 확인해 주세요.</div>';return}
  const {data,error}=await A.sb.from('albam09_explorer_posts').select('id,slug,board,title,summary,content,venue_name,location_text,images,status,is_deleted,author_id,created_at,updated_at,published_at,profiles!albam09_explorer_posts_author_fkey(nickname)').eq('slug',slug).maybeSingle();
  if(error){if(hasPrerender()){recoverPrerenderTools(A);return;} setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">탐험기 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</div>';return}
- if(!data||data.is_deleted){setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">공개된 탐험기를 찾을 수 없습니다.</div>';return}
+ if(!data||data.is_deleted){clearSchema();setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">공개된 탐험기를 찾을 수 없습니다.</div>';return}
  loaded=data;const canViewPrivate=!!A.session&&(A.session.user.id===data.author_id||A.isAdmin);const label=labels[data.board]||'지역';
- if(data.status!=='published'&&!canViewPrivate){setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">관리자 검토가 끝난 뒤 공개되는 글입니다.</div>';return}
+ if(data.status!=='published'&&!canViewPrivate){clearSchema();setRobots('noindex, follow');box.innerHTML='<div class="explorer-empty">관리자 검토가 끝난 뒤 공개되는 글입니다.</div>';return}
  const summary=data.summary?`<div class="explorer-post-summary">${A.esc(data.summary)}</div>`:'';
  const venue=venueBadge(data,A);
  box.innerHTML=`<article class="explorer-post"><div><span class="explorer-status ${A.esc(data.status)}">${A.esc(statusText(data.status))}</span> <span class="explorer-eyebrow">${A.esc(label)} 탐험기</span></div><h1>${A.esc(data.title)}</h1>${venue}<div class="explorer-meta">${A.esc(data.profiles?.nickname||'회원')} · ${A.fmt(data.published_at||data.created_at)}${data.location_text?' · '+A.esc(data.location_text):''}</div>${summary}${renderImages(data.images,data.title,A)}<div class="explorer-post-content">${A.esc(data.content)}</div></article><section class="explorer-panel explorer-comments"><h2>댓글</h2><div id="explorerComments"><div class="explorer-empty">댓글을 불러오는 중입니다.</div></div><form id="explorerCommentForm" class="explorer-two" style="margin-top:12px"><input class="explorer-input" id="explorerComment" maxlength="1200" placeholder="지역 이용 정보와 경험을 남겨주세요"><button class="explorer-btn" type="submit">댓글 등록</button></form><div class="explorer-help">회원 댓글도 안전성 확인을 거쳐 공개될 수 있습니다.</div></section>`;
- const url=`${location.origin}/explore/post/${data.slug}/`;const desc=(data.summary||data.content.slice(0,155)).trim();document.title=`${data.title} | ${label} 탐험기 | 광주버블여지도`;setCanonical(url);setRobots(data.status==='published'?'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1':'noindex, follow');setMeta('description',desc);setMeta('og:title',data.title,true);setMeta('og:description',desc,true);setMeta('og:url',url,true);setMeta('og:type','article',true);setMeta('twitter:card','summary_large_image');if(data.published_at)setMeta('article:published_time',data.published_at,true);if(data.updated_at)setMeta('article:modified_time',data.updated_at,true);if(data.images?.[0]?.url){setMeta('og:image',data.images[0].url,true);setMeta('twitter:image',data.images[0].url)}
+ const url=`https://albam09.com/explore/post/${data.slug}/`;const desc=(data.summary||data.content.slice(0,155)).trim();document.title=`${data.title} | ${label} 탐험기 | 광주버블여지도`;setCanonical(url);setRobots(data.status==='published'?'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1':'noindex, follow');setMeta('description',desc);setMeta('og:title',data.title,true);setMeta('og:description',desc,true);setMeta('og:url',url,true);setMeta('og:type','article',true);setMeta('twitter:card','summary_large_image');if(data.published_at)setMeta('article:published_time',data.published_at,true);if(data.updated_at)setMeta('article:modified_time',data.updated_at,true);if(data.images?.[0]?.url){setMeta('og:image',data.images[0].url,true);setMeta('twitter:image',data.images[0].url)}
+ const F=window.ALBAM09_FORUM_SCHEMA;
+ if(F){
+  const person=await F.author(data),meta=box.querySelector('.explorer-meta'),date=F.published(data);
+  if(meta){const authorLink=person.url?`<a class="explorer-author-link" rel="author" href="${A.esc(person.url.replace(F.origin,''))}">${A.esc(person.name)}</a>`:A.esc(person.name);meta.innerHTML=authorLink+' · '+(date?`<time datetime="${A.esc(date)}">${A.esc(A.fmt(date))}</time>`:'게시일 확인 중')+(data.location_text?' · '+A.esc(data.location_text):'');}
+ }
+ if(data.status==='published')await injectSchema(data,[]);else clearSchema();
  syncManageTools(A);await loadComments();document.getElementById('explorerCommentForm')?.addEventListener('submit',submitComment);
 }
 async function loadComments(){const A=window.ALBAM09;if(!loaded)return;const {data,error}=await A.sb.from('albam09_explorer_comments').select('id,content,status,author_id,created_at,updated_at,profiles!albam09_explorer_comments_author_fkey(nickname)').eq('post_id',loaded.id).eq('is_deleted',false).order('created_at');if(error){const area=document.getElementById('explorerComments');if(area)area.innerHTML='<div class="explorer-empty">댓글을 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.</div>';console.warn('[explorer-comments] 조회 오류:',error.message);return}const rows=(data||[]).filter(c=>A.isAdmin||c.status==='published'||(A.session&&c.author_id===A.session.user.id));commentRows=rows;const list=document.getElementById('explorerComments');if(list){list.innerHTML=rows.length?rows.map(c=>`<div class="explorer-comment" id="comment-${A.esc(c.id)}"><div class="explorer-comment__head"><div><strong>${A.esc(c.profiles?.nickname||'회원')}</strong><span class="explorer-meta"> · ${A.fmt(c.created_at)}${c.status!=='published'?' · 검토중':''}</span></div>${A.isSuper?`<div class="explorer-comment-tools"><button class="explorer-comment-tool" type="button" data-comment-edit="${c.id}">수정</button><button class="explorer-comment-tool danger" type="button" data-comment-delete="${c.id}">삭제</button></div>`:''}</div><p>${A.esc(c.content)}</p></div>`).join(''):'<div class="explorer-empty">아직 공개된 댓글이 없습니다.</div>';if(A.isSuper){list.querySelectorAll('[data-comment-edit]').forEach(b=>b.onclick=()=>editComment(b.dataset.commentEdit));list.querySelectorAll('[data-comment-delete]').forEach(b=>b.onclick=()=>deleteComment(b.dataset.commentDelete))}}if(loaded.status==='published')injectSchema(loaded,rows.filter(c=>c.status==='published'))}

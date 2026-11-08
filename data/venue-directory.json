@@ -1,7 +1,7 @@
 {
-  "release": "20261108-v9-verified-address-safe",
+  "release": "20261108-search-fix-v8",
   "updatedAt": "2026-11-08",
-  "basis": "V8 자료 + 개별 도로명주소 대조(건물 단위). 사업장 실제 운영/입구 위치는 별도 검증 대상이며 핀 밑 주소를 임의로 업소 주소로 사용하지 않음.",
+  "basis": "제공된 V7의 주소·위치 단서. 현장 영업·요금·층수는 별도 확인 대상.",
   "venues": [
     {
       "slug": "7seven",
@@ -16,7 +16,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "19:00-08:00",
       "image": "/thumbs/venues/7seven.webp",
       "detailUrl": "https://ilovebam11.com/place/7seven/",
@@ -25,11 +25,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "puppy",
@@ -53,11 +49,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "gisaeng",
@@ -81,11 +73,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "running-rabbit",
@@ -109,11 +97,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "russian-public",
@@ -137,11 +121,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "royal",
@@ -165,11 +145,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "roel-vip",
@@ -193,11 +169,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "rolex",
@@ -221,11 +193,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "ruby-room-cafe",
@@ -249,11 +217,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "room-flower-deer",
@@ -277,11 +241,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "room-my-my",
@@ -305,11 +265,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "room-beauty",
@@ -333,11 +289,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "flex-membership",
@@ -361,11 +313,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "3no",
@@ -380,7 +328,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/3no.webp",
       "detailUrl": "https://ilovebam11.com/place/3no/",
@@ -389,11 +337,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "gaeingi",
@@ -408,7 +352,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/gaeingi.webp",
       "detailUrl": "https://ilovebam11.com/place/gaeingi/",
@@ -417,11 +361,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "goguryeo",
@@ -436,7 +376,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/goguryeo.webp",
       "detailUrl": "https://ilovebam11.com/place/goguryeo/",
@@ -445,11 +385,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "goodshot-business-room",
@@ -464,7 +400,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/goodshot-business-room.webp",
       "detailUrl": "https://ilovebam11.com/place/goodshot-business-room/",
@@ -473,11 +409,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "playground",
@@ -492,7 +424,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/playground.webp",
       "detailUrl": "https://ilovebam11.com/place/playground/",
@@ -501,11 +433,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "multinational-pool-salon",
@@ -520,7 +448,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/multinational-pool-salon.webp",
       "detailUrl": "https://ilovebam11.com/place/multinational-pool-salon/",
@@ -529,11 +457,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "running-puppy",
@@ -548,7 +472,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/running-puppy.webp",
       "detailUrl": "https://ilovebam11.com/place/running-puppy/",
@@ -557,11 +481,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "baseball",
@@ -576,7 +496,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/baseball.webp",
       "detailUrl": "https://ilovebam11.com/place/baseball/",
@@ -585,11 +505,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "you-and-me",
@@ -604,7 +520,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/you-and-me.webp",
       "detailUrl": "https://ilovebam11.com/place/you-and-me/",
@@ -613,11 +529,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "chocolate",
@@ -632,7 +544,7 @@
       "originalBoard": "karaoke1",
       "area": "상무지구",
       "address": "광주광역시 서구 치평동",
-      "locationHint": "광주광역시 서구 치평동",
+      "locationHint": "상무지구 · 상세 위치 문의",
       "hours": "",
       "image": "/thumbs/venues/chocolate.webp",
       "detailUrl": "https://ilovebam11.com/place/chocolate/",
@@ -641,11 +553,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke1/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "art-gallery",
@@ -670,11 +578,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "salute",
@@ -699,11 +603,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "simple-public",
@@ -728,11 +628,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "wangga-joseon",
@@ -747,7 +643,7 @@
       "originalBoard": "karaoke2",
       "area": "광천동·서구권",
       "address": "광주광역시 서구 화정동",
-      "locationHint": "광주광역시 서구 화정동",
+      "locationHint": "화정동 골드클래스 2차 앞 · 상세 주소 확인 필요",
       "hours": "19:00부터 · 마감시간 문의",
       "image": "/thumbs/venues/wangga-joseon.webp",
       "detailUrl": "https://ilovebam11.com/place/wangga-joseon/",
@@ -760,11 +656,7 @@
       "previousCoordinates": {
         "lat": 35.15373541019222,
         "lng": 126.85049248924584
-      },
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "none"
+      }
     },
     {
       "slug": "youtube",
@@ -789,11 +681,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "secret-place",
@@ -818,11 +706,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "chair-king",
@@ -847,11 +731,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "jottang",
@@ -876,11 +756,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "tiffany",
@@ -905,11 +781,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "face",
@@ -934,11 +806,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "fix",
@@ -963,11 +831,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "homerun",
@@ -992,11 +856,7 @@
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
       "classificationSource": "제공 파일의 주소·랜드마크와 지역 설명을 대조해 재분류",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "someday",
@@ -1011,7 +871,7 @@
       "originalBoard": "karaoke2",
       "area": "광천동·서구권",
       "address": "광주광역시 서구",
-      "locationHint": "광주광역시 서구",
+      "locationHint": "광주광역시 서구 · 상세 주소 확인 필요",
       "hours": "",
       "image": "/thumbs/venues/someday.webp",
       "detailUrl": "https://ilovebam11.com/place/someday/",
@@ -1020,11 +880,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke2/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "elite",
@@ -1039,7 +895,7 @@
       "originalBoard": "karaoke2",
       "area": "광천동·서구권",
       "address": "광주광역시 서구",
-      "locationHint": "광주광역시 서구",
+      "locationHint": "광주광역시 서구 · 상세 주소 확인 필요",
       "hours": "",
       "image": "/thumbs/venues/elite.webp",
       "detailUrl": "https://ilovebam11.com/place/elite/",
@@ -1048,11 +904,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke2/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "padam-padam",
@@ -1081,11 +933,7 @@
         "lat": 35.16139916796464,
         "lng": 126.90660571041704
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 용봉동 1365-4",
-      "pinKind": "none"
+      "addressPrecision": "street"
     },
     {
       "slug": "heart-songhall",
@@ -1094,8 +942,8 @@
       "title": "심쿵노래홀",
       "region": "북구2",
       "phone": "050371528028",
-      "lat": 35.163648,
-      "lng": 126.9036088,
+      "lat": 35.161127967260924,
+      "lng": 126.9064649391682,
       "board": "karaoke3",
       "originalBoard": "karaoke3",
       "area": "신안동·유동",
@@ -1105,22 +953,11 @@
       "image": "/thumbs/venues/heart-songhall.webp",
       "detailUrl": "https://ilovebam11.com/place/heart-songhall/",
       "addressVerified": false,
-      "coordinateStatus": "building-address-reference",
+      "coordinateStatus": "coordinate-unverified",
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 중흥로 86",
-      "pinKind": "building-address-reference",
-      "previousPin": {
-        "lat": 35.161127967260924,
-        "lng": 126.9064649391682,
-        "coordinateStatus": "coordinate-unverified"
-      },
-      "addressEvidenceUrl": "https://findby.co.kr/details/61250-123003009024-st-6a4c2a0367acb17848d84ee1",
-      "parcelAddress": "광주광역시 북구 신안동 143-12"
+      "addressPrecision": "street"
     },
     {
       "slug": "fox-songhall",
@@ -1129,8 +966,8 @@
       "title": "여우노래홀",
       "region": "북구2",
       "phone": "050371528028",
-      "lat": 35.1609942,
-      "lng": 126.9069596,
+      "lat": 35.160640203773994,
+      "lng": 126.90629280240849,
       "board": "karaoke3",
       "originalBoard": "karaoke3",
       "area": "신안동·유동",
@@ -1140,22 +977,11 @@
       "image": "/thumbs/venues/fox-songhall.webp",
       "detailUrl": "https://ilovebam11.com/place/fox-songhall/",
       "addressVerified": false,
-      "coordinateStatus": "building-address-reference",
+      "coordinateStatus": "coordinate-unverified",
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 경양로 138",
-      "pinKind": "building-address-reference",
-      "previousPin": {
-        "lat": 35.160640203773994,
-        "lng": 126.90629280240849,
-        "coordinateStatus": "coordinate-unverified"
-      },
-      "addressEvidenceUrl": "https://findby.co.kr/details/61245-123003009017-st-6a4c2a2c67acb17848d97465",
-      "parcelAddress": "광주광역시 북구 유동 101-1"
+      "addressPrecision": "street"
     },
     {
       "slug": "ilbeon-songhall",
@@ -1179,11 +1005,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 신안동 136-6",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "first",
@@ -1207,11 +1029,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 유동 101-18",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "kungkungtta-songhall",
@@ -1235,11 +1053,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 신안동 14-2",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "queen",
@@ -1263,11 +1077,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 유동 102-5",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "taehoo-songhall",
@@ -1291,13 +1101,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 중흥로 83",
-      "pinKind": "unverified-approximation",
-      "addressEvidenceUrl": "https://dorojuso.kr/2917010600101410014045212/광주광역시-북구-중흥로-83-신안동",
-      "parcelAddress": "광주광역시 북구 신안동 141-14"
+      "addressPrecision": "street"
     },
     {
       "slug": "hong-songhall",
@@ -1321,11 +1125,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke3/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 유동 102-19",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "top",
@@ -1349,11 +1149,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke4/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 저불로 55",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "street"
     },
     {
       "slug": "cat-songhall",
@@ -1362,8 +1158,8 @@
       "title": "고양이노래홀",
       "region": "북구2",
       "phone": "050371528028",
-      "lat": 35.163557,
-      "lng": 126.9051632,
+      "lat": null,
+      "lng": null,
       "board": "karaoke3",
       "originalBoard": "karaoke4",
       "area": "신안동·유동",
@@ -1373,7 +1169,7 @@
       "image": "/thumbs/venues/cat-songhall.webp",
       "detailUrl": "https://ilovebam11.com/place/cat-songhall/",
       "addressVerified": false,
-      "coordinateStatus": "building-address-reference",
+      "coordinateStatus": "address-coordinate-conflict",
       "locationSource": "업로드된 V7 파일 /page/karaoke4/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
@@ -1382,18 +1178,7 @@
         "lat": 35.17869602942011,
         "lng": 126.89430051443948
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 중흥로 99",
-      "pinKind": "building-address-reference",
-      "previousPin": {
-        "lat": null,
-        "lng": null,
-        "coordinateStatus": "address-coordinate-conflict"
-      },
-      "addressEvidenceUrl": "https://findby.co.kr/details/61251-123003009024-st-6a4c2a0167acb17848d83f49",
-      "parcelAddress": "광주광역시 북구 신안동 16-5"
+      "addressPrecision": "street"
     },
     {
       "slug": "numberone-songhall",
@@ -1422,13 +1207,7 @@
         "lat": 35.1784549947399,
         "lng": 126.89478552787436
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 무등로218번길 55",
-      "pinKind": "none",
-      "addressEvidenceUrl": "https://dorojuso.kr/2917010600100130001048405/광주광역시-북구-무등로218번길-55-신안동",
-      "parcelAddress": "광주광역시 북구 신안동 13-1"
+      "addressPrecision": "street"
     },
     {
       "slug": "sweet-karaoke",
@@ -1457,13 +1236,7 @@
         "lat": 35.17833118600354,
         "lng": 126.89346856024147
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 북구 중흥로 107",
-      "pinKind": "none",
-      "addressEvidenceUrl": "https://juso.zzxxccvv.com/a/전남광주/북구/중흥로/107",
-      "parcelAddress": "광주광역시 북구 신안동 118-4"
+      "addressPrecision": "street"
     },
     {
       "slug": "luxury-songhall",
@@ -1492,11 +1265,7 @@
         "lat": 35.179023374231804,
         "lng": 126.8948472096304
       },
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "none"
+      "addressPrecision": "area"
     },
     {
       "slug": "hundred-percent-songhall",
@@ -1525,11 +1294,7 @@
         "lat": 35.17831128232386,
         "lng": 126.8930953073586
       },
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "none"
+      "addressPrecision": "area"
     },
     {
       "slug": "boss",
@@ -1558,11 +1323,7 @@
         "lat": 35.17948470553554,
         "lng": 126.89514031873776
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 유동 101-10",
-      "pinKind": "none"
+      "addressPrecision": "street"
     },
     {
       "slug": "bingo-songhall",
@@ -1591,11 +1352,7 @@
         "lat": 35.17986367988189,
         "lng": 126.89519242409352
       },
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "광주광역시 북구 신안동 120-4",
-      "pinKind": "none"
+      "addressPrecision": "street"
     },
     {
       "slug": "orange",
@@ -1610,7 +1367,7 @@
       "originalBoard": "karaoke4",
       "area": "용봉동",
       "address": "광주광역시 북구 용봉동",
-      "locationHint": "광주광역시 북구 용봉동",
+      "locationHint": "광주광역시 북구 용봉동 · 상세 주소 확인 필요",
       "hours": "",
       "image": "/thumbs/venues/orange.webp",
       "detailUrl": "https://ilovebam11.com/place/orange/",
@@ -1619,11 +1376,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke4/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "K-1",
@@ -1638,7 +1391,7 @@
       "originalBoard": "karaoke5",
       "area": "첨단지구",
       "address": "광주광역시 광산구 쌍암동",
-      "locationHint": "광주광역시 광산구 쌍암동",
+      "locationHint": "첨단 · 상세 위치 문의",
       "hours": "19:00-08:00",
       "image": "/thumbs/venues/K-1.webp",
       "detailUrl": "https://ilovebam11.com/place/K-1/",
@@ -1647,11 +1400,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "none"
+      "addressPrecision": "area"
     },
     {
       "slug": "geurae-music-hall",
@@ -1675,11 +1424,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "white-house",
@@ -1703,11 +1448,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "zzang-songhall",
@@ -1731,11 +1472,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "cheomdan-i",
@@ -1759,13 +1496,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "street",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": true,
-      "addressSearchText": "광주광역시 광산구 첨단중앙로152번길 81-4",
-      "pinKind": "unverified-approximation",
-      "addressEvidenceUrl": "https://dorojuso.kr/2920011600106720005000001/광주광역시-광산구-첨단중앙로152번길-81-4-쌍암동",
-      "parcelAddress": "광주광역시 광산구 쌍암동 672-5"
+      "addressPrecision": "street"
     },
     {
       "slug": "king-songhall",
@@ -1789,11 +1520,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "yeodaesaeng",
@@ -1817,11 +1544,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke5/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "none"
+      "addressPrecision": "area"
     },
     {
       "slug": "partner",
@@ -1845,11 +1568,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke6/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     },
     {
       "slug": "oracle-karaoke-pub",
@@ -1873,11 +1592,7 @@
       "locationSource": "업로드된 V7 파일 /page/karaoke6/ 및 /map/",
       "reviewedAt": "2026-11-08",
       "phoneLabel": "등록 연락처",
-      "addressPrecision": "area",
-      "businessLocationVerified": false,
-      "buildingAddressCrosschecked": false,
-      "addressSearchText": "",
-      "pinKind": "unverified-approximation"
+      "addressPrecision": "area"
     }
   ]
 }

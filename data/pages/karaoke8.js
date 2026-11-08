@@ -1,2 +1,2 @@
-/* Generated 20261108-v9-verified-address-safe: karaoke8 */
+/* Generated 20261108-search-fix-v8: karaoke8 */
 window.PUBLIC_PAGE_VENUES=[];

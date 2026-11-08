@@ -45,11 +45,7 @@ const regions=Object.fromEntries(regionData.map(([board,region,label,h1,title,in
 const forBoard=board=>venues.filter(v=>v.board===board);
 const route=v=>`/map/${v.board}/?venue=${encodeURIComponent(v.slug)}`;
 const regionUrl=board=>`https://albam09.com/page/${board}/`;
-// Never imply a pin lookup proves the business occupies that building.
-// For unverified points prefer the administrative address and a map-coordinate link.
-const location=v=>v.addressPrecision==='street'?v.address:(v.address||v.area);
-const hasPin=v=>Number.isFinite(v.lat)&&Number.isFinite(v.lng);
-const pinSearch=v=>hasPin(v)?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(v.lat+','+v.lng):'';
+const location=v=>v.addressPrecision==='street'?v.address:(v.locationHint||v.address);
 
 if(!venues.length||new Set(venues.map(v=>v.slug)).size!==venues.length)throw Error('Directory must contain distinct venue slugs');
 for(const v of venues){
@@ -105,7 +101,7 @@ function cards(r,items){
 }
 function businessInfo(r,items){
  if(!items.length)return '';
- return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 핀 위치는 지도로 조회할 수 있습니다.'}</p>${hasPin(v)?`<a class="directory-map-pin" href="${pinSearch(v)}" target="_blank" rel="noopener noreferrer">지도 핀 주소 검색 ↗</a>`:''}${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
+ return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 주소로 건물·층수를 확인해 주세요.':'정확한 건물 주소와 층수는 문의 시 확인해 주세요.'}</p>${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
 }
 function guide(r){
  const i=r.board.replace('karaoke','');
@@ -115,7 +111,7 @@ function guide(r){
 
 // Static HTML and browser data are generated together. A deployment cannot
 // accidentally keep the old nine-venue Yongbong payload after changing its HTML.
-const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus,addressSearchText:v.addressSearchText||'',buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,businessLocationVerified:!!v.businessLocationVerified,pinKind:v.pinKind||'none'}));
+const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus}));
 write('data/public-venues.json',JSON.stringify(publicRows)+'\n');
 write('data/public-venues.js',`/* Generated from venue-directory.json: ${release} */\nwindow.PUBLIC_VENUES=${serial(publicRows)};\n`);
 for(const board of ['index',...Object.keys(regions),'room']){
@@ -135,29 +131,24 @@ for(const r of Object.values(regions)){
 
 let home=read('index.html');
 home=block(home,'HERO','<section title=""><h1 class="daum-wm-title">광주노래방 · 광주가라오케 지역지도</h1><p class="hero-keyline">광주·목포 지역별 업소 탐색</p><p class="daum-wm-content hero-desc">방문할 지역을 먼저 선택하세요. 각 지역 페이지에서 업소의 위치·이용 안내와 지도, 회원이 남긴 탐험기를 함께 확인할 수 있습니다.</p></section>');
-function homeSpotlight(v,index,total){
- return `<a class="ab09-spotlight" href="${route(v)}" aria-label="${esc(v.name)} 지도 위치 보기"><span class="ab09-spotlight__media"><img src="${esc(v.image)}" alt="${esc(v.name)} 등록 이미지" loading="lazy" decoding="async"></span><span class="ab09-spotlight__veil" aria-hidden="true"></span><span class="ab09-spotlight__content"><span class="ab09-spotlight__eyebrow">VENUE <b>${String(index+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}</b></span><strong class="ab09-spotlight__name">${esc(v.name)}</strong><span class="ab09-spotlight__cta">지도에서 보기 <span aria-hidden="true">↗</span></span></span></a>`;
-}
 const homeCards=Object.values(regions).map(r=>{
  const rows=forBoard(r.board);
- const preview=rows.length
-  ? `<li class="is-active ab09-spotlight-host" data-preview-item><div class="ab09-venue-rail" role="group" aria-roledescription="슬라이더">${rows.slice(0,2).map((v,i)=>homeSpotlight(v,i,rows.length)).join('')}</div></li>`
-  : '<li empty="">현재 등록 업소 없음 · 지역 안내 보기</li>';
- return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label)} (${rows.length}개)</a></h3></li>${preview}</ul>`;
+ const tile=(v,i)=>`<a class="venue-rail__tile" data-venue-slug="${esc(v.slug)}" href="${route(v)}" aria-label="${esc(v.name)} 지도에서 위치 보기"${i?' aria-hidden="true" tabindex="-1"':''}><span class="venue-rail__name">${esc(v.name)}</span><span class="venue-rail__hint" aria-hidden="true">지도 보기 ↗</span></a>`;
+ return `<article class="home-region-rail" data-region-preview="${r.board}" id="${r.board}-list" aria-labelledby="${r.board}-rail-heading"><h3 class="venue-rail__heading" id="${r.board}-rail-heading"><a href="/page/${r.board}/">${esc(r.label)} <small>(${rows.length}개)</small></a></h3>${rows.length?`<div class="venue-rail__window" data-preview-item><div class="venue-rail__track">${rows.slice(0,2).map(tile).join('')}</div></div><div class="venue-rail__footer" hidden><span class="venue-rail__count" aria-live="off">1 / ${rows.length}</span><div class="venue-rail__actions"><button class="venue-rail__toggle" type="button" aria-label="${esc(r.label)} 업소 자동 넘김 멈추기" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button><button class="venue-rail__next" type="button" aria-label="${esc(r.label)} 다음 업소 보기"><span aria-hidden="true">→</span></button></div></div>`:'<p class="venue-rail__empty">현재 공개된 업소 정보가 없습니다</p>'}</article>`;
 }).join('');
-const homeContact=`<div class="free-affiliate-contact" role="group" aria-label="무료 제휴 문의"><strong class="ab09-contact-title">무료제휴 문의</strong><a href="mailto:groogaolove@gmail.com">groogaolove@gmail.com</a><a href="https://t.me/medic0111" target="_blank" rel="noopener noreferrer">텔레그램 @medic0111</a></div>`;
-home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}${homeContact}</div></section>`);
-if(!home.includes('albam09-v11-spotlight.css'))home=home.replace('</head>','<link rel="stylesheet" href="css/albam09-v11-spotlight.css?v=20261108-v11">\n</head>');
+home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}</div>${contact}</section>`);
 home=block(home,'BRAND_GUIDE','<section id="index-brand-story-20261027" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>지역별 업소 이용 가이드</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><h2>동네를 고르고 주소를 확인하세요</h2><p>광주버블여지도는 광주와 목포의 지역별 업소 정보와 공개 탐험기를 모아 제공합니다. 메인의 지역 카드에서 동네를 선택한 뒤 주소·위치 단서와 이용 안내를 비교해 보세요.</p><p>상무지구와 광천동·화정동, 신안동·유동과 용봉동은 구분해 안내합니다. 상세 주소나 당일 운영 조건이 충분하지 않은 항목은 방문 전에 해당 정보를 확인해 주세요.</p><p>등록·정정 요청은 하단 운영정보의 문의 경로로 접수합니다.</p></div></details></section>');
 home=block(home,'HOME_DIRECTORY','');
 home=block(home,'HOME_SECONDARY','<section id="index-secondary-search-guide" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>탐험기·지역 기사 이용 안내</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><p><a href="/explore/">탐험기</a>에서는 공개된 회원 방문 기록을, <a href="/bbs/">기사게시판</a>에서는 지역별 이동·주차·이용 정보 글을 볼 수 있습니다. 후기 작성 시 방문한 업소와 실제 지역을 선택해 주세요.</p></div></details></section>');
 const homeUrl='https://albam09.com/';
 home=head(home,{title:'광주노래방 · 광주가라오케 지역지도 | 광주버블여지도',description:'광주·목포 노래방·가라오케 지역지도. 상무지구, 광천동·서구권, 신안동·유동, 용봉동, 첨단지구 등 지역별 업소와 지도·탐험기를 찾아보세요.',url:homeUrl,schema:{'@context':'https://schema.org','@graph':[org,{'@type':'WebSite','@id':homeUrl+'#website',url:homeUrl,name:'광주버블여지도',inLanguage:'ko-KR',publisher:{'@id':org['@id']}},{'@type':'CollectionPage','@id':homeUrl+'#webpage',url:homeUrl,name:'광주·목포 노래방·가라오케 지역지도',mainEntity:{'@id':homeUrl+'#regions'}},{'@type':'ItemList','@id':homeUrl+'#regions',name:'지역별 안내',numberOfItems:8,itemListElement:Object.values(regions).map((r,i)=>({'@type':'ListItem',position:i+1,name:r.label,url:regionUrl(r.board)}))}]}});
-if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>','<script src="js/home-region-preview.js?v=20261108-v11" defer></script>\n</body>');
-else home=home.replace(/js\/home-region-preview\.js\?v=[^"']+/g,'js/home-region-preview.js?v=20261108-v11');
+const railRelease='20261108-v8-1';
+if(!home.includes('css/home-region-rail.css'))home=home.replace('</head>',`<link rel="stylesheet" href="css/home-region-rail.css?v=${railRelease}">\n</head>`);
+home=home.replace(/js\/home-region-preview\.js(?:\?[^"']*)?/,`js/home-region-preview.js?v=${railRelease}`);
+if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>',`<script src="js/home-region-preview.js?v=${railRelease}" defer></script>\n</body>`);
 write('index.html',home);
 
-const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus}));
+const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:false,locationStatus:v.coordinateStatus}));
 for(const board of ['index',...Object.keys(regions),'room']){
  const file=board==='index'?'map/index.html':`map/${board}/index.html`;
  if(!fs.existsSync(path.join(root,file)))continue;
@@ -206,12 +197,6 @@ function restoreRealInventory(){`);
  s=s.replace(/document\.getElementById\('sangmuBtn'\)\.onclick=\(\)=>\{[\s\S]*?\n\s*\};/g,"document.getElementById('sangmuBtn').onclick=restoreCurrentRegion;");
  s=s.replace("if(regionPanelTitle)regionPanelTitle.firstChild.textContent=basePanelTitle;\n const focus=clusterView(places);","if(regionPanelTitle)regionPanelTitle.firstChild.textContent='전체 지역 지도 · 업소 ';\n const focus=clusterView(places);");
  s=s.replace(/좌표 미등록/g,'지도 위치 확인 필요');
- // Clear an old, now-undefined reverse-lookup call; location queries are
- // explicitly opened using the selected pin coordinates in Google Maps.
- s=s.replace('showPopup(p);reverseSelectedVenue(p)','showPopup(p)');
- s=s.replace('function reverseSelectedVenueAddress(){}','');
- s=s.replace("'핀 주변 지도 확인'","'핀 좌표로 주소 검색'");
-
  const locationNotice='${hasCoord?"":"<div class=\\"pop-sub\\">정확한 지도 위치는 방문 전에 확인해 주세요.</div>"}';
  s=s.split(locationNotice).join('');
  s=s.replace(/(<div class="pop-sub pop-address">\$\{esc\(p\.address\)\}<\/div>)/,'$1${hasCoord?"":"<div class=\\"pop-sub\\">정확한 지도 위치는 방문 전에 확인해 주세요.</div>"}');
@@ -222,7 +207,7 @@ function restoreRealInventory(){`);
 }
 
 // Global link repairs include legacy articles and historical member posts.
-function walk(dir){return fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')&&!['dist','node_modules'].includes(e.name)?walk(path.posix.join(dir,e.name)):e.isFile()?[path.posix.join(dir,e.name)]:[]);}
+function walk(dir){return fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')?walk(path.posix.join(dir,e.name)):e.isFile()?[path.posix.join(dir,e.name)]:[]);}
 const htmlFiles=walk('').filter(p=>p.endsWith('.html'));
 const taxonomy=json('data/bbs-region-taxonomy.json');
 for(const r of Object.values(regions))if(taxonomy.regions[r.board])taxonomy.regions[r.board].label=r.label;
@@ -267,7 +252,6 @@ for(const r of Object.values(regions)){
 
 for(const file of htmlFiles){
  let s=read(file);
- if(!s.includes('albam09-v9-final.css')){const depth=file.split('/').length-1;const prefix=file==='explore/post/index.html'?'/':'../'.repeat(depth);s=s.replace('</head>',`<link rel="stylesheet" href="${prefix}css/albam09-v9-final.css?v=${release}" data-ab09-v9="1">\n</head>`);}
  for(const v of venues){
   const encoded=encodeURIComponent(v.slug);
   s=s.replace(new RegExp(`/map/karaoke[1-8]/\\?venue=${encoded}(?=[&"'<>\\s])`,'g'),route(v));

@@ -23,5 +23,5 @@ assert.match(html,/src="\/js\/supabase-loader\.js/);
 const redirects=fs.readFileSync(path.join(root,'_redirects'),'utf8');
 assert.match(redirects,/^\/explore\/post\/\*\s+\/explore\/post\/index\.html\s+200$/m);
 const builder=fs.readFileSync(path.join(root,'scripts/build-site.mjs'),'utf8');
-assert.match(builder,/const generated=withMeta\(template,d\)/);
+assert.match(builder,/const generated=await withMeta\(template,d\)/);
 console.log(`PASS: deep post URL, ${count} CSS/JS/icon assets, 200 fallback, static builder`);

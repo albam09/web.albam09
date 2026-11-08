@@ -57,113 +57,75 @@ html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"]
   border-radius:12px!important;
 }
 
-/* A 12-item row leaves too little space on narrow laptops and tablets. */
+/* V8.1: one navigation size per breakpoint. Grid rows, li and links agree.
+   The previous 88/82px rows surrounding 60/62px buttons created a large gap. */
 @media (min-width:501px) and (max-width:1020px) {
   html body.ui-unified-page > .area-wrap nav.area-list > ul {
     grid-template-columns:repeat(6,minmax(0,1fr))!important;
     gap:9px!important;
   }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a {
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page] > a {
     font-size:13.5px!important;
-    height:54px!important;
-    min-height:54px!important;
+    height:54px!important;min-height:54px!important;
   }
 }
-
-/* Normal phones: four columns, three rows. Readability beats 9px tiny text. */
 @media (max-width:500px) {
   html body.ui-unified-page > .area-wrap {
-    margin-bottom:25px!important;
+    --nav-button-height:60px;
+    --nav-label-size:clamp(13px,3.5vw,14.5px);
+    margin-bottom:20px!important;
+    overflow:visible!important;
   }
   html body.ui-unified-page > .area-wrap nav.area-list > ul {
-    grid-template-columns:repeat(4,minmax(0,1fr))!important;
-    gap:9px!important;
-    padding:3px 2px 16px!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a {
-    font-size:clamp(13px,3.5vw,14.5px)!important;
-    line-height:1.3!important;
-    letter-spacing:-.025em!important;
-    height:57px!important;
-    min-height:57px!important;
-    max-height:none!important;
-    padding:7px 5px!important;
-    border-radius:11px!important;
-  }
-  /* Restore full label at extremely narrow widths: no CSS-only label shortening. */
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after {
-    content:none!important;
-  }
-}
-
-@media (max-width:360px) {
-  html body.ui-unified-page > .area-wrap nav.area-list > ul {
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a,
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="room"] > a {
-    font-size:13.5px!important;
-    height:54px!important;
-    min-height:54px!important;
-  }
-}
-
-@media print {
-  html body.ui-unified-page {padding-bottom:0!important}
-}
-
-
-/* V6 / mobile 6 x 2 navigation — retains the V5 font size, avoids clipping. */
-@media (max-width:500px){
-  html body.ui-unified-page > .area-wrap nav.area-list > ul{
     display:grid!important;
     grid-template-columns:repeat(6,minmax(0,1fr))!important;
     grid-auto-flow:row!important;
+    grid-auto-rows:var(--nav-button-height)!important;
     column-gap:5px!important;
     row-gap:9px!important;
     justify-content:stretch!important;
+    align-items:stretch!important;
     width:100%!important;
-    padding:4px 2px 18px!important;
+    padding:4px 2px 10px!important;
     overflow:visible!important;
     box-sizing:border-box!important;
   }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li{
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li {
     display:flex!important;
-    width:auto!important;
-    min-width:0!important;
-    max-width:none!important;
-    margin:0!important;
-    padding:0!important;
+    width:auto!important;min-width:0!important;max-width:none!important;
+    height:var(--nav-button-height)!important;
+    min-height:var(--nav-button-height)!important;
+    max-height:var(--nav-button-height)!important;
+    margin:0!important;padding:0!important;
     box-sizing:border-box!important;
   }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a{
-    width:100%!important;
-    min-width:0!important;
-    height:60px!important;
-    min-height:60px!important;
-    max-height:none!important;
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page] > a {
+    width:100%!important;min-width:0!important;
+    height:var(--nav-button-height)!important;
+    min-height:var(--nav-button-height)!important;
+    max-height:var(--nav-button-height)!important;
     padding:6px 2px!important;
+    font-size:var(--nav-label-size)!important;
+    line-height:1.15!important;
+    letter-spacing:-.025em!important;
     white-space:normal!important;
     overflow-wrap:anywhere!important;
     word-break:keep-all!important;
     hyphens:none!important;
-    line-height:1.15!important;
+    border-radius:11px!important;
   }
-  html body.ui-unified-page > .area-wrap{margin-bottom:27px!important;overflow:visible!important}
-}
-/* The former 360px rule had three columns. Keep two rows at 320px, too. */
-@media (max-width:360px){
-  html body.ui-unified-page > .area-wrap nav.area-list > ul{
-    grid-template-columns:repeat(6,minmax(0,1fr))!important;
-    column-gap:3px!important;
-  }
-  html body.ui-unified-page > .area-wrap nav.area-list > ul > li > a{
-    height:62px!important;min-height:62px!important;padding:5px 1px!important;
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page="karaoke2"] > a::after {
+    content:none!important;
   }
 }
-
+@media (max-width:360px) {
+  html body.ui-unified-page > .area-wrap {
+    --nav-button-height:62px;
+    --nav-label-size:13.5px;
+  }
+  html body.ui-unified-page > .area-wrap nav.area-list > ul {column-gap:3px!important}
+  html body.ui-unified-page > .area-wrap nav.area-list > ul > li[data-page] > a {padding:5px 1px!important}
+}
+@media print {
+  html body.ui-unified-page {padding-bottom:0!important}
+}
