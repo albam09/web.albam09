@@ -132,10 +132,14 @@ for(const r of Object.values(regions)){
 let home=read('index.html');
 home=block(home,'HERO','<section title=""><h1 class="daum-wm-title">광주노래방 · 광주가라오케 지역지도</h1><p class="hero-keyline">광주·목포 지역별 업소 탐색</p><p class="daum-wm-content hero-desc">방문할 지역을 먼저 선택하세요. 각 지역 페이지에서 업소의 위치·이용 안내와 지도, 회원이 남긴 탐험기를 함께 확인할 수 있습니다.</p></section>');
 const homeCards=Object.values(regions).map(r=>{
- const rows=forBoard(r.board),v=rows[0];
- return `<ul class="rotating-list-container" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label)} (${rows.length}개)</a></h3></li>${v?`<li class="is-active" data-preview-item><a href="${route(v)}" aria-label="${esc(v.name)} 지도에서 위치 보기"><span>${esc(v.name)}</span></a></li>`:'<li empty="">현재 공개된 업소 정보가 없습니다</li>'}</ul>`;
+ const rows=forBoard(r.board),v=rows[0],next=rows[1];
+ const preview=rows.length
+   ? `<li class="is-active" data-preview-item><div class="ab09-venue-rail" role="group" aria-label="${esc(r.label)} 업소 미리보기">${[v,next].filter(Boolean).map(item=>`<a href="${route(item)}" aria-label="${esc(item.name)} 지도에서 위치 보기"><span>${esc(item.name)}</span></a>`).join('')}</div></li>`
+   : '<li empty="">현재 등록 업소 없음 · 지역 안내 보기</li>';
+ return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label)} (${rows.length}개)</a></h3></li>${preview}</ul>`;
 }).join('');
-home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}</div>${contact}</section>`);
+const homeContact=`<div class="free-affiliate-contact" role="group" aria-label="무료 제휴 문의"><strong class="ab09-contact-title">무료제휴 문의</strong><a href="mailto:groogaolove@gmail.com">groogaolove@gmail.com</a><a href="https://t.me/medic0111" target="_blank" rel="noopener noreferrer">텔레그램 @medic0111</a></div>`;
+home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}${homeContact}</div></section>`);
 home=block(home,'BRAND_GUIDE','<section id="index-brand-story-20261027" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>지역별 업소 이용 가이드</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><h2>동네를 고르고 주소를 확인하세요</h2><p>광주버블여지도는 광주와 목포의 지역별 업소 정보와 공개 탐험기를 모아 제공합니다. 메인의 지역 카드에서 동네를 선택한 뒤 주소·위치 단서와 이용 안내를 비교해 보세요.</p><p>상무지구와 광천동·화정동, 신안동·유동과 용봉동은 구분해 안내합니다. 상세 주소나 당일 운영 조건이 충분하지 않은 항목은 방문 전에 해당 정보를 확인해 주세요.</p><p>등록·정정 요청은 하단 운영정보의 문의 경로로 접수합니다.</p></div></details></section>');
 home=block(home,'HOME_DIRECTORY','');
 home=block(home,'HOME_SECONDARY','<section id="index-secondary-search-guide" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>탐험기·지역 기사 이용 안내</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><p><a href="/explore/">탐험기</a>에서는 공개된 회원 방문 기록을, <a href="/bbs/">기사게시판</a>에서는 지역별 이동·주차·이용 정보 글을 볼 수 있습니다. 후기 작성 시 방문한 업소와 실제 지역을 선택해 주세요.</p></div></details></section>');

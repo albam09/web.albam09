@@ -1,0 +1,17 @@
+ALBAM09 V10 지역별 업소 탐색 디자인 패치
+
+V9 전체 사이트를 기준으로 변경된 세 파일입니다.
+압축을 해제하면 index.html, scripts/build-search-pages.mjs, css/albam09-v10-home-regions.css 파일이 나옵니다.
+GitHub Desktop 저장소에서 netlify.toml이 있는 최상위 폴더에 같은 상대경로대로 덮어쓰세요.
+그 다음 GitHub Desktop -> Changes 확인 -> Commit -> Push origin.
+Netlify Deploys에서 Published 상태 확인.
+
+수정 내역:
+- 지역 카드 높이를 줄이고, 4열 PC / 2열 모바일에서 카드 사이 간격 통일
+- 업소 이름 두 개(다음 업소 일부 포함) 보이게 하고 기존 자동 왼쪽 슬라이드 유지
+- 0개 지역은 명시적인 빈 상태 안내
+- 무료제휴 문의를 지역 카드 그리드 내부의 독립된 가로 카드로 배치
+- 검색용 생성 스크립트가 다시 HTML을 만들어도 같은 디자인을 유지
+
+검증: release check PASS, 자동 테스트 5개 PASS, 1440/390/320px 시뮬레이션 통과.
+주의: 실제 Netlify 공개 배포는 여기에서 수행하지 않았습니다.
