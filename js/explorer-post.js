@@ -61,7 +61,7 @@ function injectSchema(d,comments){
  const url=`${location.origin}/explore/post/${d.slug}/`;
  const images=(d.images||[]).map(x=>x.url).filter(Boolean);
  if(!Number.isFinite(Date.parse(d.published_at||d.created_at)))return;
- const obj={'@context':'https://schema.org','@type':'DiscussionForumPosting',mainEntityOfPage:url,url,headline:d.title,text:d.content,datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
+ const obj={'@context':'https://schema.org','@type':'Article',mainEntityOfPage:url,url,headline:d.title,text:d.content,datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
  if(images.length)obj.image=images;
  const schemaComments=(comments||[]).filter(c=>c && typeof c.content==='string' && c.content.trim() && Number.isFinite(Date.parse(c.created_at)) && c.id);
  if(schemaComments.length)obj.comment=schemaComments.map(c=>({'@type':'Comment',text:c.content,url:url+'#comment-'+encodeURIComponent(c.id),datePublished:new Date(c.created_at).toISOString(),author:{'@type':'Person',name:(c.profiles?.nickname||'회원')}}));

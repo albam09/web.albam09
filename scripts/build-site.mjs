@@ -10,6 +10,22 @@ const API_BASE=`${SUPABASE_URL}/rest/v1/albam09_explorer_posts?select=id,slug,bo
 const ALBA_POSTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_posts?select=id,title,summary,content,created_at,published_at,updated_at&status=eq.published&is_deleted=eq.false&order=published_at.desc&limit=100`;
 const ALBA_COMMENTS_API=`${SUPABASE_URL}/rest/v1/albam09_bubble_alba_comments?select=post_id,guest_name,content,created_at&status=eq.published&order=created_at.asc&limit=1000`;
 const PAGE_SIZE=1000;
+// Retry transient API interruptions, but never silently publish stale public posts
+// when the live database cannot be reached (privacy/deletion safety).
+async function fetchPublicJson(url){
+ let last;
+ for(let attempt=0;attempt<3;attempt++){
+  try{
+   const response=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+   if(response.ok){const data=await response.json();if(!Array.isArray(data))throw new Error('Supabase payload not an array');return data;}
+   last=new Error('Supabase HTTP '+response.status);
+   if(response.status!==429 && response.status<500)throw last;
+  }catch(e){last=e;if(attempt===2)throw e;}
+  if(attempt<2)await new Promise(resolve=>setTimeout(resolve,300*(attempt+1)));
+ }
+ throw last;
+}
+
 const labels={karaoke1:'상무지구',karaoke2:'광천동·서구권',karaoke3:'신안동',karaoke4:'용봉동',karaoke5:'첨단지구',karaoke6:'목포',karaoke7:'광주 동구',karaoke8:'광주 남구'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const xml=s=>esc(s);
@@ -51,7 +67,7 @@ function withMeta(template,d){
   if(!/rel="canonical"/i.test(s)) s=s.replace('</head>',`<link rel="canonical" href="${url}"><meta property="og:url" content="${url}"><meta name="twitter:card" content="summary_large_image"></head>`);
   const first=Array.isArray(d.images)&&d.images[0]?.url?d.images[0].url:'';
   if(first) s=s.replace('</head>',`<meta property="og:image" content="${esc(first)}"><meta name="twitter:image" content="${esc(first)}"></head>`);
-  const schema={'@context':'https://schema.org','@type':'DiscussionForumPosting',mainEntityOfPage:url,url,headline:d.title,text:d.content||'',datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
+  const schema={'@context':'https://schema.org','@type':'Article',mainEntityOfPage:url,url,headline:d.title,text:d.content||'',datePublished:d.published_at||d.created_at,dateModified:d.updated_at||d.published_at||d.created_at,author:{'@type':'Person',name:d.profiles?.nickname||'광주버블여지도 회원'}};
   if(first)schema.image=(d.images||[]).map(x=>x.url).filter(Boolean);
   s=s.replace('</head>',`<script id="explorer-post-ld" type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script></head>`);
   s=s.replace('<div id="explorerPost"><div class="explorer-empty">탐험기를 불러오는 중입니다.</div></div>',`<div id="explorerPost" data-prerendered="true">${articleHtml(d)}</div>`);
@@ -76,9 +92,7 @@ async function main(){
   let posts=[];
   try{
     for(let offset=0;;offset+=PAGE_SIZE){
-      const r=await fetch(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
-      if(!r.ok)throw new Error(`Supabase ${r.status}`);
-      const batch=await r.json();
+      const batch=await fetchPublicJson(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`);
       if(!Array.isArray(batch))throw new Error('Invalid Supabase response');
       for(const item of batch){
         if(!item || !safeSlug(item.slug) || item.slug!==safeSlug(item.slug) || !labels[item.board] || !item.title || !Number.isFinite(Date.parse(item.published_at||item.created_at))){
@@ -152,10 +166,7 @@ async function buildBubbleAlba(){
   let html=await fs.readFile(page,'utf8');
   if(!rx.test(html))throw new Error('bubble-alba static markers missing');
   const get=async(url)=>{
-    const r=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
-    if(!r.ok)throw new Error('bubble-alba REST HTTP '+r.status);
-    const rows=await r.json();if(!Array.isArray(rows))throw new Error('bubble-alba REST invalid payload');
-    return rows;
+    return await fetchPublicJson(url);
   };
   const [posts,comments]=await Promise.all([get(ALBA_POSTS_API),get(ALBA_COMMENTS_API)]);
   const markup=posts.map(p=>{

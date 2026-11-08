@@ -2,8 +2,8 @@
 # Former /page/karaoke01/ ... /page/karaoke08/ aliases only redirect to those canonical URLs.
 # No SPA fallback rewrite to /index.html: each regional URL has its own static index.html.
 [build]
-  command = "node scripts/build-search-pages.mjs && node scripts/check-release.mjs && node scripts/build-site.mjs"
-  publish = "."
+  command = "node scripts/build-search-pages.mjs && node scripts/check-release.mjs && node scripts/build-site.mjs && node scripts/package-public.mjs"
+  publish = "dist"
 
 [build.processing]
   skip_processing = false

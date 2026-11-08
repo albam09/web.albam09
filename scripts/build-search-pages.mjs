@@ -111,7 +111,7 @@ function guide(r){
 
 // Static HTML and browser data are generated together. A deployment cannot
 // accidentally keep the old nine-venue Yongbong payload after changing its HTML.
-const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus}));
+const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus,addressSearchText:v.addressSearchText||'',buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,businessLocationVerified:!!v.businessLocationVerified,pinKind:v.pinKind||'none'}));
 write('data/public-venues.json',JSON.stringify(publicRows)+'\n');
 write('data/public-venues.js',`/* Generated from venue-directory.json: ${release} */\nwindow.PUBLIC_VENUES=${serial(publicRows)};\n`);
 for(const board of ['index',...Object.keys(regions),'room']){
@@ -144,7 +144,7 @@ home=head(home,{title:'광주노래방 · 광주가라오케 지역지도 | 광�
 if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>',`<script src="js/home-region-preview.js?v=${release}" defer></script>\n</body>`);
 write('index.html',home);
 
-const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:false,locationStatus:v.coordinateStatus}));
+const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus}));
 for(const board of ['index',...Object.keys(regions),'room']){
  const file=board==='index'?'map/index.html':`map/${board}/index.html`;
  if(!fs.existsSync(path.join(root,file)))continue;
@@ -203,7 +203,7 @@ function restoreRealInventory(){`);
 }
 
 // Global link repairs include legacy articles and historical member posts.
-function walk(dir){return fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')?walk(path.posix.join(dir,e.name)):e.isFile()?[path.posix.join(dir,e.name)]:[]);}
+function walk(dir){return fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')&&!['dist','node_modules'].includes(e.name)?walk(path.posix.join(dir,e.name)):e.isFile()?[path.posix.join(dir,e.name)]:[]);}
 const htmlFiles=walk('').filter(p=>p.endsWith('.html'));
 const taxonomy=json('data/bbs-region-taxonomy.json');
 for(const r of Object.values(regions))if(taxonomy.regions[r.board])taxonomy.regions[r.board].label=r.label;
@@ -248,6 +248,7 @@ for(const r of Object.values(regions)){
 
 for(const file of htmlFiles){
  let s=read(file);
+ if(!s.includes('albam09-v9-final.css')){const depth=file.split('/').length-1;const prefix=file==='explore/post/index.html'?'/':'../'.repeat(depth);s=s.replace('</head>',`<link rel="stylesheet" href="${prefix}css/albam09-v9-final.css?v=${release}" data-ab09-v9="1">\n</head>`);}
  for(const v of venues){
   const encoded=encodeURIComponent(v.slug);
   s=s.replace(new RegExp(`/map/karaoke[1-8]/\\?venue=${encoded}(?=[&"'<>\\s])`,'g'),route(v));

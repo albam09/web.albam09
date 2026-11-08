@@ -44,8 +44,8 @@ try{
  assert.match(html,/<meta name="robots" content="index, follow, max-image-preview:large">/);
  assert.doesNotMatch(html,/itemscope itemtype="https:\/\/schema.org\/DiscussionForumPosting"/, '중복 Microdata 노드는 없어야 함');
  const scripts=[...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(x=>JSON.parse(x[1]));
- const forum=scripts.filter(o=>o['@type']==='DiscussionForumPosting');
- assert.equal(forum.length,1,'DiscussionForumPosting은 정확히 한 개여야 함');
+ const forum=scripts.filter(o=>o['@type']==='Article');
+ assert.equal(forum.length,1,'Article 정적 구조화 데이터는 정확히 한 개여야 함');
  assert.equal(forum[0].author.name,'실제 테스트 작성자');
  assert.equal(forum[0].datePublished,'2026-10-20T00:10:00Z');
  assert.equal(forum[0].url,`https://albam09.com/explore/post/${slug}/`);
