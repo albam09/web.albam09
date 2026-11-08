@@ -22,6 +22,13 @@ assert.match(html,/src="\/js\/explorer-post\.js/);
 assert.match(html,/src="\/js\/supabase-loader\.js/);
 const redirects=fs.readFileSync(path.join(root,'_redirects'),'utf8');
 assert.match(redirects,/^\/explore\/post\/\*\s+\/explore\/post\/index\.html\s+200$/m);
+assert.match(redirects,/^\/explore\/author\/\*\s+\/explore\/author\/index\.html\s+200$/m);
+const authorTemplate=fs.readFileSync(path.join(root,'explore/author/index.html'),'utf8');
+for(const [,ref] of authorTemplate.matchAll(/(?:href|src)=["']([^"']+)["']/g)){
+  if(!/\.(?:css|js)(?:\?|$)/.test(ref)||/^https?:/.test(ref))continue;
+  assert.ok(ref.startsWith('/'),`Author template asset must work at any profile depth: ${ref}`);
+  assert.ok(fs.existsSync(path.join(root,ref.split('?')[0].slice(1))),`Missing author asset: ${ref}`);
+}
 const builder=fs.readFileSync(path.join(root,'scripts/build-site.mjs'),'utf8');
 assert.match(builder,/const generated=await withMeta\(template,d\)/);
 console.log(`PASS: deep post URL, ${count} CSS/JS/icon assets, 200 fallback, static builder`);

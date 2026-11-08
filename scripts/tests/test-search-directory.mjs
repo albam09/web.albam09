@@ -41,8 +41,10 @@ for(const [board,count] of Object.entries(counts)){
  const staticList=map.match(/id="placeList"[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.equal((staticList.match(/class="place-item"/g)||[]).length,count,'Map HTML must contain only its own region');
  assert.doesNotMatch(map,/nominatim\.openstreetmap\.org/,'Do not turn reverse geocoding into a business address');
- const notice='정확한 지도 위치는 방문 전에 확인해 주세요.';
- assert.equal(map.split(notice).length-1,1,'Build must not duplicate popup notices');
+ assert.match(read('js/map-data.js'),/label:'주소 검색'/,'Address links use actual building addresses');
+ assert.doesNotMatch(map,/핀 좌표로 주소 검색/,'Customer actions must not expose coordinate lookup');
+ assert.match(map,/js\/map-view\.js/,'All regions use the shared map engine');
+ assert.doesNotMatch(map,/reverseSelectedVenue\(p\)/,'Do not invoke missing reverse-geocode handler');
  for(const [,attrs,body] of map.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)){
   if(/\bsrc=|application\/ld\+json|type=["']module/.test(attrs)||!body.trim())continue;
   new vm.Script(body,{filename:`map/${board}/inline.js`});
@@ -51,7 +53,8 @@ for(const [board,count] of Object.entries(counts)){
 assert.equal(seen.size,64);
 assert.equal(directory.find(v=>v.slug==='boss').board,'karaoke3');
 assert.equal(directory.find(v=>v.slug==='padam-padam').board,'karaoke4');
-assert.equal(directory.filter(v=>v.coordinateStatus==='address-coordinate-conflict').length,9);
+assert.equal(directory.filter(v=>v.coordinateStatus==='address-coordinate-conflict').length,8);
+assert.equal(directory.filter(v=>v.coordinateStatus==='building-address-reference').length,3,'Only independently geocoded buildings may be corrected');
 assert.ok(directory.filter(v=>v.coordinateStatus==='address-coordinate-conflict').every(v=>v.lat===null&&v.lng===null));
 const home=read('index.html');
 assert.doesNotMatch(home.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1],/상무지구/,'Home targets the regional directory, not Sangmu alone');

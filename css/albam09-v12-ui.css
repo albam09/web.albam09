@@ -1,0 +1,76 @@
+/* V12: boxed partnership card and consistent expandable information cards. */
+html body.ui-unified-page .ab09-partner-card {
+ box-sizing:border-box!important;display:block!important;grid-column:1 / -1!important;
+ justify-self:center;width:min(100%,450px)!important;max-width:450px!important;min-width:0;
+ margin:20px auto 12px!important;padding:0!important;overflow:hidden;
+ border:1px solid #e1ccec!important;border-radius:21px!important;
+ background:linear-gradient(140deg,#fff 45%,#fbf4ff)!important;
+ box-shadow:inset 0 2px 1px #fff,0 5px 0 #d9c5df,0 17px 28px rgba(76,28,96,.14)!important;
+}
+html body.ui-unified-page .ab09-partner-card__media {
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:12px;height:232px;margin:0 14px;background:radial-gradient(ellipse at 50% 44%,#f0ddff,rgba(255,255,255,0) 68%);
+ border-bottom:1px solid #efe3f6;
+}
+html body.ui-unified-page .ab09-partner-card__media img {display:block;width:128px;height:128px;object-fit:contain;filter:drop-shadow(0 8px 12px #ac64d92e)}
+html body.ui-unified-page .ab09-partner-card__brand {font-family:inherit;font-size:24px!important;line-height:1.3!important;color:#8d35bd;font-weight:800}
+html body.ui-unified-page .ab09-partner-card details {margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html body.ui-unified-page .ab09-partner-card summary {
+ display:flex!important;align-items:center;justify-content:space-between;gap:14px;
+ min-height:74px;padding:14px 20px!important;margin:0!important;cursor:pointer;list-style:none;
+ background:transparent!important;box-shadow:none!important;border:0!important;
+}
+html body.ui-unified-page .ab09-partner-card summary::-webkit-details-marker {display:none}
+html body.ui-unified-page .ab09-partner-card summary::after {content:none!important;display:none!important}
+html body.ui-unified-page .ab09-partner-card summary strong {font-size:18px!important;line-height:1.35!important;color:#30213f}
+html body.ui-unified-page .ab09-partner-card__button {
+ display:flex;align-items:center;justify-content:center;min-width:112px;min-height:44px;
+ padding:8px 18px;border:1px solid #ce9be8;border-radius:999px;color:#fff;
+ background:linear-gradient(150deg,#c08bf1,#9953d0 45%,#8139b6);
+ box-shadow:inset 0 2px 2px #f0d9ff,0 3px 0 #672e9540,0 0 13px #b55ee13b;
+ font-size:14px!important;font-weight:800;line-height:1.3!important;white-space:nowrap;
+}
+html body.ui-unified-page .ab09-partner-card__links {display:grid;gap:9px;margin:0 20px 18px;padding-top:12px;border-top:1px solid #eadcf3}
+html body.ui-unified-page .ab09-partner-card__links a {
+ display:block;box-sizing:border-box;min-height:44px;padding:11px 12px;
+ border:1px solid #eadbf3;border-radius:11px;background:#fff;color:#76429c!important;
+ font-size:14px!important;line-height:1.5!important;overflow-wrap:anywhere;text-decoration:none;
+}
+html body.ui-unified-page .ab09-partner-card summary:focus-visible {outline:2px solid #9d54ce;outline-offset:-4px;border-radius:15px}
+html body.ui-unified-page .info-panel-stack {display:grid!important;gap:12px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) {
+ box-sizing:border-box;margin:12px auto!important;padding:0!important;
+ border:1px solid #e9dfef!important;border-radius:17px!important;background:#fff!important;
+ box-shadow:inset 0 1px 0 #fff,0 3px 0 rgba(184,153,196,.18),0 8px 18px rgba(70,34,87,.065)!important;
+ overflow:hidden!important;
+}
+html body.ui-unified-page main .info-panel-stack > :is(.info-fold-card,#explorer-latest-index.info-fold-card) {margin:0!important;width:100%!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card)::before,html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card)::after {display:none!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details {margin:0!important;padding:0!important;border:0!important;background:#fff!important;box-shadow:none!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary {
+ box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+ width:100%!important;min-height:60px!important;height:auto!important;margin:0!important;padding:16px 21px!important;gap:18px!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;
+ font-size:16px!important;font-weight:800!important;line-height:1.45!important;color:#30213d!important;list-style:none!important;cursor:pointer;
+}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary > :first-child {font-size:inherit!important;line-height:inherit!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary::-webkit-details-marker {display:none}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary::after {content:none!important;display:none!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary > :last-child {flex-shrink:0;color:#886d99!important;font-size:12px!important;line-height:1.4!important;white-space:nowrap!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) details[open] > summary {border-bottom:1px solid #f0e8f5!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) :is(.business-description-fold__content,.explorer-preview-fold__content,.bbs-preview-fold__content) {margin:0!important;padding:18px 21px!important;background:#fff!important}
+html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary:focus-visible {outline:2px solid #b073d2!important;outline-offset:-4px!important}
+@media(max-width:600px){
+ html body.ui-unified-page .ab09-partner-card {margin-top:12px!important;border-radius:18px!important}
+ html body.ui-unified-page .ab09-partner-card__media {height:206px}
+ html body.ui-unified-page .ab09-partner-card__media img {width:116px;height:116px}
+ html body.ui-unified-page .ab09-partner-card__brand {font-size:22px!important}
+ html body.ui-unified-page .ab09-partner-card summary {padding:12px 15px!important;min-height:68px}
+ html body.ui-unified-page .ab09-partner-card summary strong {font-size:17px!important}
+ html body.ui-unified-page .ab09-partner-card__button {min-width:102px;padding:8px 12px;font-size:13px!important}
+ html body.ui-unified-page .ab09-partner-card__links {margin:0 15px 15px}
+ html body.ui-unified-page .info-panel-stack {gap:10px!important}
+ html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) {margin:10px auto!important;border-radius:14px!important}
+ html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) > details > summary {min-height:55px!important;padding:14px 15px!important;gap:12px!important;font-size:14px!important}
+ html body.ui-unified-page main :is(.info-fold-card,#explorer-latest-index.info-fold-card) :is(.business-description-fold__content,.explorer-preview-fold__content,.bbs-preview-fold__content) {padding:15px!important}
+}

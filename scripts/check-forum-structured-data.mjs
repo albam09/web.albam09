@@ -6,6 +6,9 @@ const root=process.cwd();let count=0;
 async function walk(dir){
  for(const entry of await fs.readdir(dir,{withFileTypes:true})){
   if(entry.name==='node_modules'||entry.name.startsWith('.'))continue;
+  // A previous local build can leave a publish copy beside the source.
+  // Validate that copy separately from its own root, not as a /dist/ URL.
+  if(dir===root&&entry.name==='dist')continue;
   const file=path.join(dir,entry.name);
   if(entry.isDirectory()){await walk(file);continue;}
   if(!entry.name.endsWith('.html'))continue;

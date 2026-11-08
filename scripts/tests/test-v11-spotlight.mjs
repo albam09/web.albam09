@@ -18,6 +18,7 @@ for(const board of ['karaoke1','karaoke2']){
  const map=read(`map/${board}/index.html`),region=read(`page/${board}/index.html`);
  assert.doesNotMatch(region,/상세 위치 문의|상세 주소 확인 필요/);
  assert.doesNotMatch(map,/상세 위치 문의|상세 주소 확인 필요|reverseSelectedVenue\(p\)/);
- assert.match(map,/핀 좌표로 주소 검색/);
+ assert.doesNotMatch(map,/핀 좌표로 주소 검색/);
+ assert.match(map,/map-view\.js/);
 }
 console.log('V11 PASS: generated photo preview, mobile swipe controls, original map/search integrity, no placeholder location hints');

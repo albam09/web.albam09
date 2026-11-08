@@ -1,7 +1,7 @@
 {
-  "release": "20261108-search-fix-v8",
+  "release": "20261108-v9-verified-address-safe",
   "updatedAt": "2026-11-08",
-  "directorySha256": "93414cba4bf66e6488fe3be65aff9b19414b6fce2b31a95690eb4c3ef5aa10df",
+  "directorySha256": "661ca72fe403986a58a2b99d6a6dca8559a6b18b67ea70d23fed1174f806279d",
   "venueCount": 64,
   "regions": {
     "karaoke1": 34,
