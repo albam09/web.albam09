@@ -1,0 +1,118 @@
+/* ALBAM09 V13: visually unified homepage fold stack. Base: V12. */
+/* Four fold panels must have ONE shadow source each; no duplicated pink underlay. */
+html body.ui-unified-page main .info-panel-stack{
+  gap:12px!important;
+  margin-top:18px!important;
+  margin-bottom:26px!important;
+  overflow:visible!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card,
+html body.ui-unified-page main .info-panel-stack > section.info-guide-card,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card{
+  display:block!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+  overflow:visible!important;
+  isolation:auto!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card::before,
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card::after,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card::before,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card::after{
+  content:none!important;
+  display:none!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details{
+  display:block!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  background:#fff!important;
+  border:1px solid rgba(197,172,207,.38)!important;
+  border-radius:17px!important;
+  outline:0!important;
+  box-shadow:0 1px 0 rgba(135,78,142,.10),0 7px 17px rgba(58,24,75,.075)!important;
+  overflow:hidden!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  box-sizing:border-box!important;
+  min-height:65px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0 23px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  line-height:1.42!important;
+  cursor:pointer!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary::before,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary::before{
+  content:none!important;
+  display:none!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details[open] > summary,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details[open] > summary{
+  border-bottom:1px solid rgba(197,172,207,.30)!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary > span:first-child,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary > span:first-child{
+  min-width:0!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  letter-spacing:-.015em!important;
+  color:#241b30!important;
+}
+html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary .business-description-fold__action,
+html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary .bbs-preview-fold__action{
+  flex:0 0 auto!important;
+  margin-left:12px!important;
+  font-size:12px!important;
+  line-height:1.3!important;
+  color:#6c4c7b!important;
+}
+@media(max-width:760px){
+ html body.ui-unified-page main .info-panel-stack{
+  gap:9px!important;
+  margin-top:13px!important;
+  margin-bottom:18px!important;
+ }
+ html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details,
+ html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details{
+  border-radius:13px!important;
+  box-shadow:0 1px 0 rgba(135,78,142,.08),0 5px 12px rgba(58,24,75,.065)!important;
+ }
+ html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary,
+ html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary{
+  min-height:54px!important;
+  padding:0 15px!important;
+ }
+ html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details > summary > span:first-child,
+ html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details > summary > span:first-child{
+  font-size:13px!important;
+  line-height:1.4!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html body.ui-unified-page main .info-panel-stack > section.info-fold-card > details,
+ html body.ui-unified-page main .info-panel-stack > section.info-bbs-card > details{transition:none!important}
+}
