@@ -1,0 +1,84 @@
+/* Homepage venue rail, independent of the retired waterwheel list styles. */
+body[data-current-page="index"] main section[list] .home-region-rail {
+  box-sizing:border-box;min-width:0;margin:0;padding:18px 20px 10px;
+  border:1px solid #ebdff2;border-radius:20px;
+  background:linear-gradient(150deg,#fff 36%,#fcf7ff 100%);
+  box-shadow:inset 0 2px 1px #fff,0 5px 0 #ddc9df,0 15px 26px rgba(72,29,90,.13);
+  overflow:hidden;
+}
+body[data-current-page="index"] main section[list] .venue-rail__heading {
+  display:flex;align-items:center;justify-content:center;min-height:46px;
+  margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid #eee2f2;text-align:center;
+  font-size:clamp(21px,1.8vw,29px)!important;line-height:1.25!important;
+}
+body[data-current-page="index"] .venue-rail__heading a {
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3px 6px;
+  min-height:44px;color:#8f2bb1;text-decoration:none;
+}
+body[data-current-page="index"] .venue-rail__heading small {font-size:.7em;color:#86718e;white-space:nowrap}
+body[data-current-page="index"] .venue-rail__window {
+  position:relative;overflow:hidden;padding:4px 0 9px;
+  touch-action:pan-y pinch-zoom;border-radius:12px;
+}
+body[data-current-page="index"] .venue-rail__window::after {
+  content:"";position:absolute;inset:0 0 0 auto;width:16px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,#fcf8ff);
+}
+body[data-current-page="index"] .venue-rail__track {display:flex;width:100%;gap:10px;transform:translate3d(0,0,0);transition:none}
+body[data-current-page="index"] .venue-rail__tile {
+  box-sizing:border-box;display:flex;flex:0 0 calc(100% - 28px);flex-direction:column;
+  align-items:flex-start;justify-content:center;gap:5px;min-width:0;min-height:76px;
+  padding:12px 16px;border:1px solid #e6d7f1;border-radius:12px;
+  background:linear-gradient(115deg,#fff,#f4eaff);color:#6d39b3;text-decoration:none;
+  box-shadow:inset 0 1px 0 #fff,0 3px 0 #e3d2ed,0 6px 10px rgba(83,41,116,.08);
+  -webkit-user-drag:none;
+}
+body[data-current-page="index"] .venue-rail__tile[aria-hidden="true"] {pointer-events:none}
+body[data-current-page="index"] .venue-rail__name {
+  display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:19px!important;font-weight:800;line-height:1.3!important;
+}
+body[data-current-page="index"] .venue-rail__hint {display:flex;align-items:center;gap:6px;color:#8b759c;font-size:12px!important;line-height:1.3!important;white-space:nowrap}
+body[data-current-page="index"] .venue-rail__footer {display:flex;align-items:center;justify-content:space-between;min-height:44px;margin-top:2px}
+body[data-current-page="index"] .venue-rail__footer[hidden] {display:none!important}
+body[data-current-page="index"] .venue-rail__count {font-size:12px!important;line-height:1.2!important;color:#8a7892;font-variant-numeric:tabular-nums;white-space:nowrap}
+body[data-current-page="index"] .venue-rail__actions {display:flex;gap:2px}
+body[data-current-page="index"] .venue-rail__actions button {
+  box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0;border:0;
+  border-radius:12px;background:transparent;color:#8c65b2;font-size:18px!important;
+  line-height:1!important;cursor:pointer;touch-action:manipulation;
+}
+body[data-current-page="index"] .venue-rail__toggle>span {font-family:system-ui,sans-serif!important;font-size:14px!important}
+body[data-current-page="index"] .venue-rail__next>span {font-family:system-ui,sans-serif!important;font-size:22px!important}
+body[data-current-page="index"] .venue-rail__actions button:active {background:#ede0f8}
+body[data-current-page="index"] .home-region-rail :is(a,button):focus-visible {outline:2px solid #9c50d7;outline-offset:-3px}
+body[data-current-page="index"] .venue-rail__empty {display:flex;align-items:center;justify-content:center;min-height:122px;margin:0;color:#94849b;font-size:15px!important;line-height:1.6!important;text-align:center}
+body[data-current-page="index"] .home-region-rail[data-moving="true"] .venue-rail__track {will-change:transform}
+body[data-current-page="index"] .home-region-rail[data-moving="true"] .venue-rail__tile {pointer-events:none}
+@media(hover:hover) and (pointer:fine){
+  body[data-current-page="index"] .venue-rail__actions button:hover {background:#f0e5fa;color:#7636a9}
+  body[data-current-page="index"] .venue-rail__tile:hover {border-color:#cfa8e6;background:linear-gradient(115deg,#fff,#eee0fc)}
+}
+@media(max-width:640px){
+  body[data-current-page="index"] main section[list] .home-region-rail {padding:14px 16px 7px;border-radius:17px}
+  body[data-current-page="index"] main section[list] .venue-rail__heading {font-size:23px!important;margin-bottom:8px;padding-bottom:7px}
+  body[data-current-page="index"] .venue-rail__tile {min-height:72px;padding:10px 14px}
+  body[data-current-page="index"] .venue-rail__name {font-size:18px!important}
+}
+@media(max-width:500px){
+  body[data-current-page="index"] main section[list] .home-region-rail {padding:12px 10px 7px}
+  body[data-current-page="index"] main section[list] .venue-rail__heading {box-sizing:border-box;min-height:56px;font-size:21px!important}
+  body[data-current-page="index"] .venue-rail__tile {flex-basis:calc(100% - 18px);height:68px;min-height:68px;padding:10px 9px}
+  body[data-current-page="index"] .venue-rail__track {gap:8px}
+  body[data-current-page="index"] .venue-rail__name {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow-wrap:anywhere;max-height:44px;font-size:17px!important}
+  body[data-current-page="index"] .venue-rail__hint {display:none}
+  body[data-current-page="index"] .venue-rail__heading a {gap:2px 4px}
+}
+@media(max-width:360px){
+  body[data-current-page="index"] main section[list] .home-region-rail {padding-left:8px;padding-right:8px}
+  body[data-current-page="index"] .venue-rail__count {display:none}
+  body[data-current-page="index"] .venue-rail__footer {justify-content:flex-end}
+  body[data-current-page="index"] main section[list] .venue-rail__heading {font-size:19px!important}
+}
+@media(prefers-reduced-motion:reduce){body[data-current-page="index"] .venue-rail__track {transition:none!important}}

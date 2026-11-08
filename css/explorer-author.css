@@ -1,0 +1,5 @@
+.explorer-author-posts .explorer-card {display:block!important;min-width:0}
+.explorer-author-posts .explorer-card-body {box-sizing:border-box;width:100%!important;min-width:0;max-width:none!important}
+.explorer-author-posts .explorer-card h2 {width:auto!important;max-width:none!important;margin:8px 0;font-size:24px!important;line-height:1.4!important;white-space:normal;overflow-wrap:anywhere}
+.explorer-author-posts .explorer-card p {font-size:15px!important;line-height:1.7!important}
+@media(max-width:600px){.explorer-author-posts {grid-template-columns:1fr!important}.explorer-author-posts .explorer-card h2 {font-size:21px!important}}

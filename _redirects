@@ -31,6 +31,7 @@ https://www.albam09.com/* https://albam09.com/:splat 301!
 
 ## 2026-10-16 BBS deployed-state consolidation
 
+/explore/author/* /explore/author/index.html 200
 /explore/post/* /explore/post/index.html 200
 # Legacy root URLs -> frozen canonical regional URLs (safe one-hop redirects)
 /karaoke1 /page/karaoke1/ 301!

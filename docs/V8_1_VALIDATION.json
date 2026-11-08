@@ -1,0 +1,32 @@
+{
+  "checks": "6 test files passed; release and forum validation passed",
+  "venues_preserved": 64,
+  "original_files_preserved": 460,
+  "images_and_fonts_unchanged": 135,
+  "html_pages": 133,
+  "jsonld_blocks_parsed": 166,
+  "missing_assets": [],
+  "mobile_navigation": {
+    "390_frame": {
+      "anchor_height_px": 60,
+      "row_gap_px": 9
+    },
+    "320_frame": {
+      "anchor_height_px": 62,
+      "row_gap_px": 9
+    }
+  },
+  "venue_motion": {
+    "dwell_ms": 3600,
+    "travel_ms": 650,
+    "measured_translate_x_start": -62.6091,
+    "measured_translate_x_later": -106.225,
+    "observed_next_venue_visible": true,
+    "pause_and_map_link_tested": true
+  },
+  "public_forum_posts": 3,
+  "public_author_pages": 2,
+  "redirects_checked_live": 9,
+  "redirect_result": "single 301 to matching canonical, then 200",
+  "production_deployed": false
+}
