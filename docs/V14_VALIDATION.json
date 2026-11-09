@@ -1,0 +1,24 @@
+{
+  "review": "V14",
+  "deliveryDateKST": "2026-11-10",
+  "tests": {
+    "regressionPassed": 10,
+    "failed": 0,
+    "sitemapCanonicalIndexable": 90,
+    "sitemapNoindexRemoved": 21,
+    "publicPosts": 3,
+    "publicAuthors": 2
+  },
+  "ui": {
+    "mobileWidths": [
+      320,
+      390
+    ],
+    "brandSingleLine": true,
+    "mokpoVenues": 2,
+    "gpsCompass": "simulated sensors; real device not tested"
+  },
+  "preservedAssets": 134,
+  "addressProvider": "Kakao JavaScript key still required",
+  "productionDeployed": false
+}

@@ -5,7 +5,7 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /*
-  Permissions-Policy: geolocation=(self)
+  Permissions-Policy: geolocation=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self)
 
 
 /data/public-venues.json
@@ -34,7 +34,7 @@
 
 # Map pages with venues are indexable; empty map pages retain HTML noindex.
 /map/*
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=0, must-revalidate
 
 /login/*
   X-Robots-Tag: noindex, nofollow
@@ -57,3 +57,11 @@
   X-Robots-Tag: noindex, nosnippet
 /docs/*
   X-Robots-Tag: noindex, nofollow
+
+# Deployment identity and fresh public-post HTML.
+/site-version.json
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex
+
+/explore/*
+  Cache-Control: public, max-age=0, must-revalidate
