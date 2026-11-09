@@ -1,4 +1,4 @@
-/* V14: shared map, pin-address lookup, personal position and compass. */
+/* V15: shared map with locally stored coordinate addresses. */
 (function(){
  'use strict';
  const config=window.ALBAM09_MAP_CONFIG||{},D=window.ALBAM09_MAP_DATA,L=window.L;
@@ -14,7 +14,8 @@
  const safeUrl=(v,fallback='#')=>{try{const u=new URL(v,location.href);return /^https?:$/.test(u.protocol)||u.protocol==='file:'?u.href:fallback;}catch{return fallback;}};
  const currentBoard=()=>((location.pathname.match(/\/map\/(karaoke[1-8]|room)(?:\/|$)/)||[])[1]||null);
  const filtered=()=>D.filter(rows,visible,search.value);
- const addresses=window.ALBAM09_MAP_ADDRESS?.createClient({key:window.ALBAM09_MAP_PROVIDER?.kakaoJavascriptKey||'',platform:window});
+ const preloaded=Object.fromEntries(rows.filter(p=>p.pinAddress&&D.hasPoint(p)).map(p=>[window.ALBAM09_MAP_ADDRESS.pointKey(p),p.pinAddress]));
+ const addresses=window.ALBAM09_MAP_ADDRESS?.createClient({key:window.ALBAM09_MAP_PROVIDER?.kakaoJavascriptKey||'',platform:window,preloaded});
  const Geo=window.ALBAM09_MAP_LOCATION;
  let addressRequest=0;
  // Legacy pages nested the side panel and controls inside the old map surface.
@@ -42,7 +43,7 @@
   const items=filtered();count.textContent='('+items.length+')';list.replaceChildren();
   if(!items.length){const empty=document.createElement('div');empty.className='map-empty';empty.textContent=search.value?'검색 결과가 없습니다. 검색어를 바꿔 보세요.':'현재 이 지역에 등록된 업소가 없습니다.';list.appendChild(empty);return;}
   const frag=document.createDocumentFragment();
-  for(const p of items){const button=document.createElement('button');button.type='button';button.className='place-item';button.dataset.venue=p.slug;const found=addresses?.peek(p);button.innerHTML=`<span class="place-name">${esc(p.name)}</span><span class="place-meta">${esc(p.area)}<br><span class="place-address">${esc(found?'핀 주소 · '+(found.road||found.parcel):p.address)}</span>${D.hasPoint(p)?'':'<br>등록 좌표 없음'}</span>`;button.onclick=()=>select(p,true);frag.appendChild(button);}
+  for(const p of items){const button=document.createElement('button');button.type='button';button.className='place-item';button.dataset.venue=p.slug;const found=addresses?.peek(p);const registered=found&&/\d/.test(p.addressSearchText||'')?`<br><span class="place-registered">등록 주소 · ${esc(p.address)}</span>`:'';button.innerHTML=`<span class="place-name">${esc(p.name)}</span><span class="place-meta">${esc(p.area)}<br><span class="place-address">${esc(found?'지도 주소 · '+(found.road||found.parcel):p.address)}</span>${registered}${D.hasPoint(p)?'':'<br>등록 좌표 없음'}</span>`;button.onclick=()=>select(p,true);frag.appendChild(button);}
   list.appendChild(frag);syncActive();
  }
  function groupPoints(items){
@@ -93,18 +94,18 @@
  }
  async function resolvePinAddress(p){
   const request=++addressRequest,box=popup.querySelector('.pop-pin-address');if(!box||!D.hasPoint(p))return;
-  if(!addresses?.configured){box.innerHTML='<p>핀 위치 지도에서 해당 지점을 확인하세요.</p>';return;}
+  if(!addresses?.configured&&!addresses?.peek(p)){box.innerHTML='<p>이 지점의 상세 주소를 확인할 수 없습니다.</p>';return;}
   box.textContent='핀 위치 주소를 조회하고 있습니다.';
   try{
    const result=await addresses.resolve(p);
    if(request!==addressRequest||selected?.slug!==p.slug||popup.hidden)return;
-   box.innerHTML='<strong>핀 위치 주소</strong>'+(result.road?`<p>도로명 · ${esc(result.road)}</p>`:'')+(result.parcel?`<p>지번 · ${esc(result.parcel)}</p>`:'')+'<small>핀 지점의 주소 · 제공: Kakao</small>';
-   const row=list.querySelector(`[data-venue="${p.slug}"] .place-address`);if(row)row.textContent='핀 주소 · '+(result.road||result.parcel);
+   box.innerHTML='<strong>지도 주소</strong>'+(result.road?`<p>도로명 · ${esc(result.road)}</p>`:'')+(result.parcel?`<p>지번 · ${esc(result.parcel)}</p>`:'')+`<small>지도에 표시된 지점의 주소 · 제공: ${esc(result.source||'Kakao')}</small>`;
+   const row=list.querySelector(`[data-venue="${p.slug}"] .place-address`);if(row)row.textContent='지도 주소 · '+(result.road||result.parcel);
    const copy=popup.querySelector('.pop-copy-address');copy.hidden=false;copy.onclick=async()=>{try{await navigator.clipboard.writeText(result.road||result.parcel);copy.textContent='주소 복사됨';}catch{copy.textContent='주소를 길게 눌러 복사';}};
    positionPopup();
   }catch(e){
    if(request!==addressRequest||selected?.slug!==p.slug||popup.hidden)return;
-   box.innerHTML='<p>상세 주소를 불러오지 못했습니다. 핀 위치 지도로 확인하세요.</p>';
+   box.innerHTML='<p>상세 주소를 불러오지 못했습니다.</p>';
    const retry=document.createElement('button');retry.type='button';retry.className='pin-address-retry';retry.textContent='주소 다시 조회';retry.onclick=()=>resolvePinAddress(p);box.appendChild(retry);positionPopup();
   }
  }

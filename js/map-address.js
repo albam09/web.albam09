@@ -22,13 +22,13 @@
    win.document.head.appendChild(script);
   });
  }
- function createClient({key='',platform,loadSdk}={}){
-  const cache=new Map(),pending=new Map();let sdkPromise=null;
+ function createClient({key='',platform,loadSdk,preloaded={}}={}){
+  const cache=new Map(Object.entries(preloaded)),pending=new Map();let sdkPromise=null;
   const configured=Boolean(String(key).trim()||loadSdk);
   function resolvePoint(p){
    const id=pointKey(p);if(!id)return Promise.reject(error('no-coordinate'));
-   if(!configured)return Promise.reject(error('not-configured'));
    if(cache.has(id))return Promise.resolve(cache.get(id));
+   if(!configured)return Promise.reject(error('not-configured'));
    if(pending.has(id))return pending.get(id);
    if(!sdkPromise)sdkPromise=(loadSdk?loadSdk():loadKakao(platform,key)).catch(e=>{sdkPromise=null;throw e;});
    const task=sdkPromise.then(services=>new Promise((resolve,reject)=>{

@@ -21,7 +21,9 @@ body:has(#app){margin:0!important;width:100%!important;height:100%!important;min
 #placeList{min-height:0;overflow:auto;max-height:none;overscroll-behavior:contain}
 #placeList .place-item{display:block;width:100%;text-align:left;flex:none;background:transparent;color:inherit;border:0;border-bottom:1px solid #1d4956;font:inherit;cursor:pointer;min-height:70px}
 #placeList .place-item:hover,#placeList .place-item.active{background:#123c4c}
-#placeList .place-meta{display:block}
+#placeList .place-meta{display:block;font-size:12px;line-height:1.45}
+#placeList .place-address{color:#c5e7ee;overflow-wrap:anywhere}
+#placeList .place-registered{color:#9ec5d0;overflow-wrap:anywhere}
 #placeList .place-name{display:block;font-size:14px;font-weight:800}
 #placeList .place-item:focus-visible{outline:2px solid #ffe83d;outline-offset:-3px}
 .map-list-toggle{display:none}
@@ -93,12 +95,13 @@ body:has(#app){margin:0!important;width:100%!important;height:100%!important;min
  .map-personal-actions button{font-size:12px;min-height:40px;padding:7px 9px;flex:1}
  .map-personal-actions #map-location-stop{font-size:11px;flex:0 0 auto;padding:7px}
  .map-personal-status{font-size:10px!important;line-height:1.4!important}
- #panel{left:8px;right:8px;bottom:22px;top:auto;width:auto;max-height:150px}
+ #panel{left:8px;right:8px;bottom:22px;top:auto;width:auto;max-height:175px}
  #panel .panel-head{padding:9px 100px 7px 10px;min-height:52px}
  #panel .panel-note{display:none}
  .map-list-toggle{position:absolute;right:5px;top:4px;display:block;min-width:86px;min-height:44px;border:1px solid #267b8e;border-radius:8px;background:#0c3344;color:#d9ffff;font-size:11px;cursor:pointer;padding:6px}
- #panel .place-list{display:flex;overflow-x:auto;overflow-y:hidden}
- #panel .place-item{width:170px;max-width:170px;min-width:170px;min-height:80px;max-height:92px;padding:8px 10px;border-right:1px solid #22535f;border-bottom:0;overflow:auto}
+ #panel .place-list{display:flex;overflow-x:auto;overflow-y:auto;align-items:stretch}
+ #panel .place-item{width:170px;max-width:170px;min-width:170px;min-height:80px;height:auto;max-height:none;padding:8px 10px;border-right:1px solid #22535f;border-bottom:0;overflow:visible}
+ #panel .place-meta{font-size:11px;line-height:1.35}
  #panel.is-collapsed .place-list{display:none!important}
  #popup{padding:10px;width:min(310px,calc(100% - 16px))}
  #zoom{bottom:184px;right:10px;gap:6px}#scale{right:62px;bottom:188px}
