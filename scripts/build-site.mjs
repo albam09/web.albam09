@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {resolvePublicContent} from './public-content.mjs';
 import {createRequire} from 'node:module';
 const bubbleInlineMedia=createRequire(import.meta.url)('../js/inline-media.js');
 const forum=createRequire(import.meta.url)('../js/forum-schema.js');
@@ -14,12 +15,15 @@ const PAGE_SIZE=1000;
 async function fetchPublicJson(url){
  let last;
  for(let attempt=0;attempt<3;attempt++){
+  let response;
   try{
-   const response=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(15000)});
+   response=await fetch(url,{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(12000)});
+  }catch(e){last=Object.assign(new Error('Supabase 네트워크 연결 실패',{cause:e}),{transient:true});}
+  if(response){
    if(response.ok){const data=await response.json();if(!Array.isArray(data))throw new Error('Supabase payload not an array');return data;}
-   last=new Error('Supabase HTTP '+response.status);
-   if(response.status!==429 && response.status<500)throw last;
-  }catch(e){last=e;if(attempt===2)throw e;}
+   last=Object.assign(new Error('Supabase HTTP '+response.status),{transient:response.status===429||response.status>=500});
+   if(!last.transient)throw last;
+  }
   if(attempt<2)await new Promise(resolve=>setTimeout(resolve,300*(attempt+1)));
  }
  throw last;
@@ -91,25 +95,7 @@ function archiveBlock(posts){
   return posts.map(d=>`<a class="explorer-card" href="/explore/post/${esc(d.slug)}/"><div class="explorer-card-body"><span class="tag explorer-venue-badge">${esc(d.venue_name||labels[d.board]||'지역 탐험기')}</span><h2>${esc(d.title)}</h2><p>${esc(d.summary||String(d.content||'').slice(0,150))}</p><div class="explorer-meta">${esc(labels[d.board]||'지역')} · ${esc(dateOnly(d.published_at||d.created_at))}</div></div></a>`).join('');
 }
 
-async function main(){
-  let posts=[];
-  try{
-    for(let offset=0;;offset+=PAGE_SIZE){
-      const batch=await fetchPublicJson(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`);
-      if(!Array.isArray(batch))throw new Error('Invalid Supabase response');
-      for(const item of batch){
-        if(!item || !safeSlug(item.slug) || item.slug!==safeSlug(item.slug) || !labels[item.board] || !item.title || !forum.published(item)){
-          throw new Error('Supabase 공개 탐험기에 유효하지 않은 slug/board/title/datePublished가 있습니다.');
-        }
-      }
-      posts.push(...batch);
-      if(batch.length<PAGE_SIZE)break;
-    }
-  }catch(e){
-    console.error('[build-site] 공개 탐험기 조회 실패 — 누락된 HTML 배포를 방지하기 위해 빌드를 중단합니다:',e.message);
-    throw e;
-  }
-
+async function main(posts){
   const seen=new Set();
   for(const d of posts){
     if(seen.has(d.slug))throw new Error(`중복 탐험기 slug: ${d.slug}`);
@@ -150,6 +136,11 @@ async function main(){
   if(postMarker.test(map))map=map.replace(postMarker,postUrls);
   else if(map.includes('</urlset>'))map=map.replace('</urlset>',postUrls+'\n</urlset>');
   else throw new Error('Cannot update sitemap.xml: closing urlset tag missing');
+  const authorUrls=new Map();
+  for(const d of posts){const person=await forum.author(d);if(person.url)authorUrls.set(person.url,person);}
+  const authorBlock='\n  <!-- EXPLORE_AUTHORS_START -->\n'+[...authorUrls.keys()].map(url=>`  <url><loc>${xml(url)}</loc></url>`).join('\n')+'\n  <!-- EXPLORE_AUTHORS_END -->';
+  const authorMarker=/\s*<!-- EXPLORE_AUTHORS_START -->[\s\S]*?<!-- EXPLORE_AUTHORS_END -->/m;
+  map=authorMarker.test(map)?map.replace(authorMarker,authorBlock):map.replace('</urlset>',authorBlock+'\n</urlset>');
   await fs.writeFile(sitemapPath,map,'utf8');
 
   const archivePath=path.join(root,'explore/archive/index.html');
@@ -192,13 +183,11 @@ async function buildAuthors(posts){
 
 
 // Restored 2026-10-21 bubble-alba feature. Independent of explore-post output.
-async function buildBubbleAlba(){
+async function buildBubbleAlba(posts,comments){
   const page=path.join(root,'bubble-alba/index.html');
   const rx=/<!-- ALBA_STATIC_START -->[\s\S]*?<!-- ALBA_STATIC_END -->/;
   let html=await fs.readFile(page,'utf8');
   if(!rx.test(html))throw new Error('bubble-alba static markers missing');
-  const get=async(url)=>fetchPublicJson(url);
-  const [posts,comments]=await Promise.all([get(ALBA_POSTS_API),get(ALBA_COMMENTS_API)]);
   const markup=posts.map(p=>{
     if(!p.id || !p.title || !p.content || !Number.isFinite(Date.parse(p.published_at||p.created_at)))throw new Error('bubble-alba incomplete published post');
     const when=dateOnly(p.published_at||p.created_at);
@@ -218,11 +207,32 @@ async function buildBubbleAlba(){
   console.log('[build-site] bubble-alba '+posts.length+' published notices, '+comments.length+' comments');
 }
 
-await main();
-try { await buildBubbleAlba(); }
-catch(e) {
-  if(process.env.ALBAM09_BUBBLE_ALBA_STRICT==='1' || process.env.NETLIFY==='true')throw e;
-  // Avoid failing an otherwise valid main-site deployment if the bubble tables were not yet installed.
-  console.warn('[build-site] bubble-alba static hydration skipped; client-side data retrieval remains available:',e.message);
+async function fetchPosts(){
+ const posts=[];
+ for(let offset=0;;offset+=PAGE_SIZE){
+  const batch=await fetchPublicJson(`${API_BASE}&limit=${PAGE_SIZE}&offset=${offset}`);
+  posts.push(...batch);
+  if(batch.length<PAGE_SIZE)return posts;
+ }
 }
-
+async function validatePayload(data){
+ if(!data||!['posts','albaPosts','albaComments'].every(k=>Array.isArray(data[k])))throw new Error('공개 데이터 형식 오류');
+ const seen=new Set();
+ for(const d of data.posts){
+  if(!d||!safeSlug(d.slug)||!labels[d.board]||!d.title||!forum.published(d)||seen.has(d.slug))throw new Error('공개 탐험기 slug/board/title/date 오류');
+  seen.add(d.slug);
+  const errors=forum.issues(await forum.post(d));
+  if(errors.length)throw new Error(`공개 탐험기 구조화 데이터 오류: ${d.slug}: ${errors.join(', ')}`);
+ }
+ for(const p of data.albaPosts){if(!p.id||!p.title||!p.content||!Number.isFinite(Date.parse(p.published_at||p.created_at)))throw new Error('공개 모집글 데이터 오류');}
+ for(const c of data.albaComments){if(!c.post_id||typeof c.content!=='string'||!Number.isFinite(Date.parse(c.created_at)))throw new Error('공개 댓글 데이터 오류');}
+}
+const content=await resolvePublicContent({
+ source:SUPABASE_URL,cacheFile:path.join(root,'data/build/public-content-snapshot.json'),
+ strict:process.env.ALBAM09_CONTENT_STRICT==='1',validate:validatePayload,
+ refresh:async()=>{const [posts,albaPosts,albaComments]=await Promise.all([fetchPosts(),fetchPublicJson(ALBA_POSTS_API),fetchPublicJson(ALBA_COMMENTS_API)]);return {posts,albaPosts,albaComments};}
+});
+// All three reads and schema checks finish before any static post is replaced.
+await main(content.payload.posts);
+await buildBubbleAlba(content.payload.albaPosts,content.payload.albaComments);
+console.log(`[build-site] content=${content.mode}; verified=${content.fetchedAt}`);

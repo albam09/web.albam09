@@ -41,7 +41,8 @@ for(const [board,count] of Object.entries(counts)){
  const staticList=map.match(/id="placeList"[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.equal((staticList.match(/class="place-item"/g)||[]).length,count,'Map HTML must contain only its own region');
  assert.doesNotMatch(map,/nominatim\.openstreetmap\.org/,'Do not turn reverse geocoding into a business address');
- assert.match(read('js/map-data.js'),/label:'주소 검색'/,'Address links use actual building addresses');
+ assert.match(read('js/map-data.js'),/label:'핀 위치 지도'/,'Coordinate pins link to their exact point');
+ assert.match(read('js/map-data.js'),/label:'등록 주소 지도'/,'Unlocated records use only an actual registered building address');
  assert.doesNotMatch(map,/핀 좌표로 주소 검색/,'Customer actions must not expose coordinate lookup');
  assert.match(map,/js\/map-view\.js/,'All regions use the shared map engine');
  assert.doesNotMatch(map,/reverseSelectedVenue\(p\)/,'Do not invoke missing reverse-geocode handler');

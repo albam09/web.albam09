@@ -1,4 +1,4 @@
-/* V12: one shared Leaflet 1.9.4 map runtime for all regional entry points. */
+/* V14: shared map, pin-address lookup, personal position and compass. */
 (function(){
  'use strict';
  const config=window.ALBAM09_MAP_CONFIG||{},D=window.ALBAM09_MAP_DATA,L=window.L;
@@ -14,6 +14,9 @@
  const safeUrl=(v,fallback='#')=>{try{const u=new URL(v,location.href);return /^https?:$/.test(u.protocol)||u.protocol==='file:'?u.href:fallback;}catch{return fallback;}};
  const currentBoard=()=>((location.pathname.match(/\/map\/(karaoke[1-8]|room)(?:\/|$)/)||[])[1]||null);
  const filtered=()=>D.filter(rows,visible,search.value);
+ const addresses=window.ALBAM09_MAP_ADDRESS?.createClient({key:window.ALBAM09_MAP_PROVIDER?.kakaoJavascriptKey||'',platform:window});
+ const Geo=window.ALBAM09_MAP_LOCATION;
+ let addressRequest=0;
  // Legacy pages nested the side panel and controls inside the old map surface.
  // Move overlays out before Leaflet takes ownership of that surface.
  for(const overlay of [panel,popup,...['zoom','scale','credit','status'].map(id=>document.getElementById(id))])if(overlay)main.appendChild(overlay);
@@ -39,7 +42,7 @@
   const items=filtered();count.textContent='('+items.length+')';list.replaceChildren();
   if(!items.length){const empty=document.createElement('div');empty.className='map-empty';empty.textContent=search.value?'검색 결과가 없습니다. 검색어를 바꿔 보세요.':'현재 이 지역에 등록된 업소가 없습니다.';list.appendChild(empty);return;}
   const frag=document.createDocumentFragment();
-  for(const p of items){const button=document.createElement('button');button.type='button';button.className='place-item';button.dataset.venue=p.slug;button.innerHTML=`<span class="place-name">${esc(p.name)}</span><span class="place-meta">${esc(p.area)}<br>${esc(p.address)}${D.hasPoint(p)?'':'<br>주소·업소명으로 지도 찾기'}</span>`;button.onclick=()=>select(p,true);frag.appendChild(button);}
+  for(const p of items){const button=document.createElement('button');button.type='button';button.className='place-item';button.dataset.venue=p.slug;const found=addresses?.peek(p);button.innerHTML=`<span class="place-name">${esc(p.name)}</span><span class="place-meta">${esc(p.area)}<br><span class="place-address">${esc(found?'핀 주소 · '+(found.road||found.parcel):p.address)}</span>${D.hasPoint(p)?'':'<br>등록 좌표 없음'}</span>`;button.onclick=()=>select(p,true);frag.appendChild(button);}
   list.appendChild(frag);syncActive();
  }
  function groupPoints(items){
@@ -80,12 +83,30 @@
   popup.querySelector('.map-popup-close').onclick=closePopup;popup.querySelectorAll('[data-group-venue]').forEach(b=>b.onclick=()=>select(bySlug.get(b.dataset.groupVenue),true));positionPopup();
  }
  function showPopup(p){
-  const lookup=D.lookup(p),url='https://map.kakao.com/link/search/'+encodeURIComponent(lookup.query),digits=String(p.phone||'').replace(/\D/g,'');
+  const lookup=D.lookup(p),digits=String(p.phone||'').replace(/\D/g,'');
   const same=rows.filter(x=>x.slug!==p.slug&&D.hasPoint(x)&&D.hasPoint(p)&&D.distance(x,p)<2);
   popupKind='venue';popup.hidden=false;popup.style.display='block';popup.setAttribute('role','dialog');popup.setAttribute('aria-label',p.name+' 업소 정보');
-  popup.innerHTML=`<button class="map-popup-close" type="button" aria-label="정보창 닫기">×</button><div class="pop-top"><img class="pop-image" src="${esc(safeUrl(p.image))}" alt="${esc(p.name)} 업소 사진"><div><h2 class="pop-title">${esc(p.name)}</h2><div class="pop-sub">${esc(p.area)}</div></div></div><div class="pop-sub pop-address">${esc(p.address)}</div>${D.hasPoint(p)?'':'<p class="pop-sub">지도 위치가 등록되지 않아 주소·업소명으로 찾을 수 있습니다.</p>'}${!p.addressVerified&&D.hasPoint(p)?'<p class="pop-sub pop-location-note">방문 전 건물과 출입구를 확인해 주세요.</p>':''}<div class="pop-actions"><a class="pop-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(lookup.label)}</a>${digits?`<a class="pop-link pop-phone" href="tel:${digits}">전화 ${esc(D.formatPhone(p.phone))}</a>`:''}<a class="pop-link" href="${esc(safeUrl(p.url))}" rel="nofollow noopener">상세보기</a></div>${same.length?'<details class="map-same-location"><summary>같은 등록 위치의 다른 업소</summary>'+same.map(x=>`<button type="button" data-group-venue="${esc(x.slug)}">${esc(x.name)}</button>`).join('')+'</details>':''}`;
+  popup.innerHTML=`<button class="map-popup-close" type="button" aria-label="정보창 닫기">×</button><div class="pop-top"><img class="pop-image" src="${esc(safeUrl(p.image))}" alt="${esc(p.name)} 업소 사진"><div><h2 class="pop-title">${esc(p.name)}</h2><div class="pop-sub">${esc(p.area)}</div></div></div><div class="pop-sub pop-address">등록 정보 · ${esc(p.address)}</div>${D.hasPoint(p)?'<div class="pop-pin-address" aria-live="polite"></div>':'<p class="pop-sub">등록 좌표가 없습니다.</p>'}<div class="pop-actions">${lookup.url?`<a class="pop-link" href="${esc(lookup.url)}" target="_blank" rel="noopener noreferrer">${esc(lookup.label)}</a>`:''}<button class="pop-link pop-copy-address" type="button" hidden>주소 복사</button>${digits?`<a class="pop-link pop-phone" href="tel:${digits}">전화 ${esc(D.formatPhone(p.phone))}</a>`:''}<a class="pop-link" href="${esc(safeUrl(p.url))}" rel="nofollow noopener">상세보기</a></div>${same.length?'<details class="map-same-location"><summary>같은 등록 위치의 다른 업소</summary>'+same.map(x=>`<button type="button" data-group-venue="${esc(x.slug)}">${esc(x.name)}</button>`).join('')+'</details>':''}`;
   popup.querySelector('.map-popup-close').onclick=closePopup;popup.querySelectorAll('[data-group-venue]').forEach(b=>b.onclick=()=>select(bySlug.get(b.dataset.groupVenue),true));
   popup.querySelectorAll('img').forEach(img=>img.addEventListener('load',positionPopup,{once:true}));positionPopup();
+  resolvePinAddress(p);
+ }
+ async function resolvePinAddress(p){
+  const request=++addressRequest,box=popup.querySelector('.pop-pin-address');if(!box||!D.hasPoint(p))return;
+  if(!addresses?.configured){box.innerHTML='<p>핀 위치 지도에서 해당 지점을 확인하세요.</p>';return;}
+  box.textContent='핀 위치 주소를 조회하고 있습니다.';
+  try{
+   const result=await addresses.resolve(p);
+   if(request!==addressRequest||selected?.slug!==p.slug||popup.hidden)return;
+   box.innerHTML='<strong>핀 위치 주소</strong>'+(result.road?`<p>도로명 · ${esc(result.road)}</p>`:'')+(result.parcel?`<p>지번 · ${esc(result.parcel)}</p>`:'')+'<small>핀 지점의 주소 · 제공: Kakao</small>';
+   const row=list.querySelector(`[data-venue="${p.slug}"] .place-address`);if(row)row.textContent='핀 주소 · '+(result.road||result.parcel);
+   const copy=popup.querySelector('.pop-copy-address');copy.hidden=false;copy.onclick=async()=>{try{await navigator.clipboard.writeText(result.road||result.parcel);copy.textContent='주소 복사됨';}catch{copy.textContent='주소를 길게 눌러 복사';}};
+   positionPopup();
+  }catch(e){
+   if(request!==addressRequest||selected?.slug!==p.slug||popup.hidden)return;
+   box.innerHTML='<p>상세 주소를 불러오지 못했습니다. 핀 위치 지도로 확인하세요.</p>';
+   const retry=document.createElement('button');retry.type='button';retry.className='pin-address-retry';retry.textContent='주소 다시 조회';retry.onclick=()=>resolvePinAddress(p);box.appendChild(retry);positionPopup();
+  }
  }
  function fit(items,maxZoom=16){const points=items.filter(D.hasPoint);if(!points.length)return;const u=usable();map.stop();map.fitBounds(L.latLngBounds(points.map(p=>[p.lat,p.lng])),{paddingTopLeft:[u.left,u.top+32],paddingBottomRight:[main.clientWidth-u.right,main.clientHeight-u.bottom],maxZoom,animate:false});}
  function select(p,focus){
@@ -125,8 +146,43 @@
  window.addEventListener('resize',scheduleResize);window.visualViewport?.addEventListener('resize',scheduleResize);window.addEventListener('pageshow',scheduleResize);document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleResize();});
  mobile.addEventListener('change',scheduleResize);
  popup.hidden=true;renderList();renderMarkers();fit(filtered(),visible===null?15:17);
+ const initialChip=[...document.querySelectorAll('#quick .chip')].find(c=>D.boards[c.textContent.trim()]===currentBoard());if(initialChip)markChip(initialChip);
  const params=new URLSearchParams(location.search),target=bySlug.get(params.get('venue')),area=params.get('area');
  if(target){select(target,true);}else if(area){const chip=[...document.querySelectorAll('#quick .chip')].find(c=>c.textContent.trim()===area);if(chip)showArea(chip);}else if(params.get('scope')==='all')restore(true);
  document.getElementById('allBtn').textContent='전체 업소';
+ // Keep the current device's position separate from the venue marker layer.
+ if(Geo){
+  const toolbar=document.createElement('section');toolbar.className='map-personal-toolbar';toolbar.setAttribute('aria-label','내 위치와 방향');
+  toolbar.innerHTML='<div class="map-personal-actions"><button type="button" id="map-locate">◎ 내 위치 확인</button><button type="button" id="map-heading">➤ 바라보는 방향</button><button type="button" id="map-location-stop" hidden>표시 끄기</button></div><p class="map-personal-status" aria-live="polite">위치와 방향은 버튼을 눌러 확인하세요.</p>';
+  document.getElementById('quick').after(toolbar);
+  const locateButton=toolbar.querySelector('#map-locate'),headingButton=toolbar.querySelector('#map-heading'),stopButton=toolbar.querySelector('#map-location-stop'),statusLine=toolbar.querySelector('.map-personal-status');
+  let userMarker=null,accuracyCircle=null,lastPosition=null,follow=false,currentHeading=null,locationMessage='',headingMessage='';
+  const updateStatus=()=>{statusLine.textContent=[locationMessage,headingMessage].filter(Boolean).join(' · ')||'위치와 방향은 버튼을 눌러 확인하세요.';};
+  function renderHeading(value){
+   currentHeading=value;const el=userMarker?.getElement();if(!el)return;
+   el.classList.toggle('has-heading',value!==null);el.style.setProperty('--user-heading',(value||0)+'deg');
+   el.setAttribute('aria-label',value===null?'내 현재 위치':'내 현재 위치 · '+Geo.cardinal(value)+'쪽 '+Math.round(value)+'도');
+  }
+  function centerUser(){if(!lastPosition)return;const p=lastPosition;map.stop();map.setView([p.lat,p.lng],p.accuracy<80?18:p.accuracy<400?16:p.accuracy<2000?14:p.accuracy<20000?11:8,{animate:false});const u=usable();map.panBy([main.clientWidth/2-(u.left+u.right)/2,main.clientHeight/2-(u.top+u.bottom)/2],{animate:false});}
+  const labels={location:{locating:'위치를 확인하고 있습니다',denied:'위치 권한이 차단되어 있습니다',timeout:'위치 확인 시간 초과 · 다시 눌러 주세요',unavailable:'현재 위치를 확인할 수 없습니다',unsupported:'이 기기는 위치 확인을 지원하지 않습니다',insecure:'HTTPS 주소에서 위치를 확인해 주세요',paused:'위치 확인 일시 정지',off:''},heading:{waiting:'방향 센서 확인 중',denied:'방향 권한이 차단되어 있습니다',unsupported:'이 기기에서 방향 센서 값을 받지 못했습니다',unavailable:'방향 신호를 기다리고 있습니다',insecure:'HTTPS 주소에서 방향을 확인해 주세요',off:''}};
+  const controller=Geo.createController({platform:window,onPosition:p=>{
+   lastPosition=p;
+   if(!accuracyCircle)accuracyCircle=L.circle([p.lat,p.lng],{radius:p.accuracy,color:'#2c91ff',weight:1,fillColor:'#52a6ff',fillOpacity:.12,interactive:false}).addTo(map);
+   else accuracyCircle.setLatLng([p.lat,p.lng]).setRadius(p.accuracy);
+   if(!userMarker)userMarker=L.marker([p.lat,p.lng],{interactive:false,zIndexOffset:20000,icon:L.divIcon({className:'map-user-marker',iconSize:[28,28],iconAnchor:[14,14],html:'<span class="map-user-direction"><i></i></span><span class="map-user-dot"></span><span class="map-user-label">내 위치</span>'})}).addTo(map);
+   else userMarker.setLatLng([p.lat,p.lng]);
+   renderHeading(currentHeading);if(follow)centerUser();locateButton.textContent='◎ 내 위치로 이동';stopButton.hidden=false;
+  },onHeading:renderHeading,onState:s=>{
+   if(s.kind==='location')locationMessage=s.status==='ready'?'내 위치 · 오차 약 '+Math.round(s.accuracy).toLocaleString()+'m':labels.location[s.status]||'';
+   else headingMessage=s.status==='ready'?'바라보는 방향 '+Geo.cardinal(s.heading)+' '+Math.round(s.heading)+'°':labels.heading[s.status]||'';
+   headingButton.setAttribute('aria-pressed',String(currentHeading!==null));updateStatus();
+  }});
+  locateButton.onclick=()=>{closePopup();if(mobile.matches)setCollapsed(true);follow=true;centerUser();stopButton.hidden=false;controller.locate();};
+  headingButton.onclick=()=>{stopButton.hidden=false;controller.enableHeading();if(!lastPosition){closePopup();if(mobile.matches)setCollapsed(true);follow=true;controller.locate();}};
+  stopButton.onclick=()=>{controller.stop();if(userMarker)userMarker.remove();if(accuracyCircle)accuracyCircle.remove();userMarker=null;accuracyCircle=null;lastPosition=null;follow=false;currentHeading=null;stopButton.hidden=true;locateButton.textContent='◎ 내 위치 확인';};
+  const stopFollowing=()=>{follow=false;};
+  map.on('dragstart',stopFollowing);host.addEventListener('pointerdown',stopFollowing,{passive:true});host.addEventListener('wheel',stopFollowing,{passive:true});
+  for(const el of [list,document.getElementById('quick'),document.getElementById('allBtn'),document.getElementById('sangmuBtn'),document.getElementById('plus'),document.getElementById('minus')])el.addEventListener('click',stopFollowing);
+ }
  host.dataset.mapEngine='leaflet-1.9.4';host.dataset.venueCount=String(rows.length);
 })();

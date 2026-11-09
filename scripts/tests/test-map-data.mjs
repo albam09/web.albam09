@@ -17,9 +17,11 @@ assert.deepEqual(D.region(rows,'지역 밖',{lat:37.5,lng:127}),[],'An empty nei
 assert.equal(D.filter(rows,null,'첨단 중앙로 152번길').length,1,'Spaces should not break address search');
 assert.equal(D.filter(rows,new Set(['boss']),'보스')[0].slug,'boss');
 assert.equal(D.filter(rows,new Set(['boss']),'용봉동').length,0);
-for(const p of rows){const lookup=D.lookup(p);assert.ok(lookup.query);if(lookup.kind==='address')assert.ok(/\d/.test(p.addressSearchText));else assert.ok(lookup.query.includes(p.name));if(D.hasPoint(p))assert.ok(!lookup.query.includes(p.lat+','+p.lng));}
+for(const p of rows){const lookup=D.lookup(p);if(D.hasPoint(p)){assert.equal(lookup.kind,'pin');assert.ok(lookup.url.endsWith(','+p.lat+','+p.lng));assert.ok(!lookup.url.includes('/search/'));}else if(lookup.kind==='address')assert.ok(/\d/.test(p.addressSearchText));else assert.equal(lookup.url,null);}
+assert.equal(D.region(rows,'목포·남악',{lat:34.8,lng:126.4}).length,2);
+assert.ok(D.region(rows,'목포·남악',{lat:34.8,lng:126.4}).every(p=>p.board==='karaoke6'));
 assert.equal(D.formatPhone('050371528028'),'0503-7152-8028');
 assert.equal(D.formatPhone('01095360111'),'010-9536-0111');
 assert.equal(D.formatPhone('0621234567'),'062-123-4567');
 assert.equal(JSON.stringify(rows),original,'Map search must never rewrite source coordinates or addresses');
-console.log('PASS: local region membership, empty-area handling, address/name search, no coordinate-query buttons, phone display and unchanged venue data');
+console.log('PASS: regional membership including Mokpo, empty areas, exact pin links without concatenated searches, phone display and unchanged venue data');

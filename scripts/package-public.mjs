@@ -17,7 +17,10 @@ for(const f of ['public-venues.json','public-venues.js','geo-catalog.json','geo-
 for(const f of await fs.readdir(path.join(root,'data','pages'))){if(/^(?:index|karaoke[1-8]|room)\.(?:js|json)$/.test(f))await fs.copyFile(path.join(root,'data','pages',f),path.join(out,'data','pages',f));}
 const checks=['index.html','sitemap.xml','robots.txt','_redirects','css/master.css','js/home-region-preview.js','explore/post/index.html','data/public-venues.js'];
 for(const f of checks){const ok=await fs.stat(path.join(out,f)).catch(()=>null);if(!ok)throw new Error('Missing public file: '+f);}
-for(const f of ['SUPABASE09.sql','SUPABASE09_SAFE_FINAL.sql','netlify.toml','scripts/build-site.mjs','data/venue-directory.json','data/region-guide-content.json']){
+for(const f of ['SUPABASE09.sql','SUPABASE09_SAFE_FINAL.sql','netlify.toml','scripts/build-site.mjs','data/build/public-content-snapshot.json','data/venue-directory.json','data/region-guide-content.json']){
  if(await fs.stat(path.join(out,f)).catch(()=>null))throw new Error('Restricted build input leaked into dist: '+f);
 }
 console.log(`[package-public] PASS: public-only dist with ${dirs.length} asset/page directories; build source/SQL excluded`);
+
+const snapshot=JSON.parse(await fs.readFile(path.join(root,'data/build/public-content-snapshot.json'),'utf8'));
+await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261109-v14-reviewed',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:64,mapRegions:10},null,2)+'\n');

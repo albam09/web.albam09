@@ -27,7 +27,7 @@ const regionData=[
   '신안동과 유동은 서로 다른 동네입니다. 광주역을 약속 장소로 잡았다면 역에서 출발할 방향과 도착할 건물·층수를 함께 공유하세요. 용봉동 저불로 일대의 업소는 별도의 용봉동 목록에서 확인할 수 있습니다.'],
  ['karaoke4','북구1','용봉동','용봉동노래방 · 용봉동가라오케','용봉동 노래방·가라오케와 저불로 업소 안내',
   '용봉동의 저불로·전철우사거리 등 위치 단서가 있는 업소를 모았습니다. 전남대 정문·후문이나 비엔날레 방면에서 출발한다면 카드의 주소와 실제 목적지를 먼저 맞춰 보세요.',
-  '용봉동 1365-4로 안내된 빠담빠담과 저불로 55로 안내된 top탑은 용봉동 목록에 포함합니다. 신안동·유동으로 기재된 업소는 해당 지역 목록에서 비교할 수 있습니다. 지도 위치를 확인해야 하는 항목은 주소 검색을 함께 제공합니다.'],
+  '용봉동 1365-4로 안내된 빠담빠담과 저불로 55로 안내된 top탑은 용봉동 목록에 포함합니다. 신안동·유동으로 기재된 업소는 해당 지역 목록에서 비교할 수 있습니다. 지도 핀과 기재된 건물 주소를 함께 확인할 수 있습니다.'],
  ['karaoke5','광산구','첨단지구','첨단지구노래방 · 첨단지구가라오케','첨단지구 노래방·가라오케와 쌍암동 업소 지도',
   '첨단지구·쌍암동의 업소를 상호, 도로명 주소와 호텔 주변 위치 단서로 찾아보세요. 첨단중앙로 일대에서 모이는 경우와 쌍암공원 방면에서 합류하는 경우를 나눠 목적지를 정할 수 있습니다.',
   '첨단아이는 첨단중앙로152번길 81-4, 1층으로 기재되어 있습니다. 상세 주소가 없는 업소는 방문 전에 소재지를 확인하세요. 공원 주차시설과 업소의 전용·제휴 주차는 조건이 다를 수 있습니다.'],
@@ -49,7 +49,7 @@ const regionUrl=board=>`https://albam09.com/page/${board}/`;
 // For unverified points prefer the administrative address and a map-coordinate link.
 const location=v=>v.addressPrecision==='street'?v.address:(v.address||v.area);
 const hasPin=v=>Number.isFinite(v.lat)&&Number.isFinite(v.lng);
-const pinSearch=v=>hasPin(v)?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(v.lat+','+v.lng):'';
+const pinSearch=v=>hasPin(v)?route(v):'';
 
 if(!venues.length||new Set(venues.map(v=>v.slug)).size!==venues.length)throw Error('Directory must contain distinct venue slugs');
 for(const v of venues){
@@ -105,7 +105,7 @@ function cards(r,items){
 }
 function businessInfo(r,items){
  if(!items.length)return '';
- return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 핀 위치는 지도로 조회할 수 있습니다.'}</p>${hasPin(v)?`<a class="directory-map-pin" href="${pinSearch(v)}" target="_blank" rel="noopener noreferrer">지도 핀 주소 검색 ↗</a>`:''}${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
+ return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 핀 위치는 지도로 조회할 수 있습니다.'}</p>${hasPin(v)?`<a class="directory-map-pin" href="${pinSearch(v)}" target="_blank" rel="noopener noreferrer">핀 위치·주소 보기 ↗</a>`:''}${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
 }
 function guide(r){
  const i=r.board.replace('karaoke','');

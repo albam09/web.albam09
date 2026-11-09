@@ -317,82 +317,7 @@
     <loc>https://albam09.com/bbs/359/</loc>
     <lastmod>2026-11-08</lastmod>
   </url>
-  <url>
-    <loc>https://albam09.com/bbs/004/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/006/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/008/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/010/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/013/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/020/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/023/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/027/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/036/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/048/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/049/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/128/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/135/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/144/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/151/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/162/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/166/</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/174/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/182/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
+
   <url>
     <loc>https://albam09.com/bbs/page2/</loc>
     <lastmod>2026-10-25</lastmod>
@@ -405,14 +330,7 @@
     <loc>https://albam09.com/bbs/page4/</loc>
     <lastmod>2026-10-25</lastmod>
   </url>
-  <url>
-    <loc>https://albam09.com/bbs/page5/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://albam09.com/bbs/page6/</loc>
-    <lastmod>2026-10-25</lastmod>
-  </url>
+
   <url>
     <loc>https://albam09.com/bbs/region/karaoke1/</loc>
     <lastmod>2026-10-27</lastmod>
@@ -477,4 +395,9 @@
     <image:image><image:loc>https://ldyysvafgegsgmvpslui.supabase.co/storage/v1/object/public/albam09-explore/8fa7cf95-4123-4f44-b434-80f84141017d/1791731483198-0-krohuyh.webp</image:loc></image:image>
   </url>
   <!-- EXPLORE_POSTS_END -->
+
+  <!-- EXPLORE_AUTHORS_START -->
+  <url><loc>https://albam09.com/explore/author/member-83d56719dd0a668a97ab67a0/</loc></url>
+  <url><loc>https://albam09.com/explore/author/member-cb92fbce060d6151af313eaa/</loc></url>
+  <!-- EXPLORE_AUTHORS_END -->
 </urlset>
