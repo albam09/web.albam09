@@ -10,6 +10,7 @@ const write=(p,s)=>fs.writeFileSync(path.join(root,p),s);
 const json=p=>JSON.parse(read(p));
 const source=json('data/venue-directory.json');
 const guides=json('data/region-guide-content.json');
+const pinAddresses=json('data/map-pin-addresses.json').points;
 const venues=source.venues;
 const release=source.release;
 const updated=source.updatedAt;
@@ -49,9 +50,20 @@ const regionUrl=board=>`https://albam09.com/page/${board}/`;
 // For unverified points prefer the administrative address and a map-coordinate link.
 const location=v=>v.addressPrecision==='street'?v.address:(v.address||v.area);
 const hasPin=v=>Number.isFinite(v.lat)&&Number.isFinite(v.lng);
-const pinSearch=v=>hasPin(v)?route(v):'';
+const pinFor=v=>hasPin(v)?(pinAddresses[`${v.lat.toFixed(7)},${v.lng.toFixed(7)}`]||null):null;
+const displayAddress=v=>v.address&&/\d/.test(v.addressSearchText||v.address)?v.address:(pinFor(v)?.road||pinFor(v)?.parcel||location(v));
+// Keep the current Kakao map presentation, including the venue's name on its pin.
+// When there is no point, search the recorded address, then the venue in its region.
+const pinSearch=v=>hasPin(v)
+ ? 'https://map.kakao.com/link/map/'+encodeURIComponent(v.name)+','+v.lat+','+v.lng
+ : 'https://map.kakao.com/link/search/'+encodeURIComponent(v.addressSearchText&&/\d/.test(v.addressSearchText)?v.addressSearchText:[v.area,v.name].filter(Boolean).join(' '));
 
 if(!venues.length||new Set(venues.map(v=>v.slug)).size!==venues.length)throw Error('Directory must contain distinct venue slugs');
+if(!pinAddresses||Object.keys(pinAddresses).length===0)throw Error('Saved map addresses are missing');
+const pinMarker=/\/\* PIN_ADDRESS_DATA_START \*\/[\s\S]*?\/\* PIN_ADDRESS_DATA_END \*\//;
+const oldMapView=read('js/map-view.js');
+if(!pinMarker.test(oldMapView))throw Error('Map address data marker is missing');
+write('js/map-view.js',oldMapView.replace(pinMarker,()=>`/* PIN_ADDRESS_DATA_START */${serial(pinAddresses)}/* PIN_ADDRESS_DATA_END */`));
 for(const v of venues){
  if(!regions[v.board]||v.region!==regions[v.board].region)throw Error(`Region mismatch: ${v.slug}`);
  if(!/^[a-z0-9_-]+$/i.test(v.slug)||!v.name)throw Error('Invalid directory entry');
@@ -105,7 +117,7 @@ function cards(r,items){
 }
 function businessInfo(r,items){
  if(!items.length)return '';
- return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 핀 위치는 지도로 조회할 수 있습니다.'}</p>${hasPin(v)?`<a class="directory-map-pin" href="${pinSearch(v)}" target="_blank" rel="noopener noreferrer">핀 위치·주소 보기 ↗</a>`:''}${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
+ return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 위치는 지도로 조회할 수 있습니다.'}</p><a class="directory-map-pin" href="${esc(pinSearch(v))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(v.name)} 길 안내${hasPin(v)?'':' - 지도에서 검색'}">길 안내 ↗</a>${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
 }
 function guide(r){
  const i=r.board.replace('karaoke','');
@@ -157,7 +169,7 @@ if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>','<scr
 else home=home.replace(/js\/home-region-preview\.js\?v=[^"']+/g,'js/home-region-preview.js?v=20261108-v11');
 write('index.html',home);
 
-const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus}));
+const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus,pinAddress:pinFor(v)}));
 for(const board of ['index',...Object.keys(regions),'room']){
  const file=board==='index'?'map/index.html':`map/${board}/index.html`;
  if(!fs.existsSync(path.join(root,file)))continue;
@@ -167,7 +179,7 @@ for(const board of ['index',...Object.keys(regions),'room']){
  const label=r?.label||(board==='index'?'전체 지역':'룸소주방');
  s=s.replace(/(<h1 class="panel-title"[^>]*>)[^<]*/,'$1'+esc(label)+' 지도 · 업소 ');
  s=s.replace(/(<span id="count">)[\s\S]*?(<\/span>)/,'$1('+items.length+')$2');
- const fallback=items.map(v=>`<div class="place-item"><a class="place-name" href="/page/${v.board}/#venue-${esc(v.slug)}">${esc(v.name)}</a><div class="place-meta">${esc(v.area)}<br>${esc(location(v))}</div></div>`).join('')||'<p class="panel-note">현재 공개된 업소 정보가 없습니다.</p>';
+ const fallback=items.map(v=>{const area=v.area+(pinFor(v)&&!/\d/.test(v.addressSearchText||v.address||'')?' · 지도 기준':'');return `<div class="place-item"><a class="place-name" href="/page/${v.board}/#venue-${esc(v.slug)}">${esc(v.name)}</a><div class="place-meta">${esc(area)}<br>${esc(displayAddress(v))}</div></div>`;}).join('')||'<p class="panel-note">현재 공개된 업소 정보가 없습니다.</p>';
  s=s.replace(/(<div\b[^>]*\bid="placeList"[^>]*>)[\s\S]*?(<\/div>\s*<\/aside>)/,`$1${fallback}$2`);
  const mapUrl='https://albam09.com/'+(board==='index'?'map/':`map/${board}/`);
  s=head(s,{title:label+' 업소 위치 지도 | 광주버블여지도',description:`${label} 업소 ${items.length}곳의 위치 단서와 지도. 업소명·주소로 찾아보고 해당 지역 안내와 비교하세요.`,url:mapUrl,schema:{'@context':'https://schema.org','@type':'CollectionPage',url:mapUrl,name:label+' 업소 위치 지도',isPartOf:{'@id':homeUrl+'#website'},mainEntity:{'@type':'ItemList',numberOfItems:items.length,itemListElement:items.map((v,i)=>({'@type':'ListItem',position:i+1,name:v.name,url:'https://albam09.com/page/'+v.board+'/#venue-'+v.slug}))}}});

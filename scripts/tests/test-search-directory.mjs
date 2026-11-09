@@ -12,6 +12,10 @@ assert.equal(new Set(directory.map(v=>v.slug)).size,64);
 const counts={karaoke1:34,karaoke2:3,karaoke3:15,karaoke4:3,karaoke5:7,karaoke6:2,karaoke7:0,karaoke8:0};
 const scriptData=(p,key)=>{const context={window:{}};vm.runInNewContext(read(p),context);return context.window[key];};
 const globalData=scriptData('data/public-venues.js','PUBLIC_VENUES');
+const savedPins=JSON.parse(read('data/map-pin-addresses.json')).points;
+const bundle=read('js/map-view.js').match(/\/\* PIN_ADDRESS_DATA_START \*\/([\s\S]*?)\/\* PIN_ADDRESS_DATA_END \*\//);
+assert.ok(bundle,'Map engine must include saved addresses even when an older page has no pinAddress');
+assert.deepEqual(JSON.parse(bundle[1]),savedPins,'Embedded addresses must match their source file');
 assert.equal(globalData.length,64);
 assert.equal(JSON.stringify(globalData),JSON.stringify(JSON.parse(read('data/public-venues.json'))));
 const seen=new Set();
@@ -21,6 +25,7 @@ for(const [board,count] of Object.entries(counts)){
  assert.equal(rows.length,count);
  assert.equal((html.match(/class="venue-list-a11y-item"/g)||[]).length,count,'Visible cards must match browser data');
  assert.equal((html.match(/class="business-desc-card"/g)||[]).length,count,'Detailed facts must match cards');
+ assert.equal((html.match(/class="directory-map-pin"/g)||[]).length,count,'Every card retains a directions button');
  const js=scriptData(`data/pages/${board}.js`,'PUBLIC_PAGE_VENUES');
  assert.equal(js.length,count);
  assert.equal(JSON.stringify(js),JSON.stringify(JSON.parse(read(`data/pages/${board}.json`))));
@@ -36,13 +41,15 @@ for(const [board,count] of Object.entries(counts)){
  assert.ok(!graph.some(o=>String(o['@type']).includes('LocalBusiness')),'Do not assert unverified LocalBusiness facts');
  for(const v of rows){assert.ok(html.includes(`id="venue-${v.slug}"`));assert.ok(!seen.has(v.slug));seen.add(v.slug);}
  const map=read(`map/${board}/index.html`);
+ if(board==='karaoke1')assert.match(map,/치평동 1211-1번지/,'7seven must show a detailed address in the map HTML');
+ if(board==='karaoke3')assert.match(map,/중흥로 86, 2층/,'Preserve the registered floor on the map');
  const initial=JSON.parse(map.match(/const initialRegionSlugs=(\[[\s\S]*?\]);/)[1]);
  assert.deepEqual(initial.sort(),rows.map(v=>v.slug).sort());
  const staticList=map.match(/id="placeList"[^>]*>([\s\S]*?)<\/aside>/)[1];
  assert.equal((staticList.match(/class="place-item"/g)||[]).length,count,'Map HTML must contain only its own region');
  assert.doesNotMatch(map,/nominatim\.openstreetmap\.org/,'Do not turn reverse geocoding into a business address');
- assert.match(read('js/map-data.js'),/label:'핀 위치 지도'/,'Coordinate pins link to their exact point');
- assert.match(read('js/map-data.js'),/label:'등록 주소 지도'/,'Unlocated records use only an actual registered building address');
+ assert.match(read('js/map-data.js'),/label:'길 안내'/,'Directions actions use the requested label');
+ assert.doesNotMatch(read('js/map-data.js'),/핀 위치 지도/);
  assert.doesNotMatch(map,/핀 좌표로 주소 검색/,'Customer actions must not expose coordinate lookup');
  assert.match(map,/js\/map-view\.js/,'All regions use the shared map engine');
  assert.doesNotMatch(map,/reverseSelectedVenue\(p\)/,'Do not invoke missing reverse-geocode handler');

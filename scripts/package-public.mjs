@@ -23,4 +23,4 @@ for(const f of ['SUPABASE09.sql','SUPABASE09_SAFE_FINAL.sql','netlify.toml','scr
 console.log(`[package-public] PASS: public-only dist with ${dirs.length} asset/page directories; build source/SQL excluded`);
 
 const snapshot=JSON.parse(await fs.readFile(path.join(root,'data/build/public-content-snapshot.json'),'utf8'));
-await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261109-v14-reviewed',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:64,mapRegions:10},null,2)+'\n');
+await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261110-v16-list-addresses',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:64,mapRegions:10},null,2)+'\n');

@@ -12,6 +12,10 @@ assert.equal(a,b);assert.deepEqual(requests,[[p.lng,p.lat]]);assert.equal(sdkCal
 assert.equal(a.road,'테스트 도로명 10');assert.equal(a.parcel,'테스트 지번 20');assert.equal(a.kind,'pin-address');
 assert.equal(await client.resolve(p),a);assert.equal(requests.length,1);
 assert.notEqual(A.pointKey({...p,lng:p.lng+.001}),A.pointKey(p));
+const stored={road:'',parcel:'전남광주통합특별시 서구 치평동 1162번지',source:'지오코더'};
+const offline=A.createClient({preloaded:{[A.pointKey(p)]:stored}});
+assert.equal(await offline.resolve(p),stored,'Saved map address must work without an API key');
+await assert.rejects(offline.resolve({...p,lng:p.lng+.001}),{code:'not-configured'},'Changed coordinates must not reuse a stale address');
 await assert.rejects(client.resolve({lat:null,lng:1}),{code:'no-coordinate'});
 assert.throws(()=>A.parse([],p),{code:'no-address'});
 assert.equal(A.parse([{address:{address_name:'테스트 지번 30'}}],p).road,'');
@@ -46,6 +50,6 @@ control.stop();assert.equal(handlers.has('deviceorientationabsolute'),false);
 const old=positions.length;success({coords:{latitude:40,longitude:127,accuracy:1},timestamp:124});assert.equal(positions.length,old,'Ignore callbacks after stopping');
 control.destroy();assert.equal(docHandlers.size,0);
 for(const file of ['map/index.html',...Array.from({length:8},(_,i)=>`map/karaoke${i+1}/index.html`),'map/room/index.html']){
- const html=fs.readFileSync(file,'utf8');assert.match(html,/목포·남악<\/button>/);for(const name of ['map-provider-config','map-address','map-location'])assert.ok(html.includes(name+'.js'));
+ const html=fs.readFileSync(file,'utf8');const quick=html.match(/<div id="quick">([\s\S]*?)<\/div>/)[1];const labels=[...quick.matchAll(/<button\b[^>]*>([^<]+)<\/button>/g)].map(m=>m[1]);assert.equal(labels.at(-1),'목포·남악',`${file}: Mokpo must be last`);assert.deepEqual(labels.slice(0,3),['상무지구','광천동','용봉동']);for(const name of ['map-provider-config','map-address','map-location'])assert.ok(html.includes(name+'.js'));
 }
 console.log('PASS: pin address coordinate order, road/parcel parsing, missing-key failure, compass directions and sensor permission/watch lifecycle, all 10 map routes');

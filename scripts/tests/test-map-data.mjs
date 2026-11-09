@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const D=createRequire(import.meta.url)('../../js/map-data.js');
 const rows=JSON.parse(fs.readFileSync('data/venue-directory.json','utf8')).venues;
+const saved=JSON.parse(fs.readFileSync('data/map-pin-addresses.json','utf8')).points;
 const original=JSON.stringify(rows);
 assert.equal(rows.length,64);
 assert.equal(D.hasPoint({lat:null,lng:126.8}),false);
@@ -10,6 +11,16 @@ assert.equal(D.hasPoint({lat:'35.1',lng:126.8}),false);
 assert.equal(D.hasPoint({lat:NaN,lng:126.8}),false);
 assert.equal(D.hasPoint({lat:100,lng:126.8}),false);
 assert.equal(D.hasPoint({lat:35.1,lng:126.8}),true);
+const points=rows.filter(D.hasPoint);
+assert.equal(points.length,54);
+assert.equal(Object.keys(saved).length,50,'Four pairs of venues share their existing coordinates');
+for(const p of points){const key=p.lat.toFixed(7)+','+p.lng.toFixed(7);assert.ok(saved[key]?.road||saved[key]?.parcel,`${p.name}: missing saved pin address`);}
+const legacyRows=rows.map(({pinAddress,...p})=>p);
+const restored=D.attachAddresses(legacyRows,saved);
+assert.match(D.displayAddress(restored.find(p=>p.slug==='7seven')),/치평동 1211-1번지/,'Legacy map data must recover its pin address');
+assert.equal(D.displayAddress(restored.find(p=>p.slug==='heart-songhall')),'광주광역시 북구 중흥로 86, 2층','A registered street address and floor must be preserved');
+const example={...points[0],pinAddress:saved[points[0].lat.toFixed(7)+','+points[0].lng.toFixed(7)]};
+assert.equal(D.filter([example],null,example.pinAddress.parcel).length,1,'Search also finds the saved pin address');
 const boardRows=D.region(rows,'광천동',{lat:35.16,lng:126.88});
 assert.equal(boardRows.length,3,'Do not hide an unlocated business from the region list');
 assert.ok(boardRows.every(p=>p.board==='karaoke2'));
@@ -17,7 +28,7 @@ assert.deepEqual(D.region(rows,'지역 밖',{lat:37.5,lng:127}),[],'An empty nei
 assert.equal(D.filter(rows,null,'첨단 중앙로 152번길').length,1,'Spaces should not break address search');
 assert.equal(D.filter(rows,new Set(['boss']),'보스')[0].slug,'boss');
 assert.equal(D.filter(rows,new Set(['boss']),'용봉동').length,0);
-for(const p of rows){const lookup=D.lookup(p);if(D.hasPoint(p)){assert.equal(lookup.kind,'pin');assert.ok(lookup.url.endsWith(','+p.lat+','+p.lng));assert.ok(!lookup.url.includes('/search/'));}else if(lookup.kind==='address')assert.ok(/\d/.test(p.addressSearchText));else assert.equal(lookup.url,null);}
+for(const p of rows){const lookup=D.lookup(p);assert.equal(lookup.label,'길 안내');assert.ok(lookup.url,'Every venue retains a directions button');if(D.hasPoint(p)){assert.equal(lookup.kind,'pin');assert.ok(lookup.url.includes('/link/map/'+encodeURIComponent(p.name)+','));assert.ok(lookup.url.endsWith(','+p.lat+','+p.lng));assert.ok(!lookup.url.includes('/search/'));}else if(lookup.kind==='address')assert.ok(/\d/.test(p.addressSearchText));else {assert.equal(lookup.kind,'search');assert.ok(lookup.url.includes(encodeURIComponent(p.name)));}}
 assert.equal(D.region(rows,'목포·남악',{lat:34.8,lng:126.4}).length,2);
 assert.ok(D.region(rows,'목포·남악',{lat:34.8,lng:126.4}).every(p=>p.board==='karaoke6'));
 assert.equal(D.formatPhone('050371528028'),'0503-7152-8028');
