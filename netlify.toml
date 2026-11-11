@@ -15,3 +15,5 @@
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
+
+# V19 deploy retrigger 2026-11-12: publish updated 64 unique venue introductions.
