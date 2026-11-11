@@ -16,32 +16,7 @@ const release=source.release;
 const updated=source.updatedAt;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const serial=v=>JSON.stringify(v).replace(/</g,'\\u003c');
-const regionData=[
- ['karaoke1','서구1','상무지구','상무지구노래방 · 상무지구가라오케','상무지구 노래방·가라오케 업소 지도',
-  '치평동·상무지구의 업소를 상호와 위치 단서로 비교하세요. 라마다호텔·센트럴호텔 부근처럼 건물 주변으로 안내된 곳은 출입구와 층수를 함께 확인하면 약속 장소를 정하기 쉽습니다.',
-  '상무역에서 이동하는 일행과 시청 방면에서 합류하는 일행은 출발점이 다릅니다. 아래 목록에서 목적지를 고른 뒤 주소, 이용시간, 주차 조건을 해당 업소에 확인하세요. 광천동·화정동 정보는 서구권 페이지로 구분합니다.'],
- ['karaoke2','서구2','광천동·서구권','광천동노래방 · 광천동가라오케','광천동 노래방·가라오케와 서구권 이동 안내',
-  '광천동·유스퀘어에서 모여 이동할 때 참고하는 서구권 안내입니다. 각 카드에 적힌 소재지를 먼저 확인하고 광천동 출발지와 실제 방문할 업소의 위치를 구분해 보세요.',
-  '이 목록에는 화정동 위치 단서가 있는 업소와 상세 소재지를 확인해야 하는 서구권 항목이 포함됩니다. 치평동·상무지구로 안내된 업소는 상무지구 목록에 모았습니다. 터미널 주차와 목적지 건물 주차는 각각 확인하세요.'],
- ['karaoke3','북구2','신안동·유동','신안동노래방 · 신안동가라오케','신안동 노래방·가라오케와 유동 업소 지도',
-  '광주역 주변 신안동과 유동의 업소를 중흥로·경양로·무등로 일대의 주소로 살펴보세요. 도로명과 번지가 있는 곳, 건물 주변으로만 안내된 곳을 구분해 표시했습니다.',
-  '신안동과 유동은 서로 다른 동네입니다. 광주역을 약속 장소로 잡았다면 역에서 출발할 방향과 도착할 건물·층수를 함께 공유하세요. 용봉동 저불로 일대의 업소는 별도의 용봉동 목록에서 확인할 수 있습니다.'],
- ['karaoke4','북구1','용봉동','용봉동노래방 · 용봉동가라오케','용봉동 노래방·가라오케와 저불로 업소 안내',
-  '용봉동의 저불로·전철우사거리 등 위치 단서가 있는 업소를 모았습니다. 전남대 정문·후문이나 비엔날레 방면에서 출발한다면 카드의 주소와 실제 목적지를 먼저 맞춰 보세요.',
-  '용봉동 1365-4로 안내된 빠담빠담과 저불로 55로 안내된 top탑은 용봉동 목록에 포함합니다. 신안동·유동으로 기재된 업소는 해당 지역 목록에서 비교할 수 있습니다. 지도 핀과 기재된 건물 주소를 함께 확인할 수 있습니다.'],
- ['karaoke5','광산구','첨단지구','첨단지구노래방 · 첨단지구가라오케','첨단지구 노래방·가라오케와 쌍암동 업소 지도',
-  '첨단지구·쌍암동의 업소를 상호, 도로명 주소와 호텔 주변 위치 단서로 찾아보세요. 첨단중앙로 일대에서 모이는 경우와 쌍암공원 방면에서 합류하는 경우를 나눠 목적지를 정할 수 있습니다.',
-  '첨단아이는 첨단중앙로152번길 81-4, 1층으로 기재되어 있습니다. 상세 주소가 없는 업소는 방문 전에 소재지를 확인하세요. 공원 주차시설과 업소의 전용·제휴 주차는 조건이 다를 수 있습니다.'],
- ['karaoke6','목포','목포·남악','목포노래방 · 목포가라오케','목포 노래방·가라오케와 남악권 위치 안내',
-  '목포와 남악권의 업소를 위치 단서와 함께 살펴보는 페이지입니다. 평화광장·하당에서 출발하는 일정과 남악으로 이동하는 일정을 구분하고 실제 방문 주소를 먼저 확인하세요.',
-  '현재 자료는 파트너와 오라클가요주점을 포함합니다. 방일해장국 부근이나 남악처럼 넓은 위치 단서로 안내된 곳은 건물명·층수까지 확인한 뒤 이동하세요. 광주 지역 업소는 이 목록에 섞지 않습니다.'],
- ['karaoke7','동구','광주 동구','광주동구노래방 · 광주동구가라오케','광주 동구 노래방·가라오케와 충장로 이동 안내',
-  '충장로·금남로·문화전당역 주변에서 저녁 약속을 잡을 때 참고할 광주 동구 안내입니다. 현재 공개된 업소 목록은 비어 있으며, 확인 가능한 도심 접근·주차 안내를 제공합니다.',
-  '국립아시아문화전당 주차장과 충장로 상가 주차는 이용 조건이 다릅니다. 약속 장소와 귀가 교통편을 먼저 정하고, 실제 업소 정보가 추가되면 이 지역 목록과 지도에 함께 반영됩니다.'],
- ['karaoke8','남구','광주 남구','광주남구노래방 · 광주남구가라오케','광주 남구 노래방·가라오케와 봉선동 이동 안내',
-  '봉선동·진월동·백운동에서 모임 장소를 정할 때 참고할 광주 남구 안내입니다. 현재 공개된 업소 목록은 비어 있으며, 남구 생활권과 주차·이동 정보를 구분해 제공합니다.',
-  '봉선시장 주변에서 합류하는 경우와 백운광장·진월동으로 이동하는 경우는 목적지가 다릅니다. 다른 구의 업소를 남구 업소처럼 표시하지 않고 실제 남구 자료가 확보되는 대로 목록에 반영합니다.']
-];
+const regionData=[["karaoke1", "서구1", "상무지구", "상무지구노래방 · 상무지구가라오케", "상무지구 노래방·가라오케 업소 지도", "치평동 상무지구 노래방과 상무지구 가라오케를 찾는다면 상무역 부근 노래방, 상무역 부근 가라오케, 광주광역시청 인근 노래홀을 서로 다른 위치 검색어로 비교해 보세요. 라마다호텔·센트럴호텔 주변으로 안내되는 곳도 실제 카드 주소와 지도 핀을 확인해야 합니다.", "상무역 근처 가라오케와 치평동 노래주점은 가까워 보이더라도 업소마다 건물과 출입구가 다릅니다. 상무중앙로·상무연하로 부근 노래방을 찾을 때는 지도 핀 기준 건물 주소와 실제 입점 주소를 구분하고, 방문 전 층수·예약·운영시간·주차장 정보를 확인하세요. 광천동 노래방과 화정동 가라오케는 서구권 페이지에서 별도로 살펴볼 수 있습니다."], ["karaoke2", "서구2", "광천동·서구권", "광천동노래방 · 광천동가라오케", "광천동 노래방·가라오케와 서구권 이동 안내", "광천동 노래방·광천동 가라오케와 유스퀘어 부근 노래방을 찾는 경우 금호월드, 광주신세계 주변의 출발지와 실제 업소 소재지를 나눠서 비교하세요. 이 목록에는 화정동으로 안내된 업소도 포함되어 있어 모든 업소가 광천동 안에 있는 것은 아닙니다.", "광주종합버스터미널 근처 가라오케, 광천동 노래주점, 화정동 노래방을 함께 검색한다면 실제 건물 주소와 서구 내 이동 거리를 확인하세요. 광천동에서 출발해 상무지구 노래방으로 이동할 계획이면 상무지구 페이지를 별도로 이용하고, 터미널·백화점 주차와 목적지 주차 조건은 구별해야 합니다."], ["karaoke3", "북구2", "신안동·유동", "신안동노래방 · 신안동가라오케", "신안동 노래방·가라오케와 유동 업소 지도", "신안동 노래방과 신안동 가라오케를 찾을 때는 광주역 부근 노래방, 광주역 주변 노래홀, 유동 노래방을 각각 검색해 보세요. 중흥로·경양로·무등로 일대의 업소는 실제 기록된 도로명·지번 주소와 지도 핀을 대조할 수 있습니다.", "광주역 근처 가라오케, 신안동 노래주점, 유동 노래홀은 같은 북구권이라도 도착할 건물이 다릅니다. 광주역 노래방 검색 후 해당 카드의 건물 번호와 층수 표기를 확인하고, 등록 주소가 아닌 지도 핀 참고 주소는 별도로 구분하세요. 전남대 후문 노래방은 용봉동 페이지에서 찾을 수 있습니다."], ["karaoke4", "북구1", "용봉동", "용봉동노래방 · 용봉동가라오케", "용봉동 노래방·가라오케와 저불로 업소 안내", "용봉동 노래방·용봉동 가라오케를 검색하는 경우 전남대 후문 부근 노래방, 전남대학교 후문 가라오케, 저불로 노래홀을 함께 살펴보세요. 등록 자료에 포함된 저불로·전철우사거리 일대 업소를 위치별로 비교할 수 있습니다.", "전남대 후문 근처 노래방과 비엔날레 부근 가라오케는 같은 용봉동 검색어라도 거리가 다를 수 있습니다. 저불로 노래주점·용봉동 노래홀의 기재된 주소, 지도상 건물 위치, 주차 가능한 장소를 확인하고 신안동·유동 업소는 북구의 별도 목록에서 비교하세요."], ["karaoke5", "광산구", "첨단지구", "첨단지구노래방 · 첨단지구가라오케", "첨단지구 노래방·가라오케와 쌍암동 업소 지도", "첨단지구 노래방과 첨단지구 가라오케는 쌍암동 노래방, 첨단중앙로 부근 노래홀, 쌍암공원 근처 가라오케 같은 구체적인 위치 검색어로 비교하세요. 등록된 주소가 있는 업소와 지도 핀만 있는 업소를 구분해 표시합니다.", "광주 첨단 가라오케·쌍암동 노래주점을 찾을 때 첨단중앙로 주변 업소와 쌍암공원 인근을 한 장소로 간주하지 마세요. 첨단지구 노래홀의 상호, 건물 번지, 지도 참고 위치를 비교하고 주차장이나 룸 구성은 해당 업소에서 확인해야 합니다."], ["karaoke6", "목포", "목포·남악", "목포노래방 · 목포가라오케", "목포 노래방·가라오케와 남악권 위치 안내", "목포 노래방·목포 가라오케는 하당 노래방, 평화광장 부근 가라오케, 목포 상동 노래홀, 남악 가요주점처럼 생활권별로 찾아보세요. 목포시와 무안군 남악읍은 행정구역이 달라 실제 방문 주소를 확인하는 것이 중요합니다.", "목포 하당 가라오케·평화광장 근처 노래방을 찾는다면 목포역 주변 노래방과 이동 경로를 분리해 확인하세요. 남악 가라오케 검색 결과는 목포 업소와 혼동하지 말고 지도상의 건물 주소, 주차 위치, 영업 정보를 개별적으로 확인해야 합니다."], ["karaoke7", "동구", "광주 동구", "광주동구노래방 · 광주동구가라오케", "광주 동구 노래방·가라오케와 충장로 이동 안내", "광주 동구 노래방과 광주 동구 가라오케를 찾는 방문자를 위해 충장로 부근 노래방, 금남로 가라오케, 문화전당역 근처 노래홀의 위치 기준을 안내합니다. 현재 이 페이지에 등록된 업소는 없으며, 실제 영업장 주소가 확인되면 추가합니다.", "충장로 노래방·금남로 노래주점 검색 시 국립아시아문화전당 부근이라는 설명만으로 업소가 있다고 단정할 수 없습니다. 동명동 가라오케 등 동구 관련 검색어를 구분하되, 미등록 업소명·가격·주차 가능 여부를 만들어 게시하지 않습니다."], ["karaoke8", "남구", "광주 남구", "광주남구노래방 · 광주남구가라오케", "광주 남구 노래방·가라오케와 봉선동 이동 안내", "광주 남구 노래방·광주 남구 가라오케를 찾을 때 봉선동 노래방, 진월동 가라오케, 백운광장 부근 노래홀을 지역별로 나눠 살펴볼 수 있습니다. 현재 이 페이지에 등록된 업소는 없으며, 지역 이동 정보만 제공합니다.", "봉선동 가라오케·백운광장 근처 노래방·진월동 노래주점 검색은 서로 다른 위치를 가리킵니다. 실제 등록 업소가 없는 단계에서 주월동·봉선동의 미확인 업체를 있는 것처럼 보여주지 않으며, 확인 가능한 주소 자료가 생기면 지역별로 분류합니다."]];
 const regions=Object.fromEntries(regionData.map(([board,region,label,h1,title,intro,more])=>[board,{board,region,label,h1,title,intro,more}]));
 const forBoard=board=>venues.filter(v=>v.board===board);
 const route=v=>`/map/${v.board}/?venue=${encodeURIComponent(v.slug)}`;
@@ -51,7 +26,10 @@ const regionUrl=board=>`https://albam09.com/page/${board}/`;
 const location=v=>v.addressPrecision==='street'?v.address:(v.address||v.area);
 const hasPin=v=>Number.isFinite(v.lat)&&Number.isFinite(v.lng);
 const pinFor=v=>hasPin(v)?(pinAddresses[`${v.lat.toFixed(7)},${v.lng.toFixed(7)}`]||null):null;
-const displayAddress=v=>v.address&&/\d/.test(v.addressSearchText||v.address)?v.address:(pinFor(v)?.road||pinFor(v)?.parcel||location(v));
+const displayAddress=v=>v.addressPrecision==='street' && /\d/.test(v.address||'') ? v.address : (pinFor(v)?.road || pinFor(v)?.parcel || location(v));
+const pinAddressStatus=v=>v.addressPrecision==='street' && /\d/.test(v.address||'')?'등록된 건물 주소':pinFor(v)?'지도 핀 기준 건물 주소':'세부 주소 확인 필요';
+const operatingLabel=v=>{const h=String(v.hours||'').trim();return h && !/(문의|확인|미정|없음)/.test(h) ? h : '';};
+const venueIntros=json('data/venue-original-intros-11-20261030.json').introductions;
 // Keep the current Kakao map presentation, including the venue's name on its pin.
 // When there is no point, search the recorded address, then the venue in its region.
 const pinSearch=v=>hasPin(v)
@@ -117,7 +95,7 @@ function cards(r,items){
 }
 function businessInfo(r,items){
  if(!items.length)return '';
- return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 등록 정보</h2><p class="directory-note">제공된 자료의 위치·운영 안내입니다. 실제 영업 여부와 당일 요금·주차 조건은 방문 전에 확인해 주세요.</p><div class="business-desc-grid">${items.map(v=>`<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="위치: ${esc(location(v))}"><b>위치</b> ${esc(location(v))}</span>${v.hours?`<span class="business-desc-fact business-desc-fact--hours"><b>운영 안내</b> ${esc(v.hours)}</span>`:''}</div><p class="directory-location-kind">${v.addressPrecision==='street'?'기재된 건물 주소 · 업소 출입구 별도 확인':'등록된 업소 주소가 아닌 지역 안내이며, 위치는 지도로 조회할 수 있습니다.'}</p><a class="directory-map-pin" href="${esc(pinSearch(v))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(v.name)} 길 안내${hasPin(v)?'':' - 지도에서 검색'}">길 안내 ↗</a>${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`).join('')}</div></div></details></section>`;
+ return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 주소·이용 정보</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 위치 정보</h2><p class="directory-note">등록 주소와 지도 핀 기준 건물 주소는 구분해서 표기합니다. 지도 핀은 실제 영업장 입점 확인 자료가 아닙니다.</p><div class="business-desc-grid">${items.map(v=>{const addr=displayAddress(v),status=pinAddressStatus(v),time=operatingLabel(v),pin=!!pinFor(v),registered=status==='등록된 건물 주소';const context=registered?`${v.name} 등록 자료의 건물 주소로, 현재 입점·출입구·층수는 현장 확인이 필요합니다.`:pin?`${v.name} 지도 핀 좌표를 역조회한 위치입니다. 이 번지에 해당 업소가 실제로 입점했는지는 확인되지 않았습니다.`:`${v.name}은 ${v.area} 지역 정보만 확인되었습니다. 정확한 도로명·지번과 영업장 위치는 아직 확인되지 않았습니다.`;return `<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="${esc(status)}: ${esc(addr)}"><b>${esc(status)}</b> ${esc(addr)}</span>${time?`<span class="business-desc-fact business-desc-fact--hours"><b>기재된 이용시간(재확인 필요)</b> ${esc(time)}</span>`:''}</div><p class="directory-location-kind">${esc(context)}</p><a class="directory-map-pin" href="${esc(pinSearch(v))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(v.name)} 지도 위치 확인">지도·길찾기 ↗</a>${v.phone?`<a class="directory-phone" href="tel:${v.phone.replace(/\D/g,'')}">${esc(v.phoneLabel)} ${esc(v.phone)}</a>`:''}</div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`;}).join('')}</div></div></details></section>`;
 }
 function guide(r){
  const i=r.board.replace('karaoke','');
@@ -127,7 +105,7 @@ function guide(r){
 
 // Static HTML and browser data are generated together. A deployment cannot
 // accidentally keep the old nine-venue Yongbong payload after changing its HTML.
-const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus,addressSearchText:v.addressSearchText||'',buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,businessLocationVerified:!!v.businessLocationVerified,pinKind:v.pinKind||'none'}));
+const publicRows=venues.map(v=>({slug:v.slug,id:v.id,name:v.name,title:v.title,region:v.region,board:v.board,phone:v.phone,lat:v.lat,lng:v.lng,address:v.address,displayAddress:displayAddress(v),addressStatus:pinAddressStatus(v),locationHint:v.locationHint,area:v.area,image:v.image,coordinateStatus:v.coordinateStatus,addressSearchText:v.addressSearchText||'',buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,businessLocationVerified:!!v.businessLocationVerified,pinKind:v.pinKind||'none'}));
 write('data/public-venues.json',JSON.stringify(publicRows)+'\n');
 write('data/public-venues.js',`/* Generated from venue-directory.json: ${release} */\nwindow.PUBLIC_VENUES=${serial(publicRows)};\n`);
 for(const board of ['index',...Object.keys(regions),'room']){
@@ -146,7 +124,7 @@ for(const r of Object.values(regions)){
 }
 
 let home=read('index.html');
-home=block(home,'HERO','<section title=""><h1 class="daum-wm-title">광주노래방 · 광주가라오케 지역지도</h1><p class="hero-keyline">광주·목포 지역별 업소 탐색</p><p class="daum-wm-content hero-desc">방문할 지역을 먼저 선택하세요. 각 지역 페이지에서 업소의 위치·이용 안내와 지도, 회원이 남긴 탐험기를 함께 확인할 수 있습니다.</p></section>');
+home=block(home,'HERO','<section title=""><h1 class="daum-wm-title">광주노래방 · 광주가라오케 지역지도</h1><p class="hero-keyline">광주·목포 노래방·가라오케 지역별 검색</p><p class="daum-wm-content hero-desc">상무지구 노래방·상무지구 가라오케부터 광주역 신안동 노래홀, 전남대 후문 용봉동 노래방, 첨단지구 쌍암동 가라오케, 광천동·유스퀘어 주변 노래방, 목포 하당 노래방까지 지역별 검색어로 업소와 지도 정보를 찾아보세요. 등록 주소와 지도 핀 참고 주소를 구분해 확인할 수 있으며, 동구·남구처럼 아직 등록 업소가 없는 지역은 지역 안내를 제공합니다.</p></section>');
 function homeSpotlight(v,index,total){
  return `<a class="ab09-spotlight" href="${route(v)}" aria-label="${esc(v.name)} 지도 위치 보기"><span class="ab09-spotlight__media"><img src="${esc(v.image)}" alt="${esc(v.name)} 등록 이미지" loading="lazy" decoding="async"></span><span class="ab09-spotlight__veil" aria-hidden="true"></span><span class="ab09-spotlight__content"><span class="ab09-spotlight__eyebrow">VENUE <b>${String(index+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}</b></span><strong class="ab09-spotlight__name">${esc(v.name)}</strong><span class="ab09-spotlight__cta">지도에서 보기 <span aria-hidden="true">↗</span></span></span></a>`;
 }
@@ -155,13 +133,16 @@ const homeCards=Object.values(regions).map(r=>{
  const preview=rows.length
   ? `<li class="is-active ab09-spotlight-host" data-preview-item><div class="ab09-venue-rail" role="group" aria-roledescription="슬라이더">${rows.slice(0,2).map((v,i)=>homeSpotlight(v,i,rows.length)).join('')}</div></li>`
   : '<li empty="">현재 등록 업소 없음 · 지역 안내 보기</li>';
- return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label)} (${rows.length}개)</a></h3></li>${preview}</ul>`;
+ return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.h1)} (${rows.length}개)</a></h3></li>${preview}</ul>`;
 }).join('');
 const homeContact=contact;
 home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}${homeContact}</div></section>`);
 if(!home.includes('albam09-v11-spotlight.css'))home=home.replace('</head>','<link rel="stylesheet" href="css/albam09-v11-spotlight.css?v=20261108-v11">\n</head>');
-home=block(home,'BRAND_GUIDE','<section id="index-brand-story-20261027" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>지역별 업소 이용 가이드</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><h2>동네를 고르고 주소를 확인하세요</h2><p>광주버블여지도는 광주와 목포의 지역별 업소 정보와 공개 탐험기를 모아 제공합니다. 메인의 지역 카드에서 동네를 선택한 뒤 주소·위치 단서와 이용 안내를 비교해 보세요.</p><p>상무지구와 광천동·화정동, 신안동·유동과 용봉동은 구분해 안내합니다. 상세 주소나 당일 운영 조건이 충분하지 않은 항목은 방문 전에 해당 정보를 확인해 주세요.</p><p>등록·정정 요청은 하단 운영정보의 문의 경로로 접수합니다.</p></div></details></section>');
-home=block(home,'HOME_DIRECTORY','');
+home=block(home,'BRAND_GUIDE','');
+// Original 11 detail-copy is read-only reference material: only its original text is reproduced on the 09 index.
+const copiedIntros=venues.filter(v=>venueIntros[v.slug]);
+const introCards=copiedIntros.map(v=>`<article class="ab09-index-intro-card"><h3>${esc(v.name)} · ${esc(regions[v.board].label)}</h3><p>${esc(venueIntros[v.slug])}</p><a href="/page/${v.board}/#venue-${esc(v.slug)}">${esc(regions[v.board].label)} 위치 정보 확인</a></article>`).join('');
+home=block(home,'HOME_DIRECTORY',`<section id="index-original-intros" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>등록 업소 소개 더보기 (${copiedIntros.length}건)</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><h2>광주·목포 등록 업소 기존 소개</h2><p class="directory-note">기존 업소 상세 페이지에 기재된 소개 문구를 원문 그대로 옮겼습니다. 이 내용은 업소 측의 소개 자료이며 사실 검증된 운영·가격 보증이 아닙니다.</p><div class="ab09-index-intro-grid">${introCards}</div></div></details></section>`);
 home=block(home,'HOME_SECONDARY','<section id="index-secondary-search-guide" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>탐험기·지역 기사 이용 안내</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><p><a href="/explore/">탐험기</a>에서는 공개된 회원 방문 기록을, <a href="/bbs/">기사게시판</a>에서는 지역별 이동·주차·이용 정보 글을 볼 수 있습니다. 후기 작성 시 방문한 업소와 실제 지역을 선택해 주세요.</p></div></details></section>');
 const homeUrl='https://albam09.com/';
 home=head(home,{title:'광주노래방 · 광주가라오케 지역지도 | 광주버블여지도',description:'광주·목포 노래방·가라오케 지역지도. 상무지구, 광천동·서구권, 신안동·유동, 용봉동, 첨단지구 등 지역별 업소와 지도·탐험기를 찾아보세요.',url:homeUrl,schema:{'@context':'https://schema.org','@graph':[org,{'@type':'WebSite','@id':homeUrl+'#website',url:homeUrl,name:'광주버블여지도',inLanguage:'ko-KR',publisher:{'@id':org['@id']}},{'@type':'CollectionPage','@id':homeUrl+'#webpage',url:homeUrl,name:'광주·목포 노래방·가라오케 지역지도',mainEntity:{'@id':homeUrl+'#regions'}},{'@type':'ItemList','@id':homeUrl+'#regions',name:'지역별 안내',numberOfItems:8,itemListElement:Object.values(regions).map((r,i)=>({'@type':'ListItem',position:i+1,name:r.label,url:regionUrl(r.board)}))}]}});
@@ -169,7 +150,7 @@ if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>','<scr
 else home=home.replace(/js\/home-region-preview\.js\?v=[^"']+/g,'js/home-region-preview.js?v=20261108-v11');
 write('index.html',home);
 
-const mapRows=venues.map(v=>({name:v.name,area:v.area,address:location(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus,pinAddress:pinFor(v)}));
+const mapRows=venues.map(v=>({name:v.name,area:v.area,address:displayAddress(v),addressStatus:pinAddressStatus(v),lat:v.lat,lng:v.lng,url:v.detailUrl,slug:v.slug,board:v.board,phone:v.phone,image:v.image,addressVerified:!!v.businessLocationVerified,buildingAddressCrosschecked:!!v.buildingAddressCrosschecked,addressSearchText:v.addressSearchText||'',pinKind:v.pinKind||'none',locationStatus:v.coordinateStatus,pinAddress:pinFor(v)}));
 for(const board of ['index',...Object.keys(regions),'room']){
  const file=board==='index'?'map/index.html':`map/${board}/index.html`;
  if(!fs.existsSync(path.join(root,file)))continue;
@@ -201,7 +182,7 @@ for(const [id,entry] of Object.entries(taxonomy.articles)){
  const previous=s.match(/<ul class="bbs-venue-evidence">([\s\S]*?)<\/ul>/)?.[1]||'';
  const desired=[...previous.matchAll(/\/place\/([a-z0-9_-]+)\//gi)].map(m=>venues.find(v=>v.slug===m[1])).filter(v=>v?.board===r.board);
  const picks=[...new Map([...desired,...items].map(v=>[v.slug,v])).values()].slice(0,3);
- const list=`<ul class="bbs-venue-evidence">${picks.map(v=>`<li><strong>${esc(v.name)}</strong> — 위치 안내: ${esc(location(v))}${v.hours?'. 운영 안내: '+esc(v.hours):''}. <a href="${route(v)}">업소 위치 확인</a></li>`).join('')}</ul>`;
+ const list=`<ul class="bbs-venue-evidence">${picks.map(v=>`<li><strong>${esc(v.name)}</strong> — 위치 안내: ${esc(location(v))}${operatingLabel(v)?'. 기재 시간: '+esc(operatingLabel(v)):''}. <a href="${route(v)}">업소 위치 확인</a></li>`).join('')}</ul>`;
  s=s.replace(/<ul class="bbs-venue-evidence">[\s\S]*?<\/ul>/,list);
  const corrections=[
   ['용봉동 목록에도 신안동·유동 주소가 표시된 매장이 있어 실제 모임 장소에서의 이동 경로를 확인해야 합니다.','용봉동 목록과 신안동·유동 목록을 구분했으므로 실제 모임 장소에 맞는 지역을 선택하세요.'],
