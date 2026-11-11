@@ -2,7 +2,7 @@
 # Former /page/karaoke01/ ... /page/karaoke08/ aliases only redirect to those canonical URLs.
 # No SPA fallback rewrite to /index.html: each regional URL has its own static index.html.
 [build]
-  command = "node scripts/build-search-pages.mjs && node scripts/check-release.mjs && node scripts/build-site.mjs && node scripts/apply-v18-metadata.mjs && node scripts/verify-v18.mjs && node scripts/verify-v19-venue-copy.mjs && node scripts/check-forum-structured-data.mjs && node scripts/check-seo.mjs --fix-sitemap && node scripts/package-public.mjs"
+  command = "node scripts/build-netlify-v19.mjs"
   publish = "dist"
 
 [build.processing]
