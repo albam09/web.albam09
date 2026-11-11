@@ -1,0 +1,16 @@
+/* V18: original 11 introductions reproduced only inside the closed 09 index details. */
+#ab09-index-original-intros, #index-original-intros { max-width: 100%; }
+.ab09-index-intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px;margin-top:12px}
+.ab09-index-intro-card{border:1px solid rgba(160,120,170,.23);border-radius:13px;padding:14px;background:rgba(255,255,255,.085);overflow-wrap:anywhere}
+.ab09-index-intro-card h3{font-size:1rem;line-height:1.4;margin:0 0 10px}
+.ab09-index-intro-card p{font-size:.9rem;line-height:1.65;margin:0 0 12px;white-space:normal}
+.ab09-index-intro-card a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.business-desc-fact--location{overflow-wrap:anywhere;line-height:1.65}
+.business-desc-fact--location b{font-weight:750}
+.directory-location-kind{line-height:1.55}
+@media(max-width:560px){.ab09-index-intro-grid{grid-template-columns:minmax(0,1fr)}.ab09-index-intro-card{padding:12px}}
+
+/* V19: venue-specific editorial copy within the collapsed directory cards. */
+.business-desc-card__intro{font-size:.88rem;line-height:1.62;margin:7px 0 8px;white-space:normal;overflow-wrap:anywhere;color:inherit;opacity:.95}
+.business-desc-card .business-desc-card__facts{margin-top:4px}
+@media(max-width:760px){.business-desc-card__intro{font-size:.78rem;line-height:1.55;margin:5px 0 7px}}
