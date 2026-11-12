@@ -46,4 +46,13 @@ must(explorerTemplate.includes('href="/css/master.css'), 'Explorer stylesheet ro
 must(!/\/\*\s+\/index\.html\s+200/.test(redirects),'homepage catchall would replace regional pages');
 must(present('scripts/verify-url-variants.mjs'),'URL variant audit script missing');
 // Follow-up QA: canonical UTM aliases share the same region page; link map is not duplicated.
-console.log('[release-check] PASS: canonical 8, sitemap, llms, GEO, 301 aliases, bubble-alba, explorer, Netlify');
+// homepage-region-heading-guard: keep homepage navigation labels short; SEO keyword copy belongs in the region content, not card headings.
+const expectedHomeLabels = [
+ ['karaoke1','상무지구'], ['karaoke2','광천동'], ['karaoke3','신안동'], ['karaoke4','용봉동'],
+ ['karaoke5','첨단지구'], ['karaoke6','목포'], ['karaoke7','동구'], ['karaoke8','남구']
+];
+const homeRegionHeadings = [...read('index.html').matchAll(/<li class="rotating-list-heading"[^>]*>\s*<h3>\s*<a href="\/page\/(karaoke[1-8])\/">([^<]+)<\/a>/g)]
+ .map(m=>[m[1], m[2].trim()]);
+must(JSON.stringify(homeRegionHeadings)===JSON.stringify(expectedHomeLabels),
+ 'home region labels must remain region-only in fixed order (no keyword-stuffed titles or venue counts)');
+console.log('[release-check] PASS: 8 short homepage region labels, canonical 8, sitemap, llms, GEO, 301 aliases, bubble-alba, explorer, Netlify');
