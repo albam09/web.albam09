@@ -126,6 +126,9 @@ for(const r of Object.values(regions)){
  s=block(s,'HERO',hero(r));s=block(s,'VENUE_CARDS',cards(r,items));s=block(s,'REGION_GUIDE',guide(r));s=block(s,'BUSINESS_INFO',businessInfo(r,items));
  const desc=items.length?`${r.h1} 업소 ${items.length}곳의 위치 단서와 등록 정보를 확인하세요. ${r.intro}`:r.intro;
  s=head(s,{title:r.title+' | 광주버블여지도',description:desc,url:regionUrl(r.board),image:items[0]?.image,schema:schemaFor(r,items)});
+ // Every regional page uses the shared V18 layout, including empty regions.
+ // Keep this in the generator so a clean Netlify build cannot omit the stylesheet.
+ if(!s.includes('ab09-v18-comprehensive.css'))s=s.replace('</head>','<link rel="stylesheet" href="../../css/ab09-v18-comprehensive.css?v=20261112"/>\n</head>');
  write(file,s);
 }
 
