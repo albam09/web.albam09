@@ -20,16 +20,18 @@ for(const f of checks){const ok=await fs.stat(path.join(out,f)).catch(()=>null);
 for(const f of ['SUPABASE09.sql','SUPABASE09_SAFE_FINAL.sql','netlify.toml','scripts/build-site.mjs','data/build/public-content-snapshot.json','data/venue-directory.json','data/region-guide-content.json']){
  if(await fs.stat(path.join(out,f)).catch(()=>null))throw new Error('Restricted build input leaked into dist: '+f);
 }
-// Verify the exact published HTML, not only the working source: SEO phrases and counts must never replace simple region card labels.
+// Verify the published region names and the user's directory-linked counts.
 const publishedHome=await fs.readFile(path.join(out,'index.html'),'utf8');
 const regionLabels=[...publishedHome.matchAll(/<li class="rotating-list-heading"[^>]*>\s*<h3>\s*<a href="\/page\/(karaoke[1-8])\/">([^<]+)<\/a>/g)]
  .map(m=>[m[1],m[2].trim()]);
-const expectedLabels=[['karaoke1','상무지구'],['karaoke2','광천동'],['karaoke3','신안동'],['karaoke4','용봉동'],['karaoke5','첨단지구'],['karaoke6','목포'],['karaoke7','동구'],['karaoke8','남구']];
+const venueDirectory=JSON.parse(await fs.readFile(path.join(root,'data/venue-directory.json'),'utf8')).venues;
+const expectedLabels=[['karaoke1','상무지구'],['karaoke2','광천동'],['karaoke3','신안동'],['karaoke4','용봉동'],['karaoke5','첨단지구'],['karaoke6','목포'],['karaoke7','동구'],['karaoke8','남구']]
+ .map(([board,label])=>[board,`${label} (${venueDirectory.filter(v=>v.board===board).length}개)`]);
 if(JSON.stringify(regionLabels)!==JSON.stringify(expectedLabels)){
  throw new Error('[package-public] Published homepage region headings changed unexpectedly: '+JSON.stringify(regionLabels));
 }
-console.log('[package-public] PASS: all eight deployed region titles are names only (no keyword stuffing or venue counts)');
+console.log('[package-public] PASS: all eight deployed region names and venue counts match the directory');
 console.log(`[package-public] PASS: public-only dist with ${dirs.length} asset/page directories; build source/SQL excluded`);
 
 const snapshot=JSON.parse(await fs.readFile(path.join(root,'data/build/public-content-snapshot.json'),'utf8'));
-await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261113-region-title-restoration',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:64,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');
+await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261114-region-names-with-counts',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:venueDirectory.length,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');

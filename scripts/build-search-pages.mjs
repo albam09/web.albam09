@@ -142,7 +142,7 @@ const homeCards=Object.values(regions).map(r=>{
  const preview=rows.length
   ? `<li class="is-active ab09-spotlight-host" data-preview-item><div class="ab09-venue-rail" role="group" aria-roledescription="슬라이더">${rows.slice(0,2).map((v,i)=>homeSpotlight(v,i,rows.length)).join('')}</div></li>`
   : '<li empty="">현재 등록 업소 없음 · 지역 안내 보기</li>';
- return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label==="광천동·서구권"?"광천동":r.label==="신안동·유동"?"신안동":r.label==="목포·남악"?"목포":r.label==="광주 동구"?"동구":r.label==="광주 남구"?"남구":r.label)}</a></h3></li>${preview}</ul>`;
+ return `<ul class="rotating-list-container${rows.length?'':' is-empty-region'}" data-card-href="/page/${r.board}/" data-region-preview="${r.board}" id="${r.board}-list"><li class="rotating-list-heading" empty=""><h3><a href="/page/${r.board}/">${esc(r.label==="광천동·서구권"?"광천동":r.label==="신안동·유동"?"신안동":r.label==="목포·남악"?"목포":r.label==="광주 동구"?"동구":r.label==="광주 남구"?"남구":r.label)} (${rows.length}개)</a></h3></li>${preview}</ul>`;
 }).join('');
 const homeContact=contact;
 home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}${homeContact}</div></section>`);
