@@ -15,6 +15,7 @@ const steps = [
   ['verify-v19-venue-copy'],
   ['check-forum-structured-data'],
   ['check-seo', '--fix-sitemap'],
+  ['check-bbs-indexability'],
   ['package-public'],
 ];
 

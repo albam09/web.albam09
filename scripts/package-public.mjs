@@ -34,4 +34,4 @@ console.log('[package-public] PASS: all eight deployed region names and venue co
 console.log(`[package-public] PASS: public-only dist with ${dirs.length} asset/page directories; build source/SQL excluded`);
 
 const snapshot=JSON.parse(await fs.readFile(path.join(root,'data/build/public-content-snapshot.json'),'utf8'));
-await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261114-region-names-with-counts',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:venueDirectory.length,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');
+await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261114-bbs-indexability',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:venueDirectory.length,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');
