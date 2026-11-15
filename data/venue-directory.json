@@ -1,5 +1,5 @@
 {
-  "release": "20261116-garaoke-sangmu",
+  "release": "20261116-garaoke-sangmu-thumbnail",
   "updatedAt": "2026-11-08",
   "basis": "V8 자료 + 개별 도로명주소 대조(건물 단위). 사업장 실제 운영/입구 위치는 별도 검증 대상이며 핀 밑 주소를 임의로 업소 주소로 사용하지 않음. 신규 업소는 사용자가 제공한 Google 지도 등록정보를 별도 출처로 기록.",
   "venues": [
@@ -1013,7 +1013,7 @@
       "address": "광주광역시 서구 상무연하로 29 (치평동 1250-3)",
       "locationHint": "치평동 1250-3 · 상무연하로 29",
       "hours": "24시간",
-      "image": "/img/place/garaoke-sangmu/01.jpg",
+      "image": "/thumbs/venues/garaoke-sangmu.webp",
       "detailUrl": "/place/garaoke-sangmu/",
       "addressVerified": false,
       "coordinateStatus": "google-plus-code-center",
