@@ -10,6 +10,9 @@ const write=(p,s)=>fs.writeFileSync(path.join(root,p),s);
 const json=p=>JSON.parse(read(p));
 const source=json('data/venue-directory.json');
 const guides=json('data/region-guide-content.json');
+// Restore the content found in the last GitHub snapshot before 2026-11-08.
+// Current directory, address corrections and article indexability remain authoritative.
+const nov7=json('data/nov7-page-restore.json');
 const pinAddresses=json('data/map-pin-addresses.json').points;
 const venues=source.venues;
 const release=source.release;
@@ -104,9 +107,12 @@ function businessInfo(r,items){
  }).join('')}</div></div></details></section>`;
 }
 function guide(r){
- const i=r.board.replace('karaoke','');
- const links=[['#spots','업소 목록'],[`/map/${r.board}/`,'지역 지도'],[`/explore/${r.board}/`,'최신 탐험기'],[`/bbs/region/${r.board}/`,'지역 기사'],[`#ab09-region-${i}-1`,'주차·이동 안내']];
- return `<section aria-label="${esc(r.label)} 이용 안내" class="business-description-section business-description-showcase info-fold-card info-guide-card" data-region-story="${r.board}"><nav class="ab09-region-intent" aria-label="${esc(r.label)} 바로가기"><h2>${esc(r.label)} 이용 정보</h2><div class="ab09-region-intent__links">${links.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}</div></nav><details class="business-description-fold"><summary><span>${esc(r.label)} 교통·주차·모임 안내</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content">${guides[r.board]}</div></details></section>`;
+ const old=nov7.regions[r.board];
+ if(!old || !old.guide.includes('<!--CURRENT_REGION_RESEARCH-->'))throw Error('Historical region guide missing: '+r.board);
+ // Keep the later, corrected location research and insert the historic parking
+ // information without its outdated hard-coded list of venues and coordinates.
+ const current=guides[r.board].replace('</section>',()=>old.parking_evidence+'</section>');
+ return old.guide.replace('<!--CURRENT_REGION_RESEARCH-->',current);
 }
 
 // Static HTML and browser data are generated together. A deployment cannot
@@ -122,10 +128,14 @@ for(const board of ['index',...Object.keys(regions),'room']){
 
 for(const r of Object.values(regions)){
  const items=forBoard(r.board),file=`page/${r.board}/index.html`;
+ const old=nov7.regions[r.board];
+ // The user later requested these region-specific landmark and search terms.
+ // Keep them inside the original collapsed introduction with its original heading.
+ const restoredHero=old.hero.replace('</details>',`<p class="daum-wm-content hero-desc hero-intro-rest">${esc(r.intro)}</p><p class="daum-wm-content hero-desc hero-intro-rest">${esc(r.more)}</p></details>`);
+ if(restoredHero===old.hero)throw Error('Historical region fold missing: '+r.board);
  let s=read(file);
- s=block(s,'HERO',hero(r));s=block(s,'VENUE_CARDS',cards(r,items));s=block(s,'REGION_GUIDE',guide(r));s=block(s,'BUSINESS_INFO',businessInfo(r,items));
- const desc=items.length?`${r.h1} 업소 ${items.length}곳의 위치 단서와 등록 정보를 확인하세요. ${r.intro}`:r.intro;
- s=head(s,{title:r.title+' | 광주버블여지도',description:desc,url:regionUrl(r.board),image:items[0]?.image,schema:schemaFor(r,items)});
+ s=block(s,'HERO',restoredHero);s=block(s,'VENUE_CARDS',cards(r,items));s=block(s,'REGION_GUIDE',guide(r));s=block(s,'BUSINESS_INFO',businessInfo(r,items));
+ s=head(s,{title:old.title,description:old.description,url:regionUrl(r.board),image:items[0]?.image,schema:schemaFor({...r,h1:old.h1,intro:old.description},items)});
  // Every regional page uses the shared V18 layout, including empty regions.
  // Keep this in the generator so a clean Netlify build cannot omit the stylesheet.
  if(!s.includes('ab09-v18-comprehensive.css'))s=s.replace('</head>','<link rel="stylesheet" href="../../css/ab09-v18-comprehensive.css?v=20261112"/>\n</head>');
@@ -133,7 +143,7 @@ for(const r of Object.values(regions)){
 }
 
 let home=read('index.html');
-home=block(home,'HERO','<section title=""><h1 class="daum-wm-title">광주노래방 · 광주가라오케 지역지도</h1><p class="hero-keyline">광주·목포 노래방·가라오케 지역별 검색</p><p class="daum-wm-content hero-desc">상무지구 노래방·상무지구 가라오케부터 광주역 신안동 노래홀, 전남대 후문 용봉동 노래방, 첨단지구 쌍암동 가라오케, 광천동·유스퀘어 주변 노래방, 목포 하당 노래방까지 지역별 검색어로 업소와 지도 정보를 찾아보세요. 등록 주소와 지도 핀 참고 주소를 구분해 확인할 수 있으며, 동구·남구처럼 아직 등록 업소가 없는 지역은 지역 안내를 제공합니다.</p></section>');
+home=block(home,'HERO',nov7.home.hero);
 function homeSpotlight(v,index,total){
  return `<a class="ab09-spotlight" href="${route(v)}" aria-label="${esc(v.name)} 지도 위치 보기"><span class="ab09-spotlight__media"><img src="${esc(v.image)}" alt="${esc(v.name)} 등록 이미지" loading="lazy" decoding="async"></span><span class="ab09-spotlight__veil" aria-hidden="true"></span><span class="ab09-spotlight__content"><span class="ab09-spotlight__eyebrow">VENUE <b>${String(index+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}</b></span><strong class="ab09-spotlight__name">${esc(v.name)}</strong><span class="ab09-spotlight__cta">지도에서 보기 <span aria-hidden="true">↗</span></span></span></a>`;
 }
@@ -147,14 +157,14 @@ const homeCards=Object.values(regions).map(r=>{
 const homeContact=contact;
 home=block(home,'VENUE_CARDS',`<section list=""><h2>지역별 업소 탐색</h2><div wrapper="">${homeCards}${homeContact}</div></section>`);
 if(!home.includes('albam09-v11-spotlight.css'))home=home.replace('</head>','<link rel="stylesheet" href="css/albam09-v11-spotlight.css?v=20261108-v11">\n</head>');
-home=block(home,'BRAND_GUIDE','');
+home=block(home,'BRAND_GUIDE',nov7.home.brand_guide);
 // Original 11 detail-copy is read-only reference material: only its original text is reproduced on the 09 index.
 const copiedIntros=venues.filter(v=>venueIntros[v.slug]);
 const introCards=copiedIntros.map(v=>`<article class="ab09-index-intro-card"><h3>${esc(v.name)} · ${esc(regions[v.board].label)}</h3><p>${esc(venueIntros[v.slug])}</p><a href="/page/${v.board}/#venue-${esc(v.slug)}">${esc(regions[v.board].label)} 위치 정보 확인</a></article>`).join('');
 home=block(home,'HOME_DIRECTORY',`<section id="index-original-intros" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>등록 업소 소개 더보기 (${copiedIntros.length}건)</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><h2>광주·목포 등록 업소 기존 소개</h2><p class="directory-note">기존 업소 상세 페이지에 기재된 소개 문구를 원문 그대로 옮겼습니다. 이 내용은 업소 측의 소개 자료이며 사실 검증된 운영·가격 보증이 아닙니다.</p><div class="ab09-index-intro-grid">${introCards}</div></div></details></section>`);
-home=block(home,'HOME_SECONDARY','<section id="index-secondary-search-guide" class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>탐험기·지역 기사 이용 안내</span><span class="business-description-fold__action" aria-hidden="true">보기</span></summary><div class="business-description-fold__content"><p><a href="/explore/">탐험기</a>에서는 공개된 회원 방문 기록을, <a href="/bbs/">기사게시판</a>에서는 지역별 이동·주차·이용 정보 글을 볼 수 있습니다. 후기 작성 시 방문한 업소와 실제 지역을 선택해 주세요.</p></div></details></section>');
+home=block(home,'HOME_SECONDARY',nov7.home.secondary_guide.replaceAll('{{KARAOKE1_COUNT}}',String(forBoard('karaoke1').length)));
 const homeUrl='https://albam09.com/';
-home=head(home,{title:'광주노래방 · 광주가라오케 지역지도 | 광주버블여지도',description:'광주·목포 노래방·가라오케 지역지도. 상무지구, 광천동·서구권, 신안동·유동, 용봉동, 첨단지구 등 지역별 업소와 지도·탐험기를 찾아보세요.',url:homeUrl,schema:{'@context':'https://schema.org','@graph':[org,{'@type':'WebSite','@id':homeUrl+'#website',url:homeUrl,name:'광주버블여지도',inLanguage:'ko-KR',publisher:{'@id':org['@id']}},{'@type':'CollectionPage','@id':homeUrl+'#webpage',url:homeUrl,name:'광주·목포 노래방·가라오케 지역지도',mainEntity:{'@id':homeUrl+'#regions'}},{'@type':'ItemList','@id':homeUrl+'#regions',name:'지역별 안내',numberOfItems:8,itemListElement:Object.values(regions).map((r,i)=>({'@type':'ListItem',position:i+1,name:r.label,url:regionUrl(r.board)}))}]}});
+home=head(home,{title:nov7.home.title,description:nov7.home.description,url:homeUrl,schema:{'@context':'https://schema.org','@graph':[org,{'@type':'WebSite','@id':homeUrl+'#website',url:homeUrl,name:'광주버블여지도',inLanguage:'ko-KR',publisher:{'@id':org['@id']}},{'@type':'CollectionPage','@id':homeUrl+'#webpage',url:homeUrl,name:nov7.home.h1,mainEntity:{'@id':homeUrl+'#regions'}},{'@type':'ItemList','@id':homeUrl+'#regions',name:'지역별 안내',numberOfItems:8,itemListElement:Object.values(regions).map((r,i)=>({'@type':'ListItem',position:i+1,name:r.label,url:regionUrl(r.board)}))}]}});
 if(!home.includes('js/home-region-preview.js'))home=home.replace('</body>','<script src="js/home-region-preview.js?v=20261108-v11" defer></script>\n</body>');
 else home=home.replace(/js\/home-region-preview\.js\?v=[^"']+/g,'js/home-region-preview.js?v=20261108-v11');
 write('index.html',home);

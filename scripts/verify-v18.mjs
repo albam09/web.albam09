@@ -14,7 +14,7 @@ check(!html.includes('지역별 업소 이용 가이드'),'Removed index guide r
 check(html.includes('id="index-original-intros"'),'Index introduction fold missing');
 check(!/<details\b[^>]*\bopen(?:\s|=|>)/i.test(html.match(/<section id="index-original-intros"[\s\S]*?<\/section>/)?.[0]||''),'Index intro unexpectedly expanded');
 check((html.match(/class="ab09-index-intro-card"/g)||[]).length===45,'Original intro card count changed');
-check(html.includes('상무지구 노래방·상무지구 가라오케'),'Index H1 body missing key terms');
+check(html.includes('상무지구 노래방')&&html.includes('상무지구 가라오케'),'Index body missing key terms');
 let totalCards=0,pin=0,street=0,none=0,hours=0;
 for(const n of [1,2,3,4,5,6,7,8]){
  const f=`page/karaoke${n}/index.html`,s=read(f);
