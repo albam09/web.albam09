@@ -3,7 +3,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 const root=process.cwd(),out=path.join(root,'dist');
-const dirs=['admin','auth','bbs','bubble-alba','css','explore','fonts','img','js','login','map','member','messages','page','system','thumbs'];
+const dirs=['admin','auth','bbs','bubble-alba','css','explore','fonts','img','js','login','map','member','messages','page','place','system','thumbs'];
 const publicRoot=['index.html','favicon.ico','robots.txt','sitemap.xml','site.webmanifest','llms.txt','geo-catalog.json','geo-catalog.txt','BingSiteAuth.xml','_redirects','_headers'];
 await fs.rm(out,{recursive:true,force:true});await fs.mkdir(out,{recursive:true});
 for(const d of dirs){await fs.cp(path.join(root,d),path.join(out,d),{recursive:true,force:true});}
@@ -34,4 +34,4 @@ console.log('[package-public] PASS: all eight deployed region names and venue co
 console.log(`[package-public] PASS: public-only dist with ${dirs.length} asset/page directories; build source/SQL excluded`);
 
 const snapshot=JSON.parse(await fs.readFile(path.join(root,'data/build/public-content-snapshot.json'),'utf8'));
-await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261116-nov7-content-restored',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:venueDirectory.length,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');
+await fs.writeFile(path.join(out,'site-version.json'),JSON.stringify({version:'20261116-garaoke-sangmu',builtAt:new Date().toISOString(),publicContentVerifiedAt:snapshot.fetchedAt,venueCount:venueDirectory.length,mapRegions:10,commitRef:process.env.COMMIT_REF||null},null,2)+'\n');

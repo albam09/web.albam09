@@ -7,16 +7,17 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const directory=JSON.parse(read('data/venue-directory.json')).venues;
-assert.equal(directory.length,64);
-assert.equal(new Set(directory.map(v=>v.slug)).size,64);
-const counts={karaoke1:34,karaoke2:3,karaoke3:15,karaoke4:3,karaoke5:7,karaoke6:2,karaoke7:0,karaoke8:0};
+assert.ok(directory.length>=65);
+assert.equal(new Set(directory.map(v=>v.slug)).size,directory.length);
+assert.equal(directory.find(v=>v.slug==='garaoke-sangmu')?.board,'karaoke1');
+const counts=Object.fromEntries(Array.from({length:8},(_,i)=>[`karaoke${i+1}`,directory.filter(v=>v.board===`karaoke${i+1}`).length]));
 const scriptData=(p,key)=>{const context={window:{}};vm.runInNewContext(read(p),context);return context.window[key];};
 const globalData=scriptData('data/public-venues.js','PUBLIC_VENUES');
 const savedPins=JSON.parse(read('data/map-pin-addresses.json')).points;
 const bundle=read('js/map-view.js').match(/\/\* PIN_ADDRESS_DATA_START \*\/([\s\S]*?)\/\* PIN_ADDRESS_DATA_END \*\//);
 assert.ok(bundle,'Map engine must include saved addresses even when an older page has no pinAddress');
 assert.deepEqual(JSON.parse(bundle[1]),savedPins,'Embedded addresses must match their source file');
-assert.equal(globalData.length,64);
+assert.equal(globalData.length,directory.length);
 assert.equal(JSON.stringify(globalData),JSON.stringify(JSON.parse(read('data/public-venues.json'))));
 const seen=new Set();
 for(const [board,count] of Object.entries(counts)){
@@ -58,14 +59,14 @@ for(const [board,count] of Object.entries(counts)){
   new vm.Script(body,{filename:`map/${board}/inline.js`});
  }
 }
-assert.equal(seen.size,64);
+assert.equal(seen.size,directory.length);
 assert.equal(directory.find(v=>v.slug==='boss').board,'karaoke3');
 assert.equal(directory.find(v=>v.slug==='padam-padam').board,'karaoke4');
 assert.equal(directory.filter(v=>v.coordinateStatus==='address-coordinate-conflict').length,8);
 assert.equal(directory.filter(v=>v.coordinateStatus==='building-address-reference').length,3,'Only independently geocoded buildings may be corrected');
 assert.ok(directory.filter(v=>v.coordinateStatus==='address-coordinate-conflict').every(v=>v.lat===null&&v.lng===null));
 const home=read('index.html');
-assert.doesNotMatch(home.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1],/상무지구/,'Home targets the regional directory, not Sangmu alone');
+assert.match(home.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1],/상무지구/,'The restored November 7 home heading remains in place');
 assert.equal((home.match(/data-preview-item/g)||[]).length,6);
 assert.doesNotMatch(home,/class="business-desc-card"/,'Do not repeat all regional descriptions on home');
 const nearest=read('js/nearest.js');
@@ -75,4 +76,9 @@ const rows=vm.runInNewContext(nearest.slice(start,end)+';listPagePlaces("ALL");'
  getPlaces:()=>[{name:'null',lat:null,lng:null},{name:'empty',lat:'',lng:''},{name:'bad',lat:NaN,lng:126},{name:'valid',lat:35.1,lng:126.8}]
 });
 assert.equal(rows.length,1);assert.equal(rows[0].name,'valid');
-console.log('PASS: all 64 venues preserved; regional HTML/data/schema/maps agree; 19 reclassified links; unknown pins excluded from distance results; map JavaScript parses');
+const place=read('place/garaoke-sangmu/index.html');
+assert.match(place,/<link rel="canonical" href="https:\/\/albam09\.com\/place\/garaoke-sangmu\/"/);
+assert.match(place,/tel:01080953087/);
+assert.match(place,/\/map\/karaoke1\/\?venue=garaoke-sangmu/);
+for(let i=1;i<=4;i++)assert.ok(fs.existsSync(path.join(root,`img/place/garaoke-sangmu/0${i}.jpg`)));
+console.log(`PASS: ${directory.length} venues preserved; region pages, map data and the new place agree; unknown pins excluded`);

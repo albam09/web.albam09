@@ -1,7 +1,7 @@
 {
-  "release": "20261108-v9-verified-address-safe",
+  "release": "20261116-garaoke-sangmu",
   "updatedAt": "2026-11-08",
-  "basis": "V8 자료 + 개별 도로명주소 대조(건물 단위). 사업장 실제 운영/입구 위치는 별도 검증 대상이며 핀 밑 주소를 임의로 업소 주소로 사용하지 않음.",
+  "basis": "V8 자료 + 개별 도로명주소 대조(건물 단위). 사업장 실제 운영/입구 위치는 별도 검증 대상이며 핀 밑 주소를 임의로 업소 주소로 사용하지 않음. 신규 업소는 사용자가 제공한 Google 지도 등록정보를 별도 출처로 기록.",
   "venues": [
     {
       "slug": "7seven",
@@ -997,6 +997,35 @@
       "buildingAddressCrosschecked": false,
       "addressSearchText": "",
       "pinKind": "unverified-approximation"
+    },
+    {
+      "slug": "garaoke-sangmu",
+      "id": "garaoke-sangmu",
+      "name": "가라오케상무지구노래방",
+      "title": "가라오케상무지구노래방",
+      "region": "서구1",
+      "phone": "01080953087",
+      "lat": 35.1508625,
+      "lng": 126.849921875,
+      "board": "karaoke1",
+      "originalBoard": "karaoke1",
+      "area": "상무지구",
+      "address": "광주광역시 서구 상무연하로 29 (치평동 1250-3)",
+      "locationHint": "치평동 1250-3 · 상무연하로 29",
+      "hours": "24시간",
+      "image": "/img/place/garaoke-sangmu/01.jpg",
+      "detailUrl": "/place/garaoke-sangmu/",
+      "addressVerified": false,
+      "coordinateStatus": "google-plus-code-center",
+      "locationSource": "사용자가 제공한 Google 지도 업소 등록정보 / 8Q785R2X+8XV 중심",
+      "sourceUrl": "https://maps.app.goo.gl/sBMk39JYAaRKPjiS7",
+      "reviewedAt": "2026-11-16",
+      "phoneLabel": "지도에 등록된 연락처",
+      "addressPrecision": "street",
+      "businessLocationVerified": false,
+      "buildingAddressCrosschecked": true,
+      "addressSearchText": "광주광역시 서구 상무연하로 29",
+      "pinKind": "google-plus-code-center"
     },
     {
       "slug": "someday",

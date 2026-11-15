@@ -1,0 +1,29 @@
+/* Venue details follow the site's existing navigation, fonts and mobile frame. */
+.place-profile{max-width:1180px;margin:0 auto;padding:0 18px 42px;box-sizing:border-box}
+.place-profile *{box-sizing:border-box}
+.place-profile-hero{display:block!important;text-align:left!important;margin:24px 0;padding:36px clamp(20px,4vw,48px);border:1px solid rgba(213,135,237,.5);border-radius:24px;color:#fff;background:linear-gradient(125deg,#7924b8,#cb247e);box-shadow:0 12px 24px rgba(89,39,105,.17)}
+.place-profile-hero>*{display:block!important}
+.place-profile-hero h1{margin:8px 0 14px;color:#fff!important;font-size:clamp(25px,3.4vw,39px)!important;line-height:1.3!important;overflow-wrap:anywhere}
+.place-profile-hero p{margin:0;color:#fff!important;line-height:1.7}
+.place-profile-eyebrow{margin:0;color:#a13aae;font-size:.86rem!important;font-weight:700;letter-spacing:.05em}
+.place-profile-hero .place-profile-eyebrow{color:#ffe8ff!important}
+.place-profile-panel{margin:20px 0;padding:clamp(20px,3vw,32px);border:1px solid #ead9ed;border-radius:22px;background:#fff;box-shadow:0 7px 24px rgba(75,34,82,.07)}
+.place-profile-panel h2{margin:0 0 20px;color:#382448;font-size:clamp(20px,2.5vw,27px)!important;line-height:1.35!important}
+.place-profile-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
+.place-profile-facts div{min-width:0;padding:15px 17px;border-radius:14px;background:#f9f5fb}
+.place-profile-facts dt{margin:0 0 6px;color:#80558d;font-size:.87rem;font-weight:700}
+.place-profile-facts dd{margin:0;color:#302337;line-height:1.6;overflow-wrap:anywhere}
+.place-profile-facts dd span{color:#685c6d;font-size:.91em}
+.place-profile-facts a{color:#8c2ca9;text-decoration:none;font-weight:700}
+.place-profile-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.place-profile-button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border:1px solid #dfc6e5;border-radius:12px;background:#fff;color:#6b2d80!important;text-decoration:none!important;font-weight:700;line-height:1.3!important}
+.place-profile-button.primary{border-color:#8e31b5;background:#8e31b5;color:#fff!important}
+.place-profile-button:focus-visible,.place-profile-photo:focus-visible{outline:3px solid #cf69db;outline-offset:3px}
+.place-profile-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.place-profile-heading h2{margin:5px 0 18px}
+.place-profile-heading>a{margin-bottom:19px;color:#864496;font-size:.85rem!important;text-underline-offset:3px}
+.place-profile-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.place-profile-photo{display:block;overflow:hidden;border-radius:16px;background:#f2eaf3}
+.place-profile-photo img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.place-profile-note,.place-profile-related p{margin:14px 0 0;color:#706475;font-size:.9rem!important;line-height:1.65!important}
+@media(max-width:640px){.place-profile{padding:0 12px 32px}.place-profile-hero{padding:25px 20px;border-radius:19px}.place-profile-panel{padding:20px 16px;border-radius:18px}.place-profile-facts{grid-template-columns:minmax(0,1fr);gap:9px}.place-profile-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.place-profile-button{padding:10px 8px;text-align:center;font-size:.92rem!important}.place-profile-actions .primary{grid-column:1/-1}.place-profile-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.place-profile-photo{border-radius:12px}}

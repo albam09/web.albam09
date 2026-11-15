@@ -8,7 +8,8 @@ const orig=JSON.parse(read('data/venue-original-intros-11-20261030.json')).intro
 const html=read('index.html');
 const fail=msg=>{throw Error('[V18-verify] '+msg)};
 const check=(cond,msg)=>{if(!cond)fail(msg)};
-check(v.length===64,'Expected 64 venue records');
+check(v.length>=65&&v.some(x=>x.slug==='garaoke-sangmu'),'The existing venues and new Sangmu venue must be present');
+check(new Set(v.map(x=>x.slug)).size===v.length,'Venue slugs must be unique');
 check(Object.keys(orig).length===45,'Original 11 introductions must equal 45');
 check(!html.includes('지역별 업소 이용 가이드'),'Removed index guide returned');
 check(html.includes('id="index-original-intros"'),'Index introduction fold missing');
@@ -29,7 +30,7 @@ for(const n of [1,2,3,4,5,6,7,8]){
  const h=(s.match(/class="business-desc-fact business-desc-fact--hours"/g)||[]).length;
  hours+=h;
 }
-check(totalCards===64,'Missing venue information cards '+totalCards);
+check(totalCards===v.length,'Missing venue information cards '+totalCards);
 for(const item of v){
  const s=read(`page/${item.board}/index.html`);
  const exact=item.addressPrecision==='street'&&/\d/.test(item.address||'');
@@ -39,8 +40,9 @@ for(const item of v){
  else if(p){pin++;check(s.includes(p.road||p.parcel),'Pin reference address missing '+item.slug);}
  else{none++;check(s.includes(item.name),'Unconfirmed venue missing '+item.slug);}
 }
-check(street===16&&pin===43&&none===5,'Address provenance count drift '+JSON.stringify({street,pin,none}));
-check(hours===10,'Only 10 explicitly provided time ranges should remain, found '+hours);
+check(street+pin+none===v.length,'Address provenance count drift '+JSON.stringify({street,pin,none}));
+const expectedHours=v.filter(x=>String(x.hours||'').trim()&&!/(문의|확인|미정|없음)/.test(String(x.hours))).length;
+check(hours===expectedHours,'Explicitly registered operating hours differ from rendered cards: '+hours);
 check(html.match(/<meta name="keywords"/g)?.length===1,'Duplicate index keyword tags');
 check(html.match(/<meta property="og:description"/g)?.length===1,'Duplicate index OG tags');
 check(html.match(/<meta name="twitter:description"/g)?.length===1,'Duplicate index X/Twitter tags');

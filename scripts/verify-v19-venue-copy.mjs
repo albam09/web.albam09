@@ -7,9 +7,9 @@ const promo=JSON.parse(read('data/venue-unique-intros-09.json')).introductions;
 const publicVenues=JSON.parse(read('data/public-venues.json'));
 const fail=s=>{throw new Error('[V19-venue-copy] '+s)};
 const assert=(ok,s)=>{if(!ok)fail(s)};
-assert(venues.length===64,'Expected 64 venues');
-assert(Object.keys(promo).length===64,'Exactly 64 individual introductions required');
-assert(new Set(Object.values(promo)).size===64,'Duplicated venue intros detected');
+assert(venues.length>=65&&venues.some(v=>v.slug==='garaoke-sangmu'),'Expected the existing venues and the new Sangmu venue');
+assert(Object.keys(promo).length===venues.length,'One individual introduction per venue is required');
+assert(new Set(Object.values(promo)).size===venues.length,'Duplicated venue intros detected');
 const escape=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let found=0;
 for(let i=1;i<=8;i++){
@@ -32,10 +32,10 @@ for(let i=1;i<=8;i++){
   found++;
  }
 }
-assert(found===64,'Expected 64 rendered intros: '+found);
-assert(publicVenues.length===64,'Public venue dataset drift');
+assert(found===venues.length,'Rendered intro count differs from the venue directory: '+found);
+assert(publicVenues.length===venues.length,'Public venue dataset drift');
 const originalBySlug=Object.fromEntries(venues.map(v=>[v.slug,v]));
 for(const v of publicVenues)assert(v.phone===originalBySlug[v.slug]?.phone,'Phone dataset unexpectedly changed: '+v.slug);
 const map=read('js/map-view.js');
 assert(map.includes('PIN_ADDRESS_DATA_START'),'Map pin data missing');
-console.log('[V19-venue-copy] PASS: 64 unique introductions, 0 generic pin disclaimers, 0 directory phone repetitions, map/detail links and phone records preserved');
+console.log(`[V19-venue-copy] PASS: ${venues.length} unique introductions, 0 generic pin disclaimers, 0 directory phone repetitions, map/detail links and phone records preserved`);

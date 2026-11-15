@@ -23,6 +23,7 @@ const regionData=[["karaoke1", "서구1", "상무지구", "상무지구노래방
 const regions=Object.fromEntries(regionData.map(([board,region,label,h1,title,intro,more])=>[board,{board,region,label,h1,title,intro,more}]));
 const forBoard=board=>venues.filter(v=>v.board===board);
 const route=v=>`/map/${v.board}/?venue=${encodeURIComponent(v.slug)}`;
+const detailRoute=v=>v.detailUrl?.startsWith('/place/')?v.detailUrl:route(v);
 const regionUrl=board=>`https://albam09.com/page/${board}/`;
 // Never imply a pin lookup proves the business occupies that building.
 // For unverified points prefer the administrative address and a map-coordinate link.
@@ -103,7 +104,7 @@ function businessInfo(r,items){
  if(!items.length)return '';
  return `<section class="business-description-section business-description-showcase info-fold-card info-guide-card"><details class="business-description-fold"><summary><span>업소별 소개·위치 안내</span><span aria-hidden="true" class="business-description-fold__action">보기</span></summary><div class="business-description-fold__content"><h2>${esc(r.label)} 업소별 소개</h2><div class="business-desc-grid">${items.map(v=>{
  const addr=displayAddress(v),status=pinAddressStatus(v),time=operatingLabel(v),intro=uniqueVenueIntros[v.slug];
- return `<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${route(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><p class="business-desc-card__intro">${esc(intro)}</p><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="${esc(status)}: ${esc(addr)}"><b>${esc(status)}</b> ${esc(addr)}</span>${time?`<span class="business-desc-fact business-desc-fact--hours"><b>등록 이용시간</b> ${esc(time)}</span>`:''}</div><a class="directory-map-pin" href="${esc(pinSearch(v))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(v.name)} 지도 위치 확인">지도·길찾기 ↗</a></div><a class="business-desc-card__button" href="${route(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`;
+ return `<article class="business-desc-card" id="venue-${esc(v.slug)}"><div class="business-desc-copy"><a class="business-desc-card__title-link" href="${detailRoute(v)}"><span class="business-desc-card__title">${esc(v.name)}</span></a><p class="business-desc-card__intro">${esc(intro)}</p><div class="business-desc-card__facts"><span class="business-desc-fact business-desc-fact--location" title="${esc(status)}: ${esc(addr)}"><b>${esc(status)}</b> ${esc(addr)}</span>${time?`<span class="business-desc-fact business-desc-fact--hours"><b>등록 이용시간</b> ${esc(time)}</span>`:''}</div><a class="directory-map-pin" href="${esc(pinSearch(v))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(v.name)} 지도 위치 확인">지도·길찾기 ↗</a></div><a class="business-desc-card__button" href="${detailRoute(v)}" aria-label="${esc(v.name)} 상세보기">상세보기</a></article>`;
  }).join('')}</div></div></details></section>`;
 }
 function guide(r){

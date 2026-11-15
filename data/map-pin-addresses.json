@@ -303,6 +303,12 @@
       "parcel": "전남광주통합특별시 목포시 상동 1139-21번지",
       "source": "지오코더",
       "kind": "pin-address"
+    },
+    "35.1508625,126.8499219": {
+      "road": "광주광역시 서구 상무연하로 29",
+      "parcel": "광주광역시 서구 치평동 1250-3",
+      "source": "Google 지도 Plus Code 중심과 건물 주소 대조",
+      "kind": "google-plus-code-center"
     }
   }
 }
