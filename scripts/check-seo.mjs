@@ -7,6 +7,30 @@ function metadata(html){
  const canonicals=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>attrs(m[0])).filter(m=>m.rel==='canonical').map(m=>m.href);
  return {noindex:metas.some(m=>m.name==='robots'&&/\bnoindex\b/i.test(m.content||'')),canonicals,h1:(html.match(/<h1\b/gi)||[]).length};
 }
+// Account/authoring pages must remain excluded on every production build.
+// Public regional pages, posts and public author profiles use separate routes.
+const privatePages=[
+ ['/login','login/index.html'],
+ ['/auth','auth/callback/index.html'],
+ ['/member','member/index.html'],
+ ['/messages','messages/index.html'],
+ ['/admin','admin/index.html'],
+ ['/explore/write','explore/write/index.html'],
+];
+const headerRules=new Map();let currentRule;
+for(const line of (await fs.readFile(path.join(root,'_headers'),'utf8')).split(/\r?\n/)){
+ if(!line.trim()||line.trimStart().startsWith('#'))continue;
+ if(!/^\s/.test(line)){currentRule=line.trim();continue;}
+ if(currentRule&&/^\s*X-Robots-Tag\s*:/i.test(line)){
+  headerRules.set(currentRule,(headerRules.get(currentRule)||'')+','+line.split(':').slice(1).join(':'));
+ }
+}
+for(const [route,file] of privatePages){
+ if(!metadata(await fs.readFile(path.join(root,file),'utf8')).noindex)throw Error('Account page missing HTML noindex: '+file);
+ for(const pattern of [route,route+'/*']){
+  if(!/\bnoindex\b/i.test(headerRules.get(pattern)||''))throw Error('Account route missing HTTP noindex: '+pattern);
+ }
+}
 const sitemap=path.join(root,'sitemap.xml');let xml=await fs.readFile(sitemap,'utf8');
 const fixes=process.argv.includes('--fix-sitemap'),seen=new Set();let count=0,removed=0;
 for(const match of [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)]){
@@ -26,4 +50,4 @@ if(fixes&&removed)await fs.writeFile(sitemap,xml.replace(/\n[ \t]*\n(?:[ \t]*\n)
 for(let i=1;i<=8;i++)if(!seen.has(`${origin}/page/karaoke${i}/`))throw Error('Missing regional URL: '+i);
 const robots=await fs.readFile(path.join(root,'robots.txt'),'utf8');
 if(!robots.includes(`Sitemap: ${origin}/sitemap.xml`)||/^Disallow:\s*\/\s*$/m.test(robots))throw Error('Crawl directive error');
-console.log(`[seo-check] PASS: ${count} canonical, indexable sitemap pages; ${removed} noindex entries removed; main headings and robots checked`);
+console.log(`[seo-check] PASS: ${count} canonical, indexable sitemap pages; ${removed} noindex entries removed; ${privatePages.length} account/authoring screens excluded in HTML and HTTP headers; main headings and robots checked`);

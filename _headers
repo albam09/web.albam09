@@ -36,8 +36,43 @@
 /map/*
   Cache-Control: public, max-age=0, must-revalidate
 
+# Account and authoring screens: exclude both bare paths and all descendants.
+# Keep these URLs crawlable so search engines can read the noindex directive.
+/login
+  X-Robots-Tag: noindex, nofollow
+
 /login/*
   X-Robots-Tag: noindex, nofollow
+
+/auth
+  X-Robots-Tag: noindex
+
+/auth/*
+  X-Robots-Tag: noindex
+
+/member
+  X-Robots-Tag: noindex
+
+/member/*
+  X-Robots-Tag: noindex
+
+/messages
+  X-Robots-Tag: noindex
+
+/messages/*
+  X-Robots-Tag: noindex
+
+/admin
+  X-Robots-Tag: noindex
+
+/admin/*
+  X-Robots-Tag: noindex
+
+/explore/write
+  X-Robots-Tag: noindex
+
+/explore/write/*
+  X-Robots-Tag: noindex
 
 /*.sql
   X-Robots-Tag: noindex, nofollow
